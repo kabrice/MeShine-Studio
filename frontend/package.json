@@ -1,0 +1,33 @@
+{
+  "name": "meshine-studio",
+  "version": "1.0.0",
+  "description": "MeShine-Studio is a tool to customize the web information that matter to people in the sens to make it accessible in the most understanding and the most simple way possible with the unique goal to grow the human mind.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "webpack"
+  },
+  "repository": "",
+  "author": "Edgar KAMDEM",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.0",
+    "babel-preset-env": "^1.1.4",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.26.1",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.13.1",
+    "webpack": "2.2.0-rc.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "exports-loader": "^0.6.4",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.9",
+    "tether": "^1.4.3"
+  }
+}

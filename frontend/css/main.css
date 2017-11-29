@@ -1,0 +1,15 @@
+body {
+  font-family: sans-serif;
+  background-color: #1F1F1F; }
+
+.nav-link span {
+  border-radius: 10px;
+  border: 2px solid;
+  padding: 3px;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 12px; }
+
+#footer {
+  color: #27292F; }
+
+/*# sourceMappingURL=main.css.map */

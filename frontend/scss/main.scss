@@ -1,0 +1,53 @@
+$menu-text-color: #27292F;
+$header-height: 60px;
+$body-background-color: #1F1F1F;
+
+body {
+  font-family: sans-serif;
+  background-color: $body-background-color;
+}
+
+h1, h2, h3, h4 {
+
+}
+
+p {
+
+}
+
+a {
+
+}
+
+.nav-link span{
+  border-radius: 10px;
+  border: 2px solid;
+  padding: 3px;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 12px;
+
+}
+
+#header {
+
+  #main-menu {
+
+  }
+
+  #logo {
+
+  }
+}
+
+#main {
+
+  #content {
+  }
+
+  #sidebar {
+  }
+}
+
+#footer {
+  color: $menu-text-color;
+}

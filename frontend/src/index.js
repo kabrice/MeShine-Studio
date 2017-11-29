@@ -1,0 +1,4 @@
+console.log("hi");
+import '../node_modules/bootstrap/dist/js/bootstrap.js';
+import '../css/main.css';
+
