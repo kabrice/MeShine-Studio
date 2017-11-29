@@ -4,7 +4,7 @@ $body-background-color: #1F1F1F;
 
 body {
   font-family: sans-serif;
-  background-color: $body-background-color;
+  background-color: $body-background-color !important;
 }
 
 h1, h2, h3, h4 {

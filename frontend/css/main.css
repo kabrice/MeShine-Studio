@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background-color: #1F1F1F; }
+  background-color: #1F1F1F !important; }
 
 .nav-link span {
   border-radius: 10px;
