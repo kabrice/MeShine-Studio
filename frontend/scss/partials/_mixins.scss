@@ -1,0 +1,70 @@
+@mixin do-font {
+  color: $gray;
+  font-size: $do-font-size;
+  text-align: center;
+
+}
+
+@mixin animation-icon-size($width, $margin-right, $margin-left){
+  margin-bottom: $animation-img-margin-bottom;
+  height:$animation-img-height;
+  width: $width;
+  margin-right: $margin-right;
+  margin-left: $margin-left
+}
+
+@mixin action-btn($background, $margin-left){
+  background: $background;
+  margin-left:$margin-left;
+  $hover-color: "";
+  @if $background == $blue {
+    $hover-color: dodgerblue;
+  } @else {
+    $hover-color: limegreen;
+  }
+  &:hover{
+    cursor: pointer;
+    background: $hover-color;
+    border-color:$hover-color;
+    color: whitesmoke;
+  }
+}
+
+@mixin size($height: 100%, $width: 100%){
+  height: $height;
+  width: $width,
+}
+
+@mixin font-text($font-family, $color, $font-size, $font-weight){
+  color: $color;
+  font: {
+    family: $font-family;
+    size: $font-size;
+    weight: $font-weight
+  }
+}
+
+@mixin edit-icon{
+  i{
+    font-size: 20px;
+    margin-left: 2px
+  }
+}
+
+@mixin larger-screens{
+  @media screen and (max-width: 1300px){
+    margin: 0  10% auto;
+  }
+}
+
+@mixin mediums-screens{
+  @media screen and (min-width: 1301px){
+    margin: 0  15% auto;
+  }
+}
+
+@mixin hovering-icon{
+  &:hover{
+    background: $navbar-inverse-hover-color;
+  }
+}

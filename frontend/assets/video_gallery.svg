@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="55px" viewBox="0 0 56 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>noun_656616_cc</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-14.6%" y="-10.4%" width="129.2%" height="129.2%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <radialGradient cx="50%" cy="0%" fx="50%" fy="0%" r="100%" gradientTransform="translate(0.500000,0.000000),scale(0.988506,1.000000),rotate(90.000000),translate(-0.500000,-0.000000)" id="radialGradient-2">
+            <stop stop-color="#F5515F" offset="0%"></stop>
+            <stop stop-color="#9F041B" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Creation-Page" transform="translate(-636.000000, -753.000000)" fill-rule="nonzero" fill="url(#radialGradient-2)">
+            <g id="Multimedia-Section" transform="translate(495.000000, 755.000000)">
+                <g id="Videos" transform="translate(140.000000, 0.000000)">
+                    <g id="noun_656616_cc" filter="url(#filter-1)" transform="translate(5.000000, 0.000000)">
+                        <g id="Group" transform="translate(0.000000, 0.351901)">
+                            <path d="M9.49386586,0.216117556 C11.5704084,2.21014417 13.7656108,4.28236783 15.8421539,6.29594372 C13.7062811,8.30951945 11.5901849,10.3230957 9.4740893,12.3366714 L19.6392603,12.3366714 L26.0271014,6.29594372 L19.6194837,0.196568276 C16.7321007,0.216117556 12.2823661,0.216117556 9.49386586,0.216117556 Z M22.8430694,0.196568276 C24.9789416,2.22969341 27.1148143,4.2432693 29.23091,6.29594372 C27.0950378,8.30951945 24.9789416,10.3230957 22.862846,12.3366714 L33.0280169,12.3366714 L39.415858,6.29594372 L33.0082404,0.196568276 L22.8430694,0.196568276 Z M36.2318255,0.196568276 C38.3676982,2.22969341 40.503571,4.2432693 42.6196666,6.29594372 C40.503571,8.30951945 38.3874748,10.3230957 36.251602,12.3366714 L47.4451563,12.3366714 L47.4451563,10.6945319 C47.4451563,4.06732579 42.4219005,0.216117556 36.2318255,0.196568276 Z M7.08112074,1.01763807 C3.24446099,2.58158047 0.554843721,6.31549297 0.554843721,10.6945319 L0.554843721,12.3366714 L6.25050363,12.3366714 L12.6185682,6.29594372 L7.08112074,1.01763807 Z M0.554843721,14.5457401 L0.554843721,36.0694974 C0.554843721,41.8756337 5.28145055,46.5479117 11.1353235,46.5479117 L36.8448999,46.5479117 C42.7185494,46.5479117 47.4451563,41.8756337 47.4451563,36.0694974 L47.4451563,14.5457401 L0.554843721,14.5457401 Z M16.7321007,19.1007222 C21.9333455,22.2286074 27.1345909,25.3369429 32.3556123,28.4648276 C33.06757,28.9340105 32.9686873,30.0287702 32.3556123,30.4002063 C27.1543674,33.5476403 21.953122,36.6755255 16.7518772,39.8229594 C16.0992491,40.2334946 15.1104195,39.6274665 15.1104195,38.8259459 C15.1301944,32.5701766 15.1104195,26.3339559 15.1104195,20.0781865 C15.6048346,19.4526097 16.1190262,18.9443283 16.7321007,19.1007222 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

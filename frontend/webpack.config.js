@@ -1,31 +1,32 @@
-const webpack = require('webpack')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const path = require('path')
+const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
     filename: "styles.css",
 });
 
+const VENDOR_LIBS = [
+    'react', 'lodash', 'redux', 'react-redux', 'react-dom', 'react-input-range', 'redux-form', 'redux-thunk'
+];
+
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        bundle: './src/index.js',
+        vendor: VENDOR_LIBS
+    },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
+        filename: '[name].[chunkhash].js',
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
             {
+                loader: 'babel-loader',
                 test: /\.js$/,
                 include: path.resolve(__dirname, 'src'),
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['es2015', { modules: false }]
-                        ]
-                    }
-                }]
             },
             {
                 test: /\.(scss)$/,
@@ -40,6 +41,11 @@ module.exports = {
                 })
             },
 
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?.*$|$)/,
+                loader: 'file-loader'
+            }
+
         ]
     },
     plugins: [
@@ -47,7 +53,17 @@ module.exports = {
             $: "jquery", // Used for Bootstrap JavaScript components
             jQuery: "jquery", // Used for Bootstrap JavaScript components
             Tether: 'tether',
+
             Popper: ['popper.js', 'default'] // Used for Bootstrap dropdown, popup and tooltip JavaScript components
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'manifest']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/index.html'
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
         extractSass
     ]

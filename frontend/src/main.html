@@ -3,46 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <title>Studio</title>
-    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="build/styles.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="external/jqueryui-ruler/css/jquery.ui.ruler.css">
 </head>
-<body>
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#" data-placement="right" data-toggle="tooltip" title="Aller à Mes Summaries">
-        <img src="../assets/meshine-studio-logo.png" alt="Aller à Mes Summaries"></a>
+<body style="overflow-y:hidden;">
+<header >
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#" data-placement="right" data-animation="false" data-toggle="tooltip" title="Aller à Mes Summaries">
+            <img src="./assets/meshine-studio-logo.png" alt="Aller à Mes Summaries"></a>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <div class="navbar-nav mr-auto">
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav mr-auto">
 
-            <li class="nav-item">
+            <span class="nav-item">
                 <div style=" margin-top: -10px">
                     <a class="nav-link"
                        data-placement="right"
-                       data-toggle="tooltip"
+                       data-animation="false" data-toggle="tooltip"
                        title="Modifier la question" href="#" style="font-weight: 900">
-                        Comment des habitants ont sauvé 20 baleines du cyclone Mora au  Sri Lanka ?</a></div>
+                        <b>Comment des habitants ont sauvés 20 baleines du cyclone Mora au  Sri Lanka ?</b>
+                        <i style="font-size: 20px; margin-left: 2px"><i class="fa fa-pencil" aria-hidden="true"></i></i></a></div>
                 <div style="margin: -18px 0 -8px;">
                     <a class="nav-link"
                        data-placement="right"
-                       data-toggle="tooltip"
+                       data-animation="false" data-toggle="tooltip"
                        title="Modifier les tags" href="#" style="display: inline-block;">
                         <span>Climat</span>
                         <span>Animaux des eaux</span>
                         <span>Sri Lanka</span>
-                        <span>Cyclone</span></a></div>
-            </li>
+                        <span>Cyclone</span>
+                        <i style="font-size: 20px; margin-left: 2px"><i class="fa fa-pencil" aria-hidden="true"></i></i></a></div>
+            </span>
+
+            </div>
+            <span class="navbar-nav">
+            <a class="nav-link" href="#" data-placement="left" data-animation="false" data-toggle="tooltip" title="Profil et paramètres">
+                <img src="./assets/edgar.jpeg" class="rounded-circle" height="32" width="32" alt="Profil et paramètres">
+                <span style="font-size: 14px">Edgar</span>
+            </a>
+        </span>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    <div class="row mt-2" >
+        <div class="col-sm-12 col-md-3 mt-1 animation-panel">
+            <div>
+                <b>Volet d'animation</b>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_emphasis.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="15" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row" style="">
+                <div class="col-2" style="border: solid black;">2,3s</div>
+                <div class="col-10" style="padding: 0 !important; border: solid red; padding-left: 12px">
+                    <img src="./assets/animation_exit.png"
+                         style="margin-bottom: 5px; margin-right:0px; display:inline-block;" height="14" width="20" alt="">
+                    image5.png</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >1,0s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_emphasis.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="16" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_trajectory.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_entrance.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
+            <div class="row">
+                <div class="col-2" >0,1s</div>
+                <div class="col-10" style="padding: 0 !important;">
+                    <img src="./assets/animation_exit.png"
+                         style="margin-bottom: 5px; margin-right:2px;" height="14" width="20" alt="">
+                    Sri Lanka : des habitans aident...</div>
+            </div>
 
         </div>
-        <a href="#" data-placement="left" data-toggle="tooltip" title="Profil et paramètres">
-            <img src="../assets/lemonde.jpg" class="rounded-circle" height="32" width="32" alt="Profil et paramètres">
-            <span>Le Monde</span>
-        </a>
+        <div id='card-container' class="col-sm-12 col-md-6" style=" width: 400px;  height: calc(100vh - 110px);
+  overflow-y: scroll;">col</div>
+        <div class="col-sm-12 col-md-3 bg-inverse" style=" min-height: 100vh;" style="border-left: 1px solid #353738;">col</div>
     </div>
-</nav>
+</main>
 
-<script src="../build/bundle.js"></script>
+
+<footer style="height: 10%; ">
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-bottom bg-inverse" style="border-top: 1px solid #353738 ">
+
+
+        <div class="container-fluid" style="width: 100%;  float: none; margin: 0 auto;">
+            <div class="row " >
+                <div class="col" >
+                    <div class="row">
+
+                        <div title="Annuler la dernière modification" class="col-md-2 col-sm-6 col-12" title="Annuler la dernière modification" style="color: #636c72; font-size: 25px">
+                            <i class="fa fa-undo " aria-hidden="true"></i>
+                        </div>
+                        <div title="Rétablir la dernière modification" class="col-md-2 col-sm-6 col-12" style="margin-left: -10px; color: #636c72; font-size: 25px">
+                            <i class="fa fa-repeat" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-12" style="margin-left: -8px" title="Zoomer l'affichage du Summary">
+                            <div class="btn-group dropup btn-block" >
+
+                                <button type="button" class="btn  btn-secondary nav-link"  style="background: #1F1F1F; font-size: 10px; color: #636c72; font-weight: bolder; border: solid 1px #636c72 " >100%</button>
+                                <button type="button"  style="background: #1F1F1F; font-size: 10px;color: #636c72; font-weight: bolder; border: solid 1px #636c72" class="btn  btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" type="button">300%</button>
+                                    <button class="dropdown-item" type="button">200%</button>
+                                    <button class="dropdown-item" type="button">150%</button>
+                                    <button class="dropdown-item" type="button">125%</button>
+                                    <button class="dropdown-item" type="button">100% ✓</button>
+                                    <button class="dropdown-item" type="button">75%</button>
+                                    <button class="dropdown-item" type="button">50%</button>
+                                    <button class="dropdown-item" type="button">25%</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Look at inVision tooltip -->
+                        <div class="col-md-2 col-sm-6 col-12" style="margin-left: -15px;" title="Enregistrer ce Summary" >
+                            <img src="./assets/save.png"  height="28" width="28" alt="Profil et paramètres">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-12" >
+                            <img src="./assets/cover_screen.png"  height="40" width="32" title="Customizer le slide de début"></div>
+                        <div class="col-md-4 col-sm-12 col-12" style="margin-left: -40px;">
+                            <img src="./assets/screens.png"  height="38" width="32" title="Changer de slide"></div>
+                        <div class="col-md-4 col-sm-12 col-12" style="margin-left: -40px;">
+                            <img src="./assets/ending_screen.png"  height="38" width="32" alt="Customizer le slide de fin"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-12" style="margin-left: -40px;">
+                            <img src="./assets/images_gallery.png"  height="32" width="32" title="Choisir une image et ajouter à ce Summary"></div>
+                        <div class="col-md-4 col-sm-12 col-12" style="margin-left: -40px;">
+                            <img src="./assets/audio_gallery.png"  height="32" width="32" title="Choisir une piste et ajouter à ce Summary"></div>
+                        <div class="col-md-4 col-sm-12 col-12" style="margin-left: -40px;">
+                            <img src="./assets/videos_gallery.png"  height="32" width="32" title="Choisir une vidéo et ajouter à ce Summary">
+                        </div>
+                    </div>
+                </div>
+                <div class="col" >
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-left: -20px;">
+                            <img src="./assets/text.png"  height="32" width="32" title="Ajouter une zone de texte"></div>
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-left: -20px;">
+                            <img src="./assets/diagrams.png"  height="32" width="32" title="Choisir un graphique à ajouter"></div>
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-left: -20px;">
+                            <img src="./assets/tables.png"  height="32" width="32" title="Choisir un tableau à ajouter"></div>
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-left: -20px;">
+                            <img src="./assets/figures.png"  height="32" width="32" title="Choisir une forme ou une ligne"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-left: -10px;">
+                            <img src="./assets/templates.png"  height="32" width="32" title="Découvrir et inspirer vous de modèle préfaits"></div>
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-left: -15px;">
+                            <img src="./assets/background.png"  height="32" width="32" alt="Customizer l'arrière plan"></div>
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-left: -15px;">
+                            <img src="./assets/animation.png"  height="32" width="32" alt="Afficher ou masquer les options d'animation"></div>
+                        <div class="col-md-3 col-sm-6 col-12" style="margin-left: -10px;">
+                            <img src="./assets/format.png"  height="32" width="32" alt="Afficher ou masquer les options de format de styles"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</footer>
+
+
+<script src="build/bundle.js"></script>
+<script src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+<script src="external/jqueryui-ruler/js/jquery.ui.ruler.js"></script>
+<script language="JavaScript">
+    $(document).ready(function () {
+
+        $('#card-container').ruler();
+    });
+
+</script>
 </body>
 </html>

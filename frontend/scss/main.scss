@@ -1,53 +1,211 @@
-$menu-text-color: #27292F;
-$header-height: 60px;
-$body-background-color: #1F1F1F;
+@import "partials/variables";
+@import "partials/mixins";
+
+html {
+  height: $html-height !important;
+  background: $black2 !important;
+  font-size: $body-font-size !important;
+}
 
 body {
-  font-family: sans-serif;
-  background-color: $body-background-color !important;
-}
+  @include font-text($html-font, "", $body-font-size, "");
+  @extend html ;
+  margin: $body-margin ;
+  display: $body-display ;
+  flex-direction: $body-flex-direction ;
 
-h1, h2, h3, h4 {
+  .container {
+    padding: $container-padding-main ;
+    min-height: $container-min-height ;
+    margin: $container-margin ;
+    width: $container-width ;
 
-}
-
-p {
-
-}
-
-a {
-
-}
-
-.nav-link span{
-  border-radius: 10px;
-  border: 2px solid;
-  padding: 3px;
-  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-  font-size: 12px;
-
-}
-
-#header {
-
-  #main-menu {
+    .row{
+      min-height: $container-row-min-height ;
+    }
 
   }
 
-  #logo {
+}
 
+header .fixed-top{
+  border-bottom: $panel-border ;
+}
+
+.animation-panel{
+  border-right: $panel-border ;
+  height: $animation-panel-height ;
+  overflow: scroll ;
+  color: $animation-panel-color ;
+  flex: 3 !important;
+}
+
+
+
+.animation-emphasis{
+  padding-left: $animation-emphasis-padding-left ;
+
+}
+
+.animation-exit img,
+.animation-emphasis img{
+  @include animation-icon-size($animation-img-width, "", $animation-img-margin-left);
+}
+
+.animation-exit{
+  padding-left: $animation-exit-padding-left ;
+}
+
+.animation-entrance img{
+  @include animation-icon-size($animation2-img-width, $animation-entrance-img-margin-right, "") ;
+}
+
+
+.animation-exit img{
+  @include animation-icon-size($animation2-img-width, "", $animation-img-margin-left) ;
+}
+.animation-trajectory img{
+  @include animation-icon-size($animation2-img-width, $animation-img-margin-left, "");
+}
+
+
+#question-tag{
+  margin: 0  10% auto ;
+  @include mediums-screens ;
+  @include larger-screens
+}
+
+#question{
+  margin-top: -10px ;
+  @include edit-icon ;
+}
+
+#tags{
+  margin: -18px 0 -8px ;
+  @include edit-icon ;
+}
+
+#card-container{
+  @include size($container-min-height, $card-container-width);
+  overflow-x: hidden ;
+  flex: 6 ;
+}
+canvas{
+  position: absolute ;
+  width: 414px ;
+  height: 736px ;
+  left: 50% ;
+  top: 50% ;
+  transform: translate(-50%,-50%) ;
+  background: white
+}
+
+#design-panel{
+  min-height: $container-row-min-height ;
+  border-left: $panel-border ;
+  flex: 4 ;
+}
+
+.nav-item .nav-link span{
+  border-radius: $tag-border-radius ;
+  border: $tag-border ;
+  padding: $tag-padding ;
+  font-family: $tag-family-font ;
+  font-size: $tag-font-size ;
+
+}
+
+
+table{
+  display: block ;
+  white-space: nowrap ;
+
+  tr:hover{
+    color: $navbar-inverse-hover-color;
+    cursor: default ;
+  }
+
+}
+
+
+
+footer .navbar-toggleable-md{
+  border-top: $panel-border
+}
+
+footer .container-fluid{
+  width: $footer-nav-width ;
+  float: $footer-nav-float ;
+  margin: $footer-nav-magin ;
+}
+
+
+#undo,
+#redo{
+  @include do-font ;
+  @include hovering-icon
+}
+
+.fa {
+  transform: translateX(-35%) ;
+}
+
+#zoom button{
+  background: $black2;
+  margin-top: $zoom-btn-margin-top;
+  padding: $zoom-btn-padding;
+  @include font-text("", $gray, $zoom-btn-font-size, $zoom-btn-font-weight);
+  @include hovering-icon
+}
+
+.container-fluid img{
+  @include size($menu-icon-height, $menu-icon-width);
+  &:hover {
+    background-color: #ddd;
   }
 }
 
-#main {
 
-  #content {
-  }
+#screens .row > div,
+#multimedia .row > div{
+  margin-left: $menu-icon-margin-left1;
+}
 
-  #sidebar {
+#magic .row > div,
+#graphics .row > div{
+  margin-left: $menu-icon-margin-left2;
+}
+
+#action button{
+  border-radius: $action-btn-border-radius;
+  @include font-text($action-btn-font-family, $action-btn-color, $action-btn-font-size, "")
+}
+#play{
+  @include action-btn($blue, $play-btn-margin-left);
+  &:hover{
+    cursor: pointer;
+    background: dodgerblue;
+    border-color:dodgerblue;
+    color: whitesmoke;
   }
 }
 
-#footer {
-  color: $menu-text-color;
+#publish{
+  @include action-btn($green, $publish-btn-margin-left);
+  &:hover{
+    cursor: pointer;
+    background: limegreen;
+    border-color:limegreen;
+    color: whitesmoke;
+  }
+}
+
+#me-tool{
+  display: $me-tool-display;
+  margin-left: $me-tool-margin-left;
+}
+
+/* Change ruler backgound*/
+.top, .left, .corner{
+  background: $black2 !important ;
 }

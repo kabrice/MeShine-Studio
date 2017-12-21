@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="56px" viewBox="0 0 50 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>noun_1052413_cc</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FCF53C" offset="0%"></stop>
+            <stop stop-color="#F8E71C" offset="100%"></stop>
+        </linearGradient>
+        <path d="M36.6172969,24.6343349 C33.5499056,23.4118062 30.0532856,24.1317647 27.7113441,26.468082 C25.3694026,28.8043992 24.6271076,32.3131759 25.8207055,35.4049981 C27.0143035,38.4968203 29.9170113,40.5842431 33.2139535,40.7217008 C37.9654048,40.8658981 41.8997927,37.2394289 41.8997927,32.5249253 C41.9333324,21.944212 41.8997927,11.358817 41.8997927,0.772485702 C41.8997927,0.537462779 41.8615948,0.297758125 41.8373717,-5.68434189e-14 C41.5793027,0.0571171246 41.3789964,0.0936346305 41.1852117,0.148879063 C31.9888244,2.80154815 22.8315667,5.47294415 13.6305212,8.09190477 C12.7920298,8.33160942 12.8106629,8.81101873 12.8106629,9.45897037 L12.8106629,32.3975822 C12.1585029,32.148514 11.8072682,31.9518813 11.3870909,31.8030023 C8.05082676,30.6419328 5.06579739,31.2898845 2.5503232,33.7459208 C0.174146802,36.095799 -0.541382402,39.6617971 0.742908416,42.7535723 C2.25350513,46.4630053 6.17388368,48.5700391 10.0822747,47.7730773 C13.9906657,46.9761156 16.7839744,43.5000909 16.736666,39.4922781 C16.77828,32.4066335 16.77828,25.3216131 16.736666,18.237217 C16.7320077,17.3111705 17.027343,16.9516135 17.8909891,16.7119089 C22.4011412,15.4843588 26.8907968,14.1697286 31.3869739,12.872889 L37.8722391,11.0001964 L37.8722391,25.167116 C37.3132448,24.9414565 36.9853015,24.7925775 36.6172969,24.6343349 Z" id="path-2"></path>
+        <filter x="-16.7%" y="-10.4%" width="133.5%" height="129.2%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Creation-Page" transform="translate(-571.000000, -753.000000)" fill-rule="nonzero">
+            <g id="Multimedia-Section" transform="translate(495.000000, 753.000000)">
+                <g id="Audios" transform="translate(71.000000, 2.000000)">
+                    <g id="noun_1052413_cc" transform="translate(9.000000, 0.000000)">
+                        <g id="Shape">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

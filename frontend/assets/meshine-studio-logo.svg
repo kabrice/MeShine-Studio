@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="172px" height="28px" viewBox="0 0 172 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <text id="text-1" font-family="AvenirNext-BoldItalic, Avenir Next" font-size="24" font-style="italic" font-weight="bold">
+            <tspan x="95" y="24">Studio</tspan>
+        </text>
+        <filter x="-9.2%" y="-15.2%" width="118.4%" height="142.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Creation-Page" transform="translate(-41.000000, -35.000000)">
+            <g id="Group" transform="translate(40.000000, 32.000000)">
+                <g id="MeShine-Studio">
+                    <text id="MeShine" font-family="AvenirNext-Heavy, Avenir Next" font-size="20" font-weight="600" fill="#FFFFFF">
+                        <tspan x="0" y="24">MeShine</tspan>
+                    </text>
+                    <g id="Studio" fill="#4A4A4A">
+                        <use fill-opacity="1" filter="url(#filter-2)" xlink:href="#text-1"></use>
+                        <use fill-rule="evenodd" xlink:href="#text-1"></use>
+                        <use fill-opacity="1" xlink:href="#text-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

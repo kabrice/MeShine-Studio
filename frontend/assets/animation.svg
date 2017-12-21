@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="88px" viewBox="0 0 90 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>noun_1132147_cc</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-8.4%" y="-6.0%" width="116.9%" height="116.9%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="0.25781251%" y1="49.7500002%" x2="100%" y2="-39.0014648%" id="linearGradient-2">
+            <stop stop-color="#AEA723" offset="0%"></stop>
+            <stop stop-color="#53A0FD" offset="47.5247532%"></stop>
+            <stop stop-color="#B4EC51" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Creation-Page" transform="translate(-1161.000000, -719.000000)" fill-rule="nonzero" fill="url(#linearGradient-2)">
+            <g id="noun_1132147_cc" filter="url(#filter-1)" transform="translate(1165.000000, 719.000000)">
+                <g id="Group" transform="translate(0.000000, 0.630207)">
+                    <path class="svg-fill" d="M64.0322011,0.581067932 L62.808063,4.48595238 L58.8563361,5.69558475 L62.2226649,8.06167143 L62.1817899,12.1509962 L65.494913,9.70547902 L69.4067186,11.0201212 L68.0761692,7.14148921 L70.5510142,3.86800997 L66.4129655,3.93532396 L64.0322011,0.581067932 Z M25.7252398,7.9041567 L24.5011016,11.8090411 L20.5493066,13.0314632 L23.9289198,15.3847602 L23.8744198,19.4734118 L27.1875429,17.0285678 L31.112701,18.34321 L29.7821516,14.464578 L32.2569966,11.1910987 L28.1189479,11.2584127 L25.7252398,7.9041567 Z M36.9685196,13.7678782 L38.1526683,28.3346252 L26.6964979,37.5640461 L37.0749308,39.9967737 L6.05945976,70.642813 L1.34922914,75.2969022 C0.457835621,76.1407431 0.0982035013,77.3950523 0.409203895,78.575481 C0.720204289,79.7559097 1.65316719,80.6777268 2.84783112,80.9849747 C4.04249506,81.2922226 5.31190109,80.9368186 6.16587101,80.0560011 L10.8761016,75.401912 L42.3839121,44.2691925 L46.428834,54.5635207 L54.1194686,42.086873 L68.8887642,41.2851634 L59.2554805,30.1884525 L63.0343061,16.0686703 L49.3959536,21.6954466 L36.9685196,13.7678782 Z M70.1927449,19.8153669 L69.2879768,22.6815965 L66.3873505,23.5755263 L68.8754799,25.3108809 L68.8346049,28.3083728 L71.2695286,26.5205132 L74.1435861,27.4804107 L73.1722599,24.6404336 L74.9817961,22.2346316 L71.9481218,22.3019456 L70.1927449,19.8153669 Z M75.821028,31.687535 L74.5968899,35.5924194 L70.6318105,36.8148414 L74.0114918,39.1816013 L73.9569918,43.2837157 L77.2967518,40.8381985 L81.2219099,42.1528407 L79.8913605,38.261419 L82.3662055,34.974477 L78.2148043,35.041791 L75.821028,31.687535 Z M64.5245405,48.6607571 L63.3004024,52.5784312 L59.335323,53.7880635 L62.7149361,56.1548234 L62.6604361,60.2562647 L66.0001961,57.8114206 L69.9253543,59.1260628 L68.5948049,55.2474308 L71.0696499,51.9476991 L66.9182486,52.0150131 L64.5245405,48.6607571 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
