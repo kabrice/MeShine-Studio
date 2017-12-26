@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
+import AnimationsReducer from './reducer_animation';
 
 const rootReducer = combineReducers({
-    state: (state = {}) => state
+    animations: AnimationsReducer
 });
-
 export default rootReducer;

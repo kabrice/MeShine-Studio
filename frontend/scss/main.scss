@@ -83,6 +83,9 @@ header .fixed-top{
 #tags{
   margin: -18px 0 -8px ;
   @include edit-icon ;
+  a{
+    display: inline-block;
+  }
 }
 
 #card-container{
@@ -115,7 +118,6 @@ canvas{
 
 }
 
-
 table{
   display: block ;
   white-space: nowrap ;
@@ -126,8 +128,6 @@ table{
   }
 
 }
-
-
 
 footer .navbar-toggleable-md{
   border-top: $panel-border
@@ -182,22 +182,11 @@ footer .container-fluid{
 }
 #play{
   @include action-btn($blue, $play-btn-margin-left);
-  &:hover{
-    cursor: pointer;
-    background: dodgerblue;
-    border-color:dodgerblue;
-    color: whitesmoke;
-  }
 }
 
 #publish{
   @include action-btn($green, $publish-btn-margin-left);
-  &:hover{
-    cursor: pointer;
-    background: limegreen;
-    border-color:limegreen;
-    color: whitesmoke;
-  }
+
 }
 
 #me-tool{
@@ -205,7 +194,40 @@ footer .container-fluid{
   margin-left: $me-tool-margin-left;
 }
 
-/* Change ruler backgound*/
-.top, .left, .corner{
-  background: $black2 !important ;
+/*customise space between nav-link cause react remove them*/
+.nav-link *{
+  margin-right: 4px !important;
 }
+
+//*** Variable of custom input picked on https://codepen.io/lewisvrobinson/pen/EyZwjR
+
+.group {
+  position: relative;
+  margin: 12px 0;
+}
+
+// INPUTS // ============================== //
+
+
+input {
+  background: none;
+  color: $animation-panel-color;
+  font-weight: bolder;
+  padding: 10px 10px 0 5px;
+  display: block;
+  width: $question-input-width;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid $animation-panel-color;
+  &:focus {
+    outline: none;
+  }
+
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: $question-input-width;
+}
+

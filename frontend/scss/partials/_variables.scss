@@ -11,11 +11,11 @@ $navbar-inverse-hover-color:           rgba(#fff,.75); //To be deleted when impo
 $header-height: 60px;
 $html-height : 100%;
 $body-font-size: 14px;
-
+$question-input-width: 720px;
 
 // *** FONTS ***
-$html-font: sans-serif;
-$tag-family-font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+$html-font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+$tag-family-font: $html-font;
 
 // *** BODY ***
 $body-margin: 0;

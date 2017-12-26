@@ -5,7 +5,7 @@ html, body {
 
 body {
   color: "";
-  font-family: sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: "";
   margin: 0;
@@ -77,13 +77,15 @@ header .fixed-top {
   margin-top: -10px; }
   #question i {
     font-size: 20px;
-    margin-left: 2px; }
+    margin-left: 4px !important; }
 
 #tags {
   margin: -18px 0 -8px; }
   #tags i {
     font-size: 20px;
-    margin-left: 2px; }
+    margin-left: 4px !important; }
+  #tags a {
+    display: inline-block; }
 
 #card-container {
   height: calc(100vh - 110px);
@@ -179,20 +181,10 @@ footer .container-fluid {
     background: dodgerblue;
     border-color: dodgerblue;
     color: whitesmoke; }
-  #play:hover {
-    cursor: pointer;
-    background: dodgerblue;
-    border-color: dodgerblue;
-    color: whitesmoke; }
 
 #publish {
   background: #42B72A;
   margin-left: 5px; }
-  #publish:hover {
-    cursor: pointer;
-    background: limegreen;
-    border-color: limegreen;
-    color: whitesmoke; }
   #publish:hover {
     cursor: pointer;
     background: limegreen;
@@ -203,8 +195,30 @@ footer .container-fluid {
   display: inline-block;
   margin-left: -25px; }
 
-/* Change ruler backgound*/
-.top, .left, .corner {
-  background: #1F1F1F !important; }
+/*customise space between nav-link cause react remove them*/
+.nav-link * {
+  margin-right: 4px !important; }
+
+.group {
+  position: relative;
+  margin: 12px 0; }
+
+input {
+  background: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bolder;
+  padding: 10px 10px 0 5px;
+  display: block;
+  width: 720px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  input:focus {
+    outline: none; }
+
+.bar {
+  position: relative;
+  display: block;
+  width: 720px; }
 
 /*# sourceMappingURL=main.css.map */
