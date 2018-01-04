@@ -7,11 +7,11 @@ const AnimationPanelItem = ({animation}) => {
     const animationIcon = "../assets/animation_emphasis.svg";
     const animationObjectReference = "Le passage du cyclone Mora a laissé des traces. Les habitants ont découverts 20 baleines échouées";
 
-return (  <tr>
+return  <React.Fragment>
               <td >0,1s</td>
               <td className={animationClass}><img src={animationIcon}/></td>
               <td>{animationObjectReference}</td>
-          </tr>)
+        </React.Fragment>
 };
 
 export default AnimationPanelItem;

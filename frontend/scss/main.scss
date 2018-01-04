@@ -13,7 +13,7 @@ body {
   margin: $body-margin ;
   display: $body-display ;
   flex-direction: $body-flex-direction ;
-
+  overflow-y:hidden;
   .container {
     padding: $container-padding-main ;
     min-height: $container-min-height ;
@@ -28,19 +28,18 @@ body {
 
 }
 
-header .fixed-top{
+header .navbar{
   border-bottom: $panel-border ;
+  z-index: 1;
 }
 
 .animation-panel{
-  border-right: $panel-border ;
-  height: $animation-panel-height ;
-  overflow: scroll ;
-  color: $animation-panel-color ;
+  border-right: $panel-border;
+  height: $container-min-height;
+  overflow: scroll;
+  color: $animation-panel-color;
   flex: 3 !important;
 }
-
-
 
 .animation-emphasis{
   padding-left: $animation-emphasis-padding-left ;
@@ -70,18 +69,19 @@ header .fixed-top{
 
 
 #question-tag{
-  margin: 0  10% auto ;
+  margin: 0  10% auto 50%;
   @include mediums-screens ;
   @include larger-screens
 }
 
 #question{
-  margin-top: -10px ;
+  margin-top: -10px;
+  padding-bottom: 20px !important;
   @include edit-icon ;
 }
 
 #tags{
-  margin: -18px 0 -8px ;
+  margin: -18px 0 -8px;
   @include edit-icon ;
   a{
     display: inline-block;
@@ -93,6 +93,7 @@ header .fixed-top{
   overflow-x: hidden ;
   flex: 6 ;
 }
+
 canvas{
   position: absolute ;
   width: 414px ;
@@ -104,9 +105,11 @@ canvas{
 }
 
 #design-panel{
-  min-height: $container-row-min-height ;
+  min-height: $container-min-height ;
   border-left: $panel-border ;
   flex: 4 ;
+
+  overflow: scroll;
 }
 
 .nav-item .nav-link span{
@@ -115,7 +118,7 @@ canvas{
   padding: $tag-padding ;
   font-family: $tag-family-font ;
   font-size: $tag-font-size ;
-
+  display: inline-block;
 }
 
 table{
@@ -219,6 +222,7 @@ input {
   border: none;
   border-radius: 0;
   border-bottom: 1px solid $animation-panel-color;
+
   &:focus {
     outline: none;
   }
@@ -231,3 +235,19 @@ input {
   width: $question-input-width;
 }
 
+#question-update-btn{
+  float: right !important;
+  margin-left: 5px;
+}
+
+#question-cancel-btn{
+
+}
+
+#question-wrapper{
+  padding-top: 5px !important;
+}
+
+.btn-link{
+  color : rgba(255, 255, 255, 0.5) !important;
+}

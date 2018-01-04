@@ -10,21 +10,23 @@ body {
   font-weight: "";
   margin: 0;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  overflow-y: hidden; }
   body .container {
-    padding: 60px 15px 0;
-    min-height: calc(100vh - 110px);
-    margin: 0 auto -33px;
+    padding: 0 15px 0;
+    min-height: calc(100vh - 150px);
+    margin: -7px auto -33px;
     width: 100%; }
     body .container .row {
       min-height: 100vh; }
 
-header .fixed-top {
-  border-bottom: 1px solid #353738; }
+header .navbar {
+  border-bottom: 1px solid #353738;
+  z-index: 1; }
 
 .animation-panel {
   border-right: 1px solid #353738;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 150px);
   overflow: scroll;
   color: rgba(255, 255, 255, 0.5);
   flex: 3 !important; }
@@ -65,7 +67,7 @@ header .fixed-top {
   margin-left: ""; }
 
 #question-tag {
-  margin: 0 10% auto; }
+  margin: 0  10% auto 50%; }
   @media screen and (min-width: 1301px) {
     #question-tag {
       margin: 0  15% auto; } }
@@ -74,7 +76,8 @@ header .fixed-top {
       margin: 0  10% auto; } }
 
 #question {
-  margin-top: -10px; }
+  margin-top: -10px;
+  padding-bottom: 20px !important; }
   #question i {
     font-size: 20px;
     margin-left: 4px !important; }
@@ -88,7 +91,7 @@ header .fixed-top {
     display: inline-block; }
 
 #card-container {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 150px);
   width: 400px;
   overflow-x: hidden;
   flex: 6; }
@@ -103,16 +106,18 @@ canvas {
   background: white; }
 
 #design-panel {
-  min-height: 100vh;
+  min-height: calc(100vh - 150px);
   border-left: 1px solid #353738;
-  flex: 4; }
+  flex: 4;
+  overflow: scroll; }
 
 .nav-item .nav-link span {
   border-radius: 10px;
   border: 2px solid;
   padding: 3px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px; }
+  font-size: 12px;
+  display: inline-block; }
 
 table {
   display: block;
@@ -209,7 +214,7 @@ input {
   font-weight: bolder;
   padding: 10px 10px 0 5px;
   display: block;
-  width: 720px;
+  width: 600px;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
@@ -219,6 +224,16 @@ input {
 .bar {
   position: relative;
   display: block;
-  width: 720px; }
+  width: 600px; }
+
+#question-update-btn {
+  float: right !important;
+  margin-left: 5px; }
+
+#question-wrapper {
+  padding-top: 5px !important; }
+
+.btn-link {
+  color: rgba(255, 255, 255, 0.5) !important; }
 
 /*# sourceMappingURL=main.css.map */

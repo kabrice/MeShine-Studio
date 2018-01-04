@@ -19,7 +19,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-// import App from './components/app';
+import App from './components/app';
 import reducers from './reducers';
 
 import QuestionTag from './components/question_tag';
@@ -27,9 +27,9 @@ import AnimationPanel from './containers/animation_panel';
 import CardContainer from './components/card_container';
 
 
-const App = () =>{
-    return <QuestionTag/>
-};
+// const App = () =>{
+//     return <QuestionTag/>
+// };
 
 const AppCardContainer = () =>{
     return <CardContainer/>
@@ -56,18 +56,17 @@ class AppAnimationPanel extends Component{
 }
 
 
+const createStoreWithMiddleware = applyMiddleware()(createStore);
 
+ReactDOM.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <App/>
+    </Provider>
+    , document.querySelector('.container'));
 
-
-
-// const createStoreWithMiddleware = applyMiddleware()(createStore);
-
-// ReactDOM.render(
-//     <Provider store={c!reateStoreWithMiddleware(reducers)}>
-//         <App />
-//     </Provider>
-//     , document.querySelector('.container'));
-
-ReactDOM.render(<App/>,  document.querySelector('#question-tag'));
-ReactDOM.render(<CardContainer/>,  document.querySelector('#card-container'));
-ReactDOM.render(<AppAnimationPanel/>,  document.querySelector('.animation-panel'));
+ReactDOM.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <QuestionTag/>
+    </Provider>,  document.querySelector('#question-tag'));
+// ReactDOM.render(<CardContainer/>,  document.querySelector('#card-container'));
+// ReactDOM.render(<AppAnimationPanel/>,  document.querySelector('.animation-panel'));

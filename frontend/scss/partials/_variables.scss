@@ -5,13 +5,13 @@ $black1: #353738;
 $gray: #636c72;
 $blue: #4080FF;
 $green: #42B72A;
-$navbar-inverse-hover-color:           rgba(#fff,.75); //To be deleted when importing bootstrap in the same file (index)
+$navbar-inverse-hover-color: rgba(#fff,.75); //To be deleted when importing bootstrap in the same file (index)
 
 // *** SIZES ***
 $header-height: 60px;
 $html-height : 100%;
 $body-font-size: 14px;
-$question-input-width: 720px;
+$question-input-width: 600px;
 
 // *** FONTS ***
 $html-font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -23,13 +23,13 @@ $body-display: flex;
 $body-flex-direction: column;
 
 // *** MAIN CONTAINER ***
-$container-margin: 0 auto -33px;
-$container-min-height: calc(100vh - 110px);
+$container-margin: -7px auto -33px;
+$container-min-height: calc(100vh - 150px);
 $container-width: $html-height;
-$container-padding-main: 60px 15px 0;
+$container-padding-main: 0 15px 0;
 $panel-border: 1px solid $black1;
 $container-row-min-height: 100vh;
-$animation-panel-height: calc(100vh - 120px);
+$animation-panel-height: $container-min-height;
 
 // *** ANIMATION PANEL ***
 $animation-panel-color: rgba(255, 255, 255, 0.5);

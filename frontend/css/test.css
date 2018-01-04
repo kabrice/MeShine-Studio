@@ -1,0 +1,67 @@
+html, body {
+    height: 100% !important;
+    font-size: 14px !important; }
+
+body {
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden; }
+body .container {
+    padding: 0 15px 0;
+    min-height: calc(100vh - 170px);
+    margin: -10px auto -33px;
+    width: 100%; }
+body .container .row {
+    min-height: 100vh; }
+
+header .fixed-top {
+    border-bottom: 1px solid #353738; }
+
+.animation-panel {
+    border-right: 1px solid #353738;
+    height: calc(100vh - 120px);
+    overflow: scroll;
+    color: rgba(255, 255, 255, 0.5);
+    flex: 3 !important; }
+
+#question-tag {
+    margin: 0  10% auto 50%; }
+@media screen and (min-width: 1301px) {
+    #question-tag {
+        margin: 0  15% auto; } }
+@media screen and (max-width: 1300px) {
+    #question-tag {
+        margin: 0  10% auto; } }
+
+#question {
+    margin-top: -10px; }
+#question i {
+    font-size: 20px;
+    margin-left: 4px !important; }
+
+#tags {
+    margin: -10px 0 -8px; }
+#tags i {
+    font-size: 20px;
+    margin-left: 4px !important; }
+#tags a {
+    display: inline-block; }
+
+#card-container {
+    height: calc(100vh - 170px);
+    width: 400px;
+    overflow-x: hidden;
+    flex: 6; }
+
+
+.nav-item .nav-link span {
+    border-radius: 10px;
+    border: 2px solid;
+    padding: 3px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    display: inline-block; }

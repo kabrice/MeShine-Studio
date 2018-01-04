@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../external/jqueryui-ruler/css/jquery.ui.ruler.css">
 </head>
-<body style="overflow-y:hidden;">
+<body style="/* padding-top: 60px*/">
 <header >
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top" >
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse " >
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,14 +22,14 @@
             <div class="navbar-nav mr-auto" id="question-tag">
 
             <span class="nav-item">
-                <div  id="question">
+                <span  id="question">
                     <a class="nav-link"
                        data-placement="right"
                        data-animation="false" data-toggle="tooltip"
                        title="Modifier la question" href="#">
-                        <b>Comment des habitants ont sauvés 20 baleines du cyclone Mora au Sri Lanka ?</b>
-                        <i><i class="fa fa-pencil" aria-hidden="true"></i></i></a></div>
-                <div  id="tags">
+                        <b>Si comme moi, vous avez accumulé des dizaines de mails par jour de sorte que votre boîte compte aujourd'hui plus de 4000 non lus et qu'il faudrait des ?</b>
+                        <i><i class="fa fa-pencil" aria-hidden="true"></i></i></a></span>
+                <span  id="tags">
                     <a class="nav-link"
                        data-placement="right"
                        data-animation="false" data-toggle="tooltip"
@@ -37,23 +38,36 @@
                         <span>Animaux des eaux</span>
                         <span>Sri Lanka</span>
                         <span>Cyclone</span>
-                        <i ><i class="fa fa-pencil" aria-hidden="true"></i></i></a></div>
+                        <span>Climat</span>
+                        <span>Animaux des eaux</span>
+                        <span>Sri Lanka</span>
+                        <span>Cyclone</span>
+                        <span>Climat</span>
+                        <span>Animaux des eaux</span>
+                        <span>Sri Lanka</span>
+                        <span>Cyclone</span>
+                        <span>Climat</span>
+                        <span>Animaux des eaux</span>
+                        <span>Sri Lanka</span>
+                        <i ><i class="fa fa-pencil" aria-hidden="true"></i></i></a></span>
             </span>
 
             </div>
-            <span class="navbar-nav">
-            <a class="nav-link" href="#" data-placement="left" data-animation="false" data-toggle="tooltip" title="Profil et paramètres">
-                <img src="../assets/edgar.jpeg" class="rounded-circle" height="32" width="32" alt="Profil et paramètres">
-                <span style="font-size: 14px">Edgar</span>
-            </a>
-        </span>
+            <div style="width: 45%;">
+                <span class="navbar-nav" style=" float: right;">
+                <a class="nav-link" href="#" data-placement="left" data-animation="false" data-toggle="tooltip" title="Profil et paramètres">
+                    <img src="../assets/edgar.jpeg" class="rounded-circle" height="32" width="32" alt="Profil et paramètres">
+                    <span style="font-size: 14px">Edgar</span>
+                </a>
+                </span>
+            </div>
         </div>
     </nav>
 </header>
 
 <!-- Begin page content -->
-<main role="main" class="container">
-    <div class="row mt-1" >
+<main role="main" class="container page-header">
+    <div class="row mt-1 clearfix" >
         <div class="col mt-1 pt-2 bg-inverse animation-panel">
             <table>
                 <thead>
@@ -177,13 +191,13 @@
         <div id="card-container" class="col">
             <canvas id="mydiv"></canvas>
         </div>
-        <div class="col  bg-inverse" id="design-panel">col</div>
+        <div class="col bg-inverse" id="design-panel"><div style="color: white;">Nothing to display</div></div>
     </div>
 
 </main>
 
 
-<footer>
+<footer style="z-index: 3000;">
 
     <nav class="navbar navbar-toggleable-md navbar-inverse fixed-bottom bg-inverse">
 
