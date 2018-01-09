@@ -112,3 +112,63 @@ class LoginViewSet(viewsets.ViewSet):
         """Use the ObtainAuthToken APIView to validate and create a token"""
 
         return ObtainAuthToken().post(request)
+
+class SummaryViewSet(viewsets.ModelViewSet):
+
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.SummarySerializer
+    queryset = models.Summary.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+
+class UserProfileSummaryViewSet(viewsets.ModelViewSet):
+
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.UserProfileSummarySerializer
+    queryset = models.UserProfileSummary.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save(user_profile=self.request.user)
+
+class ObjectTypeViewSet(viewsets.ModelViewSet):
+
+    
+    serializer_class = serializers.ObjectTypeSerializer
+    queryset = models.ObjectType.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+
+class ObjectViewSet(viewsets.ModelViewSet):
+
+    
+    serializer_class = serializers.ObjectSerializer
+    queryset = models.Object.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+
+class AnimationTypeViewSet(viewsets.ModelViewSet):
+
+    
+    serializer_class = serializers.AnimationTypeSerializer
+    queryset = models.AnimationType.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+
+class AnimationViewSet(viewsets.ModelViewSet):
+
+    
+    serializer_class = serializers.AnimationSerializer
+    queryset = models.Animation.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
