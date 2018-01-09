@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'psycopg2',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_extensions',
     'meshine_api',
 ]
 
@@ -108,9 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-FIXTURE_DIRS = (
-    './meshine_api/fixtures/',
-)
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

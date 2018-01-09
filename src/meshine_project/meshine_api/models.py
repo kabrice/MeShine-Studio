@@ -64,50 +64,15 @@ class Summary(models.Model):
 
     question_text = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
-    userProfileSummary = models.ManyToManyField(UserProfile, through='UserProfileSummary')
 
     def __str__(self):
         return self.question_text
 
-class UserProfileSummary(models.Model):
+class UserSummary(models.Model):
     """Manytomany table"""
     user_profile = models.ForeignKey('UserProfile', on_delete=models.CASCADE)
     summary = models.ForeignKey('Summary', on_delete=models.CASCADE)
     is_author = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
-
-class ObjectType(models.Model):
-    """Type of an object that can be animated"""
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-class Object(models.Model):
-    """Object that can be animated"""
-    location = models.CharField(max_length=255)
-    object_type = models.ForeignKey('ObjectType', on_delete=models.CASCADE)
-    summary = models.ForeignKey('Summary', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.location
-
-
-class AnimationType(models.Model):
-    """Type of an animation that feature an object"""
-    name = models.CharField(max_length=255)
-
-
-
-class Animation(models.Model):
-    """Animation of an object"""
-    object = models.ForeignKey('Object', on_delete=models.CASCADE)
-    animation_type = models.ForeignKey('AnimationType', on_delete=models.CASCADE)
-    duration = models.FloatField()
-
-
-
-
 
 
