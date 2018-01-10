@@ -4,5 +4,3 @@ from . import models
 
 # Register your models here.
 admin.site.register(models.UserProfile)
-admin.site.register(models.Summary)
-admin.site.register(models.UserSummary)
