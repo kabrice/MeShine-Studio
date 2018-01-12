@@ -7,6 +7,7 @@ from rest_framework import status, filters
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from . import serializers, models, permissions
 # Create your views here.
@@ -111,4 +112,69 @@ class LoginViewSet(viewsets.ViewSet):
     def create(self, request):
         """Use the ObtainAuthToken APIView to validate and create a token"""
 
+<<<<<<< HEAD
         return ObtainAuthToken().post(request)
+=======
+        return ObtainAuthToken().post(request)
+
+class SummaryViewSet(viewsets.ModelViewSet):
+
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.SummarySerializer
+    queryset = models.Summary.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+
+class UserProfileSummaryViewSet(viewsets.ModelViewSet):
+
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.UserProfileSummarySerializer
+    queryset = models.UserProfileSummary.objects.all()
+    permission_classes = (permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save(user_profile=self.request.user)
+
+class ObjectTypeViewSet(viewsets.ModelViewSet):
+
+    
+    serializer_class = serializers.ObjectTypeSerializer
+    queryset = models.ObjectType.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+
+class ObjectViewSet(viewsets.ModelViewSet):
+
+    
+    serializer_class = serializers.ObjectSerializer
+    queryset = models.Object.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+
+class AnimationTypeViewSet(viewsets.ModelViewSet):
+
+    
+    serializer_class = serializers.AnimationTypeSerializer
+    queryset = models.AnimationType.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+
+class AnimationViewSet(viewsets.ModelViewSet):
+
+    
+    serializer_class = serializers.AnimationSerializer
+    queryset = models.Animation.objects.all()
+
+    def perform_create(self, serializer):
+        """Sets the user profile to the logged in user"""
+        serializer.save()
+>>>>>>> 4cfbde217a2729fb91131d3364ccbfdad68e1a62

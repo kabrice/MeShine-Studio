@@ -20,12 +20,20 @@ Vagrant.configure("2") do |config|
     # Update and upgrade the server packages.
     sudo apt-get update
     sudo apt-get -y upgrade
+
     # Set Ubuntu Language
     sudo locale-gen en_GB.UTF-8
+
     # Install Python, SQLite and pip
+<<<<<<< HEAD
     sudo apt-get install -y python3-dev sqlite python-pip libpq-dev postgresql postgresql-contrib python3-Psycopg2 
+=======
+    sudo apt-get install -y python3-dev sqlite python-pip libpq-dev postgresql postgresql-contrib 
+
+>>>>>>> 4cfbde217a2729fb91131d3364ccbfdad68e1a62
     # Upgrade pip to the latest version.
     sudo pip install --upgrade pip
+
     # Install and configure python virtualenvwrapper.
     sudo pip install virtualenvwrapper
     if ! grep -q VIRTUALENV_ALREADY_ADDED /home/ubuntu/.bashrc; then
