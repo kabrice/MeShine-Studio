@@ -102,7 +102,8 @@ ENV/
 .vagrant
 
 # Intellij
-.idea/
+.idea/*
 
 #npm
 frontend/node_modules/
+

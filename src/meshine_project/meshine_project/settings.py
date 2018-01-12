@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'psycopg2',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_extensions',
     'meshine_api',
 ]
 
