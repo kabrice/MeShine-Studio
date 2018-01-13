@@ -14,6 +14,7 @@ INSERT INTO meshine_api_animation(duration, animation_type_id, object_id) VALUES
 INSERT INTO meshine_api_animation(duration, animation_type_id, object_id) VALUES (1.0, 1, 2);
 INSERT INTO meshine_api_animation(duration, animation_type_id, object_id) VALUES (0.1, 1, 8);
 
-INSERT INTO meshine_api_summary(question_text, created_at) VALUES ('Si comme moi, vous avez accumulé des dizaines de mails par jour de sorte que votre boîte compte aujourd''hui plus de 4000 non lus et qu''il faudrait des ? ', NOW());
 
 INSERT INTO meshine_api_summary(id, question_text, created_at) VALUES (1, 'Si comme moi, vous avez accumulé des dizaines de mails par jour de sorte que votre boîte compte aujourd''hui plus de 4000 non lus et qu''il faudrait des ? ', NOW());
+INSERT INTO meshine_api_summary(id, question_text, created_at) VALUES (2, 'Comment des habitants ont sauvé 20 baleines du cyclone Mora au  Sri Lanka ? ', NOW());
+INSERT INTO meshine_api_userprofilesummary(is_author, created_at, summary_id, user_profile_id) VALUES (1, NOW(), 1, 1)
