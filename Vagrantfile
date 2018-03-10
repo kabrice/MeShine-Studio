@@ -14,6 +14,11 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/xenial64"
 
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
   config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8080, host: 8080
 
   config.vm.provision "shell", inline: <<-SHELL
@@ -25,23 +30,26 @@ Vagrant.configure("2") do |config|
     sudo locale-gen en_GB.UTF-8
 
     # Install Python, SQLite and pip
-<<<<<<< HEAD
-    sudo apt-get install -y python3-dev sqlite python-pip libpq-dev postgresql postgresql-contrib python3-Psycopg2 
-=======
     sudo apt-get install -y python3-dev sqlite python-pip libpq-dev postgresql postgresql-contrib 
 
->>>>>>> 4cfbde217a2729fb91131d3364ccbfdad68e1a62
     # Upgrade pip to the latest version.
     sudo pip install --upgrade pip
 
+    # Setup Java & ElasticSearch
+    # Install it manually from https://www.rosehosting.com/blog/install-and-configure-the-elk-stack-on-ubuntu-16-04/
+
+    # Install npm (https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04)
+    sudo apt-get install nodejs
+
     # Install and configure python virtualenvwrapper.
     sudo pip install virtualenvwrapper
-    if ! grep -q VIRTUALENV_ALREADY_ADDED /home/ubuntu/.bashrc; then
-        echo "# VIRTUALENV_ALREADY_ADDED" >> /home/ubuntu/.bashrc
-        echo "WORKON_HOME=~/.virtualenvs" >> /home/ubuntu/.bashrc
-        echo "PROJECT_HOME=/vagrant" >> /home/ubuntu/.bashrc
-        echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/ubuntu/.bashrc
+    if ! grep -q VIRTUALENV_ALREADY_ADDED /home/vagrant/.bashrc; then
+        echo "# VIRTUALENV_ALREADY_ADDED" >> /home/vagrant/.bashrc
+        echo "WORKON_HOME=~/.virtualenvs" >> /home/vagrant/.bashrc
+        echo "PROJECT_HOME=/vagrant" >> /home/vagrant/.bashrc
+        echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/vagrant/.bashrc
     fi
   SHELL
 
 end
+

@@ -1,0 +1,379 @@
+@import "partials/variables";
+@import "partials/mixins";
+
+html {
+  height: $html-height !important;
+  background: $black2 !important;
+  font-size: $body-font-size !important;
+}
+
+body {
+  @include font-text($html-font, "", $body-font-size, "");
+  @extend html ;
+  margin: $body-margin  !important;
+  display: $body-display  !important;
+  flex-direction: $body-flex-direction  !important;
+  overflow-y:hidden !important;
+  .container {
+    padding: $container-padding-main  !important;
+    min-height: $container-min-height  !important;
+    margin: $container-margin  !important;
+    width: $container-width  !important;
+
+    .row{
+      min-height: $container-row-min-height  !important;
+    }
+
+  }
+
+}
+
+@font-face {
+  font-family: 'Avenir Next Italic';
+  src: url('fonts/AvenirNextLTPro-It.otf');
+}
+
+@font-face {
+  font-family: 'AvenirNext-Heavy';
+  src: url('fonts/AvenirNextHeavy.otf');
+}
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('fonts/AvenirNextLTPro-Regular.otf');
+}
+
+header .navbar{
+  border-bottom: $panel-border ;
+  z-index: 1;
+}
+
+.navbar-brand{
+  margin-right: 40px;
+}
+
+li {
+  @extend .navbar-brand;
+}
+.nav li {
+  margin-right: 10px;
+}
+
+#navbarsExampleDefault{
+  margin-bottom: -5px;
+
+   img{
+    margin-bottom: 3px;
+  }
+}
+
+.user-profile{
+  width: 45%;
+
+  >span{
+    float: right;
+
+    >a{
+      padding: 2px;
+    }
+  }
+}
+
+
+.animation-panel{
+  border-right: $panel-border;
+  height: $container-min-height;
+  overflow: scroll;
+  color: $animation-panel-color;
+  flex: 3 !important;
+}
+
+.animation-emphasis{
+  padding-left: $animation-emphasis-padding-left ;
+
+}
+
+.animation-exit img,
+.animation-emphasis img{
+  @include animation-icon-size($animation-img-width, "", $animation-img-margin-left);
+}
+
+.animation-exit{
+  padding-left: $animation-exit-padding-left ;
+}
+
+.animation-entrance img{
+  @include animation-icon-size($animation2-img-width, $animation-entrance-img-margin-right, "") ;
+}
+
+
+.animation-exit img{
+  @include animation-icon-size($animation2-img-width, "", $animation-img-margin-left) ;
+}
+.animation-trajectory img{
+  @include animation-icon-size($animation2-img-width, $animation-img-margin-left, "");
+}
+
+
+#question-tag{
+  margin: 0  10% auto 50%;
+  @include mediums-screens ;
+  @include larger-screens
+}
+
+#question{
+  padding-bottom: 20px !important;
+  @include edit-icon ;
+}
+
+#tags{
+  margin: -18px 0 -2px;
+  @include edit-icon ;
+  a{
+    display: inline-block;
+  }
+}
+
+#card-container{
+  @include size($container-min-height, $card-container-width);
+  overflow-x: hidden ;
+  flex: 6 ;
+}
+
+canvas{
+  position: absolute ;
+  left: 50% ;
+  top: 50% ;
+  transform: translate(-50%,-50%) ;
+  background: white
+}
+
+.projects-container{
+  padding: 50px;
+  overflow-y: scroll;
+  height: 200px;
+}
+
+#design-panel{
+  min-height: $container-min-height ;
+  border-left: $panel-border ;
+  flex: 4 ;
+
+  overflow: scroll;
+}
+
+.nav-item .nav-link span{
+  border-radius: $tag-border-radius ;
+  border: $tag-border ;
+  padding: $tag-padding ;
+  font-family: $tag-family-font ;
+  font-size: $tag-font-size ;
+  display: inline-block;
+}
+
+table{
+  display: block ;
+  white-space: nowrap ;
+
+  tr:hover{
+    color: $navbar-inverse-hover-color;
+    cursor: default ;
+  }
+
+}
+
+footer .navbar-toggleable-md{
+  border-top: $panel-border
+}
+
+footer .container-fluid{
+  width: $footer-nav-width ;
+  float: $footer-nav-float ;
+  margin: $footer-nav-magin ;
+}
+
+
+#undo,
+#redo{
+  @include do-font ;
+  @include hovering-icon
+}
+
+.fa {
+  transform: translateX(-35%) ;
+}
+
+#zoom button{
+  background: $black2;
+  margin-top: $zoom-btn-margin-top;
+  padding: $zoom-btn-padding;
+  @include font-text("", $gray, $zoom-btn-font-size, $zoom-btn-font-weight);
+  @include hovering-icon
+}
+
+.container-fluid img{
+  @include size($menu-icon-height, $menu-icon-width);
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
+
+#screens .row > div,
+#multimedia .row > div{
+  margin-left: $menu-icon-margin-left1;
+}
+
+#magic .row > div,
+#graphics .row > div{
+  margin-left: $menu-icon-margin-left2;
+}
+
+#action button{
+  border-radius: $action-btn-border-radius;
+  @include font-text($action-btn-font-family, $action-btn-color, $action-btn-font-size, "")
+}
+#play{
+  @include action-btn($blue, $play-btn-margin-left);
+}
+
+#publish{
+  @include action-btn($green, $publish-btn-margin-left);
+
+}
+
+#me-tool{
+  display: $me-tool-display;
+  margin-left: $me-tool-margin-left;
+}
+
+/*customise space between nav-link cause react remove them*/
+.nav-link *{
+  margin-right: 4px !important;
+}
+
+//*** Variable of custom input picked on https://codepen.io/lewisvrobinson/pen/EyZwjR
+
+.group {
+  position: relative;
+  margin: 12px 0;
+}
+
+// INPUTS // ============================== //
+
+
+#question {
+  input {
+    @include input();
+  }
+  span{
+    @include bar();
+  }
+}
+
+
+#search form{
+  background: none;
+  font-weight: bolder;
+  padding: 6px 10px 0 0;
+  display: block;
+  width: 300px ;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid $animation-panel-color;
+  input{
+    background: none;
+    border: none;
+    border-radius: 0;
+    color: $animation-panel-color;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+
+#question-update-btn{
+  float: right !important;
+  margin-left: 5px;
+}
+
+
+#question-wrapper{
+  padding-top: 5px !important;
+}
+
+.btn-link{
+  color : rgba(255, 255, 255, 0.5) !important;
+}
+
+.img-thumbnail {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+// PROJECT MODAL
+
+.modal-content{
+  background-color: $black1 !important;
+  color: rgba(0, 0, 0, 0.75) !important;
+  input{
+    margin-bottom: 15px;
+  }
+}
+
+.modal-header{
+  @include font-text($html-font, "", $body-font-size, "");
+  border-bottom: $panel-border !important;
+  padding-bottom: 0 !important;
+}
+
+.me-modal-form{
+  input {
+    @include input(100%);
+  }
+  span{
+    @include bar(100%);
+  }
+}
+
+.text-help{
+  color: $red;
+
+}
+
+.me-input-invalid{
+    border-bottom: 1px solid $red !important;
+    margin-bottom: 0 !important;
+}
+
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* 1px wider than Lion. */
+  /* This is more usable for users trying to click it. */
+  background-color: rgba(0,0,0,0);
+  -webkit-border-radius: 100px;
+}
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+  /* This is the EXACT color of Mac OS scrollbars.
+     Yes, I pulled out digital color meter */
+  background-clip: padding-box;
+  border: 2px solid rgba(0, 0, 0, 0);
+  min-height: 30px;
+}
+
+::-webkit-scrollbar-thumb:vertical:active{
+  background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+  -webkit-border-radius: 100px;
+}
+
+
+
+
+

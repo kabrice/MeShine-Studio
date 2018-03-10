@@ -1,0 +1,88 @@
+// *** COLORS ***
+$black3: #27292F;
+$black2: #1F1F1F;
+$black1: #353738;
+$gray: #636c72;
+$blue: #4080FF;
+$green: #42B72A;
+$red: #c04848;
+$navbar-inverse-hover-color: rgba(#fff,.75); //To be deleted when importing bootstrap in the same file (index)
+
+// *** SIZES ***
+$header-height: 60px;
+$html-height : 100%;
+$body-font-size: 14px;
+$question-input-width: 600px;
+
+// *** FONTS ***
+$html-font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+$tag-family-font: $html-font;
+
+// *** BODY ***
+$body-margin: 0;
+$body-display: flex;
+$body-flex-direction: column;
+
+// *** MAIN CONTAINER ***
+$container-margin: -7px auto -33px;
+$container-min-height: calc(100vh - 150px);
+$container-width: $html-height;
+$container-padding-main: 0 15px 0;
+$panel-border: 1px solid $black1;
+$container-row-min-height: 100vh;
+$animation-panel-height: $container-min-height;
+
+// *** ANIMATION PANEL ***
+$animation-panel-color: rgba(255, 255, 255, 0.5);
+$animation-emphasis-padding-left: 5px;
+$animation-img-margin-bottom: $animation-emphasis-padding-left;
+$animation-img-margin-left: 2px;
+$animation-img-height: 14px;
+$animation-img-width: 15px;
+$animation-exit-padding-left: 6px;
+$animation-img-margin-bottom: 5px;
+$animation-entrance-img-margin-right: $animation-img-margin-bottom;
+$animation2-img-width: 20px;
+$animation-img-margin-left: 2px;
+
+// *** CARD (CANVAS) CONTAINER ***
+$card-container-width: 400px;
+
+// *** TAGS OF QUESTIONS ***
+$tag-border-radius: 10px;
+$tag-border: 2px solid;
+$tag-padding: 3px;
+$tag-font-size: 12px;
+
+// *** FOOTER NAV BAR ***
+$footer-nav-width: $html-height;
+$footer-nav-float: none;
+$footer-nav-magin: 0 auto;
+
+// *** DO / REDO BUTTONS ***
+$do-font-size: 25px;
+
+
+// *** ZOOM BUTTONS ***
+$zoom-btn-margin-top: 3px;
+$zoom-btn-padding: 0;
+$zoom-btn-font-size: 20px;
+$zoom-btn-font-weight: 700;
+
+// *** ICONS OF THE FOOTER MENU ***
+$menu-icon-height: 32px;
+$menu-icon-width: 32px;
+$menu-icon-margin-left1: -30px;
+$menu-icon-margin-left2: -10px;
+
+// *** PLAY / PUBLISH BUTTONS ***
+$action-btn-border-radius: 10px;
+$action-btn-font-family: 'AvenirNext-Bold', Verdana, sans-serif;
+$action-btn-font-size: 14px;
+$action-btn-color: #FFFFFF;
+$play-btn-margin-left: 25px;
+$publish-btn-margin-left: 5px;
+
+// *** TOOL BUTTON ***
+$me-tool-display: inline-block;
+$me-tool-margin-left: -25px;

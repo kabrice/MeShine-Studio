@@ -1,0 +1,92 @@
+@mixin do-font {
+  color: $gray;
+  font-size: $do-font-size;
+  text-align: center;
+
+}
+
+@mixin animation-icon-size($width, $margin-right, $margin-left){
+  margin-bottom: $animation-img-margin-bottom;
+  height:$animation-img-height;
+  width: $width;
+  margin-right: $margin-right;
+  margin-left: $margin-left
+}
+
+@mixin action-btn($background, $margin-left){
+  background: $background;
+  margin-left:$margin-left;
+  $hover-color: "";
+  @if $background == $blue {
+    $hover-color: dodgerblue;
+  } @else {
+    $hover-color: limegreen;
+  }
+  &:hover{
+    cursor: pointer;
+    background: $hover-color;
+    border-color:$hover-color;
+    color: whitesmoke;
+  }
+}
+
+@mixin size($height: 100%, $width: 100%){
+  height: $height;
+  width: $width,
+}
+
+@mixin font-text($font-family, $color, $font-size, $font-weight){
+  color: $color;
+  font: {
+    family: $font-family !important;
+    size: $font-size !important;
+    weight: $font-weight !important;
+  }
+}
+
+@mixin edit-icon{
+  i{
+    font-size: 20px;
+    margin-left: 4px !important
+  }
+}
+
+@mixin larger-screens{
+  @media screen and (min-width: 1300px){
+    margin: 0  10% auto;
+  }
+}
+
+@mixin mediums-screens{
+  @media screen and (max-width: 1301px){
+    margin: 0  20% auto;
+  }
+}
+
+@mixin hovering-icon{
+  &:hover{
+    background: $navbar-inverse-hover-color;
+  }
+}
+
+@mixin bar( $width: 600px){
+  position: relative;
+  display: block;
+  width: $width !important;
+}
+
+@mixin input($width: $question-input-width){
+  background: none;
+  color: $animation-panel-color;
+  font-family: $html-font;
+  font-weight: bolder;
+  padding: 10px 10px 0 5px;
+  display: block;
+  width: $width ;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid $animation-panel-color;
+  &:focus {
+    outline: none;
+  }
+}

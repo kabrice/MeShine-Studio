@@ -1,0 +1,353 @@
+html, body {
+  height: 100% !important;
+  background: #1F1F1F !important;
+  font-size: 14px !important; }
+
+body {
+  color: "";
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: "" !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: hidden !important; }
+  body .container {
+    padding: 0 15px 0 !important;
+    min-height: calc(100vh - 150px) !important;
+    margin: -7px auto -33px !important;
+    width: 100% !important; }
+    body .container .row {
+      min-height: 100vh !important; }
+
+@font-face {
+  font-family: 'Avenir Next Italic';
+  src: url("fonts/AvenirNextLTPro-It.otf"); }
+@font-face {
+  font-family: 'AvenirNext-Heavy';
+  src: url("fonts/AvenirNextHeavy.otf"); }
+@font-face {
+  font-family: 'Avenir Next';
+  src: url("fonts/AvenirNextLTPro-Regular.otf"); }
+header .navbar {
+  border-bottom: 1px solid #353738;
+  z-index: 1; }
+
+.navbar-brand, li {
+  margin-right: 40px; }
+
+.nav li {
+  margin-right: 10px; }
+
+#navbarsExampleDefault {
+  margin-bottom: -5px; }
+  #navbarsExampleDefault img {
+    margin-bottom: 3px; }
+
+.user-profile {
+  width: 45%; }
+  .user-profile > span {
+    float: right; }
+    .user-profile > span > a {
+      padding: 2px; }
+
+.animation-panel {
+  border-right: 1px solid #353738;
+  height: calc(100vh - 150px);
+  overflow: scroll;
+  color: rgba(255, 255, 255, 0.5);
+  flex: 3 !important; }
+
+.animation-emphasis {
+  padding-left: 5px; }
+
+.animation-exit img,
+.animation-emphasis img {
+  margin-bottom: 5px;
+  height: 14px;
+  width: 15px;
+  margin-right: "";
+  margin-left: 2px; }
+
+.animation-exit {
+  padding-left: 6px; }
+
+.animation-entrance img {
+  margin-bottom: 5px;
+  height: 14px;
+  width: 20px;
+  margin-right: 5px;
+  margin-left: ""; }
+
+.animation-exit img {
+  margin-bottom: 5px;
+  height: 14px;
+  width: 20px;
+  margin-right: "";
+  margin-left: 2px; }
+
+.animation-trajectory img {
+  margin-bottom: 5px;
+  height: 14px;
+  width: 20px;
+  margin-right: 2px;
+  margin-left: ""; }
+
+#question-tag {
+  margin: 0  10% auto 50%; }
+  @media screen and (max-width: 1301px) {
+    #question-tag {
+      margin: 0  20% auto; } }
+  @media screen and (min-width: 1300px) {
+    #question-tag {
+      margin: 0  10% auto; } }
+
+#question {
+  padding-bottom: 20px !important; }
+  #question i {
+    font-size: 20px;
+    margin-left: 4px !important; }
+
+#tags {
+  margin: -18px 0 -2px; }
+  #tags i {
+    font-size: 20px;
+    margin-left: 4px !important; }
+  #tags a {
+    display: inline-block; }
+
+#card-container {
+  height: calc(100vh - 150px);
+  width: 400px;
+  overflow-x: hidden;
+  flex: 6; }
+
+canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white; }
+
+.projects-container {
+  padding: 50px;
+  overflow-y: scroll;
+  height: 200px; }
+
+#design-panel {
+  min-height: calc(100vh - 150px);
+  border-left: 1px solid #353738;
+  flex: 4;
+  overflow: scroll; }
+
+.nav-item .nav-link span {
+  border-radius: 10px;
+  border: 2px solid;
+  padding: 3px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  display: inline-block; }
+
+table {
+  display: block;
+  white-space: nowrap; }
+  table tr:hover {
+    color: rgba(255, 255, 255, 0.75);
+    cursor: default; }
+
+footer .navbar-toggleable-md {
+  border-top: 1px solid #353738; }
+
+footer .container-fluid {
+  width: 100%;
+  float: none;
+  margin: 0 auto; }
+
+#undo,
+#redo {
+  color: #636c72;
+  font-size: 25px;
+  text-align: center; }
+  #undo:hover,
+  #redo:hover {
+    background: rgba(255, 255, 255, 0.75); }
+
+.fa {
+  transform: translateX(-35%); }
+
+#zoom button {
+  background: #1F1F1F;
+  margin-top: 3px;
+  padding: 0;
+  color: #636c72;
+  font-family: "" !important;
+  font-size: 20px !important;
+  font-weight: 700 !important; }
+  #zoom button:hover {
+    background: rgba(255, 255, 255, 0.75); }
+
+.container-fluid img {
+  height: 32px;
+  width: 32px; }
+  .container-fluid img:hover {
+    background-color: #ddd; }
+
+#screens .row > div,
+#multimedia .row > div {
+  margin-left: -30px; }
+
+#magic .row > div,
+#graphics .row > div {
+  margin-left: -10px; }
+
+#action button {
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-family: "AvenirNext-Bold", Verdana, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: "" !important; }
+
+#play {
+  background: #4080FF;
+  margin-left: 25px; }
+  #play:hover {
+    cursor: pointer;
+    background: dodgerblue;
+    border-color: dodgerblue;
+    color: whitesmoke; }
+
+#publish {
+  background: #42B72A;
+  margin-left: 5px; }
+  #publish:hover {
+    cursor: pointer;
+    background: limegreen;
+    border-color: limegreen;
+    color: whitesmoke; }
+
+#me-tool {
+  display: inline-block;
+  margin-left: -25px; }
+
+/*customise space between nav-link cause react remove them*/
+.nav-link * {
+  margin-right: 4px !important; }
+
+.group {
+  position: relative;
+  margin: 12px 0; }
+
+#question input {
+  background: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bolder;
+  padding: 10px 10px 0 5px;
+  display: block;
+  width: 600px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  #question input:focus {
+    outline: none; }
+#question span {
+  position: relative;
+  display: block;
+  width: 600px !important; }
+
+#search form {
+  background: none;
+  font-weight: bolder;
+  padding: 6px 10px 0 0;
+  display: block;
+  width: 300px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  #search form input {
+    background: none;
+    border: none;
+    border-radius: 0;
+    color: rgba(255, 255, 255, 0.5); }
+    #search form input:focus {
+      outline: none; }
+
+#question-update-btn {
+  float: right !important;
+  margin-left: 5px; }
+
+#question-wrapper {
+  padding-top: 5px !important; }
+
+.btn-link {
+  color: rgba(255, 255, 255, 0.5) !important; }
+
+.img-thumbnail {
+  background-color: transparent !important;
+  border: none !important; }
+
+.modal-content {
+  background-color: #353738 !important;
+  color: rgba(0, 0, 0, 0.75) !important; }
+  .modal-content input {
+    margin-bottom: 15px; }
+
+.modal-header {
+  color: "";
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: "" !important;
+  border-bottom: 1px solid #353738 !important;
+  padding-bottom: 0 !important; }
+
+.me-modal-form input {
+  background: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bolder;
+  padding: 10px 10px 0 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+  .me-modal-form input:focus {
+    outline: none; }
+.me-modal-form span {
+  position: relative;
+  display: block;
+  width: 100% !important; }
+
+.text-help {
+  color: #c04848; }
+
+.me-input-invalid {
+  border-bottom: 1px solid #c04848 !important;
+  margin-bottom: 0 !important; }
+
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  /* 1px wider than Lion. */
+  /* This is more usable for users trying to click it. */
+  background-color: rgba(0, 0, 0, 0);
+  -webkit-border-radius: 100px; }
+
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09); }
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+  /* This is the EXACT color of Mac OS scrollbars.
+     Yes, I pulled out digital color meter */
+  background-clip: padding-box;
+  border: 2px solid rgba(0, 0, 0, 0);
+  min-height: 30px; }
+
+::-webkit-scrollbar-thumb:vertical:active {
+  background: rgba(0, 0, 0, 0.61);
+  /* Some darker color when you click it */
+  -webkit-border-radius: 100px; }
+
+/*# sourceMappingURL=main.css.map */

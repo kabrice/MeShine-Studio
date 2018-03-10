@@ -1,0 +1,44 @@
+#AnimationType
+- model: meshine_api.AnimationType
+  pk: 1
+  fields:
+    name: Entrance
+- model: meshine_api.AnimationType
+  pk: 2
+  fields:
+    name: Emphasis
+- model: meshine_api.AnimationType
+  pk: 3
+  fields:
+    name: Exit
+- model: meshine_api.AnimationType
+  pk: 4
+  fields:
+    name: Trajectory
+    
+#ObjectType
+- model: meshine_api.ObjectType
+  pk: 1
+  fields:
+    name: Image
+- model: meshine_api.ObjectType
+  pk: 2
+  fields:
+    name: Text
+- model: meshine_api.ObjectType
+  pk: 3
+  fields:
+    name: Video
+- model: meshine_api.ObjectType
+  pk: 4
+  fields:
+    name: Shape
+- model: meshine_api.ObjectType
+  pk: 5
+  fields:
+    name: Table
+- model: meshine_api.ObjectType
+  pk: 6
+  fields:
+    name: Diagram
+

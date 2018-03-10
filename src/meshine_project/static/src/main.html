@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summaries Studio</title>
+    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../build/styles.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../external/jqueryui-ruler/css/jquery.ui.ruler.css">
+</head>
+<body >
+<div class="me-container">
+    <header>
+
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse ">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#" data-placement="right" data-animation="false" data-toggle="tooltip"
+               title="Aller à Mes Summaries">
+                <img src="../assets/summaries-studio-logo.svg" alt="Aller à Mes Summaries"></a>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <div class="navbar-nav mr-auto" id="question-tag">
+
+            <span class="nav-item">
+                <span id="question">
+                    <a class="nav-link"
+                       data-placement="right"
+                       data-animation="false" data-toggle="tooltip"
+                       title="Modifier la question" href="#">
+                        <b>Si comme moi, vous avez accumulé des dizaines de mails par jour de sorte que votre boîte compte aujourd'hui plus de 4000 non lus et qu'il faudrait des ?</b>
+                        <i><i class="fa fa-pencil" aria-hidden="true"></i></i></a></span>
+                <span id="tags">
+                    <a class="nav-link"
+                       data-placement="right"
+                       data-animation="false" data-toggle="tooltip"
+                       title="Modifier les tags" href="#">
+                        <span>Climat</span>
+                        <span>Animaux des eaux</span>
+                        <span>Sri Lanka</span>
+                        <span>Cyclone</span>
+                        <span>Climat</span>
+                        <span>Animaux des eaux</span>
+                        <span>Sri Lanka</span>
+                        <span>Cyclone</span>
+                        <span>Climat</span>
+                        <span>Animaux des eaux</span>
+                        <span>Sri Lanka</span>
+                        <span>Cyclone</span>
+                        <span>Climat</span>
+                        <span>Animaux des eaux</span>
+                        <span>Sri Lanka</span>
+                        <i><i class="fa fa-pencil" aria-hidden="true"></i></i></a></span>
+            </span>
+
+                </div>
+
+            </div>
+            <div class="user-profile">
+                <span class="navbar-nav">
+                <a class="nav-link" href="#" data-placement="left" data-animation="false" data-toggle="tooltip"
+                   title="Profil et paramètres">
+                    <img src="../assets/edgar.jpeg" class="rounded-circle" height="32" width="32"
+                         alt="Profil et paramètres">
+                    <span>Edgar</span>
+                </a>
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <div style="font-weight: 900; font-family:  AvenirNext-Heavy, Avenir Next; font-size: 16px; margin-top: 100px; color: white;">
+        I'm happy to be here
+    </div>
+
+    <footer >
+
+        <nav class="navbar navbar-toggleable-md navbar-inverse fixed-bottom bg-inverse">
+
+
+            <div class="container-fluid">
+                <div class="row " >
+                    <div class="col" >
+                        <div class="row">
+                            <div id="undo"  class="col-md-2 col-sm-6 col-12" title="Annuler la dernière modification" >
+                                <i class="fa fa-undo " aria-hidden="true"></i>
+                            </div>
+                            <div  id="redo" title="Rétablir la dernière modification" class="col-md-2 col-sm-6 col-12" >
+                                <span><i class="fa fa-repeat" aria-hidden="true"></i></span>
+                            </div>
+                            <div id="zoom" class="col-md-6 col-sm-6 col-12" title="Zoomer l'affichage du Summary">
+                                <button class="btn nav-link" >100%</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" id="screens">
+                        <div class="row">
+                            <div id="cover-screen" class="col-md-4 col-sm-12 col-12" >
+                                <img src="../assets/cover_screen.svg" title="Customizer le slide de début"></div>
+                            <div id="screen" class="col-md-4 col-sm-12 col-12">
+                                <img src="../assets/screen.svg" title="Changer de slide"></div>
+                            <div id="ending-screen" class="col-md-4 col-sm-12 col-12">
+                                <img src="../assets/ending_screen.svg" alt="Customizer le slide de fin"></div>
+                        </div>
+                    </div>
+                    <div class="col" id="multimedia">
+                        <div class="row">
+                            <div id="image-gallery" class="col-md-4 col-sm-12 col-12">
+                                <img src="../assets/image_gallery.svg" title="Choisir une image et ajouter à ce Summary"></div>
+                            <div id="audio-gallery" class="col-md-4 col-sm-12 col-12">
+                                <img src="../assets/audio_gallery.svg" title="Choisir une piste et ajouter à ce Summary"></div>
+                            <div id="video-gallery" class="col-md-4 col-sm-12 col-12">
+                                <img src="../assets/video_gallery.svg" title="Choisir une vidéo et ajouter à ce Summary">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" id="graphics">
+                        <div class="row">
+                            <div id="text" class="col-md-3 col-sm-6 col-12">
+                                <img src="../assets/text.svg" title="Ajouter une zone de texte"></div>
+                            <div id="diagram" class="col-md-3 col-sm-6 col-12" >
+                                <img src="../assets/diagram.svg" title="Choisir un graphique à ajouter"></div>
+                            <div id="table" class="col-md-3 col-sm-6 col-12">
+                                <img src="../assets/table.svg" title="Choisir un tableau à ajouter"></div>
+                            <div id="figure" class="col-md-3 col-sm-6 col-12" >
+                                <img src="../assets/figure.svg" title="Choisir une forme ou une ligne"></div>
+                        </div>
+                    </div>
+                    <div class="col" id="magic">
+                        <div class="row">
+                            <div id="template" class="col-md-3 col-sm-6 col-12" >
+                                <img src="../assets/template.svg" title="Découvrir et inspirer vous de modèle préfaits"></div>
+                            <div id="background" class="col-md-3 col-sm-6 col-12" >
+                                <img src="../assets/background.svg" alt="Customizer l'arrière plan"></div>
+                            <div id="animation" class="col-md-3 col-sm-6 col-12" >
+                                <img src="../assets/animation.svg" alt="Afficher ou masquer les options d'animation"></div>
+                            <div id="format" class="col-md-3 col-sm-6 col-12">
+                                <img src="../assets/format.svg" alt="Afficher ou masquer les options de format de styles"></div>
+                        </div>
+                    </div>
+                    <div class="col" id="action" >
+                        <!-- Look at inVision tooltip -->
+                        <div id="me-tool" class="col-md-2 col-sm-6 col-12"  title="Enregistrer ce Summary" >
+                            <img src="../assets/tool.svg" alt="Profil et paramètres">
+                        </div>
+
+                        <button  id="play"  type="button" class="btn btn-sm">Lire</button>
+                        <button id="publish"  type="button" class="btn btn-sm">Publier</button></div>
+                </div>
+            </div>
+        </nav>
+    </footer>
+</div>
+
+
+<script src="../build/bundle.js"></script>
+
+<script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+
+</body>
+</html>
