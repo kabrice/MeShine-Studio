@@ -36,7 +36,7 @@ class SummarySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Summary
-        exclude = ('userProfileSummary',)
+        exclude = ('userProfileSummary', 'html_content')
 
 class UserProfileSummarySerializer(serializers.ModelSerializer):
     summary = SummarySerializer()

@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from rest_framework import viewsets, generics
 from rest_framework.views import APIView
+from .models import Summary
 from rest_framework.response import Response
 from rest_framework import status, filters
 from rest_framework.authentication import TokenAuthentication
@@ -10,6 +11,10 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from . import serializers, models, permissions
+
+import requests
+from bs4 import BeautifulSoup
+
 # Create your views here.
 
 class HelloApiView(APIView):
@@ -114,16 +119,55 @@ class LoginViewSet(viewsets.ViewSet):
 
         return ObtainAuthToken().post(request)
 
-
-class SummaryViewSet(viewsets.ModelViewSet):
+class SummaryListViewSet(APIView):
 
     authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.SummarySerializer
-    queryset = models.Summary.objects.all().order_by('id')
+    permission_classes = (permissions.UpdateOwnProfile,)
 
-    def perform_create(self, serializer):
-        """Sets the user profile to the logged in user"""
-        serializer.save()
+    def get(self, request, format=None):
+        url = "https://hackernoon.com/git-merge-vs-rebase-whats-the-diff-76413c117333"
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, "html.parser")
+        links = soup.findAll("a")
+        summary = Summary.objects.all()
+        serializer = serializers.SummarySerializer(summary, many=True)
+
+        return Response([r.content])
+
+
+class SummaryViewSet(APIView):
+
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
+
+    """
+    Retrieve, update or delete a summary instance.
+    """
+    def get_object(self, pk):
+        try:
+            return Summary.objects.get(pk=pk)
+        except Summary.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        summary = self.get_object(pk)
+        serializer = serializers.SummarySerializer(summary)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        summary = self.get_object(pk)
+        serializer = SummarySerializer(summary, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        summary = self.get_object(pk)
+        summary.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 class UserProfileSummaryViewSet(generics.ListAPIView):
     #serializer_class = serializers.UserProfileSummarySerializer
@@ -134,7 +178,7 @@ class UserProfileSummaryViewSet(generics.ListAPIView):
 
     def get_queryset(self):
         """
-        This view should return a list of all the purchases
+        This view should return a list of all the summary
         for the currently authenticated user.
         """
         id = self.kwargs['id']

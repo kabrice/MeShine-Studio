@@ -7,6 +7,8 @@ class Summary(models.Model):
     question_text = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     url = models.URLField(null=False)
+    html_content = models.TextField()
+    validated = models.BooleanField(default=False)
     cover_image = models.CharField(max_length=255)
     tags = models.ManyToManyField('Tag', related_name='summaries', blank=True)
     userProfileSummary = models.ManyToManyField('UserProfile', through='UserProfileSummary')

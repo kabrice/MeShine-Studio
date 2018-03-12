@@ -67,7 +67,7 @@ class ProjectModal extends Component{
                                             component={this.renderField}/>
                                         <div id="question-wrapper">
                                             <button  id="question-update-btn"  type="submit" className="btn btn-outline-success">Continue</button>
-                                            <button  id="question-cancel-btn"  type="button" className="btn btn-link float-right">Cancel</button>
+                                            <button  id="question-cancel-btn"  type="button" className="btn btn-link float-right" data-dismiss="modal" data-animation="false">Cancel</button>
                                         </div>
                                     </div>
                                 </form>
