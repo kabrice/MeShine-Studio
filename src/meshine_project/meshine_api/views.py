@@ -1,7 +1,9 @@
+from django.http import Http404
 from django.shortcuts import render
 
 from rest_framework import viewsets, generics
 from rest_framework.views import APIView
+
 from .models import Summary
 from rest_framework.response import Response
 from rest_framework import status, filters
@@ -119,7 +121,7 @@ class LoginViewSet(viewsets.ViewSet):
 
         return ObtainAuthToken().post(request)
 
-class SummaryListViewSet(APIView):
+class SummaryListView(APIView):
 
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.UpdateOwnProfile,)
@@ -134,8 +136,14 @@ class SummaryListViewSet(APIView):
 
         return Response([r.content])
 
+    def post(self, request, format=None):
+        serializer = SummarySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class SummaryViewSet(APIView):
+class SummaryView(APIView):
 
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.UpdateOwnProfile,)

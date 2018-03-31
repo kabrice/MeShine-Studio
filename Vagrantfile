@@ -41,6 +41,8 @@ Vagrant.configure("2") do |config|
     # Install npm (https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04)
     sudo apt-get install nodejs
 
+    # Install PhantomJS via install_phantomjs.sh //https://gist.github.com/julionc/7476620
+
     # Install and configure python virtualenvwrapper.
     sudo pip install virtualenvwrapper
     if ! grep -q VIRTUALENV_ALREADY_ADDED /home/vagrant/.bashrc; then

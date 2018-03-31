@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'e_a#hyoa8t__c82dv@%diw=mch895!-*%=zh*@=r3l4m^-r9ae'
 
-DEBUG = False
+DEBUG = True
 DEBUG_TOOLBAR = False
 DEV = False
 
@@ -90,10 +90,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join('./', 'static')
+
 STATICFILES_DIRS =[
     os.path.join('./', 'static'),
-    # '/static',
+
 ]
 
 MEDIA_URL = '/media/'

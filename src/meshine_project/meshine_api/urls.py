@@ -17,8 +17,8 @@ router.register('animation', views.AnimationViewSet)
 
 urlpatterns= [
     path('hello-view/', views.HelloApiView.as_view()),
-    path('summary/', views.SummaryListViewSet.as_view()),
-    path('summary/<int:pk>/', views.SummaryViewSet.as_view()),
+    path('summary/', views.SummaryListView.as_view()),
+    path('summary/<int:pk>/', views.SummaryView.as_view()),
     path('userProfileSummary/<int:id>/', views.UserProfileSummaryViewSet.as_view()),
     path('', include(router.urls))
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
