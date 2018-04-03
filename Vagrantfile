@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
     # Install npm (https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04)
     sudo apt-get install nodejs
 
-    # Install PhantomJS via install_phantomjs.sh //https://gist.github.com/julionc/7476620
+    # Install Chromedirver via https://gist.github.com/ziadoz/3e8ab7e944d02fe872c3454d17af31a5
 
     # Install and configure python virtualenvwrapper.
     sudo pip install virtualenvwrapper
