@@ -1,4 +1,4 @@
-from src.meshine_project.WebMetaDataGenerator.WebMetaDataGenerator import WebMetaDataGenerator
-webMetaDataGenerator = WebMetaDataGenerator('https://tunimarkets.net/2666/poulina-group-devient-quatrieme-actionnaire-de-sfbt/')
+from src.meshine_project.WebMetaDataGenerator.WebMetaDataGenerator_dev import WebMetaDataGenerator
+webMetaDataGenerator = WebMetaDataGenerator('https://www.presse-citron.net/comment-reveiller-creativite-innover-lab-postal-2018/')
 webMetaDataGenerator.generate_tags()
 #webMetaDataGenerator.tags_from_newspaper()

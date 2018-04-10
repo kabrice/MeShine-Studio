@@ -4,22 +4,36 @@ from .rest_framework_extensions_routers_compat import ExtendedDefaultRouter
 from .viewsets import (
     SummaryDocumentViewSet,
     TagDocumentViewSet,
+    CategoryDocumentViewSet,
+    QuestionSummaryDocumentViewSet,
 )
 
 __all__ = ('urlpatterns',)
 
 router = ExtendedDefaultRouter()
 
-addresses = router.register(
+summaries = router.register(
     r'summaries',
     SummaryDocumentViewSet,
     base_name='summarydocument'
 )
 
-authors = router.register(
+tags = router.register(
     r'tags',
     TagDocumentViewSet,
     base_name='tagdocument'
+)
+
+categories = router.register(
+    r'categories',
+    CategoryDocumentViewSet,
+    base_name='categorydocument'
+)
+
+questionsummaries = router.register(
+    r'questionsummaries',
+    QuestionSummaryDocumentViewSet,
+    base_name='questionsummarydocument'
 )
 
 urlpatterns = [

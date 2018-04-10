@@ -13,7 +13,9 @@ router.register('objectType', views.ObjectTypeViewSet)
 router.register('object', views.ObjectViewSet)
 router.register('animationType', views.AnimationTypeViewSet)
 router.register('animation', views.AnimationViewSet)
-
+router.register('question', views.QuestionViewSet)
+router.register('questionSummary', views.QuestionSummaryViewSet)
+router.register('category', views.CategoryViewSet)
 
 urlpatterns= [
     path('hello-view/', views.HelloApiView.as_view()),

@@ -13,13 +13,13 @@ class SummaryDocumentSerializer(serializers.Serializer):
     """Serializer for the Book document."""
 
     id = serializers.IntegerField(read_only=True)
-    question_text = serializers.CharField(read_only=True)
+    html_text = serializers.CharField(read_only=True)
     url = serializers.CharField(read_only=True)
 
-    cover_image = serializers.CharField(read_only=True)
+    validated = serializers.BooleanField(read_only=True)
     created_at = serializers.DateField(read_only=True)
-    tags = serializers.SerializerMethodField()
-
+    tag_category = serializers.SerializerMethodField()
+    #user_profile_summaries = serializers.SerializerMethodField()
     # Used in testing of `isnull` functional filter.
     null_field = serializers.CharField(read_only=True,
                                        required=False,
@@ -30,11 +30,11 @@ class SummaryDocumentSerializer(serializers.Serializer):
 
         fields = (
             'id',
-            'question_text',
+            'html_text',
             'url',
             'cover_image',
             'created_at',
-            'tags',
+            'tag_category',
             'null_field',  # Used in testing of `isnull` functional filter.
         )
         read_only_fields = fields
@@ -58,13 +58,19 @@ class SummaryDocumentSerializer(serializers.Serializer):
         :return:
         """
 
-    def get_tags(self, obj):
-        """Get tags."""
-        if obj.tags:
-            return list(obj.tags)
-        else:
-            return []
+    # def get_tags(self, obj):
+    #     """Get tags."""
+    #     if obj.tags:
+    #         return list(obj.tags)
+    #     else:
+    #         return []
 
+    # def get_user_profile_summary(self, obj):
+    #     """Get tags."""
+    #     if obj.:
+    #         return list(obj.tags)
+    #     else:
+    #         return []
 
 class SummaryDocumentSimpleSerializer(DocumentSerializer):
     """Serializer for the Book document."""

@@ -316,20 +316,23 @@ footer .container-fluid{
 
 .modal-content{
   background-color: $black1 !important;
-  color: rgba(0, 0, 0, 0.75) !important;
+  color: $gray !important;
+  font-family: $avenir-font!important;
   input{
+
     margin-bottom: 15px;
   }
 }
 
 .modal-header{
-  @include font-text($html-font, "", $body-font-size, "");
+  @include font-text($action-btn-font-family, "", $body-font-size, 600);
   border-bottom: $panel-border !important;
   padding-bottom: 0 !important;
 }
 
 .me-modal-form{
   input {
+    font-family: $avenir-font !important;
     @include input(100%);
   }
   span{
@@ -339,12 +342,13 @@ footer .container-fluid{
 
 .text-help{
   color: $red;
-
+  font-family: $avenir-font !important;
 }
 
 .me-input-invalid{
     border-bottom: 1px solid $red !important;
     margin-bottom: 0 !important;
+    font-family: $avenir-font !important;
 }
 
 /* Turn on custom 8px wide scrollbar */

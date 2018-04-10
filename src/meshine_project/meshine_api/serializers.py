@@ -36,11 +36,12 @@ class SummarySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Summary
-        exclude = ('userProfileSummary', 'html_content')
+        exclude = ('user_profiles', 'questions',)
+        depth = 2
 
 class UserProfileSummarySerializer(serializers.ModelSerializer):
     summary = SummarySerializer()
-
+    user_profile = UserProfileSerializer()
     class Meta:
         model = models.UserProfileSummary
         exclude = ('user_profile',)
@@ -81,3 +82,22 @@ class TagSerializer(serializers.ModelSerializer):
         model = models.Tag
         fields = '__all__'
 
+class QuestionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Question
+        fields = '__all__'
+
+class QuestionSummarySerializer(serializers.ModelSerializer):
+    summary = SummarySerializer()
+    class Meta:
+        model = models.QuestionSummary
+        fields = '__all__'
+        #depth = 1
+
+class CategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Category
+        fields = '__all__'
+        depth = 1

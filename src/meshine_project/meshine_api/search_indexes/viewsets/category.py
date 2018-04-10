@@ -25,20 +25,20 @@ from django_elasticsearch_dsl_drf.views import BaseDocumentViewSet
 
 from elasticsearch_dsl import DateHistogramFacet, RangeFacet
 
-from ..documents import SummaryDocument
-from ..serializers import SummaryDocumentSimpleSerializer
+from ..documents import CategoryDocument
+from ..serializers import CategoryDocumentSerializer, CategoryDocumentSimpleSerializer
 
 __all__ = (
-    'SummaryDocumentViewSet',
+    'CategoryDocumentSerializer',
 )
 
 
-class SummaryDocumentViewSet(BaseDocumentViewSet):
-    """The SummaryDocument view."""
+class CategoryDocumentViewSet(BaseDocumentViewSet):
+    """The CategoryDocument view."""
 
-    document = SummaryDocument
+    document = CategoryDocument
     # serializer_class = SummaryDocumentSerializer
-    serializer_class = SummaryDocumentSimpleSerializer
+    serializer_class = CategoryDocumentSimpleSerializer
     lookup_field = 'id'
     filter_backends = [
         FilteringFilterBackend,
@@ -52,14 +52,17 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
     ]
     # Define search fields
     search_fields = (
-
-        'url',
+        'title',
+        'description',
+        'tags.id',
+        'tags.title',
     )
-    # Define highlight fields
+
     highlight_fields = {
 
-        'url': {},
+        'title': {},
     }
+
     # Define filter fields
     filter_fields = {
         'id': {
@@ -75,10 +78,11 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
             ],
         },
 
-        'url': 'url.raw',
+        'title': 'title.raw',
+        'description': 'description.raw',
         'created_at': 'created_at',
-        'tag_category': {
-            'field': 'tag_category',
+        'tags': {
+            'field': 'tags',
             'lookups': [
                 LOOKUP_FILTER_TERMS,
                 LOOKUP_FILTER_PREFIX,
@@ -88,8 +92,8 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
                 LOOKUP_QUERY_ISNULL,
             ],
         },
-        'tag_category.raw': {
-            'field': 'tag_category.raw',
+        'tags.raw': {
+            'field': 'tags.raw',
             'lookups': [
                 LOOKUP_FILTER_TERMS,
                 LOOKUP_FILTER_PREFIX,
@@ -98,7 +102,7 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
                 LOOKUP_QUERY_EXCLUDE,
             ],
         },
-       # This has been added to test `exists` filter.
+        # This has been added to test `exists` filter.
         'non_existent_field': 'non_existent_field',
         # This has been added to test `isnull` filter.
         'null_field': 'null_field',
@@ -106,15 +110,15 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
     # Define ordering fields
     ordering_fields = {
         'id': 'id',
-        'url': 'url.raw',
-        'html_text': 'html_text.raw',
+        'title': 'title.raw',
+        'description': 'description.raw',
         'created_at': 'created_at',
     }
     # Specify default ordering
-    ordering = ('id', 'url', 'html_text',)
+    ordering = ('id', 'title', 'description',)
     faceted_search_fields = {
-        'url': 'url.raw',
-        'html_text': 'html_text.raw',
+        'title': 'title.raw',
+        'description': 'description.raw',
         'created_at': {
             'field': 'created_at',
             'facet': DateHistogramFacet,
@@ -126,8 +130,7 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
 
     # Suggester fields
     suggester_fields = {
-        'html_text_suggest': 'html_text.suggest',
-        #'url_suggest': 'url.suggest',
+        'title_suggest': 'title.suggest',
+        'description_suggest': 'description.suggest',
         'tag_suggest': 'tags.suggest',
-        'summary_suggest': 'summary',
     }

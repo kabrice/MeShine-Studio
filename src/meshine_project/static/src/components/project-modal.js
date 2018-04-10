@@ -60,11 +60,11 @@ class ProjectModal extends Component{
                                             label='Enter the most appropriate question for your url (Question must start with: "What", "Why", "How", etc)'
                                             placeholder="Example: How I've astonishingly increased my blog traffic with MeShine?"
                                             component={this.renderField}/>
-                                        <Field
+                                        {/*<Field
                                             name="tags"
                                             label="Enter the most appropriate tags for your article"
                                             placeholder="VERY IMPORTANT! The more your tags will be appropriate, the more you'll target the right persons"
-                                            component={this.renderField}/>
+                                            component={this.renderField}/>*/}
                                         <div id="question-wrapper">
                                             <button  id="question-update-btn"  type="submit" className="btn btn-outline-success">Continue</button>
                                             <button  id="question-cancel-btn"  type="button" className="btn btn-link float-right" data-dismiss="modal" data-animation="false">Cancel</button>

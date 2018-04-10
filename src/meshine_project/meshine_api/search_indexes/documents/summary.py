@@ -32,7 +32,7 @@ class SummaryDocument(DocType):
     # *********************** Main data fields for search ****************
     # ********************************************************************
 
-    question_text = StringField(
+    html_text = StringField(
         fields={
             'raw': KeywordField(),
         }
@@ -52,29 +52,41 @@ class SummaryDocument(DocType):
     # Creation date
     created_at = fields.DateField()
 
-    # Cover image
-    cover_image = StringField()
+    validated = fields.BooleanField()
 
-    # UserProfileSummary
-    """
-    userProfileSummary = fields.ListField(
-        StringField(
-            analyzer=html_strip,
-            fields={
-                'raw': KeywordField(),
-            }, fielddata= True
-        )
-    )
-    """
-    # Tags
-    tags = StringField(
-        attr='tags_indexing',
-        analyzer=html_strip,
-        fields={
-            'raw': KeywordField(multi=True),
-            'suggest': fields.CompletionField(multi=True),
-        },
-        multi=True
+
+    tag_category = fields.ObjectField(
+         properties={
+             'id': fields.IntegerField(),
+            'tag': fields.ObjectField(
+                 properties={
+                     'id': fields.IntegerField(),
+                     'title': StringField(
+                         analyzer=html_strip,
+                         fields={
+                             'raw': KeywordField(),
+                             'suggest': fields.CompletionField(),
+                         }
+                     ),
+                     'is_from_human': fields.BooleanField(),
+                     'created_at': fields.DateField(),
+                 }
+             ),
+             'category': fields.ObjectField(
+                 properties={
+                     'id': fields.IntegerField(),
+                     'title': StringField(
+                         analyzer=html_strip,
+                         fields={
+                             'raw': KeywordField(),
+                             'suggest': fields.CompletionField(),
+                         }
+                     ),
+                     'created_at': fields.DateField(),
+                    'description': StringField(),
+                 }
+             ),
+        }
     )
 
     null_field = fields.StringField(attr='null_field_indexing')
@@ -85,9 +97,9 @@ class SummaryDocument(DocType):
         model = Summary  # The model associate with this DocType
 
 
-    def prepare_userProfileSummary(self, instance):
-        """Prepare authors."""
-        return [author.name for author in []]
+    # def prepare_userProfileSummary(self, instance):
+    #     """Prepare authors."""
+    #     return [author.name for author in []]
 
 
 

@@ -1,4 +1,5 @@
---sudo -u postgres psql
+-- setup postgres meshine db
+-- sudo -u postgres psql
 CREATE DATABASE meshine;
 CREATE USER meshine WITH PASSWORD 'meshine';
 ALTER ROLE meshine SET client_encoding = 'utf8';

@@ -44,7 +44,6 @@ class TagDocumentViewSet(BaseDocumentViewSet):
     # Define search fields
     search_fields = (
         'title',
-        'description',
     )
 
 
@@ -52,7 +51,6 @@ class TagDocumentViewSet(BaseDocumentViewSet):
     filter_fields = {
         'id': None,
         'title': 'title.raw',
-        'description': 'description.raw',
         'created_at': 'created_at',
 
     }
@@ -61,26 +59,18 @@ class TagDocumentViewSet(BaseDocumentViewSet):
     ordering_fields = {
         'id': None,
         'title': None,
-        'description': 'description.raw',
         'created_at': 'created_at'
     }
     # Specify default ordering
     ordering = (
         'id',
         'title.raw',
-        'description.raw',
     )
 
     # Suggester fields
     suggester_fields = {
         'title_suggest': {
             'field': 'title.suggest',
-            'suggesters': [
-                SUGGESTER_COMPLETION,
-            ],
-        },
-        'description_suggest': {
-            'field': 'description.suggest',
             'suggesters': [
                 SUGGESTER_COMPLETION,
             ],

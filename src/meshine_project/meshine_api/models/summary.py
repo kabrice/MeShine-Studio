@@ -4,36 +4,22 @@ __all__ = ('Summary',)
 
 class Summary(models.Model):
 
-    question_text = models.CharField(max_length=255)
+    url = models.CharField(max_length=255, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    url = models.URLField(null=False)
-    html_content = models.TextField()
+    html_text = models.TextField(blank=True, unique=True)
+    url_local_path = models.CharField(max_length=255)
     validated = models.BooleanField(default=False)
     cover_image = models.CharField(max_length=255)
-    tags = models.ManyToManyField('Tag', related_name='summaries', blank=True)
-    userProfileSummary = models.ManyToManyField('UserProfile', through='UserProfileSummary')
+    tag_category = models.ManyToManyField('TagCategory', default=[])
+    user_profiles = models.ManyToManyField('UserProfile', through='UserProfileSummary')
+    questions = models.ManyToManyField('Question', through='QuestionSummary')
 
     def __str__(self):
-        return self.question_text
+        return self.html_text
 
     class Meta:
         verbose_name_plural = "Summaries"
 
-    @property
-    def tags_indexing(self):
-        """Tags for indexing.
-
-        Used in Elasticsearch indexing.
-        """
-        return [tag.title for tag in self.tags.all()]
-
-    @property
-    def userProfileSummary_indexing(self):
-        """Tags for indexing.
-
-        Used in Elasticsearch indexing.
-        """
-        return [UserProfileSummary.is_author for UserProfileSummary in self.UserProfileSummarys.all()]
 
     @property
     def null_field_indexing(self):

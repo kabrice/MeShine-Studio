@@ -14,8 +14,6 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 
 from . import serializers, models, permissions
 
-import requests
-from bs4 import BeautifulSoup
 
 # Create your views here.
 
@@ -127,19 +125,18 @@ class SummaryListView(APIView):
     permission_classes = (permissions.UpdateOwnProfile,)
 
     def get(self, request, format=None):
-        url = "https://hackernoon.com/git-merge-vs-rebase-whats-the-diff-76413c117333"
-        r = requests.get(url)
-        soup = BeautifulSoup(r.content, "html.parser")
-        links = soup.findAll("a")
-        summary = Summary.objects.all()
-        serializer = serializers.SummarySerializer(summary, many=True)
+       summary = Summary.objects.all()
+       serializer = serializers.SummarySerializer(summary, many=True)
 
-        return Response([r.content])
+       return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = SummarySerializer(data=request.data)
+        serializer = serializers.SummarySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            summary = Summary.objects.get(pk=serializer.data['id'])
+            user_profile_summary = models.UserProfileSummary(is_author=True, user_profile=request.user, summary=summary)
+            user_profile_summary.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -164,7 +161,7 @@ class SummaryView(APIView):
 
     def put(self, request, pk, format=None):
         summary = self.get_object(pk)
-        serializer = SummarySerializer(summary, data=request.data)
+        serializer = serializers.SummarySerializer(summary, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -236,7 +233,6 @@ class AnimationViewSet(viewsets.ModelViewSet):
 
 class TagViewSet(viewsets.ModelViewSet):
 
-
     serializer_class = serializers.TagSerializer
     queryset = models.Tag.objects.all().order_by('id')
 
@@ -244,5 +240,26 @@ class TagViewSet(viewsets.ModelViewSet):
         """Sets the animation to the logged in user"""
         serializer.save()
 
+class QuestionViewSet(viewsets.ModelViewSet):
 
+    serializer_class = serializers.QuestionSerializer
+    queryset = models.Question.objects.all().order_by('id')
 
+    def perform_create(self, serializer):
+        serializer.save()
+
+class QuestionSummaryViewSet(viewsets.ModelViewSet):
+
+    serializer_class = serializers.QuestionSummarySerializer
+    queryset = models.QuestionSummary.objects.all().order_by('id')
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+class CategoryViewSet(viewsets.ModelViewSet):
+
+    serializer_class = serializers.CategorySerializer
+    queryset = models.Category.objects.all().order_by('id')
+
+    def perform_create(self, serializer):
+        serializer.save()

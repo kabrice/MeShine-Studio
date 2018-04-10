@@ -184,6 +184,8 @@ ELASTICSEARCH_DSL = {
 ELASTICSEARCH_INDEX_NAMES = {
     'meshine_api.search_indexes.documents.summary': 'summary',
     'meshine_api.search_indexes.documents.tag': 'tag',
+    'meshine_api.search_indexes.documents.category': 'category',
+    'meshine_api.search_indexes.documents.question_summary': 'question_summary',
 }
 
 LOGIN_URL = '/en/accounts/login/'

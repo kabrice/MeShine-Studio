@@ -7,6 +7,11 @@ class Animation(models.Model):
     animation_type = models.ForeignKey('AnimationType', on_delete=models.CASCADE)
     object = models.ForeignKey('Object', on_delete=models.CASCADE)
     duration = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.duration
+        return "{} --- {} --- {}".format(
+            self.animation_type.name,
+            self.object.location,
+            self.duration
+        )

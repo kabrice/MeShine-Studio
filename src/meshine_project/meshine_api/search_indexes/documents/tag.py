@@ -30,12 +30,6 @@ class TagDocument(DocType):
             'suggest': fields.CompletionField(),
         }
     )
-    description = StringField(
-        analyzer=html_strip,
-        fields={
-            'raw': KeywordField()
-        }
-    )
 
     created_at = fields.DateField()
 
@@ -45,6 +39,4 @@ class TagDocument(DocType):
 
         model = Tag  # The model associate with this DocType
 
-    def prepare_description(self, instance):
-        """Prepare summary."""
-        return instance.description[:32766]
+

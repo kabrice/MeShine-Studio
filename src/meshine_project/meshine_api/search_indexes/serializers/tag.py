@@ -16,7 +16,6 @@ class TagDocumentSerializer(DocumentSerializer):
         document = TagDocument
         fields = (
             'id',
-            'title',
-            'description',
+            'title'
         )
 

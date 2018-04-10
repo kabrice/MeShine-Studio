@@ -6,6 +6,10 @@ from .user_profile import UserProfile
 from .tag import Tag
 from .summary import Summary
 from .user_profile_summary import UserProfileSummary
+from .question import Question
+from .question_summary import QuestionSummary
+from .category import Category
+from .tag_category import TagCategory
 
 __all__ = (
     'Animation',
@@ -16,4 +20,8 @@ __all__ = (
     'Tag',
     'Summary',
     'UserProfileSummary',
+    'Question',
+    'QuestionSummary',
+    'Category',
+    'TagCategory'
 )

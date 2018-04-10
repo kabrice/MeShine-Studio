@@ -281,11 +281,3 @@ class WebMetaDataGenerator:
                 if not j.isupper() and j.strip():
                     final_tags[i] = string.capwords(j, ' ')
             print(final_tags[:15])
-
-
-
-
-
-
-
-
