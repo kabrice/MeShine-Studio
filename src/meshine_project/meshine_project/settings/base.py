@@ -267,7 +267,7 @@ LOGGING = {
         'django.request': {
             'handlers': ['django_request_log'],
             'level': 'INFO',
-            'propagate': True,
+            'propagate': False,
         },
         'django': {
             'handlers': ['django_log'],
@@ -277,7 +277,7 @@ LOGGING = {
         'books': {
             'handlers': ['console', 'debug_toolbar_force_log'],
             'level': 'DEBUG',
-            'propagate': True,
+            'propagate': False,
         },
     },
 }

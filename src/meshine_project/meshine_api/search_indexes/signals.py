@@ -31,21 +31,21 @@ def update_document(sender, **kwargs):
     instance = kwargs['instance']
 
     if app_label == 'meshine_api':
-        # If it is `books.Publisher` that is being updated.
         if model_name == 'Category':
             instances = instance.tags.all()
             for _instance in instances:
                 registry.update(_instance)
 
-        # if model_name == 'QuestionSummary':
-        #     instances = instance.meshine_api.all()
-        #     for _instance in instances:
-        #         registry.update(_instance)
-        # If it is `books.Tag` that is being updated.
-        # if model_name == 'tag':
-        #     instances = instance.summaries.all()
-        #     for _instance in instances:
-        #         registry.update(_instance)
+        if model_name == 'QuestionSummary':
+            instances = instance.summary.all()
+            print("EDGAR QuestionSummary INSTANCES", instances)
+            for _instance in instances:
+                registry.update(_instance)
+        if model_name == 'Summary':
+            instances = instance.questionSummaries.all()
+            print("EDGAR Summary INSTANCES", instances)
+            for _instance in instances:
+                registry.update(_instance)
 
 
 @receiver(post_delete)
@@ -62,18 +62,9 @@ def delete_document(sender, **kwargs):
 
     if app_label == 'meshine_api':
         # If it is `books.Publisher` that is being updated.
-        if model_name == 'Category':
+        if model_name == 'Category' or model_name == 'QuestionSummary' or model_name == 'Summary':
             instances = instance.meshine_api.all()
             for _instance in instances:
                 registry.update(_instance)
-                # registry.delete(_instance, raise_on_error=False)
-        # if model_name == 'QuestionSummary':
-        #     instances = instance.meshine_api.all()
-        #     for _instance in instances:
-        #         registry.update(_instance)
-        # If it is `books.Tag` that is being updated.
-        # if model_name == 'tag':
-        #     instances = instance.books.all()
-        #     for _instance in instances:
-        #         registry.update(_instance)
+                registry.delete(_instance, raise_on_error=False)
 

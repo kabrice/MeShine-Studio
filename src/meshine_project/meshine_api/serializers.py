@@ -93,7 +93,6 @@ class QuestionSummarySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.QuestionSummary
         fields = '__all__'
-        #depth = 1
 
 class CategorySerializer(serializers.ModelSerializer):
 

@@ -72,6 +72,7 @@ class QuestionSummaryDocumentViewSet(BaseDocumentViewSet):
     ordering_fields = {
         'id': None,
         'is_summary_author': None,
+        'is_question_author': None,
         'last_modified_date': None,
         'question': 'question.title.raw',
         'summary': 'summary.url.raw',

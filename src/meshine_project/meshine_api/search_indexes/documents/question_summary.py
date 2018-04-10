@@ -26,6 +26,7 @@ class QuestionSummaryDocument(DocType):
     # ID
     id = fields.IntegerField(attr='id')
     is_summary_author = fields.BooleanField()
+    is_question_author = fields.BooleanField()
     main_question = fields.BooleanField()
     last_modified_date = fields.DateField()
 

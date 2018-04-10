@@ -15,6 +15,7 @@ class QuestionSummarySerializer(DocumentSerializer):
         fields = (
             'id',
             'is_summary_author',
+            'is_question_author',
             'main_question',
             'last_modified_date',
             'question',
