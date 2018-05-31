@@ -12,21 +12,21 @@ class Question(models.Model):
         return self.title
 
 
-    @property
-    def tags_indexing(self):
-        """Tags for indexing.
+    # @property
+    # def tags_indexing(self):
+    #     """Tags for indexing.
+    #
+    #     Used in Elasticsearch indexing.
+    #     """
+    #     return [tag.title for tag in self.tags.all()]
 
-        Used in Elasticsearch indexing.
-        """
-        return [tag.title for tag in self.tags.all()]
-
-    @property
-    def questionSummary_indexing(self):
-        """Tags for indexing.
-
-        Used in Elasticsearch indexing.
-        """
-        return [QuestionSummary.is_author for QuestionSummary in self.QuestionSummarys.all()]
+    # @property
+    # def questionSummary_indexing(self):
+    #     """Tags for indexing.
+    #
+    #     Used in Elasticsearch indexing.
+    #     """
+    #     return [QuestionSummary.is_author for QuestionSummary in self.QuestionSummarys.all()]
 
     @property
     def null_field_indexing(self):

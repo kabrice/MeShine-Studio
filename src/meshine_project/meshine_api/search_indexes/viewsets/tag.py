@@ -18,6 +18,7 @@ from django_elasticsearch_dsl_drf.filter_backends import (
 )
 from django_elasticsearch_dsl_drf.pagination import LimitOffsetPagination
 from django_elasticsearch_dsl_drf.views import BaseDocumentViewSet
+from django_elasticsearch_dsl_drf.filter_backends.filtering.common import FilteringFilterBackend
 
 from ..documents import TagDocument
 from ..serializers import TagDocumentSerializer
@@ -27,7 +28,7 @@ __all__ = (
 )
 
 
-class TagDocumentViewSet(BaseDocumentViewSet):
+class TagDocumentViewSet(BaseDocumentViewSet, FilteringFilterBackend):
     """The TagDocument view."""
 
     document = TagDocument
@@ -41,6 +42,9 @@ class TagDocumentViewSet(BaseDocumentViewSet):
         SuggesterFilterBackend,
     ]
     pagination_class = LimitOffsetPagination
+
+
+
     # Define search fields
     search_fields = (
         'title',
@@ -50,7 +54,7 @@ class TagDocumentViewSet(BaseDocumentViewSet):
     # Define filtering fields
     filter_fields = {
         'id': None,
-        'title': 'title.raw',
+        'title': 'title.lower',
         'created_at': 'created_at',
 
     }

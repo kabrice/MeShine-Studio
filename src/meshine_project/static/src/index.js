@@ -60,15 +60,16 @@ const AppCardContainer = () =>{
 // }
 
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const store = createStore(reducers, {}, applyMiddleware(ReduxPromise));
+//const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Provider store={store}>
 
         <BrowserRouter>
             <div>
                 <Switch>
-                    <Route path="/summary" component={App} />
+                    <Route path="/summary/:id" component={App} />
                     <Route path="/" component={Home} />
                 </Switch>
             </div>

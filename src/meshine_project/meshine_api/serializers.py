@@ -20,9 +20,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
         user = models.UserProfile(
             email=validated_data['email'],
-            firstname = validated_data['firstname'],
-            lastname = validated_data['lastname'],
-            mobile = validated_data['mobile']
+            firstname=validated_data['firstname'],
+            lastname=validated_data['lastname'],
+            mobile=validated_data['mobile']
         )
 
         user.set_password(validated_data['password'])
@@ -30,13 +30,34 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
         return user
 
+class TagSerializer(serializers.ModelSerializer):
+    """A serializer for tag item"""
+    #summary = SummarySerializer()
+
+    class Meta:
+        model = models.Tag
+        fields = '__all__'
+
+class CategorySerializer(serializers.ModelSerializer):
+    #tags = [TagSerializer()]
+    class Meta:
+        model = models.Category
+        exclude = ('tags',)
+        depth = 1
+
+class TagCategorySerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+    class Meta:
+        model = models.TagCategory
+        fields = '__all__'
+        depth = 2
 
 class SummarySerializer(serializers.ModelSerializer):
     """A serializer for summary item"""
-
+    #tag_category = TagCategorySerializer(many=True)
     class Meta:
         model = models.Summary
-        exclude = ('user_profiles', 'questions',)
+        exclude = ('user_profiles',)
         depth = 2
 
 class UserProfileSummarySerializer(serializers.ModelSerializer):
@@ -73,30 +94,19 @@ class AnimationSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 1
 
-
-class TagSerializer(serializers.ModelSerializer):
-    """A serializer for tag item"""
-    #summary = SummarySerializer()
-
-    class Meta:
-        model = models.Tag
-        fields = '__all__'
-
 class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Question
         fields = '__all__'
+        depth = 1
 
 class QuestionSummarySerializer(serializers.ModelSerializer):
     summary = SummarySerializer()
     class Meta:
         model = models.QuestionSummary
         fields = '__all__'
+        depth = 4
 
-class CategorySerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = models.Category
-        fields = '__all__'
-        depth = 1
+

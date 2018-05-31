@@ -6,6 +6,7 @@ from .viewsets import (
     TagDocumentViewSet,
     CategoryDocumentViewSet,
     QuestionSummaryDocumentViewSet,
+    QuestionDocumentViewSet,
 )
 
 __all__ = ('urlpatterns',)
@@ -34,6 +35,12 @@ questionsummaries = router.register(
     r'questionsummaries',
     QuestionSummaryDocumentViewSet,
     base_name='questionsummarydocument'
+)
+
+questions = router.register(
+    r'questions',
+    QuestionDocumentViewSet,
+    base_name='questiondocument'
 )
 
 urlpatterns = [

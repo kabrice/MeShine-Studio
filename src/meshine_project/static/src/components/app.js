@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
+import {Field, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
 import AnimationPanel from '../containers/animation_panel';
 import AnimationDetail from '../containers/animation-detail';
 import MeFabric from '../components/me_fabric';
 import QuestionTag from '../containers/question_tag';
 import {Link} from 'react-router-dom';
+import { Route , withRouter} from 'react-router-dom';
+import {fetchSummary} from "../actions/index";
 
-export default class App extends Component {
+class App extends Component {
+
+    componentDidMount(){
+        const {id} = this.props.match.params;
+        this.props.fetchSummary(id);
+    }
+
     render() {
+
+        let summary = this.props.summary;
+
+        console.log("summary", summary);
+
         return (
 
             <React.Fragment>
@@ -120,3 +135,16 @@ export default class App extends Component {
         ;
     }
 }
+
+
+function mapStateToProps(state) {
+    return {summary: state.summary};
+}
+
+export default withRouter(reduxForm({
+    form: 'NewSummaryProjectForm'
+})(
+    connect(mapStateToProps, {fetchSummary})(App)
+));
+
+//export default withRouter(App);

@@ -1,6 +1,8 @@
 {
   "presets": [
-    ["react"],
-    ["env"]
-  ]
+    "react",
+    "env",
+    "stage-3"
+  ],
+  "plugins": ["emotion", "transform-class-properties"]
 }

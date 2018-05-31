@@ -7,9 +7,9 @@ of the indexed related fields (such as foreign keys and many-to-many fields;
 in case of `books.Book` model one of them is `publisher`) the Book index is
 updated as well.
 """
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save, post_delete, m2m_changed
 from django.dispatch import receiver
-
+from .. import models
 from django_elasticsearch_dsl.registries import registry
 
 __all__ = (
@@ -26,26 +26,46 @@ def update_document(sender, **kwargs):
     `books.Author` (`authors`), `books.Tag` (`tags`) fields have been updated
     in the database.
     """
-    app_label = sender._meta.app_label
-    model_name = sender._meta.model_name
+    # app_label = sender._meta.app_label
+    # model_name = sender._meta.model_name
+    # instance = kwargs['instance']
+    # if app_label == 'meshine_api':
+    #     if model_name == 'Category':
+    #         instances = instance.tags.all()
+    #         for _instance in instances:
+    #             registry.update(_instance)
+    #     if model_name == 'questionSummary':
+    #         instances = instance.summary.all()
+    #         for _instance in instances:
+    #             registry.update(_instance)
+    #     if model_name == 'summary':
+    #         instances = instance.questions.all()
+    #         for _instance in instances:
+    #            registry.update(_instance)
+    #         instances = instance.tag_category.all()
+    #         for _instance in instances:
+    #            registry.update(_instance)
+    #     if model_name == 'question':
+    #         instances = instance.meshine_api.all()
+    #         for _instance in instances:
+    #             registry.update(_instance)
+    #     if model_name == 'tag':
+    #         instances = instance.meshine_api.all()
+    #         for _instance in instances:
+    #             registry.update(_instance)
+
+
+@receiver(post_save)
+def m2m_question_summary(signal, sender, **kwargs):
+
     instance = kwargs['instance']
+    model_name = sender._meta.model_name
+    # if model_name == 'summary':
+    #     for _instance in instance.questions.all():
+    #         registry.update(_instance)
 
-    if app_label == 'meshine_api':
-        if model_name == 'Category':
-            instances = instance.tags.all()
-            for _instance in instances:
-                registry.update(_instance)
 
-        if model_name == 'QuestionSummary':
-            instances = instance.summary.all()
-            print("EDGAR QuestionSummary INSTANCES", instances)
-            for _instance in instances:
-                registry.update(_instance)
-        if model_name == 'Summary':
-            instances = instance.questionSummaries.all()
-            print("EDGAR Summary INSTANCES", instances)
-            for _instance in instances:
-                registry.update(_instance)
+m2m_changed.connect(m2m_question_summary, sender=models.Summary.questions.through)
 
 
 @receiver(post_delete)

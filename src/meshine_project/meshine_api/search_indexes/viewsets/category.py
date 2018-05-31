@@ -22,23 +22,21 @@ from django_elasticsearch_dsl_drf.filter_backends import (
     HighlightBackend,
 )
 from django_elasticsearch_dsl_drf.views import BaseDocumentViewSet
+from django_elasticsearch_dsl_drf.pagination import LimitOffsetPagination
 
 from elasticsearch_dsl import DateHistogramFacet, RangeFacet
 
 from ..documents import CategoryDocument
 from ..serializers import CategoryDocumentSerializer, CategoryDocumentSimpleSerializer
 
-__all__ = (
-    'CategoryDocumentSerializer',
-)
-
 
 class CategoryDocumentViewSet(BaseDocumentViewSet):
     """The CategoryDocument view."""
 
     document = CategoryDocument
-    # serializer_class = SummaryDocumentSerializer
     serializer_class = CategoryDocumentSimpleSerializer
+    pagination_class = LimitOffsetPagination
+
     lookup_field = 'id'
     filter_backends = [
         FilteringFilterBackend,
@@ -54,7 +52,6 @@ class CategoryDocumentViewSet(BaseDocumentViewSet):
     search_fields = (
         'title',
         'description',
-        'tags.id',
         'tags.title',
     )
 
@@ -78,7 +75,7 @@ class CategoryDocumentViewSet(BaseDocumentViewSet):
             ],
         },
 
-        'title': 'title.raw',
+        'title': 'title.lower',
         'description': 'description.raw',
         'created_at': 'created_at',
         'tags': {
@@ -107,15 +104,16 @@ class CategoryDocumentViewSet(BaseDocumentViewSet):
         # This has been added to test `isnull` filter.
         'null_field': 'null_field',
     }
-    # Define ordering fields
-    ordering_fields = {
-        'id': 'id',
-        'title': 'title.raw',
-        'description': 'description.raw',
-        'created_at': 'created_at',
-    }
+
     # Specify default ordering
-    ordering = ('id', 'title', 'description',)
+    ordering_fields = {
+        'created_at': 'created_at',
+        'description': 'description.raw',
+        'title': 'title.raw',
+        'id': 'id',
+        '_score': '_score',
+    }
+    ordering = ('id', 'title', '_score')
     faceted_search_fields = {
         'title': 'title.raw',
         'description': 'description.raw',

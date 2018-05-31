@@ -23,6 +23,7 @@ class Category(models.Model):
         """
         return [tag.title for tag in self.tags.all()]
 
+
     @property
     def null_field_indexing(self):
         """null_field for indexing.

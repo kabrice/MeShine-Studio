@@ -1,9 +1,8 @@
 import  React, { Component } from 'react';
 import {connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {Field, reduxForm} from 'redux-form';
-import {fetchSummary} from "../actions/index";
 import Profile from "../components/profile";
+//import {updateSummary} from "../actions/index";
 
 class QuestionTag extends Component{
 
@@ -20,7 +19,22 @@ class QuestionTag extends Component{
         event.preventDefault();
     }
 
-    renderQuestionTextField(field){
+/*    componentDidMount(){
+
+        this.props.updateSummary();
+    }*/
+
+
+    renderQuestionTextField = (field) =>{
+
+/*
+        let summary = this.props.updateSummary;
+        if(summary === undefined) {
+            summary = {};
+        }
+        console.log("summary", summary);
+*/
+
         return(
             <input
                 /*onchange={field.input.onChange}
@@ -34,7 +48,7 @@ class QuestionTag extends Component{
         )
     }
 
-    render(summary){
+    render(){
 
         return (
         <React.Fragment>
@@ -81,19 +95,17 @@ class QuestionTag extends Component{
 
 }
 
-function mapStateToProps(state) {
+/*function mapStateToProps(state) {
   return {
-      summary: state.summary
+      updateSummary: state.updateSummary
     }
-}
+}*/
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({fetchSummary}, dispatch);
-}
-
-
-// export default connect(mapStateToProps, mapDispatchToProps)(QuestionTag);
 
 export default reduxForm({
     form: 'UpdateQuestionForm'
-})(QuestionTag)
+})(
+    connect()(QuestionTag)
+);
+
+

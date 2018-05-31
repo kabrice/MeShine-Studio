@@ -1,12 +1,45 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import HomeMenu from './home-menu';
 import ProjectsContainer from "./projects-container";
-
+import Loader from 'react-loader-advanced';
+import { PulseLoader } from 'react-spinners';
+import {notRequestingAPI} from "../actions/index";
 
 class Home extends Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true
+        }
+    }
+
+    componentDidMount(){
+
+        this.props.notRequestingAPI();
+    }
+
+
     render(){
+        const style = {
+            spinnerStyle: {
+                "display": "flex ",
+                "justifyContent": "center ",
+                "alignItems": "center ",
+                "width": "100% "
+            }
+        };
+        const spinner =   <div style={style.spinnerStyle}>
+                                <PulseLoader color={'#FFFFFF'} loading={this.state.loading}/>
+                          </div>;
+        let requesting = this.props.requestingAPI.isRequestingAPI;
+        if(requesting === undefined) {
+            requesting = false;
+        }
+        console.log("requesting", requesting);
         return (
-            <React.Fragment>
+            <Loader show={requesting} message={spinner}>
                 <header>
                     <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse ">
                         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -21,9 +54,15 @@ class Home extends Component{
                     </nav>
                 </header>
                 <ProjectsContainer/>
-            </React.Fragment>
+            </Loader>
         )
     }
 }
 
-export default Home;
+function mapStateToProps(state) {
+    return {
+        requestingAPI: state.requestingAPI
+    };
+}
+
+export default connect(mapStateToProps, {notRequestingAPI})(Home);

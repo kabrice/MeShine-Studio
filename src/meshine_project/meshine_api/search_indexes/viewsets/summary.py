@@ -1,15 +1,18 @@
 from django_elasticsearch_dsl_drf.constants import (
-    LOOKUP_FILTER_TERMS,
-    LOOKUP_FILTER_RANGE,
     LOOKUP_FILTER_PREFIX,
+    LOOKUP_FILTER_RANGE,
+    LOOKUP_FILTER_TERMS,
     LOOKUP_FILTER_WILDCARD,
-    LOOKUP_QUERY_IN,
+    LOOKUP_QUERY_EXCLUDE,
     LOOKUP_QUERY_GT,
     LOOKUP_QUERY_GTE,
+    LOOKUP_QUERY_IN,
+    LOOKUP_QUERY_IN,
+    LOOKUP_QUERY_ISNULL,
     LOOKUP_QUERY_LT,
     LOOKUP_QUERY_LTE,
-    LOOKUP_QUERY_EXCLUDE,
-    LOOKUP_QUERY_ISNULL,
+    SUGGESTER_PHRASE,
+    SUGGESTER_TERM,
 )
 from django_elasticsearch_dsl_drf.filter_backends import (
     FacetedSearchFilterBackend,
@@ -51,13 +54,12 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
         HighlightBackend,
     ]
     # Define search fields
-    search_fields = (
-
-        'url',
-    )
+    search_fields = {
+        'url': {'boost': 2},
+        'html_text': {'boost': 4},
+    }
     # Define highlight fields
     highlight_fields = {
-
         'url': {},
     }
     # Define filter fields
@@ -105,16 +107,16 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
     }
     # Define ordering fields
     ordering_fields = {
-        'id': 'id',
-        'url': 'url.raw',
-        'html_text': 'html_text.raw',
+        'tag_category': 'tag_category.raw',
         'created_at': 'created_at',
+        'url': 'url.raw',
+        'id': 'id',
+        '_score': '_score',
     }
     # Specify default ordering
-    ordering = ('id', 'url', 'html_text',)
+    ordering = ('id', '_score', 'url',)
     faceted_search_fields = {
         'url': 'url.raw',
-        'html_text': 'html_text.raw',
         'created_at': {
             'field': 'created_at',
             'facet': DateHistogramFacet,
@@ -126,8 +128,5 @@ class SummaryDocumentViewSet(BaseDocumentViewSet):
 
     # Suggester fields
     suggester_fields = {
-        'html_text_suggest': 'html_text.suggest',
-        #'url_suggest': 'url.suggest',
-        'tag_suggest': 'tags.suggest',
-        'summary_suggest': 'summary',
+        'html_text_suggest': 'html_text',
     }

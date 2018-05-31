@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body {
   height: 100% !important;
   background: #1F1F1F !important;
@@ -33,7 +34,7 @@ header .navbar {
   border-bottom: 1px solid #353738;
   z-index: 1; }
 
-.navbar-brand, li {
+.navbar-brand, #navbarsExampleDefault li {
   margin-right: 40px; }
 
 .nav li {
@@ -242,8 +243,9 @@ footer .container-fluid {
   color: rgba(255, 255, 255, 0.5);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bolder;
+  font-size: 15px;
   padding: 10px 10px 0 5px;
-  display: block;
+  display: inline-block;
   width: 600px;
   border: none;
   border-radius: 0;
@@ -252,7 +254,7 @@ footer .container-fluid {
     outline: none; }
 #question span {
   position: relative;
-  display: block;
+  display: inline;
   width: 600px !important; }
 
 #search form {
@@ -277,7 +279,8 @@ footer .container-fluid {
   margin-left: 5px; }
 
 #question-wrapper {
-  padding-top: 5px !important; }
+  padding-top: 5px !important;
+  font-size: 15px; }
 
 .btn-link {
   color: rgba(255, 255, 255, 0.5) !important; }
@@ -285,6 +288,17 @@ footer .container-fluid {
 .img-thumbnail {
   background-color: transparent !important;
   border: none !important; }
+
+/*Centering the modal*/
+.modal-dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  min-height: calc(100vh - 60px); }
+  @media (max-width: 767px) {
+    .modal-dialog {
+      min-height: calc(100vh - 20px); } }
 
 .modal-content {
   background-color: #353738 !important;
@@ -296,7 +310,7 @@ footer .container-fluid {
 .modal-header {
   color: "";
   font-family: "AvenirNext-Bold", Verdana, sans-serif !important;
-  font-size: 14px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   border-bottom: 1px solid #353738 !important;
   padding-bottom: 0 !important; }
@@ -307,8 +321,9 @@ footer .container-fluid {
   color: rgba(255, 255, 255, 0.5);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bolder;
+  font-size: 15px;
   padding: 10px 10px 0 5px;
-  display: block;
+  display: inline-block;
   width: 100%;
   border: none;
   border-radius: 0;
@@ -317,17 +332,35 @@ footer .container-fluid {
     outline: none; }
 .me-modal-form span {
   position: relative;
-  display: block;
+  display: inline;
   width: 100% !important; }
+
+.modal-under-background {
+  z-index: 10 !important; }
+
+.modal-backdrop {
+  display: none; }
+
+.alert {
+  padding: 20px;
+  background-color: #c04848;
+  /* Red */
+  color: white;
+  margin-bottom: 15px; }
+
+.hide-alert {
+  display: none; }
 
 .text-help {
   color: #c04848;
-  font-family: "Avenir Next", Helvetica Neue, Helvetica, Arial !important; }
+  font-family: "Avenir Next", Helvetica Neue, Helvetica, Arial !important;
+  font-size: 15px; }
 
 .me-input-invalid {
   border-bottom: 1px solid #c04848 !important;
   margin-bottom: 0 !important;
-  font-family: "Avenir Next", Helvetica Neue, Helvetica, Arial !important; }
+  font-family: "Avenir Next", Helvetica Neue, Helvetica, Arial !important;
+  font-size: 15px; }
 
 /* Turn on custom 8px wide scrollbar */
 ::-webkit-scrollbar {
@@ -353,5 +386,171 @@ footer .container-fluid {
   background: rgba(0, 0, 0, 0.61);
   /* Some darker color when you click it */
   -webkit-border-radius: 100px; }
+
+.hide-counter,
+.me-modal-url,
+.me-modal-tag,
+.me-modal-question {
+  display: none;
+  visibility: hidden; }
+
+/* TAGS IN INPUT*/
+.react-tagsinput {
+  position: relative; }
+
+.react-tagsinput-tag {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0 6px 6px 0;
+  padding: 3px;
+  border: 1px solid #D1D1D1;
+  border-radius: 2px;
+  background: #F1F1F1;
+  /* match the font styles */
+  font-size: inherit;
+  line-height: inherit; }
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold; }
+  .react-tagsinput-remove:hover {
+    color: rgba(255, 255, 255, 0.75); }
+
+.react-tagsinput-tag a::before {
+  content: " ×"; }
+
+.react-tagsinput-input {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  margin-top: 1px;
+  padding: 5px;
+  width: 180px;
+  outline: none; }
+
+.react-questioninput {
+  margin-left: -5px; }
+
+.topic-input .react-autosuggest__input,
+.topic-input .react-autosuggest__input--focused {
+  font-weight: 400 !important;
+  font-size: 100% !important; }
+
+.topic-input input {
+  background: transparent;
+  border: 0;
+  color: #636c72;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: "";
+  font-weight: "";
+  margin-bottom: 6px;
+  margin-top: 1px;
+  padding: 5px;
+  width: 180px;
+  outline: none; }
+  .topic-input input::placeholder {
+    color: #636c72; }
+
+.react-tagsinput-tag:hover,
+.react-tagsinput-tag:focus {
+  border-color: #B1B1B1; }
+
+/*dropdown tag*/
+.react-autosuggest__container {
+  position: absolute;
+  display: inline;
+  margin-top: -6px; }
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px; }
+
+.react-autosuggest__input--focused {
+  outline: none; }
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; }
+
+.react-autosuggest__suggestions-container {
+  display: none; }
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 30px;
+  width: 280px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: scroll !important;
+  z-index: 2; }
+
+.react-autosuggest__suggestions-list {
+  margin: -15px;
+  padding: 10px;
+  list-style-type: none; }
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px; }
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd; }
+
+.tag-input-parent {
+  list-style-type: none; }
+
+.topic {
+  cursor: pointer; }
+
+.me-topicinput-remove:hover {
+  color: white; }
+
+#question-list,
+#tags-topics {
+  overflow-y: auto;
+  width: 500px;
+  max-height: 400px;
+  margin-bottom: -30px;
+  position: relative; }
+  #question-list ul,
+  #tags-topics ul {
+    height: 48px; }
+
+.me-topic {
+  display: table;
+  max-width: 650px; }
+
+.input-question .react-autosuggest__container {
+  width: 90%; }
+  .input-question .react-autosuggest__container input {
+    width: 100%; }
+
+.nb-question {
+  float: left;
+  font-size: 12px;
+  margin-top: 10px; }
+
+.questions-list {
+  color: white;
+  font-family: "Avenir Next", Helvetica Neue, Helvetica, Arial;
+  height: inherit !important; }
 
 /*# sourceMappingURL=main.css.map */

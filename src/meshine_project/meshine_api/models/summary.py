@@ -7,19 +7,21 @@ class Summary(models.Model):
     url = models.CharField(max_length=255, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     html_text = models.TextField(blank=True, unique=True)
+    title = models.CharField(max_length=255, default='', blank=True)
     url_local_path = models.CharField(max_length=255)
-    validated = models.BooleanField(default=False)
-    cover_image = models.CharField(max_length=255)
-    tag_category = models.ManyToManyField('TagCategory', default=[])
+    validated = models.BooleanField(default=True)
+    validation_level = models.IntegerField(default=1)
+    cover_image = models.CharField(max_length=255, default='')
+    tag_category = models.ManyToManyField('TagCategory', default=[], blank=False)
     user_profiles = models.ManyToManyField('UserProfile', through='UserProfileSummary')
-    questions = models.ManyToManyField('Question', through='QuestionSummary')
+    questions = models.ManyToManyField('Question', through='QuestionSummary', through_fields=('summary', 'question'),
+                                       default=[],)
 
     def __str__(self):
-        return self.html_text
+        return self.url
 
     class Meta:
         verbose_name_plural = "Summaries"
-
 
     @property
     def null_field_indexing(self):

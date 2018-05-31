@@ -158,7 +158,7 @@ INSTALLED_APPS = [
 
     # Other project specific apps
 
-    'meshine_api',  # Search app
+    'meshine_api',
 ]
 
 REST_FRAMEWORK = {
@@ -186,6 +186,7 @@ ELASTICSEARCH_INDEX_NAMES = {
     'meshine_api.search_indexes.documents.tag': 'tag',
     'meshine_api.search_indexes.documents.category': 'category',
     'meshine_api.search_indexes.documents.question_summary': 'question_summary',
+    'meshine_api.search_indexes.documents.question': 'question',
 }
 
 LOGIN_URL = '/en/accounts/login/'
@@ -198,89 +199,89 @@ LOGIN_REDIRECT_URL = '/en/'
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
-    'root': {
-        'level': 'INFO',
-        'handlers': ['all_log'],
-    },
-    'formatters': {
-        'verbose': {
-            'format': '\n%(levelname)s %(asctime)s [%(pathname)s:%(lineno)s] '
-                      '%(message)s'
-        },
-        'simple': {
-            'format': '\n%(levelname)s %(message)s'
-        },
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        },
-        'all_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_DIR("../../logs/all.log"),
-            'maxBytes': 1048576,
-            'backupCount': 99,
-            'formatter': 'verbose',
-        },
-        'django_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_DIR("../../logs/django.log"),
-            'maxBytes': 1048576,
-            'backupCount': 99,
-            'formatter': 'verbose',
-        },
-        'django_request_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_DIR("../../logs/django_request.log"),
-            'maxBytes': 1048576,
-            'backupCount': 99,
-            'formatter': 'verbose',
-        },
-        'debug_toolbar_force_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': PROJECT_DIR("../../logs/debug_toolbar_force.log"),
-            'maxBytes': 1048576,
-            'backupCount': 99,
-            'formatter': 'verbose',
-        },
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['django_request_log'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'django': {
-            'handlers': ['django_log'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
-        'books': {
-            'handlers': ['console', 'debug_toolbar_force_log'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'filters': {
+#         'require_debug_false': {
+#             '()': 'django.utils.log.RequireDebugFalse'
+#         }
+#     },
+#     'root': {
+#         'level': 'INFO',
+#         'handlers': ['all_log'],
+#     },
+#     'formatters': {
+#         'verbose': {
+#             'format': '\n%(levelname)s %(asctime)s [%(pathname)s:%(lineno)s] '
+#                       '%(message)s'
+#         },
+#         'simple': {
+#             'format': '\n%(levelname)s %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'filters': ['require_debug_false'],
+#             'class': 'django.utils.log.AdminEmailHandler'
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose'
+#         },
+#         'all_log': {
+#             'level': 'DEBUG',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': PROJECT_DIR("../../logs/all.log"),
+#             'maxBytes': 1048576,
+#             'backupCount': 99,
+#             'formatter': 'verbose',
+#         },
+#         'django_log': {
+#             'level': 'DEBUG',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': PROJECT_DIR("../../logs/django.log"),
+#             'maxBytes': 1048576,
+#             'backupCount': 99,
+#             'formatter': 'verbose',
+#         },
+#         'django_request_log': {
+#             'level': 'DEBUG',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': PROJECT_DIR("../../logs/django_request.log"),
+#             'maxBytes': 1048576,
+#             'backupCount': 99,
+#             'formatter': 'verbose',
+#         },
+#         'debug_toolbar_force_log': {
+#             'level': 'DEBUG',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': PROJECT_DIR("../../logs/debug_toolbar_force.log"),
+#             'maxBytes': 1048576,
+#             'backupCount': 99,
+#             'formatter': 'verbose',
+#         },
+#     },
+#     'loggers': {
+#         'django.request': {
+#             'handlers': ['django_request_log'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#         'django': {
+#             'handlers': ['django_log'],
+#             'level': 'ERROR',
+#             'propagate': False,
+#         },
+#         'meshine_api': {
+#             'handlers': ['console', 'debug_toolbar_force_log'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
 
 # Do not put any settings below this line
 try:

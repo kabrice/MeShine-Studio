@@ -7,6 +7,18 @@ from meshine_api.models import QuestionSummary
 
 from .analyzers import html_strip
 
+from elasticsearch_dsl.analysis import (
+    CustomAnalyzer,
+    CustomTokenizer,
+    CustomTokenFilter,
+    CustomCharFilter,
+)
+
+# shortcuts for direct use
+custom_analyzer = CustomAnalyzer._type_shortcut
+custom_tokenizer = CustomTokenizer._type_shortcut
+custom_token_filter = CustomTokenFilter._type_shortcut
+custom_char_filter = CustomCharFilter._type_shortcut
 
 __all__ = ('QuestionSummaryDocument',)
 
@@ -33,11 +45,13 @@ class QuestionSummaryDocument(DocType):
     # question object
     question = fields.ObjectField(
         properties={
+            'id': fields.IntegerField(),
             'title': StringField(
                 analyzer=html_strip,
                 fields={
                     'raw': KeywordField(),
                     'suggest': fields.CompletionField(),
+                    'lower': StringField(analyzer=html_strip)
                 }
             ),
             'score': fields.FloatField(),
@@ -48,7 +62,7 @@ class QuestionSummaryDocument(DocType):
     # summary object
     summary = fields.ObjectField(
         properties={
-            #'id': fields.IntegerField(),
+            'id': fields.IntegerField(),
             'url': StringField(
                 analyzer=html_strip,
                 fields={
@@ -57,6 +71,12 @@ class QuestionSummaryDocument(DocType):
                 }
             ),
             'html_text': StringField(
+                analyzer=html_strip,
+                fields={
+                    'raw': KeywordField()
+                }
+            ),
+            'cover_image': StringField(
                 analyzer=html_strip,
                 fields={
                     'raw': KeywordField(),

@@ -11,7 +11,7 @@ from collections import Counter
 from langdetect import detect
 import re
 
-from src.meshine_project.WebMetaDataGenerator.WebMetaDataGenerator import WebMetaDataGenerator
+from src.meshine_project.WebMetaDataGenerator1.WebMetaDataGenerator import WebMetaDataGenerator
 webMetaDataGenerator = WebMetaDataGenerator('https://stackoverflow.com/questions/5681271/or-statement-handling-two-clauses-python')
 webMetaDataGenerator.generate_tags()
 

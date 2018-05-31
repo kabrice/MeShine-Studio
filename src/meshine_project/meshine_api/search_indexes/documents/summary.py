@@ -33,6 +33,7 @@ class SummaryDocument(DocType):
     # ********************************************************************
 
     html_text = StringField(
+        analyzer=html_strip,
         fields={
             'raw': KeywordField(),
         }
@@ -89,6 +90,10 @@ class SummaryDocument(DocType):
         }
     )
 
+    #user_profiles = fields.ObjectField()
+
+    #questions = fields.ObjectField()
+
     null_field = fields.StringField(attr='null_field_indexing')
 
     class Meta(object):
@@ -97,9 +102,9 @@ class SummaryDocument(DocType):
         model = Summary  # The model associate with this DocType
 
 
-    # def prepare_userProfileSummary(self, instance):
-    #     """Prepare authors."""
-    #     return [author.name for author in []]
+    def prepare_html_text(self, instance):
+        """Prepare summary."""
+        return instance.html_text[:32766]
 
 
 

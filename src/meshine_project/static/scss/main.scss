@@ -52,7 +52,7 @@ header .navbar{
   margin-right: 40px;
 }
 
-li {
+#navbarsExampleDefault li {
   @extend .navbar-brand;
 }
 .nav li {
@@ -301,6 +301,7 @@ footer .container-fluid{
 
 #question-wrapper{
   padding-top: 5px !important;
+  font-size: $body-font-size+1;
 }
 
 .btn-link{
@@ -313,6 +314,17 @@ footer .container-fluid{
 }
 
 // PROJECT MODAL
+/*Centering the modal*/
+.modal-dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  min-height: calc(100vh - 60px);
+  @media (max-width: 767px) {
+    min-height: calc(100vh - 20px);
+  }
+}
 
 .modal-content{
   background-color: $black1 !important;
@@ -325,7 +337,7 @@ footer .container-fluid{
 }
 
 .modal-header{
-  @include font-text($action-btn-font-family, "", $body-font-size, 600);
+  @include font-text($action-btn-font-family, "", 15px, 600);
   border-bottom: $panel-border !important;
   padding-bottom: 0 !important;
 }
@@ -340,15 +352,34 @@ footer .container-fluid{
   }
 }
 
+.modal-under-background{
+  z-index: 10 !important;
+}
+
+.modal-backdrop {
+  display:none;
+}
+
+.alert {
+  padding: 20px;
+  background-color: $red; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+.hide-alert{
+  display: none;
+}
 .text-help{
   color: $red;
   font-family: $avenir-font !important;
+  font-size: $body-font-size+1;
 }
 
 .me-input-invalid{
     border-bottom: 1px solid $red !important;
     margin-bottom: 0 !important;
     font-family: $avenir-font !important;
+    font-size: $body-font-size+1;
 }
 
 /* Turn on custom 8px wide scrollbar */
@@ -377,7 +408,181 @@ footer .container-fluid{
   -webkit-border-radius: 100px;
 }
 
+.hide-counter,
+.me-modal-url,
+.me-modal-tag,
+.me-modal-question{
+  display: none;
+  visibility: hidden;
+}
 
 
+/* TAGS IN INPUT*/
+.react-tagsinput{
+  position: relative;
+}
+
+.react-tagsinput-tag {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0 6px 6px 0;
+  padding: $tag-padding;
+  border: 1px solid #D1D1D1;
+  border-radius: 2px;
+  background: #F1F1F1;
+
+  /* match the font styles */
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold;
+  &:hover{
+    color: $navbar-inverse-hover-color;
+  }
+}
+
+.react-tagsinput-tag a::before {
+  content: " ×";
+}
+
+.react-tagsinput-input {
+  @include input-tag($html-font, 15px, 400, #777);
+}
+
+.react-questioninput{
+  margin-left: -5px
+}
+
+.topic-input .react-autosuggest__input,
+.topic-input .react-autosuggest__input--focused{
+  font-weight: 400 !important;
+  font-size: 100% !important;
+}
+
+.topic-input input{
+  @include input-tag($html-font, "", "", $gray);
+  &::placeholder{
+    color: $gray;
+  }
+}
+
+.react-tagsinput-tag:hover,
+.react-tagsinput-tag:focus {
+  border-color: #B1B1B1;
+}
+/*dropdown tag*/
+.react-autosuggest__container {
+  position: absolute;
+  display: inline;
+  margin-top: -6px;
+}
 
 
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 30px;
+  width: 280px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: $html-font;
+  font-weight: 300;
+  font-size: 15px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: scroll !important;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: -15px;
+  padding: 10px;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}
+
+.tag-input-parent{
+ list-style-type: none
+}
+
+.topic{
+  cursor: pointer;
+}
+
+.me-topicinput-remove:hover{
+  color: white;
+}
+
+#question-list,
+#tags-topics{
+  overflow-y: auto;
+  width: 500px;
+  max-height: 400px;
+  margin-bottom: -30px;
+  position: relative;
+  ul{
+    height: 48px;
+  }
+}
+
+.me-topic{
+  display: table;
+  max-width: 650px;
+}
+
+.input-question .react-autosuggest__container{
+  width: 90%;
+  input{
+    width: 100%;
+  }
+}
+
+.nb-question{
+  float: left;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.questions-list{
+  color: white;
+  font-family: $avenir-font;
+  height: inherit !important;
+
+}

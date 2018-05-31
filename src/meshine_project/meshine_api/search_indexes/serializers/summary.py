@@ -18,7 +18,6 @@ class SummaryDocumentSerializer(serializers.Serializer):
 
     validated = serializers.BooleanField(read_only=True)
     created_at = serializers.DateField(read_only=True)
-    tag_category = serializers.SerializerMethodField()
     #user_profile_summaries = serializers.SerializerMethodField()
     # Used in testing of `isnull` functional filter.
     null_field = serializers.CharField(read_only=True,
@@ -30,11 +29,11 @@ class SummaryDocumentSerializer(serializers.Serializer):
 
         fields = (
             'id',
+            '_score',
             'html_text',
             'url',
             'cover_image',
             'created_at',
-            'tag_category',
             'null_field',  # Used in testing of `isnull` functional filter.
         )
         read_only_fields = fields
@@ -58,23 +57,8 @@ class SummaryDocumentSerializer(serializers.Serializer):
         :return:
         """
 
-    # def get_tags(self, obj):
-    #     """Get tags."""
-    #     if obj.tags:
-    #         return list(obj.tags)
-    #     else:
-    #         return []
-
-    # def get_user_profile_summary(self, obj):
-    #     """Get tags."""
-    #     if obj.:
-    #         return list(obj.tags)
-    #     else:
-    #         return []
-
 class SummaryDocumentSimpleSerializer(DocumentSerializer):
     """Serializer for the Book document."""
-
 
     highlight = serializers.SerializerMethodField()
 
@@ -82,10 +66,25 @@ class SummaryDocumentSimpleSerializer(DocumentSerializer):
         """Meta options."""
 
         document = SummaryDocument
-        #exclude = ('userProfileSummary',)
-
+        fields = (
+            'id',
+            '_score',
+            'html_text',
+            'url',
+            'validated',
+            'created_at',
+            'highlight',  # Used in highlight tests
+            'null_field',  # Used in testing of `isnull` functional filter.
+        )
 
     def get_highlight(self, obj):
         if hasattr(obj.meta, 'highlight'):
             return obj.meta.highlight.__dict__['_d_']
         return {}
+
+    score = serializers.SerializerMethodField()
+
+    def get_score(self, obj):
+        if hasattr(obj.meta, 'score'):
+            return obj.meta.score
+        return None

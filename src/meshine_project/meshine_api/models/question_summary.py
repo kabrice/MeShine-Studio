@@ -8,8 +8,8 @@ class QuestionSummary(models.Model):
     is_summary_author = models.BooleanField(default=False)
     is_question_author = models.BooleanField(default=False)
     last_modified_date = models.DateTimeField(auto_now_add=True)
-    question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='questionSummaries')
-    summary = models.ForeignKey('Summary', on_delete=models.CASCADE, related_name='questionSummaries')
+    question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    summary = models.ForeignKey('Summary', on_delete=models.CASCADE)
     main_question = models.BooleanField(default=False)
 
     class Meta:

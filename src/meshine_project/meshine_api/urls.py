@@ -15,11 +15,12 @@ router.register('animationType', views.AnimationTypeViewSet)
 router.register('animation', views.AnimationViewSet)
 router.register('question', views.QuestionViewSet)
 router.register('questionSummary', views.QuestionSummaryViewSet)
-router.register('category', views.CategoryViewSet)
+router.register('tagCategory', views.TagCategoryViewSet)
 
 urlpatterns= [
     path('hello-view/', views.HelloApiView.as_view()),
     path('summary/', views.SummaryListView.as_view()),
+    path('category/', views.CategoryViewSet.as_view()),
     path('summary/<int:pk>/', views.SummaryView.as_view()),
     path('userProfileSummary/<int:id>/', views.UserProfileSummaryViewSet.as_view()),
     path('', include(router.urls))

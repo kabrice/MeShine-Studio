@@ -4,7 +4,8 @@ import AnimationsReducer from './reducer_animation';
 import ActiveAnimation from './reducer_active_animation';
 import SummaryReducer from './reducer_summary';
 import SummaryByUser from './reducer_summary_byuser'
-import User from './reducer_user'
+import User from './reducer_user';
+import RequestingAPI from './reducer_requesting_api';
 
 const rootReducer = combineReducers({
     animations: AnimationsReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     summary: SummaryReducer,
     summaryByUser: SummaryByUser,
     user: User,
-    form: formReducer
+    requestingAPI: RequestingAPI,
+    form: formReducer,
 });
 export default rootReducer;

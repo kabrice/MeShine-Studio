@@ -7,6 +7,19 @@ from meshine_api.models import Category
 
 from .analyzers import html_strip
 
+from elasticsearch_dsl.analysis import (
+    CustomAnalyzer,
+    CustomTokenizer,
+    CustomTokenFilter,
+    CustomCharFilter,
+)
+
+# shortcuts for direct use
+custom_analyzer = CustomAnalyzer._type_shortcut
+custom_tokenizer = CustomTokenizer._type_shortcut
+custom_token_filter = CustomTokenFilter._type_shortcut
+custom_char_filter = CustomCharFilter._type_shortcut
+
 
 __all__ = ('CategoryDocument',)
 
@@ -35,6 +48,8 @@ class CategoryDocument(DocType):
     title = StringField(
         fields={
             'raw': KeywordField(),
+            'suggest': fields.CompletionField(),
+            'lower': StringField(analyzer=html_strip)
         }
     )
 
@@ -54,15 +69,18 @@ class CategoryDocument(DocType):
 
 
     # Tags
-    tags = StringField(
-        attr='tags_indexing',
-        analyzer=html_strip,
-        fields={
-            'raw': KeywordField(multi=True),
-            'suggest': fields.CompletionField(multi=True),
-        },
-        multi=True
-    )
+
+    tags = fields.ObjectField(
+        properties={
+            'id': fields.IntegerField(),
+            'title': StringField(
+                analyzer=html_strip,
+                fields={
+                    'raw': KeywordField(),
+                    'suggest': fields.CompletionField(),
+                }
+            ),
+        })
 
     null_field = fields.StringField(attr='null_field_indexing')
 
