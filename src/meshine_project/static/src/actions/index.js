@@ -14,6 +14,7 @@ export function selectAnimation(animation){
 
 export const FETCH_SUMMARY = 'FETCH_SUMMARY';
 export const FETCH_ANIMATION = 'FETCH_ANIMATION';
+export const FETCH_TYPEFACE = 'FETCH_TYPEFACE';
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_SUMMARY_BYUSER = 'FETCH_SUMMARY_BYUSER';
 export const CREATE_SUMMARY = 'CREATE_SUMMARY';
@@ -51,6 +52,16 @@ export function fetchAnimation() {
 
     return {
         type: FETCH_ANIMATION,
+        payload: request
+    };
+}
+
+export function fetchTypeFace() {
+    const url = `${ROOT_URL}/typeFace`;
+    const request = axios.get(url);
+
+    return {
+        type: FETCH_TYPEFACE,
         payload: request
     };
 }
@@ -140,4 +151,6 @@ export function updateSummary(value, id, callback, callbackError) {
     };
 
 }
+
+
 

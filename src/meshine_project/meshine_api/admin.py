@@ -15,4 +15,5 @@ admin.site.register(models.Category)
 admin.site.register(models.Question)
 admin.site.register(models.QuestionSummary)
 admin.site.register(models.TagCategory)
+admin.site.register(models.TypeFace)
 

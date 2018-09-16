@@ -186,7 +186,7 @@ class ProjectModal extends Component{
     handleClickTopicRemove = (e, value) => {
             const result = confirm("Are you sure you want to delete this topic? All its related tags will be deleted too");
             if(result) {
-                console.log("handleClickTopicRemove",value);
+                //console.log("handleClickTopicRemove",value);
                 value = value.substring(0, value.length - 1);
                 $('#topic-'+value.replace(/\s/g, "")).parent().parent().remove();
             }

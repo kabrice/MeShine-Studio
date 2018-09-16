@@ -21,7 +21,7 @@ body {
     width: $container-width  !important;
 
     .row{
-      min-height: $container-row-min-height  !important;
+      min-height: $container-row-min-height ;
     }
 
   }
@@ -85,7 +85,7 @@ header .navbar{
   height: $container-min-height;
   overflow: scroll;
   color: $animation-panel-color;
-  flex: 3 !important;
+  flex: 0 0 220px !important;
 }
 
 .animation-emphasis{
@@ -137,17 +137,24 @@ header .navbar{
 #card-container{
   @include size($container-min-height, $card-container-width);
   overflow-x: hidden ;
+  padding: 2px;
   flex: 6 ;
 }
 
-canvas{
-  position: absolute ;
-  left: 50% ;
-  top: 50% ;
-  transform: translate(-50%,-50%) ;
-  background: white
+.canvas-container{
+  margin-top: 3px;
+  margin-bottom: 3Px;
 }
 
+canvas{
+  //position: absolute ;
+  //left: 50% ;
+  //top: 50% ;
+  //transform: translate(-50%,-50%) ;
+  //background: white
+}
+
+.dropdown-menu,
 .projects-container{
   padding: 50px;
   overflow-y: scroll;
@@ -157,9 +164,9 @@ canvas{
 #design-panel{
   min-height: $container-min-height ;
   border-left: $panel-border ;
-  flex: 4 ;
-
-  overflow: scroll;
+  flex: 3 ;
+  overflow-y: scroll;
+  height:250px;
 }
 
 .nav-item .nav-link span{
@@ -586,3 +593,216 @@ footer .container-fluid{
   height: inherit !important;
 
 }
+
+.preview{
+  margin: 30px auto;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-preview{
+  border: solid 3px white;
+}
+
+.alignment-btn {
+  //padding-top: 10px;
+  button{
+    height:24px;
+    border: 1px solid transparent;
+    background-color: white;
+  }
+  td{
+    padding-top: 5px;
+  }
+  svg{
+    width:31px;
+    height: 18px;
+  }
+}
+
+.text-editor{
+  input{
+    border-radius: .25rem;
+    height:24px;
+    width: 43px;
+  }
+  td{
+    padding-bottom: 5px;
+  }
+  #font-size{
+    outline: none;
+  }
+  .btn-group,
+  .btn-me{
+    width: 100%;
+  }
+  .dropdown-toggle-split-me{
+    margin-right: 5px;
+  }
+  .rot-input{
+    margin-top: 6px;
+  }
+}
+
+.aa{
+  border-radius: 0.2em !important;
+  margin-right: 3px;
+}
+
+.line-title{
+  font-size: 12px;
+  color: white;
+  line-height: 1;
+  margin-top: 1px;
+  margin-right: 3px;
+}
+.line-input{
+ border-radius: .25rem;
+ height: 24px;
+ width: 43px;
+ outline: none;
+ margin-right: 3px;
+}
+
+.alignment-btn-left{
+  border-bottom-left-radius: $border-text-btn !important;
+  border-top-left-radius: $border-text-btn !important;
+  border-right: $border-text-btn-color;
+}
+
+.alignment-btn-justify{
+  border-bottom-right-radius: $border-text-btn !important;
+  border-top-right-radius: $border-text-btn !important;
+}
+
+.alignment-btn-right,
+.alignment-btn-center{
+  border-right: $border-text-btn-color;
+  border-radius: 0 !important;
+}
+
+.me-color{
+  .sk-color{
+    float: right;
+  }
+
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+a.active.focus,
+a.active:focus,
+a.focus,
+a:active.focus,
+a:active:focus,
+a:focus,
+button.active.focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button:active:focus,
+button:focus,
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.separator{
+  border-top: 1px solid $navbar-inverse-hover-color;
+  padding-bottom: 10px;
+}
+
+.arrg-box{
+    .row{
+      min-height: 0 !important;
+    }
+    .col{
+      padding-bottom: 6px;
+    }
+    input{
+      float: right;
+      margin-top: -3px;
+    }
+    span{
+      margin-left: 15px;
+    }
+}
+
+.padlock{
+  margin-left: -28px !important;
+  margin-right: 3px;
+  top: 2px;
+  position: relative;
+  svg{
+    width: 8px;
+  }
+}
+
+.group-alignment{
+  svg{
+    width: 16px;
+    fill: white;
+    &:hover{
+      fill:black;
+      background: white;
+    }
+  }
+  .row{
+    padding-right: 15px;
+  }
+  .col{
+    width: 7px;
+  }
+}
+
+.me-shadow{
+  float: left;
+  padding-right: 0;
+  .item{
+    display: inline-grid;
+    text-align: center;
+    margin-right: 1px;
+  }
+  .line-title{
+    padding-top: 4px;
+  }
+  input{
+    float: right;
+    margin-top: -3px;
+  }
+
+}
+
+.shadow-checkbox{
+  .row{
+    float:left;
+  }
+  input{
+    margin-top: 0;
+  }
+  .line-title{
+    margin-left:-25px;
+  }
+}
+
+.is-clicked{
+  color: #292b2c !important;
+  background-color: #e6e6e6 !important;
+  border-color: #adadad !important;
+}
+
+.color-shadow{
+  height: 24px;
+}
+
+
+

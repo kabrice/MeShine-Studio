@@ -10,6 +10,7 @@ from .question import Question
 from .question_summary import QuestionSummary
 from .category import Category
 from .tag_category import TagCategory
+from .typeface import TypeFace
 
 __all__ = (
     'Animation',
@@ -23,5 +24,6 @@ __all__ = (
     'Question',
     'QuestionSummary',
     'Category',
-    'TagCategory'
+    'TagCategory',
+    'TypeFace'
 )

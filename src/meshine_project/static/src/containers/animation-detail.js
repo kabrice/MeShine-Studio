@@ -4,7 +4,10 @@ import {connect} from 'react-redux';
 class AnimationDetail extends Component{
     render(){
         if(!this.props.animation) {
-            return <div style={{color: "white"}}>Nothing to display</div>
+            return <div style={{color: "white"}}>
+                <div  className="preview"><img src="../assets/avatar.png" className="img-preview" height="80%" width="80%"/></div>
+                <div  className="preview"><img src="../assets/avatar.png" height="80%" width="80%"/></div>
+            </div>
         }
 
         return (

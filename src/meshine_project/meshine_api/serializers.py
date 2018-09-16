@@ -108,5 +108,11 @@ class QuestionSummarySerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 4
 
+class TypeFaceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.TypeFace
+        fields = ('id', 'name')
+
 
 

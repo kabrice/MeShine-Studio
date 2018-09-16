@@ -388,3 +388,12 @@ class TagCategoryViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Sets the animation to the logged in user"""
         serializer.save()
+
+class TypeFaceViewSet(viewsets.ModelViewSet):
+
+    serializer_class = serializers.TypeFaceSerializer
+    queryset = models.TypeFace.objects.all().order_by('id')
+
+    def perform_create(self, serializer):
+        """Sets the animation to the logged in user"""
+        serializer.save()

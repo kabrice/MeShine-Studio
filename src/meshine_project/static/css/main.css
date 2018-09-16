@@ -19,7 +19,7 @@ body {
     margin: -7px auto -33px !important;
     width: 100% !important; }
     body .container .row {
-      min-height: 100vh !important; }
+      min-height: 100vh; }
 
 @font-face {
   font-family: 'Avenir Next Italic';
@@ -57,7 +57,7 @@ header .navbar {
   height: calc(100vh - 150px);
   overflow: scroll;
   color: rgba(255, 255, 255, 0.5);
-  flex: 3 !important; }
+  flex: 0 0 220px !important; }
 
 .animation-emphasis {
   padding-left: 5px; }
@@ -121,15 +121,14 @@ header .navbar {
   height: calc(100vh - 150px);
   width: 400px;
   overflow-x: hidden;
+  padding: 2px;
   flex: 6; }
 
-canvas {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: white; }
+.canvas-container {
+  margin-top: 3px;
+  margin-bottom: 3Px; }
 
+.dropdown-menu,
 .projects-container {
   padding: 50px;
   overflow-y: scroll;
@@ -138,8 +137,9 @@ canvas {
 #design-panel {
   min-height: calc(100vh - 150px);
   border-left: 1px solid #353738;
-  flex: 4;
-  overflow: scroll; }
+  flex: 3;
+  overflow-y: scroll;
+  height: 250px; }
 
 .nav-item .nav-link span {
   border-radius: 10px;
@@ -552,5 +552,161 @@ footer .container-fluid {
   color: white;
   font-family: "Avenir Next", Helvetica Neue, Helvetica, Arial;
   height: inherit !important; }
+
+.preview {
+  margin: 30px auto;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.img-preview {
+  border: solid 3px white; }
+
+.alignment-btn button {
+  height: 24px;
+  border: 1px solid transparent;
+  background-color: white; }
+.alignment-btn td {
+  padding-top: 5px; }
+.alignment-btn svg {
+  width: 31px;
+  height: 18px; }
+
+.text-editor input {
+  border-radius: .25rem;
+  height: 24px;
+  width: 43px; }
+.text-editor td {
+  padding-bottom: 5px; }
+.text-editor #font-size {
+  outline: none; }
+.text-editor .btn-group,
+.text-editor .btn-me {
+  width: 100%; }
+.text-editor .dropdown-toggle-split-me {
+  margin-right: 5px; }
+.text-editor .rot-input {
+  margin-top: 6px; }
+
+.aa {
+  border-radius: 0.2em !important;
+  margin-right: 3px; }
+
+.line-title {
+  font-size: 12px;
+  color: white;
+  line-height: 1;
+  margin-top: 1px;
+  margin-right: 3px; }
+
+.line-input {
+  border-radius: .25rem;
+  height: 24px;
+  width: 43px;
+  outline: none;
+  margin-right: 3px; }
+
+.alignment-btn-left {
+  border-bottom-left-radius: 0.2rem !important;
+  border-top-left-radius: 0.2rem !important;
+  border-right: 1px solid gray !important; }
+
+.alignment-btn-justify {
+  border-bottom-right-radius: 0.2rem !important;
+  border-top-right-radius: 0.2rem !important; }
+
+.alignment-btn-right,
+.alignment-btn-center {
+  border-right: 1px solid gray !important;
+  border-radius: 0 !important; }
+
+.me-color .sk-color {
+  float: right; }
+
+::-webkit-scrollbar {
+  width: 1px; }
+
+a.active.focus,
+a.active:focus,
+a.focus,
+a:active.focus,
+a:active:focus,
+a:focus,
+button.active.focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button:active:focus,
+button:focus,
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important; }
+
+.separator {
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  padding-bottom: 10px; }
+
+.arrg-box .row {
+  min-height: 0 !important; }
+.arrg-box .col {
+  padding-bottom: 6px; }
+.arrg-box input {
+  float: right;
+  margin-top: -3px; }
+.arrg-box span {
+  margin-left: 15px; }
+
+.padlock {
+  margin-left: -28px !important;
+  margin-right: 3px;
+  top: 2px;
+  position: relative; }
+  .padlock svg {
+    width: 8px; }
+
+.group-alignment svg {
+  width: 16px;
+  fill: white; }
+  .group-alignment svg:hover {
+    fill: black;
+    background: white; }
+.group-alignment .row {
+  padding-right: 15px; }
+.group-alignment .col {
+  width: 7px; }
+
+.me-shadow {
+  float: left;
+  padding-right: 0; }
+  .me-shadow .item {
+    display: inline-grid;
+    text-align: center;
+    margin-right: 1px; }
+  .me-shadow .line-title {
+    padding-top: 4px; }
+  .me-shadow input {
+    float: right;
+    margin-top: -3px; }
+
+.shadow-checkbox .row {
+  float: left; }
+.shadow-checkbox input {
+  margin-top: 0; }
+.shadow-checkbox .line-title {
+  margin-left: -25px; }
+
+.is-clicked {
+  color: #292b2c !important;
+  background-color: #e6e6e6 !important;
+  border-color: #adadad !important; }
+
+.color-shadow {
+  height: 24px; }
 
 /*# sourceMappingURL=main.css.map */

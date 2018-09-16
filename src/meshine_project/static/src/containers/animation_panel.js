@@ -5,6 +5,9 @@ import {connect } from 'react-redux';
 import {selectAnimation} from "../actions/index";
 import {bindActionCreators} from 'redux';
 import {fetchAnimation} from "../actions/index";
+import TextEditor from '../components/text_editor'
+import Arrangement from '../components/arrangement'
+import AdvancedStyle from '../components/advancedStyle'
 
 /*const AnimationPanel = (props) => {
 
@@ -24,11 +27,8 @@ import {fetchAnimation} from "../actions/index";
 class AnimationPanel extends Component{
 
     componentDidMount(){
-
         this.props.fetchAnimation();
     }
-
-
 
     renderAnimation(){
         return _.map(this.props.animations, (animation) => {
@@ -38,16 +38,30 @@ class AnimationPanel extends Component{
         })
     }
 
+    renderArrangement(){
+        return <Arrangement/>
+    }
+
+    renderTextEditor(){
+        return <TextEditor/>
+    }
+
+    renderAdvancedStyle(){
+        return <AdvancedStyle/>
+    }
+
     render(){
         return (
-            <table>
+            <table className="table-config">
                 <thead>
                 <tr>
-                    <th colSpan="3">Volet d'animation</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                {this.renderAnimation()}
+                {this.renderArrangement()}
+                {this.renderTextEditor()}
+                {this.renderAdvancedStyle()}
                 </tbody>
             </table>
         )
