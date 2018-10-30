@@ -12,7 +12,7 @@ import './index.scss' // include bootstrap css file with own modifications
 //     $('[data-toggle="tooltip"]').tooltip();
 //     $('[data-toggle="popover"]').popover();
 // });
-
+import 'lottie-web'
 //*** REACT ***
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';

@@ -105,3 +105,12 @@
   width: 180px;
   outline: none;
 }
+
+// input for text-editor block
+@mixin input-te-width($width: 43px){
+  border-radius: .25rem;
+  height: 24px;
+  width: $width;
+  outline: none;
+  margin-right: 3px;
+}

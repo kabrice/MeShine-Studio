@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html, body {
   height: 100% !important;
   background: #1F1F1F !important;
@@ -417,7 +416,7 @@ footer .container-fluid {
     color: rgba(255, 255, 255, 0.75); }
 
 .react-tagsinput-tag a::before {
-  content: " ×"; }
+  content: " x"; }
 
 .react-tagsinput-input {
   background: transparent;
@@ -565,7 +564,6 @@ footer .container-fluid {
 
 .alignment-btn button {
   height: 24px;
-  border: 1px solid transparent;
   background-color: white; }
 .alignment-btn td {
   padding-top: 5px; }
@@ -575,8 +573,7 @@ footer .container-fluid {
 
 .text-editor input {
   border-radius: .25rem;
-  height: 24px;
-  width: 43px; }
+  height: 24px; }
 .text-editor td {
   padding-bottom: 5px; }
 .text-editor #font-size {
@@ -607,6 +604,13 @@ footer .container-fluid {
   outline: none;
   margin-right: 3px; }
 
+.fill-input {
+  border-radius: .25rem;
+  height: 24px;
+  width: 47px;
+  outline: none;
+  margin-right: 3px; }
+
 .alignment-btn-left {
   border-bottom-left-radius: 0.2rem !important;
   border-top-left-radius: 0.2rem !important;
@@ -620,9 +624,6 @@ footer .container-fluid {
 .alignment-btn-center {
   border-right: 1px solid gray !important;
   border-radius: 0 !important; }
-
-.me-color .sk-color {
-  float: right; }
 
 ::-webkit-scrollbar {
   width: 1px; }
@@ -656,9 +657,8 @@ button:focus,
   min-height: 0 !important; }
 .arrg-box .col {
   padding-bottom: 6px; }
-.arrg-box input {
-  float: right;
-  margin-top: -3px; }
+.arrg-box input[type="checkbox"], .arrg-box input.line-input {
+  float: right; }
 .arrg-box span {
   margin-left: 15px; }
 
@@ -681,18 +681,23 @@ button:focus,
 .group-alignment .col {
   width: 7px; }
 
-.me-shadow {
+.me-color {
   float: left;
   padding-right: 0; }
-  .me-shadow .item {
+  .me-color .item {
     display: inline-grid;
     text-align: center;
     margin-right: 1px; }
-  .me-shadow .line-title {
+  .me-color .item-wm {
+    display: inline-grid;
+    text-align: center; }
+  .me-color .line-title {
     padding-top: 4px; }
-  .me-shadow input {
+  .me-color .input-shadow {
     float: right;
     margin-top: -3px; }
+  .me-color .sk-color {
+    float: right; }
 
 .shadow-checkbox .row {
   float: left; }
@@ -706,7 +711,33 @@ button:focus,
   background-color: #e6e6e6 !important;
   border-color: #adadad !important; }
 
-.color-shadow {
+.colorFont,
+.color-shadow,
+.colorBlend,
+.colorStroke {
   height: 24px; }
+
+.btn-blending {
+  margin-right: 3px; }
+  .btn-blending button:first-child {
+    width: 65px; }
+  .btn-blending button {
+    height: 24px; }
+
+.bg-color-box {
+  margin-top: -5px; }
+
+#fullscreen-player {
+  width: 375px;
+  height: 812px;
+  background-color: black; }
+
+#play-container {
+  height: 2000px;
+  width: 1124px;
+  background: gray;
+  margin: auto;
+  position: relative;
+  transform-origin: 50% 0; }
 
 /*# sourceMappingURL=main.css.map */

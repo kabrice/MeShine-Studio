@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+    <title>3D Responsive Image Venetian Blind Transition Effect In Pure CSS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+        #anim.enable
+        {
+            -webkit-animation: flash 1s ease 3;
+            -moz-animation: flash 1s ease 3;
+            -ms-animation: flash 1s ease 3;
+            -o-animation: flash 1s ease 3;
+            animation: flash 1s ease 3;
+        }
+
+        /* animation */
+        @-webkit-keyframes flash {
+            50% { opacity: 0; }
+        }
+
+        @-moz-keyframes flash {
+            50% { opacity: 0; }
+        }
+
+        @-ms-keyframes flash {
+            50% { opacity: 0; }
+        }
+
+        @-o-keyframes flash {
+            50% { opacity: 0; }
+        }
+
+        @keyframes flash {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+  <!--<div id=blinds-window class='animated bounceIn delay-5s'>
+    <img src=dog.png class=first>
+  </div>-->
+  <div id='anim' class='enable'>
+      <img src=dog.png class=first>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+  </script>
+</body>
+
+</html>

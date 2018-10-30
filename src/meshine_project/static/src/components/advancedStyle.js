@@ -66,7 +66,8 @@ class AdvancedStyle extends Component{
         });
 
         return <React.Fragment>
-                    <tr>
+                    <tr className='forEditor forText forShape forImage'><td className="separator"/><td/></tr>
+                    <tr className='forEditor forText forShape forImage'>
                         <td className="arrg-box shadow-checkbox">
                             <div className="row">
                                 <div className="col">
@@ -78,7 +79,7 @@ class AdvancedStyle extends Component{
                             </div>
                         </td>
                     </tr>
-                    <tr className="me-shadow" hidden={this.state.hiddenVal}>
+                    <tr className="me-color forEditor forText forShape forImage" hidden={this.state.hiddenVal}>
                         <td className="">
                             <div className="item">
                                 <input type="color"
@@ -111,7 +112,7 @@ class AdvancedStyle extends Component{
                                            defaultValue={1}
                                            type="number"
                                            min="0"
-                                           className="line-input"/>
+                                           className="line-input input-shadow"/>
                                 </div>
                                 <div className="line-title">X</div>
                             </div>
@@ -123,11 +124,11 @@ class AdvancedStyle extends Component{
                                         defaultValue={1}
                                         type="number"
                                         min="0"
-                                        className="line-input"/>
+                                        className="line-input input-shadow"/>
                                 </div>
                                 <div className="line-title">Y</div>
                             </div>
-                            <div className="item">
+                            <div className="item-wm">
                                 <div>
                                     <input
                                         id="shadowBlur"
@@ -135,7 +136,7 @@ class AdvancedStyle extends Component{
                                         defaultValue={1}
                                         type="number"
                                         min="0"
-                                        className="line-input"/>
+                                        className="line-input input-shadow"/>
                                 </div>
                                 <div className="line-title">Blur</div>
                             </div>

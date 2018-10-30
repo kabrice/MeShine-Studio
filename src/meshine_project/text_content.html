@@ -1,0 +1,59 @@
+Join Stack Overflow to learn, share knowledge, and build your career.
+
+I am an experienced PHP programmer using Django for the first time, and I think it is incredible!
+
+I have a project that has a lot of apps, so I wanted to group them in an apps folder.
+
+So the structure of the project is:
+
+Then in Django settings I have put this:
+
+This does not seem to work?
+
+Any ideas on how you can put all your apps into a seprate folder and not in the project root?
+
+Many thanks.
+
+Make sure that the '__init__.py' file is in your apps directory, if it's not there it won't be recognized as part of the package.
+
+So each of the folders here should have '__init__.py' file in it. (empty is fine).
+
+Then as long as your root 'module' folder is in your PYTHONPATH you'll be able to import from your apps.
+
+Here's the documentation regarding the python search path for your reading pleasure:
+
+http://docs.python.org/install/index.html#modifying-python-s-search-path
+
+And a nice simple explanation of what __init__.py file is for:
+
+http://effbot.org/pyfaq/what-is-init-py-used-for.htm
+
+As long as your apps are in your PYTHONPATH, everything should work. Try setting that environment variable to the folder containing your apps.
+
+Your top-level urls.py (also named in your settings.py) must be able to use a simple "import" statement to get your applications.
+
+Does import project.apps.app1.urls work? If not, then your PYTHONPATH isn't set up properly, or you didn't install your project in Python's site-packages directory.
+
+I suggest using the PYTHONPATH environment variable, instead of installing into site-packages. Django applications (to me, anyway) seem easier to manage when outside site-packages.
+
+We do the following:
+
+Django projects go in /opt/project/.
+
+PYTHONPATH includes /opt/project.
+
+Our settings.py uses apps.this and apps.that (note that the project part of the name is part of the PYTHONPATH, not part of the import.
+
+By posting your answer, you agree to the privacy policy and terms of service.
+
+asked
+
+9 years, 2 months ago
+
+viewed
+
+23,732 times
+
+active
+
+2 years, 3 months ago

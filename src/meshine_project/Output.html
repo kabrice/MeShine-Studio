@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html class="" itemscope="" itemtype="http://schema.org/QAPage" xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>python - Django Installed Apps Location - Stack Overflow</title>
+<link href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d" rel="shortcut icon"/>
+<link href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a" rel="apple-touch-icon image_src"/>
+<link href="/opensearch.xml" rel="search" title="Stack Overflow" type="application/opensearchdescription+xml"/>
+<meta content="website" property="og:type"/>
+<meta content="https://stackoverflow.com/questions/511291/django-installed-apps-location" property="og:url"/>
+<meta content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded" itemprop="image primaryImageOfPage" property="og:image"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="stackoverflow.com" name="twitter:domain"/>
+<meta content="Django Installed Apps Location" itemprop="title name" name="twitter:title" property="og:title"/>
+<meta content="I am an experienced PHP programmer using Django for the first time, and I think it is incredible!
+
+I have a project that has a lot of apps, so I wanted to group them in an apps folder.
+
+So the stru..." itemprop="description" name="twitter:description" property="og:description"/>
+<script async="" src="https://rules.quantcount.com/rules-p-c1rF4kxgLUzNc.js"></script><script async="" src="https://secure.quantserve.com/quant.js"></script><script async="" src="https://sb.scorecardresearch.com/beacon.js"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.sstatic.net/Js/stub.en.js?v=4a8ae4b6747a"></script>
+<link href="https://cdn.sstatic.net/Shared/stacks.css?v=5a9c7c94db05" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.sstatic.net/Sites/stackoverflow/primary.css?v=60f9ed9afcfb" rel="stylesheet" type="text/css"/>
+<link href="/feeds/question/511291" rel="alternate" title="Feed for question 'Django Installed Apps Location'" type="application/atom+xml"/>
+<meta content="US" name="twitter:app:country"/>
+<meta content="Stack Exchange iOS" name="twitter:app:name:iphone"/>
+<meta content="871299723" name="twitter:app:id:iphone"/>
+<meta content="se-zaphod://stackoverflow.com/questions/511291/django-installed-apps-location" name="twitter:app:url:iphone"/>
+<meta content="Stack Exchange iOS" name="twitter:app:name:ipad"/>
+<meta content="871299723" name="twitter:app:id:ipad"/>
+<meta content="se-zaphod://stackoverflow.com/questions/511291/django-installed-apps-location" name="twitter:app:url:ipad"/>
+<meta content="Stack Exchange Android" name="twitter:app:name:googleplay"/>
+<meta content="http://stackoverflow.com/questions/511291/django-installed-apps-location" name="twitter:app:url:googleplay"/>
+<meta content="com.stackexchange.marvin" name="twitter:app:id:googleplay"/>
+<script>
+
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:511291});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '511291');
+                // TODO: There's a CR for replacing this with inline info on the question for moderators
+                // https://trello.com/c/ynDHhvrB/158-cr-move-the-mod-info-out-of-the-margin-and-into-the-post-estimate-needed
+                // Before we roll out the sidebar everywhere (or at least shortly after that?), we should implement it.
+                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+<script>
+        StackExchange.init({"locale":"en","serverTime":1523755631,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&amp;A for professional and enthusiast programmers","isNoticesTabEnabled":true,"enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"e11beb27f92265fdc3b2fea9317bfb65a11fe95afad1fd55b51734f475ac4d69","tid":"9bfabf42-6ae2-211b-6764-b9ddffa0d2cb","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"commentHighlightingWithCSS":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"userMessaging":{},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"paths":{},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000},"slack":{"sidebarAdDismissCookie":"slack-sidebar-ad"}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"7879f22520e8","js/moderator.en.js":"2c6ef6da9df9","js/full-anon.en.js":"a5cca6d848a4","js/full.en.js":"ec4a194216ea","js/wmd.en.js":"597ab852591f","js/third-party/jquery.autocomplete.min.js":"bdb258e949a8","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"2a46ccd0c25d","js/help.en.js":"dbd4f489eff2","js/tageditor.en.js":"89ad6b26a067","js/tageditornew.en.js":"8feec6b5b80f","js/inline-tag-editing.en.js":"e7aa31e8eba1","js/revisions.en.js":"2faaeaae2529","js/review.en.js":"dd0c04669d8a","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"30287310aa20","js/explore-qlist.en.js":"726bf7958c2a","js/events.en.js":"a73c8c880202","js/keyboard-shortcuts.en.js":"153d0c18fb5e","js/external-editor.en.js":"f29e00f5e6bb","js/adops.en.js":"22a9bd59b1e9","js/external-editor.en.js":"f29e00f5e6bb","js/snippet-javascript.en.js":"4ceca4bd1d0a","js/snippet-javascript-codemirror.en.js":"439bd4420480"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+<noscript id="noscript-css">&lt;style&gt;body,.top-bar{margin-top:1.9em}&lt;/style&gt;</noscript>
+<script async="" src="https://cdn.sstatic.net/Js/full-anon.en.js?v=a5cca6d848a4"></script><link href="https://cdn.sstatic.net/clc/styles/clc.min.css?v=8a0a093a431f" rel="stylesheet" type="text/css"/><link as="script" href="https://adservice.google.fr/adsid/integrator.js?domain=stackoverflow.com" rel="preload"/><script src="https://adservice.google.fr/adsid/integrator.js?domain=stackoverflow.com" type="text/javascript"></script><link as="script" href="https://adservice.google.com/adsid/integrator.js?domain=stackoverflow.com" rel="preload"/><script src="https://adservice.google.com/adsid/integrator.js?domain=stackoverflow.com" type="text/javascript"></script><script async="" src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_194.js"></script><script async="" src="https://cdn.sstatic.net/Js/snippet-javascript.en.js?v=4ceca4bd1d0a"></script><script async="" src="https://cdn.sstatic.net/Js/post-validation.en.js?v=30287310aa20"></script><script async="" src="https://cdn.sstatic.net/Js/prettify-full.en.js?v=7879f22520e8"></script><script async="" src="https://cdn.sstatic.net/Js/external-editor.en.js?v=f29e00f5e6bb"></script></head>
+<body class="question-page new-topbar">
+<script async="" src="https://js-sec.indexww.com/ht/p/185901-159836282584097.js"></script>
+<div id="notify-container"></div>
+<div id="custom-header"></div>
+<header class="top-bar js-top-bar _fixed">
+<div class="-container">
+<div class="-main">
+<a class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})" href="https://stackoverflow.com">
+<span class="-img">Stack Overflow</span>
+</a>
+<nav aria-label="site navigation" class="navigation" role="navigation">
+<ol class="-list">
+<li class="-item _current">
+<a class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})" href="/questions" id="nav-questions">Questions</a>
+</li>
+<li class="-item">
+<a class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})" href="/jobs?med=site-ui&amp;ref=jobs-tab" id="nav-jobs">Developer Jobs</a>
+</li>
+<li class="-item">
+<a class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})" href="/tags" id="nav-tags">Tags</a>
+</li>
+<li class="-item">
+<a class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})" href="/users" id="nav-users">Users</a>
+</li>
+</ol>
+</nav>
+</div>
+<form action="/search" autocomplete="off" class="searchbar" id="search" method="get" role="search">
+<input autocomplete="off" class="f-input js-search-field" maxlength="240" name="q" placeholder="Search…" tabindex="1" type="text" value=""/>
+<button aria-label="Search..." class="btn-topbar-primary js-search-submit" type="submit"><svg aria-hidden="true" class="svg-icon iconSearch" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></button>
+</form>
+<div class="-actions">
+<nav class="secondary-nav">
+<div class="-dialog-container js-topbar-dialog-corral">
+<div class="topbar-dialog siteSwitcher-dialog dno">
+<div class="header">
+<h3><a href="https://stackoverflow.com">current community</a>
+</h3>
+</div>
+<div class="modal-content current-site-container">
+<ul class="current-site">
+<li class="grid">
+<div class="fl1">
+<a class="current-site-link site-link js-gps-track grid gs8 gsx" data-gps-track="site_switcher.click({ item_type:3 })" data-id="1" href="https://stackoverflow.com">
+<div class="favicon favicon-stackoverflow site-icon grid--cell" title="Stack Overflow"></div>
+<span class="grid--cell fl1">
+            Stack Overflow
+        </span>
+</a>
+</div>
+<div class="related-links">
+<a class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })" href="https://stackoverflow.com/help">help</a>
+<a class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })" href="https://chat.stackoverflow.com">chat</a>
+</div>
+</li>
+<li class="related-site grid">
+<div class="L-shaped-icon-container">
+<span class="L-shaped-icon"></span>
+</div>
+<a class="site-link js-gps-track grid gs8 gsx" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })" data-id="552" href="https://meta.stackoverflow.com">
+<div class="favicon favicon-stackoverflowmeta site-icon grid--cell" title="Meta Stack Overflow"></div>
+<span class="grid--cell fl1">
+            Meta Stack Overflow
+        </span>
+</a>
+</li>
+</ul>
+</div>
+<div class="header" id="your-communities-header">
+<h3>
+your communities            </h3>
+</div>
+<div class="modal-content" id="your-communities-section">
+<div class="call-to-login">
+<a class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })" href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent">Sign up</a> or <a class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })" href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f511291%2fdjango-installed-apps-location">log in</a> to customize your list.
+                </div>
+</div>
+<div class="header">
+<h3><a href="https://stackexchange.com/sites">more stack exchange communities</a>
+</h3>
+<a class="fr" href="https://stackoverflow.blog">company blog</a>
+</div>
+<div class="modal-content">
+<div class="child-content"></div>
+</div>
+</div>
+<div class="topbar-dialog help-dialog js-help-dialog dno">
+<div class="modal-content">
+<ul>
+<li>
+<a class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })" href="/tour">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+</a>
+</li>
+<li>
+<a class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })" href="/help">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+</a>
+</li>
+<li>
+<a class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })" href="https://meta.stackoverflow.com">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+</a>
+</li>
+<li>
+<a class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })" href="https://stackoverflow.com/company/about">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+</a>
+</li>
+<li>
+<a class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })" href="https://www.stackoverflowbusiness.com/?ref=topbar_help">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<ol class="-list">
+<li class="-item">
+<a class="-link js-inbox-button" href="https://stackexchange.com/users/?tab=inbox" title="Recent inbox messages">
+<svg aria-hidden="true" class="svg-icon iconInbox" height="18" viewbox="0 0 20 18" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M15.19 1H4.63c-.85 0-1.6.54-1.85 1.35L0 10.79V15c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2v-4.21l-2.87-8.44A2 2 0 0 0 15.19 1zm-.28 10l-2 2h-6l-2-2H1.96L4.4 3.68A1 1 0 0 1 5.35 3h9.12a1 1 0 0 1 .95.68L17.86 11h-2.95z"></path></svg>
+
+</a>
+</li>
+<li class="-item">
+<a class="-link js-achievements-button" data-unread-class="_highlighted-positive" href="https://stackexchange.com/users/?tab=reputation" title="Recent achievements: reputation, badges, and privileges earned">
+<svg aria-hidden="true" class="svg-icon iconAchievements" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M15 2V1H3v1H0v4c0 1.6 1.4 3 3 3v1c.4 1.5 3 2.6 5 3v2H5s-1 1.5-1 2h10c0-.4-1-2-1-2h-3v-2c2-.4 4.6-1.5 5-3V9c1.6-.2 3-1.4 3-3V2h-3zM3 7c-.5 0-1-.5-1-1V4h1v3zm8.4 2.5L9 8 6.6 9.4l1-2.7L5 5h3l1-2.7L10 5h2.8l-2.3 1.8 1 2.7h-.1zM16 6c0 .5-.5 1-1 1V4h1v2z"></path></svg>
+
+</a>
+</li>
+<li class="-item"><a class="-link js-help-button" href="#" title="Help Center and other resources">
+<svg aria-hidden="true" class="svg-icon iconHelp" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg>
+</a></li>
+<li class="-item">
+<a class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" href="https://stackexchange.com" title="A list of all 173 Stack Exchange sites">
+<svg aria-hidden="true" class="svg-icon iconStackExchange" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg>
+</a>
+</li>
+</ol>
+</nav>
+<div class="-ctas">
+<a class="login-link btn-clear" href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f511291%2fdjango-installed-apps-location" rel="nofollow">Log In</a>
+<a class="login-link btn-topbar-primary" data-ga='["Sign Up","Sign Up Navigation","Header",null,null]' href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent" rel="nofollow">Sign Up</a>
+</div>
+</div>
+</div>
+</header>
+<script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </script>
+<div class="container _full ">
+<div class="snippet-hidden" id="content">
+<div itemscope="" itemtype="http://schema.org/Question">
+<link href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a" itemprop="image"/>
+<div class="s-hero hero-container _fixed js-dismissable-hero" data-campaign-name="stk">
+<div class="-container g-row jc-sp-between ai-center">
+<div class="g-col6">
+<p class="-title"><strong>Join Stack Overflow</strong> to learn, share knowledge, and build your career.</p>
+</div>
+<div class="s-signup _hero g-col6">
+<div class="-social" id="openid-buttons">
+<a class="btn-outlined -white _medium _block" data-ga='["Sign Up","Sign Up Navigation","Question Hero",null,null]' href="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f511291%2fdjango-installed-apps-location" rel="nofollow">Email Sign Up</a>
+<span class="-or">or sign in with</span>
+<div class="major-provider btn _block _medium _google" data-ga='["Sign Up","Sign Up Started - Google","Question Hero",null,null]' data-oauthserver="https://accounts.google.com/o/oauth2/auth" data-oauthversion="2.0" data-provider="google">
+<svg aria-hidden="true" class="svg-icon native iconGoogle" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><g><path d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z" fill="#4285F4"></path><path d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z" fill="#34A853"></path><path d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z" fill="#FBBC05"></path><path d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z" fill="#EA4335"></path></g></svg>                                                Google
+                    </div>
+<div class="major-provider btn _block _medium _facebook" data-ga='["Sign Up","Sign Up Started - Facebook","Question Hero",null,null]' data-oauthserver="https://www.facebook.com/v2.0/dialog/oauth" data-oauthversion="2.0" data-provider="facebook">
+<svg aria-hidden="true" class="svg-icon iconFacebook" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M1.88 1C1.4 1 1 1.4 1 1.88v14.24c0 .48.4.88.88.88h7.67v-6.2H7.46V8.4h2.09V6.61c0-2.07 1.26-3.2 3.1-3.2.88 0 1.64.07 1.87.1v2.16h-1.29c-1 0-1.19.48-1.19 1.18V8.4h2.39l-.31 2.42h-2.08V17h4.08c.48 0 .88-.4.88-.88V1.88c0-.48-.4-.88-.88-.88H1.88z" fill="#3C5A96"></path></svg>                        Facebook
+                    </div>
+<a class="js-dismiss js-hero-mini-disabled -dismiss" href="#" id="close" title="dismiss"><svg aria-hidden="true" class="svg-icon iconClear" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+</div>
+<form action="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f511291%2fdjango-installed-apps-location" id="login-form" method="POST">
+<input name="fkey" type="hidden" value="e11beb27f92265fdc3b2fea9317bfb65a11fe95afad1fd55b51734f475ac4d69"/>
+<input name="ssrc" type="hidden" value=""/>
+<input id="oauth_version" name="oauth_version" type="hidden" value=""/>
+<input id="oauth_server" name="oauth_server" type="hidden" value=""/>
+<div id="se-login-fields">
+<input name="legalLinksShown" type="hidden" value="0"/>
+</div>
+</form>
+<script>
+                StackExchange.ready(function () {
+                    StackExchange.InlineAuth.init();
+                })
+            </script>
+</div>
+</div>
+</div><script>
+    StackExchange.ready(function () {
+
+        StackExchange.Hero.init("stk", "a");
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 1;
+        } else if ($("body").hasClass("question-page")) {
+            location = 1;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;
+        } else if ($("body").hasClass("home-page")) {
+            location = 3;
+        }
+
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+
+        $('.js-dismissable-hero #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+              });
+
+            StackExchange.Hero.dismiss();
+
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $(".js-dismissable-hero").fadeOut("fast", function () {
+                        $(".js-dismissable-hero").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+</script> <div class="inner-content clearfix">
+<div id="question-header">
+<h1 itemprop="name"><a class="question-hyperlink" href="/questions/511291/django-installed-apps-location">Django Installed Apps Location</a></h1>
+<div aria-label="ask new question" class="pl8 aside-cta" role="navigation">
+<a class="ws-nowrap btn-outlined" href="/questions/ask">Ask Question</a>
+</div>
+</div>
+<div aria-label="question and answers" id="mainbar" role="main">
+<div class="question" data-questionid="511291" id="question">
+<style>#question .everyonelovesstackoverflow:empty{height:90px;width:728px;box-sizing:border-box;}</style>
+<div class="everyonelovesstackoverflow" id="dfp-tlb"></div>
+<div class="post-layout">
+<div class="votecell post-layout--left">
+<div class="vote">
+<input name="_id_" type="hidden" value="511291"/>
+<a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+<span class="vote-count-post " itemprop="upvoteCount">14</span>
+<a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+<a class="star-off" href="#">favorite</a>
+<div class="favoritecount"><b>4</b></div>
+</div>
+</div>
+<div class="postcell post-layout--right">
+<div class="post-text" itemprop="text">
+<p>I am an experienced PHP programmer using Django for the first time, and I think it is incredible!</p>
+<p>I have a project that has a lot of apps, so I wanted to group them in an apps folder.</p>
+<p>So the structure of the project is:</p>
+
+<p>Then in Django settings I have put this:</p>
+
+<p>This does not seem to work?</p>
+<p>Any ideas on how you can put all your apps into a seprate folder and not in the project root?</p>
+<p>Many thanks.</p>
+</div>
+<div class="post-taglist">
+<a class="post-tag js-gps-track" href="/questions/tagged/python" rel="tag" title="show questions tagged 'python'">python</a> <a class="post-tag js-gps-track" href="/questions/tagged/django" rel="tag" title="show questions tagged 'django'">django</a>
+</div>
+<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+<div class="grid--cell mr16" style="flex: 1 1 100px;">
+
+</div>
+<div class="post-signature grid--cell fl0">
+<div class="user-info ">
+<div class="user-action-time">
+<a href="/posts/511291/revisions" title="show all edits to this post">edited <span class="relativetime" title="2009-04-08 13:20:31Z">Apr 8 '09 at 13:20</span></a>
+</div>
+<div class="user-gravatar32">
+<a href="/users/54964/l%c3%a9o-l%c3%a9opold-hertz-%ec%a4%80%ec%98%81"><div class="gravatar-wrapper-32"></div></a>
+</div>
+<div class="user-details">
+<a href="/users/54964/l%c3%a9o-l%c3%a9opold-hertz-%ec%a4%80%ec%98%81">Léo Léopold Hertz 준영</a>
+<div class="-flair">
+<span class="reputation-score" dir="ltr" title="reputation score 41,642">41.6k</span><span title="127 gold badges"><span class="badge1"></span><span class="badgecount">127</span></span><span title="369 silver badges"><span class="badge2"></span><span class="badgecount">369</span></span><span title="578 bronze badges"><span class="badge3"></span><span class="badgecount">578</span></span>
+</div>
+</div>
+</div> </div>
+<div class="post-signature owner grid--cell fl0">
+<div class="user-info ">
+<div class="user-action-time">
+        asked <span class="relativetime" title="2009-02-04 13:15:59Z">Feb 4 '09 at 13:15</span>
+</div>
+<div class="user-gravatar32">
+<span class="anonymous-gravatar"></span>
+</div>
+<div class="user-details">
+        Arif
+        <div class="-flair">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="post-layout--right">
+
+<div data-anon="true" data-rep="50" id="comments-link-511291">
+<a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno"> | </span>
+<a class="js-show-link comments-link dno" href="#" onclick="" title="expand to show all comments on this post"></a>
+</div>
+</div> </div>
+</div>
+<div id="answers">
+<a name="tab-top"></a>
+<div id="answers-header">
+<div class="subheader answers-subheader">
+<h2 data-answercount="3">
+                                3 Answers
+                                
+</h2>
+<div>
+<div id="tabs">
+<a data-nav-xhref="" data-shortcut="A" data-value="active" href="/questions/511291/django-installed-apps-location?answertab=active#tab-top" title="Answers with the latest activity first">
+            active</a>
+<a data-nav-xhref="" data-shortcut="O" data-value="oldest" href="/questions/511291/django-installed-apps-location?answertab=oldest#tab-top" title="Answers in the order they were provided">
+            oldest</a>
+<a class="youarehere " data-nav-xhref="" data-shortcut="V" data-value="votes" href="/questions/511291/django-installed-apps-location?answertab=votes#tab-top" title="Answers with the highest score first">
+            votes</a>
+</div>
+</div>
+</div>
+</div>
+<a name="511408"></a>
+<div class="answer accepted-answer" data-answerid="511408" id="answer-511408" itemprop="acceptedAnswer" itemscope="" itemtype="http://schema.org/Answer">
+<div class="post-layout">
+<div class="votecell post-layout--left">
+<div class="vote">
+<input name="_id_" type="hidden" value="511408"/>
+<a class="vote-up-off" title="This answer is useful">up vote</a>
+<span class="vote-count-post " itemprop="upvoteCount">37</span>
+<a class="vote-down-off" title="This answer is not useful">down vote</a>
+<span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+</div>
+<div class="answercell post-layout--right">
+<div class="post-text" itemprop="text">
+<p>Make sure that the '__init__.py' file is in your apps directory, if it's not there it won't be recognized as part of the package.</p>
+<p>So each of the folders here should have '__init__.py' file in it. (empty is fine).</p>
+
+<p>Then as long as your root 'module' folder is in your PYTHONPATH you'll be able to import from your apps.</p>
+<p>Here's the documentation regarding the python search path for your reading pleasure:</p>
+<p><a href="http://docs.python.org/install/index.html#modifying-python-s-search-path" rel="noreferrer">http://docs.python.org/install/index.html#modifying-python-s-search-path</a></p>
+<p>And a nice simple explanation of what __init__.py file is for:</p>
+<p><a href="http://effbot.org/pyfaq/what-is-init-py-used-for.htm" rel="noreferrer">http://effbot.org/pyfaq/what-is-init-py-used-for.htm</a></p>
+</div>
+<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+<div class="grid--cell mr16" style="flex: 1 1 100px;">
+ </div>
+<div class="post-signature grid--cell fl0">
+<div class="user-info ">
+<div class="user-action-time">
+<a href="/posts/511408/revisions" title="show all edits to this post">edited <span class="relativetime" title="2009-02-04 13:54:27Z">Feb 4 '09 at 13:54</span></a>
+</div>
+<div class="user-gravatar32">
+</div>
+<div class="user-details">
+<div class="-flair">
+</div>
+</div>
+</div> </div>
+<div class="post-signature grid--cell fl0">
+<div class="user-info user-hover">
+<div class="user-action-time">
+        answered <span class="relativetime" title="2009-02-04 13:41:41Z">Feb 4 '09 at 13:41</span>
+</div>
+<div class="user-gravatar32">
+<a href="/users/24718/monkut"><div class="gravatar-wrapper-32"></div></a>
+</div>
+<div class="user-details">
+<a href="/users/24718/monkut">monkut</a>
+<div class="-flair">
+<span class="reputation-score" dir="ltr" title="reputation score 23,720">23.7k</span><span title="17 gold badges"><span class="badge1"></span><span class="badgecount">17</span></span><span title="82 silver badges"><span class="badge2"></span><span class="badgecount">82</span></span><span title="121 bronze badges"><span class="badge3"></span><span class="badgecount">121</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="post-layout--right">
+
+<div data-anon="true" data-rep="50" id="comments-link-511408">
+<a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno"> | </span>
+<a class="js-show-link comments-link dno" href="#" onclick="" title="expand to show all comments on this post"></a>
+</div>
+</div> </div>
+</div>
+<div class="everyonelovesstackoverflow" id="dfp-mlb"></div>
+<a name="511371"></a>
+<div class="answer" data-answerid="511371" id="answer-511371" itemscope="" itemtype="http://schema.org/Answer">
+<div class="post-layout">
+<div class="votecell post-layout--left">
+<div class="vote">
+<input name="_id_" type="hidden" value="511371"/>
+<a class="vote-up-off" title="This answer is useful">up vote</a>
+<span class="vote-count-post " itemprop="upvoteCount">1</span>
+<a class="vote-down-off" title="This answer is not useful">down vote</a>
+</div>
+</div>
+<div class="answercell post-layout--right">
+<div class="post-text" itemprop="text">
+<p>As long as your apps are in your PYTHONPATH, everything should work. Try setting that environment variable to the folder containing your apps.</p>
+
+</div>
+<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+<div class="grid--cell mr16" style="flex: 1 1 100px;">
+ </div>
+<div class="post-signature grid--cell fl0">
+<div class="user-info ">
+<div class="user-action-time">
+        answered <span class="relativetime" title="2009-02-04 13:33:40Z">Feb 4 '09 at 13:33</span>
+</div>
+<div class="user-gravatar32">
+<a href="/users/53850/sykora"><div class="gravatar-wrapper-32"></div></a>
+</div>
+<div class="user-details">
+<a href="/users/53850/sykora">sykora</a>
+<div class="-flair">
+<span class="reputation-score" dir="ltr" title="reputation score 53,010">53k</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="54 silver badges"><span class="badge2"></span><span class="badgecount">54</span></span><span title="66 bronze badges"><span class="badge3"></span><span class="badgecount">66</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="post-layout--right">
+
+<div data-anon="true" data-rep="50" id="comments-link-511371">
+<a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno"> | </span>
+<a class="js-show-link comments-link dno" href="#" onclick="" title="expand to show all comments on this post"></a>
+</div>
+</div> </div>
+</div>
+<a name="511372"></a>
+<div class="answer" data-answerid="511372" id="answer-511372" itemscope="" itemtype="http://schema.org/Answer">
+<div class="post-layout">
+<div class="votecell post-layout--left">
+<div class="vote">
+<input name="_id_" type="hidden" value="511372"/>
+<a class="vote-up-off" title="This answer is useful">up vote</a>
+<span class="vote-count-post " itemprop="upvoteCount">0</span>
+<a class="vote-down-off" title="This answer is not useful">down vote</a>
+</div>
+</div>
+<div class="answercell post-layout--right">
+<div class="post-text" itemprop="text">
+<p>Your top-level <code>urls.py</code> (also named in your <code>settings.py</code>) must be able to use a simple "import" statement to get your applications.</p>
+<p>Does <code>import project.apps.app1.urls</code> work?  If not, then your <code>PYTHONPATH</code> isn't set up properly, or you didn't install your project in Python's <code>site-packages</code> directory.</p>
+<p>I suggest using the <code>PYTHONPATH</code> environment variable, instead of installing into site-packages.  Django applications (to me, anyway) seem easier to manage when outside site-packages.</p>
+<p>We do the following:</p>
+<ul>
+<li><p>Django projects go in <code>/opt/project/</code>. </p></li>
+<li><p><code>PYTHONPATH</code> includes <code>/opt/project</code>.</p></li>
+<li><p>Our <code>settings.py</code> uses <code>apps.this</code> and <code>apps.that</code> (note that the <code>project</code> part of the name is part of the <code>PYTHONPATH</code>, not part of the import.</p></li>
+</ul>
+</div>
+<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+<div class="grid--cell mr16" style="flex: 1 1 100px;">
+ </div>
+<div class="post-signature grid--cell fl0">
+<div class="user-info user-hover">
+<div class="user-action-time">
+        answered <span class="relativetime" title="2009-02-04 13:33:42Z">Feb 4 '09 at 13:33</span>
+</div>
+<div class="user-gravatar32">
+<a href="/users/10661/s-lott"><div class="gravatar-wrapper-32"></div></a>
+</div>
+<div class="user-details">
+<a href="/users/10661/s-lott">S.Lott</a>
+<div class="-flair">
+<span class="reputation-score" dir="ltr" title="reputation score 299,974">300k</span><span title="63 gold badges"><span class="badge1"></span><span class="badgecount">63</span></span><span title="421 silver badges"><span class="badge2"></span><span class="badgecount">421</span></span><span title="700 bronze badges"><span class="badge3"></span><span class="badgecount">700</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="post-layout--right">
+
+<div data-anon="true" data-rep="50" id="comments-link-511372">
+<a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno"> | </span>
+<a class="js-show-link comments-link dno" href="#" onclick="" title="expand to show all comments on this post"></a>
+</div>
+</div> </div>
+</div>
+<a name="new-answer"></a>
+<form action="/questions/511291/answer/submit" class="post-form" id="post-form" method="post">
+<input id="post-id" type="hidden" value="511291"/>
+<input id="qualityBanWarningShown" name="qualityBanWarningShown" type="hidden" value="false"/>
+<input name="referrer" type="hidden" value=""/>
+<h2 class="space">Your Answer</h2>
+<script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.settings.snippets.snippetsEnabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                StackExchange.prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                showLowRepImageUploadWarning: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });
+</script>
+<div class="post-editor js-post-editor" id="post-editor">
+<div style="position: relative;">
+<div class="wmd-container">
+<div class="wmd-button-bar" id="wmd-button-bar"><ul class="wmd-button-row" id="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li class="wmd-button" id="wmd-italic-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li class="wmd-spacer" id="wmd-spacer1" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li class="wmd-button" id="wmd-link-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li class="wmd-button" id="wmd-quote-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li class="wmd-button" id="wmd-code-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li class="wmd-button" id="wmd-image-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li class="wmd-spacer" id="wmd-spacer2" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li class="wmd-button" id="wmd-olist-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li class="wmd-button" id="wmd-ulist-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li class="wmd-button" id="wmd-heading-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li class="wmd-button" id="wmd-hr-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li class="wmd-spacer" id="wmd-spacer3" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-undo-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+<textarea class="wmd-input" cols="92" data-min-length="" id="wmd-input" name="post-text" rows="15" tabindex="101"></textarea>
+</div>
+</div>
+<div class="fl" style="margin-top: 8px; height:24px;"> </div>
+
+
+<div class="wmd-preview" id="wmd-preview"></div>
+<div></div>
+<div class="edit-block">
+<input id="fkey" name="fkey" type="hidden" value="e11beb27f92265fdc3b2fea9317bfb65a11fe95afad1fd55b51734f475ac4d69"/>
+<input id="author" name="author" type="text"/>
+</div>
+</div>
+<div style="position: relative;">
+<div class="form-item new-post-login">
+<div class="new-login-form">
+<div class="new-login-left">
+<h3>Sign up or <a href="/users/login?ssrc=question_page&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f511291%2fdjango-installed-apps-location%23new-answer" id="login-link">log in</a></h3>
+<script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+<div class="preferred-login google-login" data-ga='["Sign Up","Sign Up Started - Google","New Post",null,null]'>
+<svg aria-hidden="true" class="svg-icon native iconGoogle" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><g><path d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z" fill="#4285F4"></path><path d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z" fill="#34A853"></path><path d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z" fill="#FBBC05"></path><path d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z" fill="#EA4335"></path></g></svg> Sign up using Google
+                        </div>
+<div class="preferred-login facebook-login" data-ga='["Sign Up","Sign Up Started - Facebook","New Post",null,null]'>
+<svg aria-hidden="true" class="svg-icon iconFacebook" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M1.88 1C1.4 1 1 1.4 1 1.88v14.24c0 .48.4.88.88.88h7.67v-6.2H7.46V8.4h2.09V6.61c0-2.07 1.26-3.2 3.1-3.2.88 0 1.64.07 1.87.1v2.16h-1.29c-1 0-1.19.48-1.19 1.18V8.4h2.39l-.31 2.42h-2.08V17h4.08c.48 0 .88-.4.88-.88V1.88c0-.48-.4-.88-.88-.88H1.88z" fill="#3C5A96"></path></svg> Sign up using Facebook
+                        </div>
+<div class="preferred-login stackexchange-login" data-ga='["Sign Up","Sign Up Navigation","New Post",null,null]'>
+<svg aria-hidden="true" class="svg-icon native iconLogoGlyphXSm" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><g><path d="M14 16v-5h2v7H2v-7h2v5z" fill="#BCBBBB"></path><path d="M5 15v-2h8v2H5zM12.09.72l4.5 6.06-1.2.9-4.51-6.06 1.21-.9zM8.34 4.3l.97-1.16 5.8 4.83-.96 1.16-5.8-4.83zm-1.9 3.36l.64-1.37 6.85 3.19-.63 1.37-6.85-3.2zM5.4 11.39l.38-1.67 7.42 1.48-.22 1.46-7.58-1.27z" fill="#F48024"></path></g></svg> Sign up using Email and Password
+                        </div>
+</div>
+<input class="manual-openid" name="manual-openid" type="hidden"/>
+<input class="use-facebook" name="use-facebook" type="hidden" value="false"/>
+<input class="use-google" name="use-google" type="hidden" value="false"/>
+
+<div class="new-login-right">
+<h3>Post as a guest</h3>
+<div class="form-item">
+<table>
+<tbody><tr>
+<td class="vm">
+<div>
+<label for="display-name">Name</label>
+<input id="display-name" maxlength="30" name="display-name" size="30" tabindex="105" type="text" value=""/>
+</div>
+<div>
+<label for="m-address">Email</label>
+<input id="m-address" maxlength="100" name="m-address" placeholder="required, but never shown" size="30" tabindex="106" type="email" value=""/>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</div>
+<script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'https%3a%2f%2fstackoverflow.com%2fquestions%2f511291%2fdjango-installed-apps-location%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+<noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" /&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+</div>
+<div class="form-submit cbt">
+<input id="submit-button" tabindex="110" type="submit" value="Post Your Answer"/>
+<a class="btn-clear discard-answer dno" href="#">discard</a>
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="https://stackexchange.com/legal/privacy-policy" name="privacy" target="_blank">privacy policy</a> and <a href="https://stackexchange.com/legal/terms-of-service" name="tos" target="_blank">terms of service</a>.</p>
+<input name="legalLinksShown" type="hidden" value="1"/> </div>
+</form>
+</div>
+</div>
+<div aria-label="sidebar" class="show-votes" id="sidebar" role="complementary">
+<div class="module question-stats">
+<table id="qinfo">
+<tbody><tr>
+<td>
+<p class="label-key">asked</p>
+</td>
+<td style="padding-left: 10px">
+<p class="label-key" title="2009-02-04 13:15:59Z"><b>9 years, 2 months ago</b></p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="label-key">viewed</p>
+</td>
+<td style="padding-left: 10px">
+<p class="label-key">
+<b>23,732 times</b>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="label-key">active</p>
+</td>
+<td style="padding-left: 10px">
+<p class="label-key"><b><a class="lastactivity-link" href="?lastactivity" title="2016-01-10 22:08:52Z">2 years, 3 months ago</a></b></p>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="everyonelovesstackoverflow" id="dfp-tsb"></div>
+<div id="hireme"></div>
+<script>;try{(function(a){function b(a){return document.getElementById(a)}function c(a){return a='string'==typeof a?b(a):a,!!a&amp;&amp;'none'===getComputedStyle(a).display}function d(a){return!c(a)}function e(a){return!!a}function f(a){var b=a.style;b.height=b.maxHeight=b.minHeight='auto',b.display='none',[].forEach.call(a.children,f)}function g(){try{return!new Function('return async()=&gt;{};')}catch(a){return!0}}function h(){'function'==typeof clc.load?clc.load():q.push(function(a){return a.load()})}function i(){if(r.allowed&amp;&amp;new RegExp(r.allowed).test(location.hostname)&amp;&amp;!c('hireme')){var a=r.wv;if(document.hidden&amp;&amp;a){var b=function(){document.hidden||(i(),document.removeEventListener('visibilitychange',b))};return void document.addEventListener('visibilitychange',b)}r.al&amp;&amp;h();var d=g()?r.lib.replace(/(\.min)?\.js(\?v=[0-9a-fA-F]+)?$/,'.ie$1.js$2'):r.lib,e=document.createElement('script');e.async=!0,e.src=d,document.body.appendChild(e)}}function j(){return Object.keys(v.ids)}function k(a){var b=v.ids[a],c=v.slots[b];'function'==typeof c&amp;&amp;(c=c(a));return{path:'/'+s+'/'+u+'/'+b+'/'+t,sizes:c,zone:b}}function l(){var a=document.createElement('div');a.className='adsbox',a.id='clc-abd',a.style.position='absolute',a.style.pointerEvents='none',a.innerHTML='&amp;nbsp;',document.body.appendChild(a)}function m(a){var b=a.serviceName,c=a.slot,d=a.lineItemId;try{var e=c.getSlotElementId(),g=[];e||g.push('id=0');var h=document.getElementById(e);if(!e||h?h.hasAttribute('data-clc-stalled')&amp;&amp;g.push('st=1'):g.push('el=0'),0!==g.length)return void w(g.join('&amp;'));-1===r.dh.indexOf(d)?h.setAttribute('data-clc-prefilled','true'):f(h),h.setAttribute('data-clc-ready','true')}catch(a){var i=document.querySelector('#dfp-tsb, #dfp-isb, #clc-tsb');i&amp;&amp;i.setAttribute('data-clc-ready','true'),w('e=1')}}function n(a){if(!!clc.collapse){if(clc.collapse.leaderboards&amp;&amp;('lb'===a||'mlb'===a))return!0;if(clc.collapse.mobile&amp;&amp;/^mobile\//.test(a))return!0}else if(clc.collapse_leaderboards&amp;&amp;('lb'===a||'mlb'===a))return!0;return!1}function o(a,b){'dfp-isb'===a&amp;&amp;b.setTargeting('Sidebar',['Inline']),'dfp-tsb'===a&amp;&amp;b.setTargeting('Sidebar',['Right']);var c=k(a),d=c.path,e=c.sizes,f=c.zone,g=googletag.defineSlot(d,e,a);n(f)&amp;&amp;g.setCollapseEmptyDiv(!0,!0),g.addService(b),!1}function p(a){return function(){l();var b=googletag.pubads();b.enableSingleRequest(),b.addEventListener('slotRenderEnded',m),!dfp_targeting||Object.keys(dfp_targeting).forEach(function(a){b.setTargeting(a,dfp_targeting[a])}),a.forEach(function(a){return o(a,b)}),googletag.enableServices(),a.forEach(function(a){googletag.display(a)})}}var r=function(a){for(var b=[],c=1;c&lt;arguments.length;c++)b[c-1]=arguments[c];for(var d,e=0,f=b;e&lt;f.length;e++)for(var g in d=f[e],d)a[g]=d[g];return a}({"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=068ea1243358","style":"https://cdn.sstatic.net/clc/styles/clc.min.css?v=8a0a093a431f","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false,"dh":[4385506061,4386578282,4386579572]},a.options||{}),q=a.cmd||[],s='248424177',t=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?'tag-pages':'question-pages',u=location.hostname;var v={slots:{lb:[[728,90]],mlb:[[728,90]],sb:function(a){return'dfp-tsb'===a?[[300,250],[300,600]]:[[300,250]]},"tag-sponsorship":[[730,135]],mobile:[[320,50],[300,250]]},ids:{"dfp-tlb":'lb',"dfp-mlb":'mlb',"dfp-tsb":'sb',"dfp-isb":'sb',"dfp-tag":'tag-sponsorship',"dfp-mob":'mobile',"clc-tlb":'lb',"clc-mlb":'mlb',"clc-tsb":'sb'}},w=function(a){new Image().src='https://'+r.h+'/stalled.gif?'+a};i(),a.autoload=h,a.cmd=q,a.options=r,a.loadDisplayAds=function(a){a=a&amp;&amp;0&lt;a.length?a:j();var g=a.map(b).filter(e).filter(function(a){return /^\s*$/.test(a.innerHTML)}).filter(d).map(function(a){return a.id});if(a.map(b).filter(e).filter(c).forEach(f),0!==g.length){googletag='undefined'==typeof googletag?{}:googletag,googletag.cmd=googletag.cmd||[],googletag.cmd.push(p(g));var h=document.createElement('script');h.async=!0,h.src='https://www.googletagservices.com/tag/js/gpt.js',document.body.appendChild(h)}}})(this.clc=this.clc||{})}catch(a){window.console.error(a)}</script> <script>
+                window.clc_request='Ag-0EQNwotUIAAAAADvNBwACAAAAAgAAAAAPAAAAfHB5dGhvbnxkamFuZ298AHJ4XBNREj1s5Ik';                    clc.autoload();
+                var dfp_targeting={Registered:['false'],'so-tag':['python','django']};                                    clc.loadDisplayAds();
+
+            </script>
+<div class="module sidebar-linked">
+<h4 id="h-linked">Linked</h4>
+<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+<a href="https://stackoverflow.com/q/13711421?lq=1" title="Vote score (upvotes - downvotes)">
+<div class="answer-votes default">0</div>
+</a>
+<a class="question-hyperlink" href="https://stackoverflow.com/questions/13711421/why-doesnt-manage-py-sqlall-see-my-app?noredirect=1&amp;lq=1">Why doesn't “manage.py sqlall” see my app?</a>
+</div> </div>
+</div>
+<div class="module sidebar-related">
+<h4 id="h-related">Related</h4>
+<div class="related js-gps-related-questions" data-tracker="rq=1">
+<div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/886221?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">853</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/886221/does-django-scale?rq=1">Does Django scale?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/4750806?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">2142</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/4750806/how-do-i-install-pip-on-windows?rq=1">How do I install pip on Windows?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/4879036?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">179</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/4879036/django-projects-vs-apps?rq=1">Django: “projects” vs “apps”</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/6646955?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">1</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/6646955/django-how-to-access-locale-string-among-apps?rq=1">Django: How to access locale string among apps?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/7722427?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/7722427/nginx-and-django-how-to-span-a-location-across-multiple-paths?rq=1">Nginx and Django: How to span a location across multiple paths</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/17271319?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes extra-large">1643</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/17271319/how-do-i-install-pip-on-macos-or-os-x?rq=1">How do I install pip on macOS or OS X?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/33403197?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/33403197/django-remove-dependency-between-apps-in-a-project?rq=1">Django: Remove dependency between apps in a project</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/39314324?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">2</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/39314324/django-many-to-many-relation-in-with-a-shared-model-between-multiple-apps?rq=1">Django : Many to many relation in with a shared model between multiple apps</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/44700181?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/44700181/django-admin-model-for-non-superuser-missing?rq=1">django admin model for non superuser missing</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/46010177?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a class="question-hyperlink" href="https://stackoverflow.com/questions/46010177/create-user-from-the-command-line-in-django?rq=1">Create user from the command line in Django</a></div>
+</div>
+</div>
+<div class="module tex2jax_ignore" id="hot-network-questions">
+<h4>
+<a class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })" href="https://stackexchange.com/questions?tab=hot">
+            Hot Network Questions
+        </a>
+</h4>
+<ul>
+<li>
+<div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://academia.stackexchange.com/questions/108083/how-to-avoid-being-falsely-accused-of-plagiarism-when-reusing-notations-and-de">
+                    How to avoid being (falsely) accused of plagiarism when reusing notations and definitions
+                </a>
+</li>
+<li>
+<div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://codereview.stackexchange.com/questions/192030/fizzbuzz-17-style">
+                    FizzBuzz, ’17-style
+                </a>
+</li>
+<li>
+<div class="favicon favicon-cseducators" title="Computer Science Educators Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:678 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://cseducators.stackexchange.com/questions/4605/what-are-healthy-productive-ways-to-encourage-students-to-progress-to-more-adva">
+                    What are healthy, productive ways to encourage students to progress to more advanced constructs as opposed to staying with the familiar?
+                </a>
+</li>
+<li>
+<div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://math.stackexchange.com/questions/2733613/why-do-we-use-trig-functions-in-fourier-transforms-and-not-other-periodic-funct">
+                    Why do we use trig functions in Fourier transforms, and not other periodic functions?
+                </a>
+</li>
+<li>
+<div class="favicon favicon-superuser" title="Super User"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://superuser.com/questions/1313821/what-happens-if-a-scratched-cd-is-ripped-to-mp3">
+                    What happens if a scratched CD is ripped to MP3?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://scifi.stackexchange.com/questions/185503/why-did-c-s-lewis-use-turkish-delight-as-temptation-for-edmund">
+                    Why did C.S. Lewis use Turkish Delight as temptation for Edmund?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-fitness" title="Physical Fitness Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:216 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://fitness.stackexchange.com/questions/37570/how-long-would-it-take-for-a-skinny-man-to-get-fit-and-6-pack">
+                    How long would it take for a skinny man to get fit and 6 pack?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-apple" title="Ask Different"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:118 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://apple.stackexchange.com/questions/322556/how-can-i-launch-an-applescript-app-im-creating-without-moving-my-mouse">
+                    How can I launch an AppleScript app I'm creating without moving my mouse?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://tex.stackexchange.com/questions/426579/height-of-parentheses-brackets-braces">
+                    Height of "parentheses, brackets, braces"
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://worldbuilding.stackexchange.com/questions/109016/how-to-build-a-trap-to-last-the-ages">
+                    How to build a trap to last the ages?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://puzzling.stackexchange.com/questions/63888/twin-or-not-twin">
+                    Twin or not twin
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-cooking" title="Seasoned Advice"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://cooking.stackexchange.com/questions/89081/what-qualities-to-look-for-in-a-cut-of-beef-destined-for-well-done">
+                    What qualities to look for in a cut of beef destined for "well done"?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://physics.stackexchange.com/questions/399841/why-is-there-a-constant-in-the-ideal-gas-law">
+                    Why is there a constant in the ideal gas law?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-superuser" title="Super User"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://superuser.com/questions/1313243/why-does-my-browser-think-that-https-1-1-1-1-is-secure">
+                    Why does my browser think that https://1.1.1.1 is secure?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://interpersonal.stackexchange.com/questions/13095/how-to-approach-discussion-with-wife-about-a-possible-emotional-affair">
+                    How to approach discussion with wife about a possible "emotional affair"
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://tex.stackexchange.com/questions/426560/how-i-draw-this-kv-diagram-in-latex">
+                    How I draw this KV-Diagram in Latex?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://worldbuilding.stackexchange.com/questions/109227/what-methods-of-transportation-could-be-used-to-get-ground-vehicles-onto-an-isla">
+                    What methods of transportation could be used to get ground vehicles onto an island surrounded by sharp rocks in shallow water?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://physics.stackexchange.com/questions/399738/does-light-really-travel-more-slowly-near-a-massive-body">
+                    Does light really travel more slowly near a massive body?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-graphicdesign" title="Graphic Design Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:174 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://graphicdesign.stackexchange.com/questions/108004/if-a-logo-implies-movement-should-that-movement-be-mirrored-to-match-the-moveme">
+                    If a logo implies movement, should that movement be mirrored to match the movement of a vehicle it's placed on?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://scifi.stackexchange.com/questions/185560/book-identification-1990s-childrens-book-with-robot-and-credit-card">
+                    Book identification: 1990s children's book with robot and credit card
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://space.stackexchange.com/questions/26639/what-is-the-deepest-we-have-penetrated-a-terrestrial-body-other-than-earth">
+                    What is the deepest we have penetrated a terrestrial body other than Earth?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://tex.stackexchange.com/questions/426572/gaddtomacro-appending-position-specific-references">
+                    \g@addto@macro appending position specific references
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://security.stackexchange.com/questions/183741/should-i-let-the-client-send-both-the-session-and-the-user-id">
+                    Should I let the client send both the session and the user ID?
+                </a>
+</li>
+<li class="dno js-hidden" style="display: list-item;">
+<div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://codegolf.stackexchange.com/questions/162247/ordinal-string-check">
+                    ordinal string check
+                </a>
+</li>
+</ul>
+</div>
+<div id="feed-link">
+<a href="/feeds/question/511291" title="feed of this question and its answers">
+<svg aria-hidden="true" class="svg-icon fc-orange-400 iconRss" height="18" viewbox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M1 3c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3zm14.5 12C15.5 8.1 9.9 2.5 3 2.5V5a10 10 0 0 1 10 10h2.5zm-5 0A7.5 7.5 0 0 0 3 7.5V10a5 5 0 0 1 5 5h2.5zm-5 0A2.5 2.5 0 0 0 3 12.5V15h2.5z"></path></svg>
+        question feed
+    </a>
+</div>
+</div>
+</div>
+<script>StackExchange.ready(function(){$.get('/posts/511291/ivc/b02a');});</script>
+<noscript>&lt;div&gt;&lt;img src="/posts/511291/ivc/b02a" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;</noscript></div>
+</div>
+</div><script async="" src="https://cdn.sstatic.net/clc/clc.min.js?v=068ea1243358"></script><script async="" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+
+<noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled
+            &lt;img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;
+        &lt;/div&gt;
+    </noscript>
+<script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            StackExchange.ready(function () {
+
+                var trackingCodes = [
+                    'UA-108242619-1'
+                ];
+
+
+                StackExchange.ga.init({
+                    sendTitles: true,
+                    tracker: window.ga,
+                    trackingCodes: trackingCodes
+                });
+
+
+
+                    StackExchange.ga.setDimension('dimension2', '|python|django|');
+
+                    StackExchange.ga.setDimension('dimension3', 'Questions/Show');
+
+                StackExchange.ga.trackPageView();
+            });
+            
+/**/
+            
+            var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+            (function() {
+                var ssl = 'https:' == document.location.protocol,
+                    s = document.getElementsByTagName('script')[0],
+                    qc = document.createElement('script');
+                 qc.async = true;
+                    qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                    s.parentNode.insertBefore(qc, s);
+                    _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+/**/
+                 var sc = document.createElement('script');
+                    sc.async = true;
+                    sc.src = (ssl ? 'https://sb' : 'http://b') + '.scorecardresearch.com/beacon.js';
+                    s.parentNode.insertBefore(sc, s);
+                    _comscore.push({ c1: "2", c2: "17440561" });
+            })();
+            
+
+</script>
+<div class="adsbox" id="clc-abd" style="position: absolute; pointer-events: none;"> </div></body></html>

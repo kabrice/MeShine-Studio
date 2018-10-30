@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {fabric} from 'fabric';
+import {microgallery} from '../../external/MicroGalleryImproved/jquery.microgallery'
 
 //import {fileSaver} from 'file-saver';
 
@@ -7,7 +8,10 @@ class MeFabric extends Component{
 
 
     componentDidMount(){
-        // Make a New Canvas
+        /*************
+         * CANVAS INITIALISATION
+         ****************/
+
         this.__canvas = new fabric.Canvas('meCanvas', {
             preserveObjectStacking: true,
             /*            height: 812,
@@ -22,7 +26,10 @@ class MeFabric extends Component{
             transparentCorners: false,
             rotatingPointOffset: 10
         });
+        this.f = fabric.Image.filters;
         this.__addedTextSpace = 0;
+        this.cardWidth = $('#card-container').width();
+        this.cardHeight = $('#card-container').height();
         //console.log('hey',$('#card-container').width());
         let rect = new fabric.Rect({
             //left: 100,
@@ -41,9 +48,14 @@ class MeFabric extends Component{
         let groupHeight = rect.getScaledHeight();
         let obj = this.__canvas.getActiveObject();
 
+        /*************
+         * TEXT EDITOR MANIPULATION
+         ****************/
         $('#add-text').click((e) => {
-            this.addText(this.__addedTextSpace);
+            this.addText();
             this.selectedColor($(e.currentTarget));
+            $('.forEditor').hide();
+            $('.forText').show();
         });
         $('#font-size').change((e) => {
             let $this = $(e.currentTarget);
@@ -68,20 +80,33 @@ class MeFabric extends Component{
         $('#colorStroke').on('change',  (e) => {
             let obj = this.__canvas.getActiveObject();
             let $this = $(e.currentTarget);
-            //console.log("strokeColor", $this.val(), obj.stroke);
+            let objectType = obj.get('type');
+            let thickness = parseFloat($('#thickness').val());
             if(!obj) return;
-            if((!obj.selectionStart && !obj.selectionEnd) || (obj.selectionStart === (obj.text).length)){
-                obj.selectionStart = 0;
-                obj.selectionEnd = (obj.text).length;
+            console.log('stroke', $this.val());
+            switch (objectType){
+                case 'i-text':
+                    if((!obj.selectionStart && !obj.selectionEnd) || (obj.selectionStart === (obj.text).length)){
+                        obj.selectionStart = 0;
+                        obj.selectionEnd = (obj.text).length;
+                    }
+                    obj.setSelectionStyles({strokeWidth: thickness, stroke:$this.val()});
+                    obj.strokeWidth = thickness;
+                    break;
+                case 'rect':
+                    if (!obj.strokeWidthUnscaled && obj.strokeWidth) {
+                        obj.strokeWidthUnscaled = obj.strokeWidth;
+                    }
+
+                    console.log('rect', obj.strokeWidthUnscaled);
+                    obj.set({stroke:$this.val(), strokeWidth: thickness});
             }
-            //console.log("position", obj.selectionStart, obj.selectionEnd);
-            obj.setSelectionStyles({strokeWidth: 0.5, stroke:$this.val()});
-            obj.strokeWidth = 0.5;
             obj.stroke = $this.val();
             this.__canvas.requestRenderAll();
         });
         $('#colorShadow').on('change',  (e) => {
             let obj = this.__canvas.getActiveObject();
+            //console.log("HI");
             let $this = $(e.currentTarget);
             this.shadowManagement(obj,
                 $this.val(), $('#shadowBlur').val(),
@@ -125,7 +150,75 @@ class MeFabric extends Component{
             $('#colorShadow').trigger('change');
         });
         $('#shadowIsChecked').click((e)=>{
-            $('#colorShadow').trigger('change');
+
+            let isChecked = $(e.currentTarget).is( ":checked" );
+            let obj = this.__canvas.getActiveObject();
+
+            if(isChecked){
+                $('#colorShadow').trigger('change');
+            }else{
+                this.shadowManagement(obj,0, 0, 0);
+            }
+
+        });
+
+        /** -- FillsIsChecked on color **/
+        $('#fillsIsChecked').click((e)=>{
+            let isChecked = $(e.currentTarget).is( ":checked" );
+            let obj = this.__canvas.getActiveObject();
+            if(!obj) return;
+            let objectType = obj.get('type');
+
+            if(isChecked){
+                $('#colorFont').trigger('change');
+            }else{
+                switch (objectType){
+                    case 'i-text':
+                        obj.setSelectionStyles({fill:'white'});
+                        obj.opacity = 1;
+                        break;
+                    case 'rect':
+                        obj.set({fill:'red'});
+                        obj.opacity = 1;
+                        this.__canvas.renderAll();
+                        break;
+
+                }
+
+            }
+
+        });
+        $('#opacity').on('change',  (e) => {
+            $('#colorFont').trigger('change');
+        });
+        /** -- BordersIsChecked on color **/
+        $('#bordersIsChecked').click((e)=>{
+            let isChecked = $(e.currentTarget).is( ":checked" );
+            let obj = this.__canvas.getActiveObject();
+            if(!obj) return;
+            let objectType = obj.get('type');
+
+            if(isChecked){
+                $('#colorStroke').trigger('change');
+            }else{
+                console.log("objectType");
+                switch (objectType){
+                    case 'i-text':
+                        console.log("objectType2");
+                        obj.setSelectionStyles({strokeWidth: 0});
+                        obj.strokeWidth = 0;
+                        //obj.stroke = $this.val();
+                        break;
+                    case 'rect':
+                        obj.set({strokeWidth: 0});
+                        break;
+                }
+                this.__canvas.renderAll();
+            }
+
+        });
+        $('#thickness').on('change',  (e) => {
+            $('#colorStroke').trigger('change');
         });
         let isAlign = true;
         let previousAlignValue = '';
@@ -296,6 +389,8 @@ class MeFabric extends Component{
                 case 'reverse':
                     obj.text = this.reverseCase(text);
                     this.__canvas.renderAll();
+                case 'bend-mode':
+                    $('#activeBlendMode').trigger('change');
                     break;
                 default:
                     this.setTextParam($this.data('type'), $this.text());
@@ -343,6 +438,141 @@ class MeFabric extends Component{
 
         this.groupOnSelection(this.__canvas);
 
+        /*************
+         * RECTANGLE BACKGROUND MANIPULATION
+         ****************/
+        $('#add-rectbg').click((e) => {
+            this.addRectangle();
+            this.selectedColor($(e.currentTarget));
+            $('.forEditor').hide();
+            $('.forShape').show();
+        });
+
+        /*************
+         * C - IMAGES MANIPULATION
+         ****************/
+        this.$microgallery = null;
+        $('#image-gallery').click((e) => {
+            if(this.$microgallery !== null){
+                $('#multimedia').prepend(this.$microgallery);
+            }else {
+                $("#mG2").microgallery({
+                    menu: false,
+                    size: 'large',
+                    mode: 'thumbs',
+                    cycle: false
+                });
+            }
+            this.selectedColor($(e.currentTarget));
+        });
+        $(document).on('click', '.imgg', (e)=>{
+            this.addImage($(e.currentTarget).find('img')[0].src);
+        });
+        $(document).on("mouseup", (e) =>{
+            e.preventDefault();
+            //console.log("Hello");
+            let container = $(document).find('.images, .thumbs, .navg');
+            let container2 = $("#mG2").first('div');
+            if (container.html() && container2.has(e.target).length === 0) {
+                $('#image-gallery').find('img').css('background-color', '');
+                this.$microgallery = $("#mG2").first('div');
+                $("#mG2").first('div').remove();
+            }
+        });
+
+        $("#subscript").click((e) => {
+            let obj = this.__canvas.getActiveObject();
+            let $this = $(e.currentTarget);
+            if (!obj) return;
+            if(!isSub){
+                obj.setSubscript();
+                isSub = true;
+                $this.addClass("is-clicked");
+            }else{
+                obj.setSelectionStyles({
+                    fontSize: undefined,
+                    deltaY: undefined,
+                });
+                isSub = false;
+                $this.removeClass("is-clicked");
+            }
+            this.__canvas.requestRenderAll();
+        });
+
+        /***
+         * C-1 Blending Color
+         */
+        this.colorBlend = '';
+        this.blendAlpha = '';
+        $('.colorBlend').click((e)=>{
+            $('#colorBlend').trigger('change');
+        });
+        $('#colorBlend').on('change',  (e) => {
+            this.colorBlend = $(e.currentTarget).val();
+            console.log("his.colorBlend",this.colorBlend);
+            this.applyFilterValue(16, 'color', this.colorBlend);
+        });
+        $('#blendAlpha').on('change',  (e) => {
+            this.blendAlpha = $(e.currentTarget).val();
+            console.log("this.blendAlpha",this.blendAlpha);
+            this.applyFilterValue(16, 'alpha', this.blendAlpha);
+        });
+        $('#activeBlendMode').on('change',  (e) => {
+            let  activeBlendMode = $(e.currentTarget).val();
+            console.log("activeBlendMode",activeBlendMode);
+            this.applyFilterValue(16, 'mode', activeBlendMode.toLowerCase());
+        });
+        $('#blendIsChecked').click((e)=>{
+
+            let isChecked = $(e.currentTarget).is( ":checked" );
+            let obj = this.__canvas.getActiveObject();
+            if(!obj) return;
+
+            $('#colorBlend').trigger('change');
+            $('#blendAlpha').trigger('change');
+            console.log('blendIsChecked', $('#activeBlendMode').val(), isChecked, this.colorBlend, this.blendAlpha );
+            this.applyFilter(16, isChecked && new this.f.BlendColor({
+                color: this.colorBlend,
+                mode: ($('#activeBlendMode').val()).toLowerCase(),
+                alpha: this.blendAlpha
+            }));
+        });
+
+        /*************
+         * PLAYER
+         ****************/
+        this.play = $('#fullscreen-player').detach();
+        $('#play').click(() => {
+
+            this.play.appendTo('body');
+            let elem = document.getElementById("fullscreen-player");
+            let scaleRate = screen.height/2000;
+            $('#play-container').css('transform', 'scale('+scaleRate+')');
+
+            elem.removeAttribute("hidden");
+            //$('#play-container').find('g').attr('font-size', 12);
+            let req = elem.requestFullScreen || elem.webkitRequestFullScreen || elem.mozRequestFullScreen;
+            req.call(elem);
+        });
+    }
+
+    /*************
+     * FUNCTIONS
+     ****************/
+    applyFilter(index, filter) {
+        let obj = this.__canvas.getActiveObject();
+        obj.filters[index] = filter;
+        obj.applyFilters();
+        this.__canvas.requestRenderAll();
+    }
+    
+    applyFilterValue(index, prop, value) {
+        let obj = this.__canvas.getActiveObject();
+        if (obj.filters[index]) {
+            obj.filters[index][prop] = value;
+            obj.applyFilters();
+            this.__canvas.requestRenderAll();
+        }
     }
 
     shadowManagement(obj, c, b, x, y){
@@ -407,17 +637,15 @@ class MeFabric extends Component{
         return output;
     }
 
-    addText(addedTextSpace) {
-        let newID = (new Date()).getTime().toString().substr(5);
-        let $cardWidth = $('#card-container').width();
-        let $cardHeight = $('#card-container').height();
+    addText() {
 
+        let newID = (new Date()).getTime().toString().substr(5);
         let text = new fabric.IText('Text', {
             fontFamily: 'Times',
             fontSize: 18,
             fill: 'white',
-            left: $cardWidth/2+addedTextSpace,
-            top: $cardHeight+addedTextSpace,
+            left: this.cardWidth/2+this.__addedTextSpace,
+            top: this.cardHeight+this.__addedTextSpace,
             originX: 'center',
             originY: 'center',
             fontWeight: 'normal',
@@ -444,15 +672,68 @@ class MeFabric extends Component{
         //this.__canvas.centerObject(text);
     }
 
+    addRectangle() {
+        let newID = (new Date()).getTime().toString().substr(5);
+
+        let text = new fabric.Rect({
+            fill: 'red',
+            width: 48,
+            height: 32,
+            left: this.cardWidth/2+this.__addedTextSpace,
+            top: this.cardHeight+this.__addedTextSpace,
+            originX: 'center',
+            originY: 'center',
+            fontWeight: 'normal',
+            myid: newID
+            //shadow: '#000000 5px 5px 5px'
+        });
+        this.__canvas.add(text);
+        this.__addedTextSpace = this.__addedTextSpace+10;
+    }
+
+    addImage(src){
+        let newID = (new Date()).getTime().toString().substr(5);
+        console.log(this.cardWidth/2+this.__addedTextSpace);
+        fabric.Image.fromURL(src, (img)=> {
+            let oImg = img.set({
+                left: this.cardWidth/2+this.__addedTextSpace,
+                top: this.cardHeight+this.__addedTextSpace,
+                originX: 'center',
+                originY: 'center',
+                myid: newID});
+            this.__canvas.add(oImg);
+            this.__addedTextSpace = this.__addedTextSpace+10;
+        });
+    }
+
     setTextParam(param, value) {
         let obj = this.__canvas.getActiveObject();
-        if (obj) {
-            if(!obj.selectionStart && !obj.selectionEnd){
+        let objectType = obj.get('type');
+        //if(!obj) return;
+        //let f = fabric.Image.filters;
+        if (obj && obj.text) {
+            if(!obj.selectionStart && !obj.selectionEnd && objectType !== 'rect'){
                 obj.selectionStart = 0;
                 obj.selectionEnd = (obj.text).length;
             }
             if (param === 'color') {
-                obj.setSelectionStyles({fill:value});
+
+                switch (objectType){
+                    case 'i-text':
+                        obj.setSelectionStyles({fill:value});
+                        break;
+                    case 'rect':
+                        obj.set({fill:value});
+                        break;
+                }
+
+                obj.opacity = $('#opacity').val();
+                /*let  filter = new fabric.Image.filters.BlendColor({
+                    color: '#000',
+                    mode: 'multiply'
+                });
+                obj.filters.push(filter);
+                obj.applyFilters();*/
             } else {
                 obj.set(param, value);
             }
@@ -462,6 +743,9 @@ class MeFabric extends Component{
 
 
     selectedColor(dom){
+        //let test = dom.parent().parent().parent().parent().find('.row').find('img');
+        dom.parent().parent().parent().find('.row').find('img').css('background-color', '');
+        //console.log('test', test.html());
         dom.find('img').css('background-color', '#ddd');
     }
 
@@ -539,10 +823,14 @@ class MeFabric extends Component{
             $('#horizontal-align-right').off('click');
         });
     }
+
     saveToCanvas = () => {
 
         let link = document.createElement('a');
-        link.href = this.__canvas.toDataURL({format: 'png'});
+        // Object to images
+        link.href = this.__canvas.getActiveObject().toDataURL({format: 'png'});
+        // for canvas to images
+        //  link.href = this.__canvas.toDataURL({format: 'png'});
         link.download = 'avatar.png';
         link.click();
 

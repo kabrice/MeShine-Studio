@@ -1,0 +1,1 @@
+document.getElementsByClassName("react-tagsinput--focused")[0].getElementsByTagName('span')[4].insertAdjacentHTML( 'afterend', '<span class="react-tagsinput-tag">Intelligence something<a class="react-tagsinput-remove"></a></span>' )

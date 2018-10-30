@@ -6,6 +6,7 @@ import AnimationDetail from '../containers/animation-detail';
 import MeFabric from '../components/me_fabric';
 import QuestionTag from '../containers/question_tag';
 import FooterMenu from '../components/footer_menu';
+import Player from '../components/player';
 import {Link} from 'react-router-dom';
 import { Route , withRouter} from 'react-router-dom';
 import {fetchSummary} from "../actions/index";
@@ -51,6 +52,7 @@ class App extends Component {
                         </div>
                     </div>
                 </main>
+                <Player/>
                 <FooterMenu/>
             </React.Fragment>)
 

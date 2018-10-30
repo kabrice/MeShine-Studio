@@ -1,0 +1,232 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.3/fabric.min.js"></script>
+    <style>
+        #c{
+            border:1px solid red;
+            top:22px;
+            left:0px;
+            height: 100%;
+            width: 99%;
+        }
+
+        .box {
+            float: left;
+            margin: 1em;
+        }
+        .after-box {
+            clear: left;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<button onclick="Addtext()">Add Texto</button>
+
+<div  class="box">
+
+    <canvas id="c"></canvas>
+</div>
+
+
+<div id="text-wrapper" style="margin-top: 10px" ng-show="getText()">
+
+    <div id="text-controls">
+        <input type="color" value="" id="text-color" size="10">
+        <label for="font-family" style="display:inline-block">Font family:</label>
+        <select id="font-family">
+            <option value="arial">Arial</option>
+            <option value="helvetica" selected>Helvetica</option>
+            <option value="myriad pro">Myriad Pro</option>
+            <option value="delicious">Delicious</option>
+            <option value="verdana">Verdana</option>
+            <option value="georgia">Georgia</option>
+            <option value="courier">Courier</option>
+            <option value="comic sans ms">Comic Sans MS</option>
+            <option value="impact">Impact</option>
+            <option value="monaco">Monaco</option>
+            <option value="optima">Optima</option>
+            <option value="hoefler text">Hoefler Text</option>
+            <option value="plaster">Plaster</option>
+            <option value="engagement">Engagement</option>
+        </select>
+        <br>
+        <label for="text-align" style="display:inline-block">Text align:</label>
+        <select id="text-align">
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+            <option value="justify">Justify</option>
+        </select>
+        <div>
+            <label for="text-bg-color">Background color:</label>
+            <input type="color" value="" id="text-bg-color" size="10">
+        </div>
+        <div>
+            <label for="text-lines-bg-color">Background text color:</label>
+            <input type="color" value="" id="text-lines-bg-color" size="10">
+        </div>
+        <div>
+            <label for="text-stroke-color">Stroke color:</label>
+            <input type="color" value="" id="text-stroke-color">
+        </div>
+        <div>
+
+
+            <label for="text-stroke-width">Stroke width:</label>
+            <input type="range" value="1" min="1" max="5" id="text-stroke-width">
+        </div>
+        <div>
+            <label for="text-font-size">Font size:</label>
+            <input type="range" value="" min="1" max="120" step="1" id="text-font-size">
+        </div>
+        <div>
+            <label for="text-line-height">Line height:</label>
+            <input type="range" value="" min="0" max="10" step="0.1" id="text-line-height">
+        </div>
+    </div>
+    <div id="text-controls-additional">
+        <input type='checkbox' name='fonttype' id="text-cmd-bold">
+        Bold
+
+        <input type='checkbox' name='fonttype' id="text-cmd-italic">
+        Italic
+
+        <input type='checkbox' name='fonttype' id="text-cmd-underline" >
+        Underline
+
+        <input type='checkbox' name='fonttype'  id="text-cmd-linethrough">
+        Linethrough
+
+        <input type='checkbox' name='fonttype'  id="text-cmd-overline" >
+        Overline
+
+    </div>
+
+<script>
+    fabric.Object.prototype.transparentCorners = false;
+    fabric.Object.prototype.padding = 5;
+
+
+    var $ = function(id){return document.getElementById(id)};
+
+
+    var canvas = this.__canvas = new fabric.Canvas('c');
+    canvas.setHeight(300);
+    canvas.setWidth(500);
+
+
+    function Addtext() {
+        canvas.add(new fabric.IText('Tap and Type', {
+            left: 50,
+            top: 100,
+            fontFamily: 'arial black',
+            fill: '#333',
+            fontSize: 50
+        }));
+    }
+
+    document.getElementById('text-color').onchange = function() {
+        canvas.getActiveObject().setFill(this.value);
+        canvas.renderAll();
+    };
+    document.getElementById('text-color').onchange = function() {
+        canvas.getActiveObject().setFill(this.value);
+        canvas.renderAll();
+    };
+
+    document.getElementById('text-bg-color').onchange = function() {
+        canvas.getActiveObject().setBackgroundColor(this.value);
+        canvas.renderAll();
+    };
+
+    document.getElementById('text-lines-bg-color').onchange = function() {
+        canvas.getActiveObject().setTextBackgroundColor(this.value);
+        canvas.renderAll();
+    };
+
+    document.getElementById('text-stroke-color').onchange = function() {
+        canvas.getActiveObject().setStroke(this.value);
+        canvas.renderAll();
+    };
+
+    document.getElementById('text-stroke-width').onchange = function() {
+        canvas.getActiveObject().setStrokeWidth(this.value);
+        canvas.renderAll();
+    };
+
+    document.getElementById('font-family').onchange = function() {
+        canvas.getActiveObject().setFontFamily(this.value);
+        canvas.renderAll();
+    };
+
+    document.getElementById('text-font-size').onchange = function() {
+        canvas.getActiveObject().setFontSize(this.value);
+        canvas.renderAll();
+    };
+
+    document.getElementById('text-line-height').onchange = function() {
+        canvas.getActiveObject().setLineHeight(this.value);
+        canvas.renderAll();
+    };
+
+    document.getElementById('text-align').onchange = function() {
+        canvas.getActiveObject().setTextAlign(this.value);
+        canvas.renderAll();
+    };
+
+
+    radios5 = document.getElementsByName("fonttype");  // wijzig naar button
+    for(var i = 0, max = radios5.length; i < max; i++) {
+        radios5[i].onclick = function() {
+
+            if(document.getElementById(this.id).checked == true) {
+                if(this.id == "text-cmd-bold") {
+                    canvas.getActiveObject().set("fontWeight", "bold");
+                }
+                if(this.id == "text-cmd-italic") {
+                    canvas.getActiveObject().set("fontStyle", "italic");
+                }
+                if(this.id == "text-cmd-underline") {
+                    canvas.getActiveObject().set("textDecoration", "underline");
+                }
+                if(this.id == "text-cmd-linethrough") {
+                    canvas.getActiveObject().set("textDecoration", "line-through");
+                }
+                if(this.id == "text-cmd-overline") {
+                    canvas.getActiveObject().set("textDecoration", "overline");
+                }
+
+
+
+            } else {
+                if(this.id == "text-cmd-bold") {
+                    canvas.getActiveObject().set("fontWeight", "");
+                }
+                if(this.id == "text-cmd-italic") {
+                    canvas.getActiveObject().set("fontStyle", "");
+                }
+                if(this.id == "text-cmd-underline") {
+                    canvas.getActiveObject().set("textDecoration", "");
+                }
+                if(this.id == "text-cmd-linethrough") {
+                    canvas.getActiveObject().set("textDecoration", "");
+                }
+                if(this.id == "text-cmd-overline") {
+                    canvas.getActiveObject().set("textDecoration", "");
+                }
+            }
+
+
+            canvas.renderAll();
+        }
+    }
+
+</script>
+
+</body>
+</html>

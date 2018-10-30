@@ -14,9 +14,29 @@ class TextEditor extends Component{
             displayColorPicker: false,
             displayColorBgPicker: false,
             displayColorStrokePicker: false,
+            displayColorBlendPicker: false,
             color: '#000000',
             colorBg: '#000000',
-            colorStroke: '#000000'
+            colorStroke: '#000000',
+            colorBlend: '#000000',
+            activeBlendMode: 'Add',
+            activeStrokePosition: 'Outside',
+            hiddenFills: 'hidden',
+            hiddenBorders: 'hidden',
+            hiddenBg: 'hidden',
+            hiddenBlend: 'hidden',
+            blendModes: [{id: 1, name: 'Add'},
+                         {id: 2, name: 'Diff'},
+                         {id: 3, name: 'Subtract'},
+                         {id: 4, name: 'Multiply'},
+                         {id: 5, name: 'Screen'},
+                         {id: 6, name: 'Lighten'},
+                         {id: 7, name: 'Darken'},
+                         {id: 8, name: 'Exclusion'},
+                         {id: 9, name: 'Tint'}],
+            strokePositions: [{id: 1, name: 'Center'},
+                              {id: 2, name: 'Inside'},
+                              {id: 3, name: 'Outside'}]
         }
     }
     componentDidMount(){
@@ -24,8 +44,31 @@ class TextEditor extends Component{
     }
 
     handleClickTF = (id, name) => {
-        this.setState({activeTypeFace: name})
+        this.setState({activeTypeFace: name});
     }
+    handleAdvanceColorFunct = (typeFunct, name) => {
+        if(typeFunct === 'blend'){
+            this.setState({activeBlendMode: name});
+        }else{
+            this.setState({activeStrokePosition: name});
+        }
+    }
+
+    isCheck = (e, type) => {
+        let hiddenVal = 'hiddenFills';
+        if(type==='position'){
+            hiddenVal = 'hiddenBorders';
+        }else if(type === 'bg'){
+            hiddenVal = 'hiddenBg';
+        }else if(type === 'blend'){
+            hiddenVal = 'hiddenBlend';
+        }
+        if(e.target.checked){
+            this.setState({[hiddenVal]: ''});
+        }else{
+            this.setState({[hiddenVal]: 'hidden'});
+        }
+    };
 
     renderTypeFaces(){
 
@@ -37,6 +80,16 @@ class TextEditor extends Component{
                        href="#"
                        onClick={()=>{this.handleClickTF(typeface.id, typeface.name)}}
                        style={{'fontFamily': typeface.name}}>{typeface.name}</a>
+        })
+    }
+
+    renderAdvanceColorFunct(typeFunct, listFunct){
+        return _.map(listFunct, (funct) => {
+            return  <a
+                key={funct.id}
+                className="dropdown-item"
+                data-value="bend-mode"
+                onClick={()=>{this.handleAdvanceColorFunct(typeFunct, funct.name)}}>{funct.name}</a>
         })
     }
     // Text color
@@ -55,6 +108,11 @@ class TextEditor extends Component{
     handleStrokeClick = () => {this.setState({ displayColorStrokePicker: !this.state.displayColorStrokePicker })};
     handleStrokeClose = () => { this.setState({ displayColorStrokePicker: false })};
     handleStrokeChange = (color) => {this.setState({ colorStroke: color.hex })};
+
+    // Blend color
+    handleBlendClick = () => {this.setState({ displayColorBlendPicker: !this.state.displayColorBlendPicker })};
+    handleBlendClose = () => { this.setState({ displayColorBlendPicker: false })};
+    handleBlendChange = (color) => {this.setState({ colorBlend: color.hex })};
 
     render(){
         //console.log("color", `${ this.state.color}`);
@@ -78,13 +136,21 @@ class TextEditor extends Component{
                     borderRadius: '2px',
                     background: `${ this.state.colorStroke}`,
                 },
+                colorBlend: {
+                    width: '36px',
+                    height: '14px',
+                    borderRadius: '2px',
+                    background: `${ this.state.colorBlend}`,
+                },
                 swatch: {
                     padding: '5px',
                     background: '#fff',
-                    borderRadius: '1px',
+                    borderRadius: '0.25em',
                     boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
                     display: 'inline-block',
                     cursor: 'pointer',
+                    height: '24px',
+                    marginRight: '3px'
                 },
                 popover: {
                     zIndex: 1031,
@@ -105,8 +171,8 @@ class TextEditor extends Component{
         });
 
             return <React.Fragment>
-                    <tr><td className="separator"/></tr>
-                    <tr className="text-editor">
+                    <tr className='forEditor forText'><td className="separator"/></tr>
+                    <tr className="text-editor forEditor forText">
                         <td >
                             <div className="btn-group">
                                 <button className="btn btn-secondary btn-sm btn-me"
@@ -127,7 +193,7 @@ class TextEditor extends Component{
                             </div>
                         </td>
                     </tr>
-                    <tr className="text-editor alignment-btn">
+                    <tr className="text-editor alignment-btn forEditor forText">
                         <td >
                             <div className="btn-group">
                                 <button className="btn btn-secondary btn-sm btn-me"
@@ -147,6 +213,7 @@ class TextEditor extends Component{
                                 </div>
                                 <input type="number"
                                        id="font-size"
+                                       className="line-input"
                                        min="0"
                                        defaultValue={18}
                                        onChange={()=>{}}
@@ -154,7 +221,7 @@ class TextEditor extends Component{
                             </div>
                         </td>
                     </tr>
-                    <tr className="alignment-btn">
+                    <tr className="alignment-btn forEditor forText">
                         <td >
                             <div className="btn-group">
                             <button
@@ -193,7 +260,7 @@ class TextEditor extends Component{
                             </div>
                         </td>
                     </tr>
-                    <tr className="text-editor alignment-btn">
+                    <tr className="text-editor alignment-btn forEditor forText">
                         <td>
                             <div className="btn-group">
                                 <div className="line-title">Line <br/>height</div>
@@ -237,7 +304,7 @@ class TextEditor extends Component{
                             </div>
                         </td>
                     </tr>
-                    <tr className="alignment-btn">
+                    <tr className="alignment-btn text-editor forEditor forText">
                         <td >
                             <button
                                 className='alignment-btn-left btn-secondary'
@@ -270,11 +337,38 @@ class TextEditor extends Component{
                             </button>
                         </td>
                     </tr>
-                    <tr className="text-editor">
+                    <tr className='forEditor forText forShape'><td className="separator"/><td/></tr>
+                    <tr className='forEditor forText forShape'>
+                        <td className="arrg-box shadow-checkbox">
+                            <div className="row">
+                                <div className="col">
+                                    <input id="fillsIsChecked" onChange={(e) =>this.isCheck(e, 'fill')} type="checkbox"/>
+                                </div>
+                                <div className="col">
+                                    <div className="line-title">Fills</div>
+                                </div>
+                                {/* Todo: It needs to be done
+                                <div className="col">
+                                    <input id="gradientIsChecked" type="checkbox" />
+                                </div>
+                                <div className="col">
+                                    <div className="line-title">Gradient</div>
+                                </div>*/}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr className="me-color text-editor forEditor forText forShape" hidden={this.state.hiddenFills}>
                         <td>
-                            <div className="me-color">
-                                <div className="form-group">
-                                    <span className="line-title">Text color</span>
+                            <div className="btn-group">
+                            <div className="item">
+                                <input type="color"
+                                       hidden="hidden"
+                                       id="colorFont"
+                                       onChange={()=>{}}
+                                       value={this.state.color}
+                                       className="line-input"
+                                       data-type="color"/>
+                                <div>
                                     <div className="sk-color colorFont">
                                         <div style={ styles.swatch } onClick={ this.handleClick }>
                                             <div style={ styles.color } />
@@ -287,35 +381,37 @@ class TextEditor extends Component{
                                         </div> : null }
 
                                     </div>
-                                    <input type="color"
-                                           className="btn-secondary"
-                                           hidden="hidden"
-                                           onChange={()=>{} }
-                                           value={this.state.color}
-                                           id="colorFont"
-                                           data-type="color"/>
                                 </div>
-                               {/* <div className="form-group">
-                                    <span className="line-title">Background color</span>
-                                    <input type="color"
-                                           className="btn-secondary"
-                                           id="font-color"
-                                           data-type="color"/>
-                                </div>*/}
-                                <div className="form-group">
-                                    <span className="line-title">Background text color</span>
-                                    <div className="sk-color colorBg">
-                                        <div style={ styles.swatch } onClick={ this.handleBGClick }>
-                                            <div style={ styles.colorBg } />
-                                        </div>
-                                        { this.state.displayColorBgPicker ? <div style={ styles.popover }>
-                                            <div  style={ styles.cover } onClick={ this.handleBGClose }/>
-                                            <SketchPicker color={ this.state.colorBg }
-                                                          type="colorBg"
-                                                          onChange={this.handleBGChange} />
-                                        </div> : null }
-
-                                    </div>
+                                <div className="line-title">Fill</div>
+                            </div>
+                            <div className="item-wm">
+                                <div className="btn-group">
+                                    <input
+                                        id="opacity"
+                                        onChange={()=>{}}
+                                        defaultValue={1}
+                                        type="number"
+                                        max='1'
+                                        step="0.01"
+                                        min="0"
+                                        className="fill-input"/>
+                                </div>
+                                <div className="line-title">Opacity</div>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr className='forEditor forText'><td className="separator"/><td/></tr>
+                    <tr className='forEditor forText'>
+                        <td className="arrg-box shadow-checkbox">
+                            <div className="row">
+                                <div className="col">
+                                    <input id="bgIsChecked" onChange={(e) =>this.isCheck(e, 'bg')} type="checkbox" />
+                                </div>
+                                <div className="col">
+                                    <div className="line-title">Background</div>
+                                </div>
+                                <div className="col" hidden={this.state.hiddenBg}>
                                     <input type="color"
                                            className="btn-secondary"
                                            onChange={()=>{} }
@@ -323,21 +419,41 @@ class TextEditor extends Component{
                                            value={this.state.colorBg}
                                            id="colorBg"
                                            data-type="color"/>
-                                </div>
-                                <div className="form-group">
-                                    <span className="line-title">Stroke color</span>
-                                    <div className="sk-color colorStroke">
-                                        <div style={ styles.swatch } onClick={ this.handleStrokeClick }>
-                                            <div style={ styles.colorStroke } />
-                                        </div>
-                                        { this.state.displayColorStrokePicker ? <div style={ styles.popover }>
-                                            <div  style={ styles.cover } onClick={ this.handleStrokeClose }/>
-                                            <SketchPicker color={ this.state.colorStroke }
-                                                          type="colorStroke"
-                                                          onChange={this.handleStrokeChange} />
-                                        </div> : null }
+                                    <div className="bg-color-box">
+                                        <div className="sk-color colorFont">
+                                            <div style={ styles.swatch } onClick={ this.handleBGClick }>
+                                                <div style={ styles.colorBg } />
+                                            </div>
+                                            { this.state.displayColorBgPicker ? <div style={ styles.popover }>
+                                                <div  style={ styles.cover } onClick={ this.handleBGClose }/>
+                                                <SketchPicker color={ this.state.colorBg }
+                                                              type="colorBg"
+                                                              onChange={this.handleBGChange} />
+                                            </div> : null }
 
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr className='forEditor forText forShape'><td className="separator"/><td/></tr>
+                    <tr className='forEditor forText forShape'>
+                        <td className="arrg-box shadow-checkbox">
+                            <div className="row">
+                                <div className="col">
+                                    <input id="bordersIsChecked" onChange={(e) =>this.isCheck(e, 'position')} type="checkbox" />
+                                </div>
+                                <div className="col">
+                                    <div className="line-title">Borders</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr className="me-color text-editor forEditor forText forShape" hidden={this.state.hiddenBorders}>
+                        <td>
+                            <div className="btn-group">
+                                <div className="item">
                                     <input type="color"
                                            className="btn-secondary"
                                            onChange={()=>{} }
@@ -345,11 +461,145 @@ class TextEditor extends Component{
                                            id="colorStroke"
                                            value={this.state.colorStroke}
                                            data-type="color"/>
+                                    <div>
+                                        <div className="sk-color colorStroke">
+                                            <div style={ styles.swatch } onClick={ this.handleStrokeClick }>
+                                                <div style={ styles.colorStroke } />
+                                            </div>
+                                            { this.state.displayColorStrokePicker ? <div style={ styles.popover }>
+                                                <div  style={ styles.cover } onClick={ this.handleStrokeClose }/>
+                                                <SketchPicker color={ this.state.colorStroke }
+                                                              type="colorStroke"
+                                                              onChange={this.handleStrokeChange} />
+                                            </div> : null }
+
+                                        </div>
+                                    </div>
+                                    <div className="line-title">Border</div>
+                                </div>
+                               {/*
+                                Todo: When it will really be necessary
+                               <div className="item">
+                                    <div className="btn-group btn-blending">
+                                        <button className="btn btn-secondary btn-sm btn-me"
+                                                type="button"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            {this.state.activeBlendMode}
+                                        </button>
+                                        <button type="button" className="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span className="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div className="dropdown-menu">
+                                            {this.renderAdvanceColorFunct('blend', this.state.blendModes)}
+                                            <div className="dropdown-divider"/>
+                                            <a className="dropdown-item" href="#" >Lucida Grande</a>
+                                        </div>
+                                    </div>
+                                    <div className="line-title">Blending</div>
+                                </div>*/}
+                                <div className="item-wm">
+                                    <div className="btn-group">
+                                        <input
+                                            id="thickness"
+                                            onChange={()=>{}}
+                                            defaultValue={0.5}
+                                            type="number"
+                                            max='10'
+                                            step="0.01"
+                                            min="0"
+                                            className="line-input"/>
+                                    </div>
+                                    <div className="line-title">Thickness</div>
                                 </div>
                             </div>
                         </td>
                     </tr>
-                    <tr className=""><td className="separator"/><td/></tr>
+                {/*Blending*/}
+                <tr className='forEditor forText forShape'><td className="separator"/><td/></tr>
+                <tr className='forEditor forText forShape'>
+                    <td className="arrg-box shadow-checkbox">
+                        <div className="row">
+                            <div className="col">
+                                <input id="blendIsChecked" onChange={(e) =>this.isCheck(e, 'blend')} type="checkbox" />
+                            </div>
+                            <div className="col">
+                                <div className="line-title">Blending</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr className="me-color text-editor forEditor forImage" hidden={this.state.hiddenBlend}>
+                    <td>
+                        <input type="color"
+                               className="btn-secondary"
+                               onChange={()=>{} }
+                               hidden="hidden"
+                               id="colorBlend"
+                               value={this.state.colorBlend}/>
+                        <div className="btn-group">
+                            <div className="item">
+                                <div>
+                                    <div className="sk-color colorBlend">
+                                        <div style={ styles.swatch } onClick={ this.handleBlendClick }>
+                                            <div style={ styles.colorBlend } />
+                                        </div>
+                                        { this.state.displayColorBlendPicker ? <div style={ styles.popover }>
+                                            <div  style={ styles.cover } onClick={ this.handleBlendClose }/>
+                                            <SketchPicker color={ this.state.colorBlend }
+                                                          type="colorBlend"
+                                                          onChange={this.handleBlendChange} />
+                                        </div> : null }
+
+                                    </div>
+                                </div>
+                                <div className="line-title">Color</div>
+                            </div>
+                            <input type="text"
+                                   className="btn-secondary"
+                                   onChange={()=>{} }
+                                   hidden="hidden"
+                                   id="activeBlendMode"
+                                   value={this.state.activeBlendMode}
+                                   data-type="color"/>
+                            <div className="item forImage">
+                                <div className="btn-group btn-blending">
+                                    <button className="btn btn-secondary btn-sm btn-me"
+                                            type="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false">
+                                        {this.state.activeBlendMode}
+                                    </button>
+                                    <button type="button" className="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span className="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div className="dropdown-menu">
+                                        {this.renderAdvanceColorFunct('blend', this.state.blendModes)}
+                                        <div className="dropdown-divider"/>
+                                        <a className="dropdown-item" href="#" >Lucida Grande</a>
+                                    </div>
+                                </div>
+                                <div className="line-title">Blending</div>
+                            </div>
+                            <div className="item-wm">
+                                <div className="btn-group">
+                                    <input
+                                        id="blendAlpha"
+                                        onChange={()=>{}}
+                                        defaultValue={0.5}
+                                        type="number"
+                                        max='10'
+                                        step="0.01"
+                                        min="0"
+                                        className="line-input"/>
+                                </div>
+                                <div className="line-title">Alpha</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
             </React.Fragment>
         }
     };
