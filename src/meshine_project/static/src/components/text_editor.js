@@ -379,7 +379,6 @@ class TextEditor extends Component{
                                                 color={ this.state.color }
                                                 onChange={ this.handleChange } />
                                         </div> : null }
-
                                     </div>
                                 </div>
                                 <div className="line-title">Fill</div>

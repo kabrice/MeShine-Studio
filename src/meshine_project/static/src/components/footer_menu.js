@@ -51,6 +51,7 @@ export default class FooterMenu extends Component{
                                             <img src="../assets/ending_screen.svg" alt="Customizer le slide de fin"/></div>
                                     </div>
                                 </div>
+                                {/*<canvas hidden='hidden' id='tempCanvas'/>*/}
                                 <div className="col" id="multimedia">
                                     <div id="mG2" className="microGallery">
                                         <img src="../assets/Gallery2/1.JPG" alt="A beautiful red flower"/>
@@ -64,7 +65,7 @@ export default class FooterMenu extends Component{
                                         <img src="../assets/Gallery2/9.JPG" alt="Beautiful flowers"/>
                                         <img src="../assets/Gallery2/10.JPG" alt="A fly"/>
                                         <img src="../assets/Gallery2/11.JPG" alt="Jummy!"/>
-                                        <img src="../assets/Gallery2/12.JPG" alt="The moon"/>
+                                        <img src="../assets/Gallery2/img_0.png" alt="The moon"/>
                                         <img src="../assets/Gallery2/paris.png" alt="The moon"/>
                                     </div>
                                     <div className="row">

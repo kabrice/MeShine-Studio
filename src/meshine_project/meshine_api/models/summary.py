@@ -8,6 +8,7 @@ class Summary(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     html_text = models.TextField(blank=True, unique=True)
     title = models.CharField(max_length=255, default='', blank=True)
+    project_content = models.TextField(blank=True)
     url_local_path = models.CharField(max_length=255)
     validated = models.BooleanField(default=True)
     validation_level = models.IntegerField(default=1)

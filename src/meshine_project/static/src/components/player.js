@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Lottie from 'react-lottie';
+import lottie from 'lottie-web'
 import * as animationData from '../../assets/data-text.json'
 import * as animationData1 from '../../assets/data.json'
 
@@ -10,7 +11,15 @@ class Player extends Component{
         super(props);
         this.state = {isStopped: false, isPaused: false};
     }
-
+    componentDidMount(){
+        lottie.loadAnimation({
+            container: document.getElementById('bm'), // the dom element that will contain the animation
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '../../assets/data.json' // the path to the animation json
+        });
+    }
     render(){
         const buttonStyle = {
             display: 'block',
@@ -38,14 +47,15 @@ class Player extends Component{
             return (
                 <div id='fullscreen-player'>
 
-                    <div id='play-container'>{/*
-                        <Lottie options={defaultOptions}
+                    <div id='play-container'>
+                        <div id="bm"/>
+                        {/* <Lottie options={defaultOptions}
                                 isStopped={this.state.isStopped}
-                                isPaused={this.state.isPaused}/>*/}
+                                isPaused={this.state.isPaused}/>
                         <iframe width="500" height="500" src="https://lottiefiles.com/iframe/3062-loding-dots" frameborder="0" allowfullscreen></iframe>
                         <Lottie options={defaultOptions1}
                                 isStopped={this.state.isStopped}
-                                isPaused={this.state.isPaused}/>
+                                isPaused={this.state.isPaused}/>*/}
                     </div>
                     {/*<button style={buttonStyle} onClick={() => this.setState({isStopped: true})}>stop</button>
                     <button style={buttonStyle} onClick={() => this.setState({isStopped: false})}>play</button>

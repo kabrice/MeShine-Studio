@@ -1,24 +1,43 @@
 import React, {Component} from 'react'
 import {fabric} from 'fabric';
+import {connect} from 'react-redux';
 import {microgallery} from '../../external/MicroGalleryImproved/jquery.microgallery'
-
+import {createSummaryPlayerFile} from "../actions/index";
 //import {fileSaver} from 'file-saver';
 
 class MeFabric extends Component{
 
-
+    constructor(props) {
+        super(props);
+    }
     componentDidMount(){
         /*************
          * CANVAS INITIALISATION
          ****************/
-
+        console.log('card-container', $('#card-container').width());
         this.__canvas = new fabric.Canvas('meCanvas', {
             preserveObjectStacking: true,
             /*            height: 812,
                         width: 375,*/
-            height: 1024,
+            height: 2485,
             width: $('#card-container').width(),
-            backgroundColor: '#1F1F1F'
+            //backgroundColor: '#1F1F1F'
+        });
+        let boundingRect = new fabric.Rect({
+            width: $('#card-container').width(),
+            height: 2485,
+            opacity: '0.6',
+            fill: '#1F1F1F',
+            lockMovementX: true,
+            lockMovementY: true,
+            lockRotation: true,
+            lockScalingFlip: true,
+            lockScalingX: true,
+            lockScalingY: true,
+            hasControls: false,
+            hasRotatingPoint: false,
+            selectable: false,
+            id: 'boundingRect'
         });
         fabric.Object.prototype.set({
             cornerStyle: 'circle',
@@ -31,22 +50,53 @@ class MeFabric extends Component{
         this.cardWidth = $('#card-container').width();
         this.cardHeight = $('#card-container').height();
         //console.log('hey',$('#card-container').width());
-        let rect = new fabric.Rect({
-            //left: 100,
-            //top: 1024/2,
+        let rect;
+        rect = new fabric.Rect({
             fill: 'gray',
-            width: 375,
-            height: 812,
+            width: 1124,
+            height: 2000,
             evented: false,
-            selectable: false
+            selectable: false,
+            id: 'drawingRect'
         });
-        this.initAligningGuidelines(this.__canvas);
-        this.__canvas.add(rect);
-        this.__canvas.centerObject(rect);
 
-        let groupWidth = rect.getScaledWidth();
-        let groupHeight = rect.getScaledHeight();
-        let obj = this.__canvas.getActiveObject();
+        this.initAligningGuidelines(this.__canvas);
+        this.__canvas.zoomToPoint(new fabric.Point(this.__canvas.width / 2, this.__canvas.height / 2), 1);
+        this.__canvas.add(boundingRect);
+
+        let data = null;
+        this.readTextFile("/assets/data-text.json", (text) =>{
+            data = JSON.parse(text);
+            /*if(data.version)
+                this.data = data;*/
+            console.log("data", data);
+            if(data.version){
+                this.__canvas.loadFromJSON(data);
+            }else{
+                console.log('HHHH', data );
+                this.__canvas.add(rect);
+                this.__canvas.centerObject(rect);
+                let groupWidth = rect.getScaledWidth();
+                let groupHeight = rect.getScaledHeight();
+                let obj = this.__canvas.getActiveObject();
+                this.rect=rect;
+            }
+        });
+
+
+  /*      this.__canvas.on({
+            'object:moving': (options) => {
+                console.log('onChange', this.rect);
+                //options.target.setCoords();
+                this.__canvas.forEachObject((obj) => {
+                    if (obj === options.target) return;
+                    options.target.set('opacity' ,options.target.intersectsWithObject(this.rect) ? 0.5 : 1);
+                });
+            },
+            'object:scaling': this.onChange(rect),
+            'object:rotating': this.onChange(rect),
+        });*/
+
 
         /*************
          * TEXT EDITOR MANIPULATION
@@ -63,6 +113,7 @@ class MeFabric extends Component{
         });
         $('#colorFont').change((e) => {
             let $this = $(e.currentTarget);
+            //console.log("colorfont");
             this.setTextParam($this.data('type'), $this.val());
         });
         $('#colorBg').change((e) => {
@@ -94,16 +145,31 @@ class MeFabric extends Component{
                     obj.strokeWidth = thickness;
                     break;
                 case 'rect':
-                    if (!obj.strokeWidthUnscaled && obj.strokeWidth) {
+                    obj.on({
+                        'scaling': function(e) {
+                            let obj = this,
+                                w = obj.width * obj.scaleX,
+                                h = obj.height * obj.scaleY;
+
+                            obj.set({
+                                'height'     : h,
+                                'width'      : w,
+                                'scaleX'     : 1,
+                                'scaleY'     : 1
+                            });
+                        }
+                    });
+                    /*if (!obj.strokeWidthUnscaled && obj.strokeWidth) {
                         obj.strokeWidthUnscaled = obj.strokeWidth;
                     }
 
-                    console.log('rect', obj.strokeWidthUnscaled);
+                    console.log('rect', obj.strokeWidthUnscaled);*/
                     obj.set({stroke:$this.val(), strokeWidth: thickness});
             }
             obj.stroke = $this.val();
             this.__canvas.requestRenderAll();
         });
+
         $('#colorShadow').on('change',  (e) => {
             let obj = this.__canvas.getActiveObject();
             //console.log("HI");
@@ -252,7 +318,7 @@ class MeFabric extends Component{
         $('#y-axis').change((e) => {
             let obj = this.__canvas.getActiveObject();
             let $this = $(e.currentTarget);
-            let pseudoX = (this.__canvas.getHeight()-rect.getScaledHeight()+obj.getBoundingRect().width/2)/2;
+            let pseudoX = (this.__canvas.getHeight()-rect.getScaledHeight()+obj.getBoundingRect().height/2)/2;
             obj.set('top', pseudoX+parseInt($this.val()));
             obj.setCoords();
             this.__canvas.renderAll();
@@ -538,27 +604,167 @@ class MeFabric extends Component{
             }));
         });
 
+        $('#publish').click((e)=>{
+            //this.__canvas.contextContainer.strokeStyle = 'black';
+            /* let obj = this.__canvas.getActiveObject();
+             obj.clone((clonedObj) =>{
+                 this.tempCanvas = new fabric.Canvas('tempCanvas', {
+                     preserveObjectStacking: true,
+                     height: 400,
+                     width: 400
+                 });
+                 this.tempCanvas.add(clonedObj);
+                 this.tempCanvas.height = clonedObj.getBoundingRect().height;
+                 this.tempCanvas.width = clonedObj.getBoundingRect().width;
+                 clonedObj && clonedObj.center().setCoords();
+                 console.log(this.tempCanvas.toSVG());
+             })*/
+            let json = JSON.stringify( this.__canvas.toJSON(['id']) );
+            console.log(json);
+        });
+
+        this.__canvas.on('after:render', () => {
+
+            let ao = this.__canvas.getActiveObject();
+            if (ao) {
+                this.__canvas.contextContainer.strokeStyle = '#555';
+                //console.log(bound);
+                let bound = ao.getBoundingRect();
+                console.log("bound", bound);
+                this.__canvas.contextContainer.strokeRect(
+                    bound.left,
+                    bound.top,
+                    bound.width,
+                    bound.height
+                );
+                //console.log(bound);
+
+            }
+        });
+
+        $('#me-tool').click((e)=>{
+            let group = [];
+            let url = '/assets/triangle.svg';
+            fabric.loadSVGFromURL(url,(objects,options)=> {
+
+                let loadedObjects = fabric.util.groupSVGElements(objects, options);
+
+                /*loadedObjects.set({
+                    width: 200,
+                    height: 200
+                });*/
+                objects.top=0;
+                objects.left=0;
+
+                objects.forEach((o)=>{
+                    o.globalCompositeOperation='source-atop';
+                })
+                console.log('loadSVGFromURL', objects, options);
+                this.__canvas.add(loadedObjects);
+                this.__canvas.renderAll();
+
+            });
+        });
+
         /*************
          * PLAYER
          ****************/
         this.play = $('#fullscreen-player').detach();
         $('#play').click(() => {
-
-            this.play.appendTo('body');
+            //Todo: Fullscreen player
+            /*this.play.appendTo('body');
             let elem = document.getElementById("fullscreen-player");
             let scaleRate = screen.height/2000;
             $('#play-container').css('transform', 'scale('+scaleRate+')');
 
             elem.removeAttribute("hidden");
-            //$('#play-container').find('g').attr('font-size', 12);
             let req = elem.requestFullScreen || elem.webkitRequestFullScreen || elem.mozRequestFullScreen;
-            req.call(elem);
+            req.call(elem);*/
+
+             //let obj = this.__canvas.getActiveObject();
+
+            let svgVersionObjects = [];
+            this.__canvas.getObjects().forEach((o) => {
+                let svg = this.objectToSVG(o);
+                if(svg){
+                    svg = svg.substring(155);
+                }
+                if(o.id !== 'boundingRect'){
+
+                    svgVersionObjects.push({
+                                            'id': o.id,
+                                            'svg': svg,
+                                            'isText': false,
+                                            'isStatic': false,
+                                            //'animationFam': 'animejs', // common
+                                            'jsonPath': './assets/data1.json',
+                                            //'animType': 1,
+                                            'animation': {'css': 'common', 'html': 'common', 'js':'animejs_popup'},
+                                            'data' : "{'id': '"+o.id+"', 'loop': "+false+", 'duration': "+1000+"}",
+                                            'duration': 1,
+                                            'speed': 2.12, //Only for Lottie
+                                            'loop': false,
+                                            'animEntry': 3,
+                                            'zIndex': 4,
+                                            '_boundingRect': o.getBoundingRect(),
+                                            'object': o.toJSON(['id'])
+                                            });
+                }
+                //o._boundingRect = o.getBoundingRect();
+            });
+            let json = JSON.stringify( this.__canvas.toJSON(['id', '_boundingRect']) );
+            //console.log("json", json);
+            //Todo: Odering svgVersionObjects based on animEntry
+            console.log('svgVersionObjects', svgVersionObjects);
+            this.props.createSummaryPlayerFile({project_content: json,
+                                                svgs:svgVersionObjects}, 1,
+                (response) =>{
+                    console.log("GOOD", response);
+                }, (error) => {
+
+                    console.log('error', error);
+                });
         });
     }
 
     /*************
      * FUNCTIONS
      ****************/
+    //Temporal function
+    readTextFile(file, callback) {
+
+        let rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = () => {
+
+            if (rawFile.readyState === 4 && rawFile.status === 200) {
+                //console.log("HOHO", rawFile.readyState, rawFile.status);
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(null);
+    }
+
+    objectToSVG(o){
+        this.tempCanvas = null;
+        //console.log("o", o);
+        o.clone((clonedObj) =>{
+            this.tempCanvas = new   fabric.Canvas('tempCanvas', {
+                preserveObjectStacking: true,
+                height: 400,
+                width: 400
+            });
+            this.tempCanvas.add(clonedObj);
+            this.tempCanvas.height = clonedObj.getBoundingRect().height;
+            this.tempCanvas.width = clonedObj.getBoundingRect().width;
+            clonedObj && clonedObj.center().setCoords();
+
+        });
+        if(!this.tempCanvas) return null;
+        return this.tempCanvas.toSVG();
+    }
+
     applyFilter(index, filter) {
         let obj = this.__canvas.getActiveObject();
         obj.filters[index] = filter;
@@ -649,7 +855,11 @@ class MeFabric extends Component{
             originX: 'center',
             originY: 'center',
             fontWeight: 'normal',
-            myid: newID,
+            globalCompositeOperation: 'source-atop',
+            id: 'text'+newID,
+            lockScalingFlip: true,
+            lockScalingX: true,
+            lockScalingY: true,
             objecttype: 'text'
             //shadow: '#000000 5px 5px 5px'
         });
@@ -669,13 +879,14 @@ class MeFabric extends Component{
         this.__canvas.add(text1);*/
         this.__canvas.add(text);
         this.__addedTextSpace = this.__addedTextSpace+10;
+
         //this.__canvas.centerObject(text);
     }
 
     addRectangle() {
         let newID = (new Date()).getTime().toString().substr(5);
 
-        let text = new fabric.Rect({
+        let rect = new fabric.Rect({
             fill: 'red',
             width: 48,
             height: 32,
@@ -684,10 +895,11 @@ class MeFabric extends Component{
             originX: 'center',
             originY: 'center',
             fontWeight: 'normal',
-            myid: newID
+            globalCompositeOperation: 'source-atop',
+            id: 'rect'+newID
             //shadow: '#000000 5px 5px 5px'
         });
-        this.__canvas.add(text);
+        this.__canvas.add(rect);
         this.__addedTextSpace = this.__addedTextSpace+10;
     }
 
@@ -700,7 +912,8 @@ class MeFabric extends Component{
                 top: this.cardHeight+this.__addedTextSpace,
                 originX: 'center',
                 originY: 'center',
-                myid: newID});
+                globalCompositeOperation: 'source-atop',
+                id: 'img'+newID});
             this.__canvas.add(oImg);
             this.__addedTextSpace = this.__addedTextSpace+10;
         });
@@ -711,13 +924,13 @@ class MeFabric extends Component{
         let objectType = obj.get('type');
         //if(!obj) return;
         //let f = fabric.Image.filters;
-        if (obj && obj.text) {
+        if (obj || obj.text) {
             if(!obj.selectionStart && !obj.selectionEnd && objectType !== 'rect'){
                 obj.selectionStart = 0;
                 obj.selectionEnd = (obj.text).length;
             }
             if (param === 'color') {
-
+                console.log('rect', objectType);
                 switch (objectType){
                     case 'i-text':
                         obj.setSelectionStyles({fill:value});
@@ -835,7 +1048,14 @@ class MeFabric extends Component{
         link.click();
 
     };
-
+    onChange = (rect) => {
+        console.log('onChange', rect);
+        //options.target.setCoords();
+        this.__canvas.forEachObject(function(obj) {
+            if (obj === rect) return;
+            obj.set('opacity' ,rect.intersectsWithObject(obj) ? 0.5 : 1);
+        });
+    }
     initAligningGuidelines(canvas) {
 
         let ctx = canvas.getSelectionContext(),
@@ -1048,4 +1268,4 @@ class MeFabric extends Component{
     }
 }
 
-export default MeFabric;
+export default connect(null, {createSummaryPlayerFile})(MeFabric);

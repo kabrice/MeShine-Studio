@@ -17,7 +17,7 @@
     "@fortawesome/react-fontawesome": "0.0.18",
     "axios": "0.18.0",
     "bootstrap": "4.0.0-alpha.6",
-    "fabric": "^2.3.6",
+    "fabric": "^2.4.3",
     "file-loader": "2.0.0",
     "file-saver": "^2.0.0-rc.3",
     "font-awesome": "4.7.0",

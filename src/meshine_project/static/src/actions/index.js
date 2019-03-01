@@ -149,6 +149,17 @@ export function updateSummary(value, id, callback, callbackError) {
         type: UPDATE_SUMMARY,
         payload: request
     };
+}
+
+export function createSummaryPlayerFile(value, id, callback, callbackError) {
+    const request = axios.put(`${ROOT_URL}/summary/${id}/`, value)
+        .then((response) => callback(response))
+        .catch((error) => callbackError(error.response));
+
+    return{
+        type: UPDATE_SUMMARY,
+        payload: request
+    };
 
 }
 

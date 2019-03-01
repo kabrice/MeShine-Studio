@@ -56,7 +56,7 @@ module.exports = {
             $: "jquery", // Used for Bootstrap JavaScript components
             jQuery: "jquery", // Used for Bootstrap JavaScript components
             Tether: 'tether',
-
+            lottie:'lottie-web',
             Popper: ['popper.js', 'default'] // Used for Bootstrap dropdown, popup and tooltip JavaScript components
         }),
         new webpack.optimize.CommonsChunkPlugin({
