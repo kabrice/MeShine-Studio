@@ -71,6 +71,8 @@
       "backgroundColor": "",
       "fillRule": "nonzero",
       "paintFirst": "fill",
+      "evented": false,
+      "selectable": false,
       "globalCompositeOperation": "source-over",
       "transformMatrix": null,
       "skewX": 0,

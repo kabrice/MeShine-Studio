@@ -55,18 +55,14 @@ export default class FooterMenu extends Component{
                                 <div className="col" id="multimedia">
                                     <div id="mG2" className="microGallery">
                                         <img src="../assets/Gallery2/1.JPG" alt="A beautiful red flower"/>
-                                        <img src="../assets/Gallery2/2.JPG" alt="Here Kitty!"/>
-                                        <img src="../assets/Gallery2/3.JPG" alt="Singing bird"/>
-                                        <img src="../assets/Gallery2/4.JPG" alt="Still singing"/>
-                                        <img src="../assets/Gallery2/5.JPG" alt="Beautiful blossoms"/>
-                                        <img src="../assets/Gallery2/6.JPG" alt="These two are in love"/>
-                                        <img src="../assets/Gallery2/7.JPG" alt="Black raven"/>
-                                        <img src="../assets/Gallery2/8.JPG" alt="How to serve a real Caipirinha"/>
-                                        <img src="../assets/Gallery2/9.JPG" alt="Beautiful flowers"/>
                                         <img src="../assets/Gallery2/10.JPG" alt="A fly"/>
                                         <img src="../assets/Gallery2/11.JPG" alt="Jummy!"/>
                                         <img src="../assets/Gallery2/img_0.png" alt="The moon"/>
                                         <img src="../assets/Gallery2/paris.png" alt="The moon"/>
+                                        <img src="../assets/Gallery2/pyongyang.png" alt="The moon"/>
+                                        <img src="../assets/Gallery2/business_woman.png" alt="The moon"/>
+                                        <img src="../assets/Gallery2/business_man.png" alt="The moon"/>
+                                        <img src="../assets/Gallery2/mic_holding.png" alt="The moon"/>
                                     </div>
                                     <div className="row">
                                         <div id="image-gallery" className="col-md-4 col-sm-12 col-12">

@@ -63,7 +63,7 @@ let test = [
     'animEntry': 1,
     'svg': NONE,
     'isText': FALSE,
-    'data': "{'id': 'img75204205', 'loop': FALSE, 'duration': null, 'speed': 1, 'jsonPath': 'http://localhost:8081/assets/Gallery2/img_0.png'}",
+    'data': "{'id': 'img75204205', 'loop': FALSE, 'duration': null, 'speed': 1, 'jsonPath': './assets/data1.json', 'height': '100%', 'width': '100%'}",
     'isStatic': FALSE,
     'object': {
         'height': 841,
@@ -123,7 +123,7 @@ let test = [
     'svg': '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="697.0934185498147" height="603.7398416865287" viewBox="0 0 697.09 603.74" xml:space="preserve">\n<desc>Created with Fabric.js 2.4.3</desc>\n<defs>\n</defs>\n<g transform="matrix(11.96 5.04 -3.11 7.39 348.55 301.87)"  >\n<polygon style="stroke: NONE; stroke-width: 1; stroke-dasharray: NONE; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(25,115,217); fill-rule: nonzero; opacity: 1;"  points="22,0 -22,25 -22,-25 " />\n</g>\n</svg>',
     'isText': FALSE,
     'speed': null,
-    'data': "{'id': 'Shape10200', 'loop': FALSE, 'duration': 1000}",
+    'data': "{'id': 'shape10200', 'loop': FALSE, 'duration': 1000}",
     'jsonPath': 'null',
     'isStatic': FALSE,
     'object': {
@@ -170,10 +170,10 @@ let test = [
             'x': -1.00000002e-05
         }]
     },
-    'id': 'Shape10200',
+    'id': 'shape10200',
     'animation': {
         'html': 'common',
-        'js': 'animejs_scale',
+        'js': 'animejs_popup',
         'css': 'common'
     },
     'loop': FALSE,
@@ -413,7 +413,7 @@ let test = [
     'svg': '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="258.90999999999997" height="41.61999999999989" viewBox="0 0 258.91 41.62" xml:space="preserve">\n<desc>Created with Fabric.js 2.4.3</desc>\n<defs>\n</defs>\n<g transform="matrix(1 0 0 1 129.45 20.81)"  >\n<rect style="stroke: rgb(255,255,255); stroke-width: 5; stroke-dasharray: NONE; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(25,115,217); fill-rule: nonzero; opacity: 1;"  x="-126.955" y="-18.31" rx="0" ry="0" width="253.91" height="36.62" />\n</g>\n</svg>',
     'isText': FALSE,
     'speed': 2.12,
-    'data': "{'id': rect76015407, 'loop': FALSE, 'duration': 1000}",
+    'data': "{'id': 'rect76015407', 'loop': FALSE, 'duration': 1000}",
     'jsonPath': null,
     'isStatic': FALSE,
     'object': {
@@ -472,7 +472,7 @@ let test = [
     'svg': '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="240.45312500000003" height="23.59999999999991" viewBox="0 0 240.45 23.6" xml:space="preserve">\n<desc>Created with Fabric.js 2.4.3</desc>\n<defs>\n</defs>\n<g transform="matrix(1 0 0 1 120.23 11.8)" style=""  >\n\t\t<text xml:space="preserve" font-family="Times" font-size="20" font-style="normal" font-weight="normal" style="stroke: NONE; stroke-width: 1; stroke-dasharray: NONE; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-119.73" y="6.28" >RENCONTRE TRUMP-KIM</tspan></text>\n</g>\n</svg>',
     'isText': TRUE,
     'speed': 2.12,
-    'data': "{'id': text76149977, 'loop': FALSE, 'duration': 1300}",
+    'data': "{'id': 'text76149977', 'loop': FALSE, 'duration': 1300}",
     'jsonPath': FALSE,
     'isStatic': FALSE,
     'object': {

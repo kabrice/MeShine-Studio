@@ -361,7 +361,7 @@ class TextEditor extends Component{
                         <td>
                             <div className="btn-group">
                             <div className="item">
-                                <input type="color"
+                                <input type="text"
                                        hidden="hidden"
                                        id="colorFont"
                                        onChange={()=>{}}
