@@ -77,23 +77,21 @@ class MeFabric extends Component{
         this.canvas.zoomToPoint(new fabric.Point(this.canvas.width / 2, this.canvas.height / 2), 1);
         this.canvas.add(boundingRect);
         this.canvas.add(this.rect);
-        this.canvas.centerObject(this.rect);
+        this.canvas.centerObject(this.rect); let test="dd";
         let data = null;
+        let state = null;
         this.readTextFile("/assets/data-text3.json", (text) =>{
             data = JSON.parse(text);
             /*if(data.version)
                 this.data = data;*/
-            console.log("data", data);
+
             if(data.version){
-                this.canvas.loadFromJSON(data);
+                this.canvas.loadFromJSON(data, ()=>{state=JSON.stringify(this.canvas)});
             }else{
                 //console.log('HHHH', data );
                 this.canvas.add(this.rect);
                 this.canvas.centerObject(this.rect);
-                /*let groupWidth = this.rect.getScaledWidth();
-                let groupHeight = this.rect.getScaledHeight();
-                let obj = this.canvas.getActiveObject();*/
-                //this.rect=rect;
+                state=this.canvas;
             }
         });
         /**
@@ -127,38 +125,30 @@ class MeFabric extends Component{
             }
             isEditingText = false;
         });
+        /**
+         * Undo / Redo
+         */
+        // current unsaved state
+        //let state = null,
+        let    canvas = this.canvas;
+        // past states
+        let undo = [];
+        // reverted states
+        let redo = [];
 
-        let undoStack = [];
-        let redoStack = [];
-        let props = {};
-
-        this.canvas.on(
-        'mouse:down',  function(e) {
-                let block = e.target;
-                if(block){
-                    props.oldStage = Utils.buildProps(block);
-                }
-        }).on(
-        'mouse:up', function(e)  {
-            let block = e.target;
-            if(block){
-                props.newStage = Utils.buildProps(block);
-                undoStack.push({
-                    id : block.id,
-                    type:'modified',
-                    oldStage:props.oldStage,
-                    newStage:props.newStage
-                });
-                props={};
-            }
+        this.canvas.on('object:modified', function() {
+            //console.log('object:state', state);
+            ({canvas, redo, state} = Utils.saveCanvas(canvas, state, undo));
         });
 
-        let canvas = this.canvas;
+        this.canvas = canvas;
         $(document).keydown(function(e) {
-            if(redoStack && redoStack.length && e.shiftKey && e.which === 90 && e.metaKey){
-                undoStack = Utils.redo(redoStack, canvas);
-            }else if(undoStack.length && e.which === 90 && e.metaKey){
-                redoStack = Utils.undo(undoStack, canvas);
+            if(e.shiftKey && e.which === 90 && e.metaKey){ // redo
+                //console.log('redo state', redo.length, undo.length);
+                state = Utils.replay(redo, undo, state, canvas);
+            }else if( e.which === 90 && e.metaKey){ // undo
+                //console.log('undo state', redo.length, undo.length);
+                state = Utils.replay(undo, redo, state, canvas);
             }
         });
 
@@ -1114,7 +1104,7 @@ class MeFabric extends Component{
     groupOnSelection(canvas){
         this.canvas.on("selection:updated", function(e) {
             let activeObj = e.target;
-            console.log('e.target.type', e.target);
+            //console.log('e.target.type', e.target);
             if(activeObj.type === "activeSelection") {
                 //console.log("Group created");
 

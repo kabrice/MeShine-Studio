@@ -119,10 +119,10 @@
     "cropY": 0,
     "id": "img73352016",
     "_boundingRect": {
-      "left": 5.271371993048547,
-      "top": 6.359999999999957,
+      "left": 5.269999999999982,
+      "top": 6.360000000000014,
       "width": 381.6,
-      "height": 880.8600000000001
+      "height": 880.86
     },
     "src": "http://localhost:8081/assets/Gallery2/business_woman.png",
     "filters": []
@@ -163,7 +163,7 @@
     "cropY": 0,
     "id": "img73353674",
     "_boundingRect": {
-      "left": 315.4890853379676,
+      "left": 315.49,
       "top": 0,
       "width": 302.1,
       "height": 887.22
@@ -250,10 +250,10 @@
     "ry": 0,
     "id": "rect68180256",
     "_boundingRect": {
-      "left": 273.6066844786726,
-      "top": 183.46833067809234,
-      "width": 137.11663104265483,
-      "height": 30.640580874493253
+      "left": 273.61,
+      "top": 183.47,
+      "width": 137.12,
+      "height": 30.639999999999986
     }
   }, {
     "type": "i-text",
@@ -301,7 +301,7 @@
     "charSpacing": 0,
     "id": "text68418454",
     "_boundingRect": {
-      "left": 278.96236328125,
+      "left": 278.96736328125,
       "top": 189.025,
       "width": 126.4052734375,
       "height": 17.94999999999999
@@ -341,10 +341,10 @@
     "skewY": 0,
     "id": "Shape",
     "_boundingRect": {
-      "left": 118.0460421711175,
-      "top": 613.7019144934163,
-      "width": 596.5378010991573,
-      "height": 472.36219095720116
+      "left": 118.01751684301485,
+      "top": 613.7,
+      "width": 596.6223948686088,
+      "height": 472.56113795682904
     },
     "points": [{
       "x": 44.00001,
@@ -392,10 +392,10 @@
     "ry": 0,
     "id": "rect77062816",
     "_boundingRect": {
-      "left": 174.2483993414435,
-      "top": 611.5,
-      "width": 301.86188603311064,
-      "height": 39.95583316416128
+      "left": 174.26,
+      "top": 611.515,
+      "width": 301.84000000000003,
+      "height": 39.930000000000064
     }
   }, {
     "type": "i-text",
@@ -443,8 +443,8 @@
     "charSpacing": 0,
     "id": "text77384480",
     "_boundingRect": {
-      "left": 183.8224087642488,
-      "top": 619.7019144934163,
+      "left": 183.82306640625,
+      "top": 619.7,
       "width": 282.7138671875,
       "height": 25.8599999999999
     },
@@ -520,11 +520,52 @@
     "version": "2.4.3",
     "originX": "center",
     "originY": "center",
-    "left": 208.32,
-    "top": 667,
+    "left": 339.68,
+    "top": 670.51,
     "width": 48,
     "height": 32,
-    "fill": "red",
+    "fill": "#ffffff",
+    "stroke": null,
+    "strokeWidth": 1,
+    "strokeDashArray": null,
+    "strokeLineCap": "butt",
+    "strokeLineJoin": "miter",
+    "strokeMiterLimit": 4,
+    "scaleX": 6.75,
+    "scaleY": 1.27,
+    "angle": 0,
+    "flipX": false,
+    "flipY": false,
+    "opacity": 1,
+    "shadow": null,
+    "visible": true,
+    "clipTo": null,
+    "backgroundColor": "",
+    "fillRule": "nonzero",
+    "paintFirst": "fill",
+    "globalCompositeOperation": "source-atop",
+    "transformMatrix": null,
+    "skewX": 0,
+    "skewY": 0,
+    "rx": 0,
+    "ry": 0,
+    "id": "rect77062816c",
+    "_boundingRect": {
+      "left": 174.2599999999999,
+      "top": 649.5149999999999,
+      "width": 330.8383677366555,
+      "height": 41.98500000000013
+    }
+  }, {
+    "type": "i-text",
+    "version": "2.4.3",
+    "originX": "center",
+    "originY": "center",
+    "left": 339.82,
+    "top": 670.63,
+    "width": 311,
+    "height": 36.16,
+    "fill": "white",
     "stroke": null,
     "strokeWidth": 1,
     "strokeDashArray": null,
@@ -547,14 +588,365 @@
     "transformMatrix": null,
     "skewX": 0,
     "skewY": 0,
+    "text": "Les candidats répondent",
+    "fontSize": "32",
+    "fontWeight": "normal",
+    "fontFamily": "Times",
+    "fontStyle": "normal",
+    "lineHeight": 1.16,
+    "underline": false,
+    "overline": false,
+    "linethrough": false,
+    "textAlign": "left",
+    "textBackgroundColor": "",
+    "charSpacing": 0,
+    "id": "text77384480c",
+    "_boundingRect": {
+      "left": 183.82306640625,
+      "top": 652.05,
+      "width": 312,
+      "height": 37.16000000000008
+    },
+    "styles": {
+      "0": {
+        "0": {
+          "fill": "#275385"
+        },
+        "1": {
+          "fill": "#275385"
+        },
+        "2": {
+          "fill": "#275385"
+        },
+        "3": {
+          "fill": "#275385"
+        },
+        "4": {
+          "fill": "#275385"
+        },
+        "5": {
+          "fill": "#275385"
+        },
+        "6": {
+          "fill": "#275385"
+        },
+        "7": {
+          "fill": "#275385"
+        },
+        "8": {
+          "fill": "#275385"
+        },
+        "9": {
+          "fill": "#275385"
+        },
+        "10": {
+          "fill": "#275385"
+        },
+        "11": {
+          "fill": "#275385"
+        },
+        "12": {
+          "fill": "#275385"
+        },
+        "13": {
+          "fill": "#275385"
+        },
+        "14": {
+          "fill": "#275385"
+        },
+        "15": {
+          "fill": "#275385"
+        },
+        "16": {
+          "fill": "#275385"
+        },
+        "17": {
+          "fill": "#275385"
+        },
+        "18": {
+          "fill": "#275385"
+        },
+        "19": {
+          "fill": "#275385"
+        },
+        "20": {
+          "fill": "#275385"
+        },
+        "21": {
+          "fill": "#275385"
+        },
+        "22": {
+          "fill": "#275385"
+        }
+      }
+    }
+  }, {
+    "type": "i-text",
+    "version": "2.4.3",
+    "originX": "center",
+    "originY": "center",
+    "left": 339.82,
+    "top": 670.63,
+    "width": 311,
+    "height": 36.16,
+    "fill": "white",
+    "stroke": null,
+    "strokeWidth": 1,
+    "strokeDashArray": null,
+    "strokeLineCap": "butt",
+    "strokeLineJoin": "miter",
+    "strokeMiterLimit": 4,
+    "scaleX": 1,
+    "scaleY": 1,
+    "angle": 0,
+    "flipX": false,
+    "flipY": false,
+    "opacity": 1,
+    "shadow": null,
+    "visible": true,
+    "clipTo": null,
+    "backgroundColor": "",
+    "fillRule": "nonzero",
+    "paintFirst": "fill",
+    "globalCompositeOperation": "source-atop",
+    "transformMatrix": null,
+    "skewX": 0,
+    "skewY": 0,
+    "text": "Les candidats répondent",
+    "fontSize": "32",
+    "fontWeight": "normal",
+    "fontFamily": "Times",
+    "fontStyle": "normal",
+    "lineHeight": 1.16,
+    "underline": false,
+    "overline": false,
+    "linethrough": false,
+    "textAlign": "left",
+    "textBackgroundColor": "",
+    "charSpacing": 0,
+    "id": "text77384480c",
+    "_boundingRect": {
+      "left": 183.82306640625,
+      "top": 652.05,
+      "width": 312,
+      "height": 37.16000000000008
+    },
+    "styles": {
+      "0": {
+        "0": {
+          "fill": "#275385"
+        },
+        "1": {
+          "fill": "#275385"
+        },
+        "2": {
+          "fill": "#275385"
+        },
+        "3": {
+          "fill": "#275385"
+        },
+        "4": {
+          "fill": "#275385"
+        },
+        "5": {
+          "fill": "#275385"
+        },
+        "6": {
+          "fill": "#275385"
+        },
+        "7": {
+          "fill": "#275385"
+        },
+        "8": {
+          "fill": "#275385"
+        },
+        "9": {
+          "fill": "#275385"
+        },
+        "10": {
+          "fill": "#275385"
+        },
+        "11": {
+          "fill": "#275385"
+        },
+        "12": {
+          "fill": "#275385"
+        },
+        "13": {
+          "fill": "#275385"
+        },
+        "14": {
+          "fill": "#275385"
+        },
+        "15": {
+          "fill": "#275385"
+        },
+        "16": {
+          "fill": "#275385"
+        },
+        "17": {
+          "fill": "#275385"
+        },
+        "18": {
+          "fill": "#275385"
+        },
+        "19": {
+          "fill": "#275385"
+        },
+        "20": {
+          "fill": "#275385"
+        },
+        "21": {
+          "fill": "#275385"
+        },
+        "22": {
+          "fill": "#275385"
+        }
+      }
+    }
+  }, {
+    "type": "rect",
+    "version": "2.4.3",
+    "originX": "center",
+    "originY": "center",
+    "left": 282.2,
+    "top": 706.48,
+    "width": 48,
+    "height": 32,
+    "fill": "#ffffff",
+    "stroke": null,
+    "strokeWidth": 1,
+    "strokeDashArray": null,
+    "strokeLineCap": "butt",
+    "strokeLineJoin": "miter",
+    "strokeMiterLimit": 4,
+    "scaleX": 4.37,
+    "scaleY": 1.21,
+    "angle": 0,
+    "flipX": false,
+    "flipY": false,
+    "opacity": 1,
+    "shadow": null,
+    "visible": true,
+    "clipTo": null,
+    "backgroundColor": "",
+    "fillRule": "nonzero",
+    "paintFirst": "fill",
+    "globalCompositeOperation": "source-atop",
+    "transformMatrix": null,
+    "skewX": 0,
+    "skewY": 0,
     "rx": 0,
     "ry": 0,
-    "id": "rect77604177",
+    "id": "rect77062816cc",
     "_boundingRect": {
-      "left": 183.8224087642488,
-      "top": 650.5,
-      "width": 49,
-      "height": 33
+      "left": 175.24840865690646,
+      "top": 686.515,
+      "width": 213.90270073656438,
+      "height": 39.930000000000064
+    }
+  }, {
+    "type": "i-text",
+    "version": "2.4.3",
+    "originX": "center",
+    "originY": "center",
+    "left": 284.6,
+    "top": 702.63,
+    "width": 203.55,
+    "height": 36.16,
+    "fill": "white",
+    "stroke": null,
+    "strokeWidth": 1,
+    "strokeDashArray": null,
+    "strokeLineCap": "butt",
+    "strokeLineJoin": "miter",
+    "strokeMiterLimit": 4,
+    "scaleX": 1,
+    "scaleY": 1,
+    "angle": 0,
+    "flipX": false,
+    "flipY": false,
+    "opacity": 1,
+    "shadow": null,
+    "visible": true,
+    "clipTo": null,
+    "backgroundColor": "",
+    "fillRule": "nonzero",
+    "paintFirst": "fill",
+    "globalCompositeOperation": "source-atop",
+    "transformMatrix": null,
+    "skewX": 0,
+    "skewY": 0,
+    "text": "à vos questions ",
+    "fontSize": "32",
+    "fontWeight": "normal",
+    "fontFamily": "Times",
+    "fontStyle": "normal",
+    "lineHeight": 1.16,
+    "underline": false,
+    "overline": false,
+    "linethrough": false,
+    "textAlign": "left",
+    "textBackgroundColor": "",
+    "charSpacing": 0,
+    "id": "text77384480cc",
+    "_boundingRect": {
+      "left": 182.323125,
+      "top": 684.05,
+      "width": 204.546875,
+      "height": 37.16000000000008
+    },
+    "styles": {
+      "0": {
+        "0": {
+          "fill": "#275385"
+        },
+        "1": {
+          "fill": "#275385"
+        },
+        "2": {
+          "fill": "#275385"
+        },
+        "3": {
+          "fill": "#275385"
+        },
+        "4": {
+          "fill": "#275385"
+        },
+        "5": {
+          "fill": "#275385"
+        },
+        "6": {
+          "fill": "#275385"
+        },
+        "7": {
+          "fill": "#275385"
+        },
+        "8": {
+          "fill": "#275385"
+        },
+        "9": {
+          "fill": "#275385"
+        },
+        "10": {
+          "fill": "#275385"
+        },
+        "11": {
+          "fill": "#275385"
+        },
+        "12": {
+          "fill": "#275385"
+        },
+        "13": {
+          "fill": "#275385"
+        },
+        "14": {
+          "fill": "#275385"
+        },
+        "15": {
+          "fill": "#275385"
+        }
+      }
     }
   }]
 }
