@@ -5,6 +5,7 @@ html {
   height: $html-height !important;
   background: $black2 !important;
   font-size: $body-font-size !important;
+  user-select: none;
 }
 
 body {
@@ -835,4 +836,155 @@ button:focus,
   transform-origin: 50% 0;
 }
 
+/*MENUBOX*/
+.container-fluid img{
+  height:32px;
+  width:32px;
+}
+.container-fluid img:hover{
+  background-color:#ddd;
+}
 
+/*! CSS Used from: http://localhost:8081/external/menu-boxImproved/css/style.css */
+.menu-box{
+  position:absolute;
+  margin:-250px 10px 10px -110px;
+  float:left;
+  font-family:Verdana;
+  font-style:normal;
+  font-weight:normal;
+  z-index:1;
+  -webkit-box-sizing:initial;
+  box-sizing:initial;
+  img{
+    margin-left:auto;
+    margin-right:auto;
+    border:none;
+    display:none;
+    width:auto;
+    height:auto;
+    max-height:100%;
+    max-width:100%;
+  }
+}
+.navg{
+  background-color:$menubox-bg;
+  position:absolute;
+  border:1px solid $menubox-bg;
+  height:25px;
+  top:-30px;
+  left:5px;
+  padding:3px;
+  -moz-box-shadow:$menubox-shadow;
+  -webkit-box-shadow:$menubox-shadow;
+  box-shadow:$menubox-shadow;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+}
+.big-menu-box .navg{
+  width:225px;
+}
+a.thumbview{
+  opacity:0.6;
+  width:20px;
+  height:21px;
+  float:left;
+  cursor:pointer;
+}
+a.single{
+  background:transparent url(http://localhost:8081/external/menu-boxImproved/images/single.png) no-repeat top left;
+}
+a.thumbview:hover{
+  opacity:1.0;
+}
+button.prev,button.next{
+  float:right;
+  width:22px;
+  height:20px;
+  cursor:pointer;
+  opacity:0.6;
+  outline:none;
+  border:none;
+  padding:0;
+}
+button::-moz-focus-inner{
+  border:0;
+}
+button.prev:hover,button.next:hover{
+  opacity:1.0;
+}
+.navg button.disabled{
+  opacity:0.2;
+}
+.navg button.disabled:hover{
+  opacity:0.2;
+}
+a.grid{
+  background:transparent url(../assets/imageFooterBoxMenu/thumbs.png) no-repeat top left;
+}
+button.next{
+  background:transparent url(../assets/imageFooterBoxMenu/arrows.png) no-repeat top left;
+}
+button.prev{
+  background:transparent url(../assets/imageFooterBoxMenu/arrows.png) no-repeat 0px -20px;
+}
+.images div{
+  display:flex;
+  vertical-align:middle;
+  text-align:center;
+  position:relative;
+}
+.big-menu-box .images{
+  padding:10px;
+  background-color:$menubox-bg;
+  border:1px solid $menubox-bg;
+  position:relative;
+  -moz-box-shadow:$menubox-shadow;
+  -webkit-box-shadow:$menubox-shadow;
+  box-shadow:$menubox-shadow;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+}
+.big-menu-box .images{
+  position: relative;
+  overflow: auto;
+  width:222px!important;
+  height:222px!important;
+}
+.big-menu-box .thumbs div{
+  float:left;
+  margin:2px;
+  cursor:pointer;
+  width:106.5px;
+  height:106.5px;
+}
+
+.big-menu-box  input {
+  background: none;
+  color: #636c72;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bolder;
+  font-size: 15px;
+  display: inline-block;
+  width: 92%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #aaa;
+  margin-left: 3%;
+}
+.big-menu-box  input:focus {
+  outline: none; }
+
+.box-img{
+  display: flex;
+  img{
+    display: block;
+  }
+}
+.singleImg{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}

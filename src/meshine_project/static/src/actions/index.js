@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import _ from 'lodash';
 const ROOT_URL = 'http://localhost:8080/api';
 const ROOT_ES_URL = 'http://localhost:8080/search';
 
@@ -21,6 +21,7 @@ export const CREATE_SUMMARY = 'CREATE_SUMMARY';
 export const FETCH_TAG_AUTOCOMPLETE = 'FETCH_TAG_AUTOCOMPLETE';
 export const UPDATE_CATEGORIES = 'UPDATE_CATEGORIES';
 export const UPDATE_SUMMARY = 'UPDATE_SUMMARY';
+export const FETCH_THENOUNPROJECTICON = 'FETCH_THENOUNPROJECTICON';
 
 export function notRequestingAPI(){
 
@@ -161,6 +162,37 @@ export function createSummaryPlayerFile(value, id, callback, callbackError) {
         payload: request
     };
 
+}
+
+export function fetchIconsFromTheNounProject(iconName, callback, callbackError) {
+    //console.log('fetchIconsFromTheNounProject iconName',iconName);
+    const request = axios.get(`${ROOT_URL}/thenounproject/${iconName}/`, iconName)
+        .then((response) => {
+            let icons = JSON.parse(response.data).icons;
+
+            let iconUrls = _.map(icons, (obj) => { return obj.icon_url});
+            let iconSVGs = [];
+
+            let promises = [];
+
+            iconUrls.forEach(function(myUrl){
+                promises.push(axios.get(myUrl))
+            });
+
+            axios.all(promises).then(function(results) {
+                results.forEach(function(response) {
+                    iconSVGs.push(response.data)
+                });
+                callback(iconSVGs);
+            });
+
+        })
+        .catch((error) => callbackError(error.response));
+
+    return{
+        type: FETCH_THENOUNPROJECTICON,
+        payload: request
+    };
 }
 
 

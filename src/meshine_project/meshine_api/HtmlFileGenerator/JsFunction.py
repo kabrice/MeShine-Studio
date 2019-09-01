@@ -1,5 +1,5 @@
 def next_animation_funct(anim_name, anim_id, anim_data):
-    print("dlekdledkl", anim_name);
+    #print("dlekdledkl", anim_name);
     anim_name = anim_name[0].lower() + anim_name.title()[1:].replace("_", "")
     return """,
             complete:  function () {{

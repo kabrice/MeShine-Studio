@@ -1,5 +1,5 @@
 import  React, { Component } from 'react';
-import Profile from "../components/profile";
+import Profile from "../components/Profile";
 import {connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 

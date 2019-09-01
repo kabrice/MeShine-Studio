@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import AnimationPanelItem from '../components/animation_panel_item';
+import AnimationPanelItem from '../components/AnimationPanelItem';
 import {connect } from 'react-redux';
 import {selectAnimation} from "../actions/index";
 import {bindActionCreators} from 'redux';
 import {fetchAnimation} from "../actions/index";
-import TextEditor from '../components/text_editor'
-import Arrangement from '../components/arrangement'
-import AdvancedStyle from '../components/advancedStyle'
+import TextEditor from '../components/TextEditor'
+import Arrangement from '../components/Arrangement'
+import AdvancedStyle from '../components/AdvancedStyle'
 
 /*const AnimationPanel = (props) => {
 

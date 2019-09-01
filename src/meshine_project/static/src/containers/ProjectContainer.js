@@ -4,7 +4,7 @@ import  React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchSummaryByUser} from "../actions/index";
-import ProjectModal from "../components/project-modal"
+import ProjectModal from "../components/ProjectModal"
 
 class ProjectsContainer extends Component{
 

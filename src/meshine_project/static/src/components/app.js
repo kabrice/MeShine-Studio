@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import AnimationPanel from '../containers/animation_panel';
-import AnimationDetail from '../containers/animation-detail';
-import MeFabric from '../components/me_fabric';
-import QuestionTag from '../containers/question_tag';
-import FooterMenu from '../components/footer_menu';
-import Player from '../components/player';
+import AnimationPanel from '../containers/AnimationPanel';
+import AnimationDetail from '../containers/AnimationDetail';
+import MeFabric from './MeFabric';
+import QuestionTag from '../containers/QuestionTag';
+import FooterMenu from './FooterMenu';
+import Player from './Player';
 import {Link} from 'react-router-dom';
 import { Route , withRouter} from 'react-router-dom';
 import {fetchSummary} from "../actions/index";

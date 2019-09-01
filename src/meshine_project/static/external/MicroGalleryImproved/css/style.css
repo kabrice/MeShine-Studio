@@ -13,12 +13,14 @@
     margin-left:auto;
     margin-right:auto;
     border:none;
-    -moz-box-shadow:0px 2px 4px #777;
-    -webkit-box-shadow:0px 2px 4px #777;
-    box-shadow:0px 2px 4px #777;
     display:none;
-    height: auto;
-    width: inherit;
+    /*-moz-box-shadow:0px 2px 4px #777;
+    -webkit-box-shadow:0px 2px 4px #777;
+    box-shadow:0px 2px 4px #777;*/
+    width: auto;
+    height : auto;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .description{
@@ -34,7 +36,7 @@
     box-shadow:1px 1px 5px #aaa;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
-    border-radius:5px;   
+    border-radius:5px;
 }
 .description div{
     margin:12px 5px 5px 5px;
@@ -55,7 +57,7 @@
     box-shadow:1px 1px 5px #aaa;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
-    border-radius:5px;   
+    border-radius:5px;
 }
 .smallGallery .navg,.smallGallery .description{
     width:105px;

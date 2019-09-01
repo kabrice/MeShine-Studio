@@ -21,11 +21,11 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import App from './components/app';
+import App from './components/App';
 import reducers from './reducers';
-import Home from './containers/home';
+import Home from './containers/Home';
 
-import CardContainer from './containers/projects-container';
+import CardContainer from './containers/ProjectContainer';
 
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxPromise));

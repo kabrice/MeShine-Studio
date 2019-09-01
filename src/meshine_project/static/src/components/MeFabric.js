@@ -1,41 +1,33 @@
 import React, {Component} from 'react'
+import _ from 'lodash';
 import {fabric} from 'fabric';
 import {connect} from 'react-redux';
 import {microgallery} from '../../external/MicroGalleryImproved/jquery.microgallery'
 import {createSummaryPlayerFile} from "../actions/index";
-import { Utils } from '../helpers';
+import {Utils} from '../helpers';
+
 //import {fileSaver} from 'file-saver';
 
-class MeFabric extends Component{
+class MeFabric extends Component {
 
     constructor(props) {
         super(props);
     }
-    componentDidMount(){
+
+    componentDidMount() {
         /*************
          * CANVAS INITIALISATION
          ****************/
-        this.copiedObject= null;
+        this.copiedObject = null;
         this.copiedObjects = [];
 
-        fabric.StaticCanvas.prototype.getObjectById  = function(id) {
-            if(!id || typeof id === 'undefined'){
-                return [];
-            }
-            return this._objects.filter(function(o) {
-                return o.id === id;
-            });
-        };
-
-        //console.log('card-container', $('#card-container').width());
         this.canvas = new fabric.Canvas('meCanvas', {
             preserveObjectStacking: true,
-            /*            height: 812,
-                        width: 375,*/
+            hoverCursor: 'pointer',
             height: 1024,
             width: $('#card-container').width(),
-            //backgroundColor: '#1F1F1F'
         });
+
         let boundingRect = new fabric.Rect({
             width: $('#card-container').width(),
             height: 1024,
@@ -66,32 +58,36 @@ class MeFabric extends Component{
         let rect;
         rect = new fabric.Rect({
             fill: 'gray',
-            width: 375,
-            height: 812,
+            width: 463,
+            height: 824,
             evented: false,
             selectable: false,
             id: 'drawingRect'
         });
-        this.rect=rect;
+        this.rect = rect;
         this.initAligningGuidelines(this.canvas);
         this.canvas.zoomToPoint(new fabric.Point(this.canvas.width / 2, this.canvas.height / 2), 1);
         this.canvas.add(boundingRect);
         this.canvas.add(this.rect);
-        this.canvas.centerObject(this.rect); let test="dd";
+        this.canvas.centerObject(this.rect);
+        let test = "dd";
         let data = null;
-        let state = null;
-        this.readTextFile("/assets/data-text3.json", (text) =>{
+        let state = null; // State of the canvas
+        this.readTextFile("/assets/data-text3.json", (text) => {
             data = JSON.parse(text);
+
             /*if(data.version)
                 this.data = data;*/
-
-            if(data.version){
-                this.canvas.loadFromJSON(data, ()=>{state=JSON.stringify(this.canvas)});
-            }else{
+            // here we set the initial state of the canvas
+            if (data.version) {
+                this.canvas.loadFromJSON(data, () => {
+                    state = JSON.stringify(this.canvas.toJSON(['_id', '_boundingRect', '_svg', 'evented', 'selectable', 'hoverCursor']));
+                });
+            } else {
                 //console.log('HHHH', data );
                 this.canvas.add(this.rect);
                 this.canvas.centerObject(this.rect);
-                state=this.canvas;
+                state = this.canvas;
             }
         });
         /**
@@ -100,58 +96,70 @@ class MeFabric extends Component{
         $(document).keydown((e) => {
             this.onKeyDownHandler(e);
         });
-  /*      this.canvas.on({
-            'object:moving': (options) => {
-                console.log('onChange', this.rect);
-                //options.target.setCoords();
-                this.canvas.forEachObject((obj) => {
-                    if (obj === options.target) return;
-                    options.target.set('opacity' ,options.target.intersectsWithObject(this.rect) ? 0.5 : 1);
-                });
-            },
-            'object:scaling': this.onChange(rect),
-            'object:rotating': this.onChange(rect),
-        });*/
-        /**
-         * To delete object(s)
-         */
-        let isEditingText = false;
-        this.canvas.on('text:changed', function(e){
-            isEditingText = true;
-        });
-        $('html').keyup((e) => {
-            if((e.keyCode === 46 || e.keyCode === 8 ) && !isEditingText) {
-                this.deleteSelectedObjectsFromCanvas();
-            }
-            isEditingText = false;
-        });
-        /**
-         * Undo / Redo
-         */
+
+
         // current unsaved state
         //let state = null,
-        let    canvas = this.canvas;
+        let canvas = this.canvas;
         // past states
         let undo = [];
         // reverted states
         let redo = [];
 
-        this.canvas.on('object:modified', function() {
-            //console.log('object:state', state);
+        /**
+         * To delete object(s)
+         */
+        let isEditingText = false;
+        this.canvas.on('text:changed', function () {
+            isEditingText = true;
+        });
+        $(document).keyup(function (e) {
+            if ((e.keyCode === 46 || e.keyCode === 8 ) && !isEditingText) {
+                state = Utils.replay(true, redo, undo, state, canvas);
+                Utils.deleteSelectedObjectsFromCanvas(canvas);
+                //canvas.renderAll();
+            }
+            isEditingText = false;
+        });
+
+
+        this.canvas.on('object:modified', function () {
             ({canvas, redo, state} = Utils.saveCanvas(canvas, state, undo));
         });
 
-        this.canvas = canvas;
-        $(document).keydown(function(e) {
-            if(e.shiftKey && e.which === 90 && e.metaKey){ // redo
-                //console.log('redo state', redo.length, undo.length);
-                state = Utils.replay(redo, undo, state, canvas);
-            }else if( e.which === 90 && e.metaKey){ // undo
-                //console.log('undo state', redo.length, undo.length);
-                state = Utils.replay(undo, redo, state, canvas);
+        /**
+         * Undo / Redo
+         * Select All objects
+         */
+        //this.canvas = canvas;
+        $(document).keydown(function (e) {
+            // Undo/Redo
+            if (e.shiftKey && e.which === 90 && e.metaKey) { // redo
+                //console.log('redo');
+                state = Utils.replay(false, redo, undo, state, canvas);
+            } else if (e.which === 90 && e.metaKey) { // undo
+                //console.log('undo');
+                state = Utils.replay(false, undo, redo, state, canvas);
+            }
+
+            // Select all canvas objects
+            if (e.keyCode === 65) {
+                canvas.discardActiveObject();
+                let objectsToSelect = _.remove(canvas.getObjects(),
+                    obj => (obj._id !== 'boundingRect' && obj._id !== 'drawingRect'));
+                //console.log('getObjects', objectsToSelect);
+                let sel = new fabric.ActiveSelection(objectsToSelect, {
+                    canvas: canvas,
+                });
+                canvas.setActiveObject(sel);
+                canvas.renderAll();
             }
         });
 
+        $(document).on('dblclick', function (e) {
+            console.log('dblclick');
+            canvas.discardActiveObject();
+        });
         /*************
          * TEXT EDITOR MANIPULATION
          ****************/
@@ -163,54 +171,54 @@ class MeFabric extends Component{
         });
         $('#font-size').change((e) => {
             let $this = $(e.currentTarget);
-            this.setTextParam($this.data('type'), $this.val());
+            this.fillObject($this.data('type'), $this.val());
         });
         $('#colorFont').change((e) => {
             //$('#colorFont').trigger();
             let $this = $(e.currentTarget);
             console.log("colorfont", $this.val());
-            this.setTextParam($this.data('type'), $this.val());
+            this.fillObject($this.data('type'), $this.val());
         });
         $('#colorBg').change((e) => {
             let obj = this.canvas.getActiveObject();
             //console.log('obj', obj);
             let $this = $(e.currentTarget);
-            if(!obj.selectionStart && !obj.selectionEnd){
+            if (!obj.selectionStart && !obj.selectionEnd) {
                 obj.selectionStart = 0;
                 obj.selectionEnd = (obj.text).length;
             }
-            obj.setSelectionStyles({textBackgroundColor:$this.val()});
+            obj.setSelectionStyles({textBackgroundColor: $this.val()});
             //obj.textBackgroundColor =$this.val();
             this.canvas.renderAll();
         });
-        $('#colorStroke').on('change',  (e) => {
+        $('#colorStroke').on('change', (e) => {
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
             let objectType = obj.get('type');
             let thickness = parseFloat($('#thickness').val());
-            if(!obj) return;
+            if (!obj) return;
             console.log('stroke', $this.val());
-            switch (objectType){
+            switch (objectType) {
                 case 'i-text':
-                    if((!obj.selectionStart && !obj.selectionEnd) || (obj.selectionStart === (obj.text).length)){
+                    if ((!obj.selectionStart && !obj.selectionEnd) || (obj.selectionStart === (obj.text).length)) {
                         obj.selectionStart = 0;
                         obj.selectionEnd = (obj.text).length;
                     }
-                    obj.setSelectionStyles({strokeWidth: thickness, stroke:$this.val()});
+                    obj.setSelectionStyles({strokeWidth: thickness, stroke: $this.val()});
                     obj.strokeWidth = thickness;
                     break;
                 case 'rect':
                     obj.on({
-                        'scaling': function(e) {
+                        'scaling': function (e) {
                             let obj = this,
                                 w = obj.width * obj.scaleX,
                                 h = obj.height * obj.scaleY;
 
                             obj.set({
-                                'height'     : h,
-                                'width'      : w,
-                                'scaleX'     : 1,
-                                'scaleY'     : 1
+                                'height': h,
+                                'width': w,
+                                'scaleX': 1,
+                                'scaleY': 1
                             });
                         }
                     });
@@ -219,13 +227,13 @@ class MeFabric extends Component{
                     }
 
                     console.log('rect', obj.strokeWidthUnscaled);*/
-                    obj.set({stroke:$this.val(), strokeWidth: thickness});
+                    obj.set({stroke: $this.val(), strokeWidth: thickness});
             }
             obj.stroke = $this.val();
             this.canvas.requestRenderAll();
         });
 
-        $('#colorShadow').on('change',  (e) => {
+        $('#colorShadow').on('change', (e) => {
             let obj = this.canvas.getActiveObject();
             //console.log("HI");
             let $this = $(e.currentTarget);
@@ -234,7 +242,7 @@ class MeFabric extends Component{
                 $('#shadowOffsetX').val(),
                 $('#shadowOffsetY').val());
         });
-        $('#shadowOffsetX').on('change',  (e) => {
+        $('#shadowOffsetX').on('change', (e) => {
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
             this.shadowManagement(obj,
@@ -242,7 +250,7 @@ class MeFabric extends Component{
                 $this.val(),
                 $('#shadowOffsetY').val());
         });
-        $('#shadowOffsetY').on('change',  (e) => {
+        $('#shadowOffsetY').on('change', (e) => {
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
             this.shadowManagement(obj,
@@ -250,7 +258,7 @@ class MeFabric extends Component{
                 $('#shadowOffsetX').val(),
                 $this.val());
         });
-        $('#shadowBlur').on('change',  (e) => {
+        $('#shadowBlur').on('change', (e) => {
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
             this.shadowManagement(obj,
@@ -258,49 +266,49 @@ class MeFabric extends Component{
                 $('#shadowOffsetX').val(),
                 $('#shadowOffsetY').val());
         });
-        $('.colorFont').click((e)=>{
+        $('.colorFont').click((e) => {
             console.log('colorfont class');
             $('#colorFont').trigger('change');
         });
-        $('.colorBg').click((e)=>{
+        $('.colorBg').click((e) => {
             $('#colorBg').trigger('change');
         });
-        $('.colorStroke').click((e)=>{
+        $('.colorStroke').click((e) => {
             $('#colorStroke').trigger('change');
         });
-        $('.color-shadow').click((e)=>{
+        $('.color-shadow').click((e) => {
             $('#colorShadow').trigger('change');
         });
-        $('#shadowIsChecked').click((e)=>{
+        $('#shadowIsChecked').click((e) => {
 
-            let isChecked = $(e.currentTarget).is( ":checked" );
+            let isChecked = $(e.currentTarget).is(":checked");
             let obj = this.canvas.getActiveObject();
 
-            if(isChecked){
+            if (isChecked) {
                 $('#colorShadow').trigger('change');
-            }else{
-                this.shadowManagement(obj,0, 0, 0);
+            } else {
+                this.shadowManagement(obj, 0, 0, 0);
             }
 
         });
 
         /** -- FillsIsChecked on color **/
-        $('#fillsIsChecked').click((e)=>{
-            let isChecked = $(e.currentTarget).is( ":checked" );
+        $('#fillsIsChecked').click((e) => {
+            let isChecked = $(e.currentTarget).is(":checked");
             let obj = this.canvas.getActiveObject();
-            if(!obj) return;
+            if (!obj) return;
             let objectType = obj.get('type');
 
-            if(isChecked){
+            if (isChecked) {
                 $('#colorFont').trigger('change');
-            }else{
-                switch (objectType){
+            } else {
+                switch (objectType) {
                     case 'i-text':
-                        obj.setSelectionStyles({fill:'white'});
+                        obj.setSelectionStyles({fill: 'white'});
                         obj.opacity = 1;
                         break;
                     case 'rect':
-                        obj.set({fill:'red'});
+                        obj.set({fill: 'red'});
                         obj.opacity = 1;
                         this.canvas.renderAll();
                         break;
@@ -310,21 +318,21 @@ class MeFabric extends Component{
             }
 
         });
-        $('#opacity').on('change',  (e) => {
+        $('#opacity').on('change', (e) => {
             $('#colorFont').trigger('change');
         });
         /** -- BordersIsChecked on color **/
-        $('#bordersIsChecked').click((e)=>{
-            let isChecked = $(e.currentTarget).is( ":checked" );
+        $('#bordersIsChecked').click((e) => {
+            let isChecked = $(e.currentTarget).is(":checked");
             let obj = this.canvas.getActiveObject();
-            if(!obj) return;
+            if (!obj) return;
             let objectType = obj.get('type');
 
-            if(isChecked){
+            if (isChecked) {
                 $('#colorStroke').trigger('change');
-            }else{
+            } else {
                 console.log("objectType");
-                switch (objectType){
+                switch (objectType) {
                     case 'i-text':
                         console.log("objectType2");
                         obj.setSelectionStyles({strokeWidth: 0});
@@ -339,7 +347,7 @@ class MeFabric extends Component{
             }
 
         });
-        $('#thickness').on('change',  (e) => {
+        $('#thickness').on('change', (e) => {
             $('#colorStroke').trigger('change');
         });
         let isAlign = true;
@@ -347,35 +355,35 @@ class MeFabric extends Component{
         $('.alignment-btn button').click((e) => {
             let $this = $(e.currentTarget);
 
-            if(previousAlignValue !== $this.data('value')){
+            if (previousAlignValue !== $this.data('value')) {
                 $('.alignment-btn button').removeClass("is-clicked");
                 isAlign = true;
             }
 
-            if(isAlign){
+            if (isAlign) {
                 $this.addClass("is-clicked");
-                this.setTextParam($this.data('type'), $this.data('value'));
+                this.fillObject($this.data('type'), $this.data('value'));
                 isAlign = false;
-            }else{
-                this.setTextParam('textAlign', 'left');
+            } else {
+                this.fillObject('textAlign', 'left');
                 $this.removeClass("is-clicked");
                 isAlign = true;
             }
             previousAlignValue = $this.data('value');
-            //this.setTextParam($this.data('type'), $this.data('value'));
+            //this.fillObject($this.data('type'), $this.data('value'));
         });
         $('#x-axis').change((e) => {
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
-            obj.set('left', groupWidth / 2-obj.getBoundingRect().width/2+parseInt($this.val()));
+            obj.set('left', groupWidth / 2 - obj.getBoundingRect().width / 2 + parseInt($this.val()));
             obj.setCoords();
             this.canvas.renderAll();
         });
         $('#y-axis').change((e) => {
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
-            let pseudoX = (this.canvas.getHeight()-rect.getScaledHeight()+obj.getBoundingRect().height/2)/2;
-            obj.set('top', pseudoX+parseInt($this.val()));
+            let pseudoX = (this.canvas.getHeight() - rect.getScaledHeight() + obj.getBoundingRect().height / 2) / 2;
+            obj.set('top', pseudoX + parseInt($this.val()));
             obj.setCoords();
             this.canvas.renderAll();
         });
@@ -483,14 +491,14 @@ class MeFabric extends Component{
             obj.set('lineHeight', $this.val());
             this.canvas.renderAll();
         });
-        $(document).on("click", ".dropdown-item", (e) =>{
+        $(document).on("click", ".dropdown-item", (e) => {
             let $this = $(e.currentTarget);
             let obj = this.canvas.getActiveObject();
             //console.log("obj", obj.text);
             //obj.text = 'dslds';
-            let text= obj.text;
+            let text = obj.text;
             let dataValue = $this.data('value');
-            switch (dataValue){
+            switch (dataValue) {
                 case '1stLetter':
                     console.log("1stLetter");
                     obj.text = this.capitalizeSentences(text, true);
@@ -515,7 +523,7 @@ class MeFabric extends Component{
                     $('#activeBlendMode').trigger('change');
                     break;
                 default:
-                    this.setTextParam($this.data('type'), $this.text());
+                    this.fillObject($this.data('type'), $this.text());
             }
 
         });
@@ -525,11 +533,11 @@ class MeFabric extends Component{
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
             if (!obj) return;
-            if(!isSup){
+            if (!isSup) {
                 obj.setSuperscript();
                 isSup = true;
                 $this.addClass("is-clicked");
-            }else{
+            } else {
                 obj.setSelectionStyles({
                     fontSize: undefined,
                     deltaY: undefined,
@@ -543,11 +551,11 @@ class MeFabric extends Component{
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
             if (!obj) return;
-            if(!isSub){
+            if (!isSub) {
                 obj.setSubscript();
                 isSub = true;
                 $this.addClass("is-clicked");
-            }else{
+            } else {
                 obj.setSelectionStyles({
                     fontSize: undefined,
                     deltaY: undefined,
@@ -574,10 +582,20 @@ class MeFabric extends Component{
          * C - IMAGES MANIPULATION
          ****************/
         this.$microgallery = null;
+        let myImages = ['../assets/Gallery2/1.JPG',
+            '../assets/Gallery2/10.JPG',
+            '../assets/Gallery2/11.JPG',
+            '../assets/Gallery2/img_0.png',
+            '../assets/Gallery2/paris.png',
+            '../assets/Gallery2/business_woman.png',
+            '../assets/Gallery2/business_man.png'];
+        _.forEach(myImages, function (value) {
+            $('#mG2').append(`<img src="${value}" alt="An image"/>`);
+        });
         $('#image-gallery').click((e) => {
-            if(this.$microgallery !== null){
+            if (this.$microgallery !== null) {
                 $('#multimedia').prepend(this.$microgallery);
-            }else {
+            } else {
                 $("#mG2").microgallery({
                     menu: false,
                     size: 'large',
@@ -587,10 +605,28 @@ class MeFabric extends Component{
             }
             this.selectedColor($(e.currentTarget));
         });
-        $(document).on('click', '.imgg', (e)=>{
-            this.addImage($(e.currentTarget).find('img')[0].src);
+
+        $(document).on('click', '.box-img', (e) => {
+            //this.addImage($(e.currentTarget).find('svg')[0].src);
+            let url = '/assets/triangle.svg';
+            let myString = $(e.currentTarget)[0].innerHTML;
+            //myString = ''
+            //myString = myString.toString(); //Todo
+            //console.log('mystring', myString);
+            fabric.loadSVGFromString(myString, (objects, options) => {
+                //console.log('loadSVGFromURL', objects, options);
+                let loadedObjects = fabric.util.groupSVGElements(objects, options);
+                objects.top = this.cardHeight + this.__addedTextSpace;
+                objects.left = this.cardWidth / 2 + this.__addedTextSpace;
+                /*objects.forEach((o) => {
+                    o.fill = 'red';
+                });*/
+                this.canvas.add(loadedObjects);
+                this.canvas.renderAll();
+
+            });
         });
-        $(document).on("mouseup", (e) =>{
+        $(document).on("mouseup", (e) => {
             e.preventDefault();
             //console.log("Hello");
             let container = $(document).find('.images, .thumbs, .navg');
@@ -606,11 +642,11 @@ class MeFabric extends Component{
             let obj = this.canvas.getActiveObject();
             let $this = $(e.currentTarget);
             if (!obj) return;
-            if(!isSub){
+            if (!isSub) {
                 obj.setSubscript();
                 isSub = true;
                 $this.addClass("is-clicked");
-            }else{
+            } else {
                 obj.setSelectionStyles({
                     fontSize: undefined,
                     deltaY: undefined,
@@ -626,33 +662,33 @@ class MeFabric extends Component{
          */
         this.colorBlend = '';
         this.blendAlpha = '';
-        $('.colorBlend').click((e)=>{
+        $('.colorBlend').click((e) => {
             $('#colorBlend').trigger('change');
         });
-        $('#colorBlend').on('change',  (e) => {
+        $('#colorBlend').on('change', (e) => {
             this.colorBlend = $(e.currentTarget).val();
-            console.log("his.colorBlend",this.colorBlend);
+            console.log("his.colorBlend", this.colorBlend);
             this.applyFilterValue(16, 'color', this.colorBlend);
         });
-        $('#blendAlpha').on('change',  (e) => {
+        $('#blendAlpha').on('change', (e) => {
             this.blendAlpha = $(e.currentTarget).val();
-            console.log("this.blendAlpha",this.blendAlpha);
+            console.log("this.blendAlpha", this.blendAlpha);
             this.applyFilterValue(16, 'alpha', this.blendAlpha);
         });
-        $('#activeBlendMode').on('change',  (e) => {
-            let  activeBlendMode = $(e.currentTarget).val();
-            console.log("activeBlendMode",activeBlendMode);
+        $('#activeBlendMode').on('change', (e) => {
+            let activeBlendMode = $(e.currentTarget).val();
+            console.log("activeBlendMode", activeBlendMode);
             this.applyFilterValue(16, 'mode', activeBlendMode.toLowerCase());
         });
-        $('#blendIsChecked').click((e)=>{
+        $('#blendIsChecked').click((e) => {
 
-            let isChecked = $(e.currentTarget).is( ":checked" );
+            let isChecked = $(e.currentTarget).is(":checked");
             let obj = this.canvas.getActiveObject();
-            if(!obj) return;
+            if (!obj) return;
 
             $('#colorBlend').trigger('change');
             $('#blendAlpha').trigger('change');
-            console.log('blendIsChecked', $('#activeBlendMode').val(), isChecked, this.colorBlend, this.blendAlpha );
+            console.log('blendIsChecked', $('#activeBlendMode').val(), isChecked, this.colorBlend, this.blendAlpha);
             this.applyFilter(16, isChecked && new this.f.BlendColor({
                 color: this.colorBlend,
                 mode: ($('#activeBlendMode').val()).toLowerCase(),
@@ -660,7 +696,7 @@ class MeFabric extends Component{
             }));
         });
 
-        $('#publish').click((e)=>{
+        $('#publish').click((e) => {
             //this.canvas.contextContainer.strokeStyle = 'black';
             /* let obj = this.canvas.getActiveObject();
              obj.clone((clonedObj) =>{
@@ -675,7 +711,7 @@ class MeFabric extends Component{
                  clonedObj && clonedObj.center().setCoords();
                  console.log(this.tempCanvas.toSVG());
              })*/
-            let json = JSON.stringify( this.canvas.toJSON(['id']) );
+            let json = JSON.stringify(this.canvas.toJSON(['_id']));
             console.log(json);
         });
 
@@ -698,10 +734,10 @@ class MeFabric extends Component{
             }
         });
 
-        $('#me-tool').click((e)=>{
+        $('#me-tool').click((e) => {
             let group = [];
             let url = '/assets/triangle.svg';
-            fabric.loadSVGFromURL(url,(objects,options)=> {
+            fabric.loadSVGFromURL(url, (objects, options) => {
 
                 let loadedObjects = fabric.util.groupSVGElements(objects, options);
 
@@ -709,12 +745,12 @@ class MeFabric extends Component{
                     width: 200,
                     height: 200
                 });*/
-                objects.top=0;
-                objects.left=0;
+                objects.top = 0;
+                objects.left = 0;
 
-                objects.forEach((o)=>{
-                    o.globalCompositeOperation='source-atop';
-                })
+                objects.forEach((o) => {
+                    o.globalCompositeOperation = 'source-atop';
+                });
                 console.log('loadSVGFromURL', objects, options);
                 this.canvas.add(loadedObjects);
                 this.canvas.renderAll();
@@ -737,44 +773,48 @@ class MeFabric extends Component{
             let req = elem.requestFullScreen || elem.webkitRequestFullScreen || elem.mozRequestFullScreen;
             req.call(elem);*/
 
-             //let obj = this.canvas.getActiveObject();
+            //let obj = this.canvas.getActiveObject();
 
             let svgVersionObjects = [];
             this.canvas.getObjects().forEach((o) => {
                 let svg = this.objectToSVG(o);
-                if(svg){
+                if (svg) {
                     svg = svg.substring(155);
                 }
-                if(o.id !== 'boundingRect'){
+                if (o._id !== 'boundingRect') {
 
                     svgVersionObjects.push({
-                                            'id': o.id,
-                                            'svg': svg,
-                                            'isText': false,
-                                            'isStatic': false,
-                                            //'animationFam': 'animejs', // common
-                                            'jsonPath': './assets/data1.json',
-                                            //'animType': 1,
-                                            'animation': {'css': 'common', 'html': 'common', 'js':'animejs_popup'},
-                                            'data' : "{'id': '\'+o.id+'\', 'loop': "+false+", 'duration': "+1000+"}",
-                                            'duration': 1,
-                                            'speed': 2.12, //Only for Lottie
-                                            'loop': false,
-                                            'animEntry': 3,
-                                            'zIndex': 4,
-                                            '_boundingRect': o.getBoundingRect(),
-                                            'object': o.toJSON(['id'])
-                                            });
+                        'id': o._id,
+                        'svg': svg,
+                        'isText': false,
+                        'isStatic': false,
+                        //'animationFam': 'animejs', // common
+                        'jsonPath': './assets/data1.json',
+                        //'animType': 1,
+                        'animation': {'css': 'common', 'html': 'common', 'js': 'animejs_popup'},
+                        'data': "{'id': '\'+o.id+'\', 'loop': " + false + ", 'duration': " + 1000 + "}",
+                        'duration': 1,
+                        'speed': 2.12, //Only for Lottie
+                        'loop': false,
+                        'animEntry': 3,
+                        'zIndex': 4,
+                        '_boundingRect': o.getBoundingRect(),
+                        'object': o.toJSON(['_id'])
+                    });
                 }
                 o._boundingRect = o.getBoundingRect();
+                o._svg = svg;
             });
-            let json = JSON.stringify( this.canvas.toJSON(['id', '_boundingRect']) );
+
+            let json = JSON.stringify(this.canvas.toJSON(['_id', '_boundingRect', '_svg', 'evented', 'selectable', 'hoverCursor']));
             console.log("json", json);
             //Todo: Odering svgVersionObjects based on animEntry
-            //console.log('svgVersionObjects', svgVersionObjects);
-            this.props.createSummaryPlayerFile({project_content: json,
-                                                svgs:svgVersionObjects}, 1,
-                (response) =>{
+            console.log('svgVersionObjects', svgVersionObjects);
+            this.props.createSummaryPlayerFile({
+                    project_content: json,
+                    svgs: svgVersionObjects
+                }, 1,
+                (response) => {
                     console.log("GOOD", response);
                 }, (error) => {
 
@@ -793,22 +833,22 @@ class MeFabric extends Component{
         //event.preventDefault();
 
         let key;
-        if(window.event){
+        if (window.event) {
             key = window.event.keyCode;
         }
-        else{
+        else {
             key = event.keyCode;
         }
 
-        switch(key){
+        switch (key) {
             //////////////
             // Shortcuts
             //////////////
             // Copy (Ctrl+C)
             case 67: // Ctrl+C
-                if(this.ableToShortcut()){
+                if (this.ableToShortcut()) {
                     //console.log("deddxxx "+event.metaKey);
-                    if(event.ctrlKey || event.metaKey){
+                    if (event.ctrlKey || event.metaKey) {
                         event.preventDefault();
                         this.copy();
                     }
@@ -816,8 +856,8 @@ class MeFabric extends Component{
                 break;
             // Paste (Ctrl+V)
             case 86: // Ctrl+V
-                if(this.ableToShortcut()){
-                    if(event.ctrlKey || event.metaKey){
+                if (this.ableToShortcut()) {
+                    if (event.ctrlKey || event.metaKey) {
                         event.preventDefault();
                         this.paste();
                     }
@@ -829,18 +869,18 @@ class MeFabric extends Component{
         }
     }
 
-    ableToShortcut(){
+    ableToShortcut() {
         return true;
     }
 
-    copy(){
-        if(this.canvas.getActiveObject()){
+    copy() {
+        if (this.canvas.getActiveObject()) {
             let toBeCopied = this.canvas.getActiveObject();
             let copiedObject = {};
-            toBeCopied.clone(function(clonedObj) {
-                clonedObj.set("top", clonedObj.top+5);
-                clonedObj.set("left", clonedObj.left+5);
-                clonedObj.set("id", toBeCopied.id+'c');
+            toBeCopied.clone(function (clonedObj) {
+                clonedObj.set("top", clonedObj.top + 5);
+                clonedObj.set("left", clonedObj.left + 5);
+                clonedObj.set("_id", toBeCopied._id + 'c');
                 copiedObject = clonedObj;
             });
             this.copiedObject = copiedObject;
@@ -848,26 +888,26 @@ class MeFabric extends Component{
         }
     }
 
-    paste(){
-        if(this.copiedObjects.length > 0){
-            for(let i in this.copiedObjects){
+    paste() {
+        if (this.copiedObjects.length > 0) {
+            for (let i in this.copiedObjects) {
                 //console.log('copiedObjects', i);
                 this.canvas.add(this.copiedObjects[i]);
             }
         }
-        else if(this.copiedObject){
+        else if (this.copiedObject) {
             this.canvas.add(this.copiedObject);
         }
         this.canvas.renderAll();
     }
 
-    /** End : Create and paste objects **/
-    deleteSelectedObjectsFromCanvas(){
+    /** End : Create and paste objects
+     deleteSelectedObjectsFromCanvas(){
         this.canvas.getActiveObjects().forEach((obj) => {
             this.canvas.remove(obj)
         });
         this.canvas.discardActiveObject().renderAll()
-    }
+    } **/
 
     //Temporal function
     readTextFile(file, callback) {
@@ -885,11 +925,11 @@ class MeFabric extends Component{
         rawFile.send(null);
     }
 
-    objectToSVG(o){
+    objectToSVG(o) {
         this.tempCanvas = null;
         //console.log("o", o);
-        o.clone((clonedObj) =>{
-            this.tempCanvas = new   fabric.Canvas('tempCanvas', {
+        o.clone((clonedObj) => {
+            this.tempCanvas = new fabric.Canvas('tempCanvas', {
                 preserveObjectStacking: true,
                 height: 400,
                 width: 400
@@ -900,7 +940,7 @@ class MeFabric extends Component{
             clonedObj && clonedObj.center().setCoords();
 
         });
-        if(!this.tempCanvas) return null;
+        if (!this.tempCanvas) return null;
         return this.tempCanvas.toSVG();
     }
 
@@ -920,11 +960,12 @@ class MeFabric extends Component{
         }
     }
 
-    shadowManagement(obj, c, b, x, y){
-        if(!obj) return;
+    shadowManagement(obj, c, b, x, y) {
+        if (!obj) return;
         obj.setShadow({color: c, blur: b, offsetX: x, offsetY: y});
         this.canvas.requestRenderAll();
     }
+
     capitalizeSentences(capText, capLock) {
 
         if (capLock === 1 || capLock) {
@@ -989,13 +1030,13 @@ class MeFabric extends Component{
             fontFamily: 'Times',
             fontSize: 18,
             fill: 'white',
-            left: this.cardWidth/2+this.__addedTextSpace,
-            top: this.cardHeight+this.__addedTextSpace,
+            left: this.cardWidth / 2 + this.__addedTextSpace,
+            top: this.cardHeight + this.__addedTextSpace,
             originX: 'center',
             originY: 'center',
             fontWeight: 'normal',
             globalCompositeOperation: 'source-atop',
-            id: 'text'+newID,
+            _id: 'text' + newID,
             lockScalingFlip: true,
             lockScalingX: true,
             lockScalingY: true,
@@ -1017,7 +1058,7 @@ class MeFabric extends Component{
         });
         this.canvas.add(text1);*/
         this.canvas.add(text);
-        this.__addedTextSpace = this.__addedTextSpace+10;
+        this.__addedTextSpace = this.__addedTextSpace + 10;
 
         //this.canvas.centerObject(text);
     }
@@ -1029,53 +1070,66 @@ class MeFabric extends Component{
             fill: 'red',
             width: 48,
             height: 32,
-            left: this.cardWidth/2+this.__addedTextSpace,
-            top: this.cardHeight+this.__addedTextSpace,
+            left: this.cardWidth / 2 + this.__addedTextSpace,
+            top: this.cardHeight + this.__addedTextSpace,
             originX: 'center',
             originY: 'center',
             fontWeight: 'normal',
             globalCompositeOperation: 'source-atop',
-            id: 'rect'+newID
+            _id: 'rect' + newID
             //shadow: '#000000 5px 5px 5px'
         });
         this.canvas.add(rect);
-        this.__addedTextSpace = this.__addedTextSpace+10;
+        this.__addedTextSpace = this.__addedTextSpace + 10;
     }
 
-    addImage(src){
+    addImage(src) {
         let newID = (new Date()).getTime().toString().substr(5);
-        console.log(this.cardWidth/2+this.__addedTextSpace);
-        fabric.Image.fromURL(src, (img)=> {
+        console.log(this.cardWidth / 2 + this.__addedTextSpace);
+        fabric.Image.fromURL(src, (img) => {
             let oImg = img.set({
-                left: this.cardWidth/2+this.__addedTextSpace,
-                top: this.cardHeight+this.__addedTextSpace,
+                left: this.cardWidth / 2 + this.__addedTextSpace,
+                top: this.cardHeight + this.__addedTextSpace,
                 originX: 'center',
                 originY: 'center',
                 globalCompositeOperation: 'source-atop',
-                id: 'img'+newID});
+                _id: 'img' + newID
+            });
             this.canvas.add(oImg);
-            this.__addedTextSpace = this.__addedTextSpace+10;
+            this.__addedTextSpace = this.__addedTextSpace + 10;
         });
     }
 
-    setTextParam(param, value) {
+    fillObject(param, value) {
         let obj = this.canvas.getActiveObject();
         let objectType = obj.get('type');
+        console.log('objectType', objectType);
         //if(!obj) return;
         //let f = fabric.Image.filters;
         if (obj || obj.text) {
-            if(!obj.selectionStart && !obj.selectionEnd && objectType !== 'rect'){
+            if (!obj.selectionStart
+                && !obj.selectionEnd
+                && objectType !== 'rect'
+                && objectType !== 'path'
+                && objectType !== 'group') {
                 obj.selectionStart = 0;
                 obj.selectionEnd = (obj.text).length;
             }
             if (param === 'color') {
                 console.log('rect', objectType);
-                switch (objectType){
+                switch (objectType) {
                     case 'i-text':
-                        obj.setSelectionStyles({fill:value});
+                        obj.setSelectionStyles({fill: value});
                         break;
                     case 'rect':
-                        obj.set({fill:value});
+                        obj.set({fill: value});
+                        break;
+                    case 'path':
+                        obj.set({fill: value});
+                        break;
+                    case 'group':
+                        //obj.fill = 'red';
+                        obj.set({fill: 'red'});
                         break;
                 }
 
@@ -1094,18 +1148,18 @@ class MeFabric extends Component{
     }
 
 
-    selectedColor(dom){
+    selectedColor(dom) {
         //let test = dom.parent().parent().parent().parent().find('.row').find('img');
         dom.parent().parent().parent().find('.row').find('img').css('background-color', '');
         //console.log('test', test.html());
         dom.find('img').css('background-color', '#ddd');
     }
 
-    groupOnSelection(canvas){
-        this.canvas.on("selection:updated", function(e) {
+    groupOnSelection(canvas) {
+        this.canvas.on("selection:updated", function (e) {
             let activeObj = e.target;
             //console.log('e.target.type', e.target);
-            if(activeObj.type === "activeSelection") {
+            if (activeObj.type === "activeSelection") {
                 //console.log("Group created");
 
                 let groupWidth = e.target.getScaledWidth();
@@ -1116,7 +1170,7 @@ class MeFabric extends Component{
                     let itemWidth = obj.getBoundingRect().width;
                     let itemHeight = obj.getBoundingRect().height;
 
-                    $('#horizontal-align-left').click((e) =>  {
+                    $('#horizontal-align-left').click((e) => {
                         obj.set({
                             left: -(groupWidth / 2),
                             originX: 'left'
@@ -1126,7 +1180,7 @@ class MeFabric extends Component{
                     });
                     $('#horizontal-align-center').click((e) => {
                         obj.set({
-                            left: (0 - itemWidth/2),
+                            left: (0 - itemWidth / 2),
                             originX: 'left'
                         });
                         obj.setCoords();
@@ -1134,7 +1188,7 @@ class MeFabric extends Component{
                     });
                     $('#horizontal-align-right').click((e) => {
                         obj.set({
-                            left: (groupWidth/2 - itemWidth/2),
+                            left: (groupWidth / 2 - itemWidth / 2),
                             originX: 'center'
                         });
                         obj.setCoords();
@@ -1150,7 +1204,7 @@ class MeFabric extends Component{
                     });
                     $('#vertical-align-center').click((e) => {
                         obj.set({
-                            top: itemHeight/2,
+                            top: itemHeight / 2,
                             originY: 'bottom'
                         });
                         obj.setCoords();
@@ -1169,7 +1223,7 @@ class MeFabric extends Component{
             }
         });
 
-        this.canvas.on("selection:cleared", function(e) {
+        this.canvas.on("selection:cleared", function (e) {
             $('#horizontal-align-left').off('click');
             $('#horizontal-align-center').off('click');
             $('#horizontal-align-right').off('click');
@@ -1190,11 +1244,12 @@ class MeFabric extends Component{
     onChange = (rect) => {
         console.log('onChange', rect);
         //options.target.setCoords();
-        this.canvas.forEachObject(function(obj) {
+        this.canvas.forEachObject(function (obj) {
             if (obj === rect) return;
-            obj.set('opacity' ,rect.intersectsWithObject(obj) ? 0.5 : 1);
+            obj.set('opacity', rect.intersectsWithObject(obj) ? 0.5 : 1);
         });
     }
+
     initAligningGuidelines(canvas) {
 
         let ctx = canvas.getSelectionContext(),
@@ -1226,8 +1281,8 @@ class MeFabric extends Component{
             ctx.lineWidth = aligningLineWidth;
             ctx.strokeStyle = aligningLineColor;
             ctx.beginPath();
-            ctx.moveTo(((x1+viewportTransform[4])*zoom), ((y1+viewportTransform[5])*zoom));
-            ctx.lineTo(((x2+viewportTransform[4])*zoom), ((y2+viewportTransform[5])*zoom));
+            ctx.moveTo(((x1 + viewportTransform[4]) * zoom), ((y1 + viewportTransform[5]) * zoom));
+            ctx.lineTo(((x2 + viewportTransform[4]) * zoom), ((y2 + viewportTransform[5]) * zoom));
             ctx.stroke();
             ctx.restore();
         }
@@ -1251,7 +1306,7 @@ class MeFabric extends Component{
             zoom = canvas.getZoom();
         });
 
-        canvas.on('object:moving', function(e) {
+        canvas.on('object:moving', function (e) {
 
             let activeObject = e.target,
                 canvasObjects = canvas.getObjects(),
@@ -1270,7 +1325,7 @@ class MeFabric extends Component{
             // It should be trivial to DRY this up by encapsulating (repeating) creation of x1, x2, y1, and y2 into functions,
             // but we're not doing it here for perf. reasons -- as this a function that's invoked on every mouse move
 
-            for (let i = canvasObjects.length; i--; ) {
+            for (let i = canvasObjects.length; i--;) {
 
                 if (canvasObjects[i] === activeObject) continue;
 
@@ -1381,27 +1436,28 @@ class MeFabric extends Component{
             }
         });
 
-        canvas.on('before:render', function() {
+        canvas.on('before:render', function () {
             canvas.clearContext(canvas.contextTop);
         });
 
-        canvas.on('after:render', function() {
-            for (let i = verticalLines.length; i--; ) {
+        canvas.on('after:render', function () {
+            for (let i = verticalLines.length; i--;) {
                 drawVerticalLine(verticalLines[i]);
             }
-            for (let i = horizontalLines.length; i--; ) {
+            for (let i = horizontalLines.length; i--;) {
                 drawHorizontalLine(horizontalLines[i]);
             }
 
             verticalLines.length = horizontalLines.length = 0;
         });
 
-        canvas.on('mouse:up', function() {
+        canvas.on('mouse:up', function () {
             verticalLines.length = horizontalLines.length = 0;
             canvas.renderAll();
         });
     }
-    render(){
+
+    render() {
         return <canvas id='meCanvas' ref='meFabric'/>;
 
     }

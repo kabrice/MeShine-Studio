@@ -1,7 +1,7 @@
 import  React, { Component } from 'react';
 import {connect } from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
-import Profile from "../components/profile";
+import Profile from "../components/Profile";
 //import {updateSummary} from "../actions/index";
 
 class QuestionTag extends Component{

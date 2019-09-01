@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import HomeMenu from './home-menu';
-import ProjectsContainer from "./projects-container";
+import HomeMenu from './HomeMenu';
+import ProjectsContainer from "./ProjectContainer";
 import Loader from 'react-loader-advanced';
 import { PulseLoader } from 'react-spinners';
 import {notRequestingAPI} from "../actions/index";

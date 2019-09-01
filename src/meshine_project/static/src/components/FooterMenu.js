@@ -1,16 +1,56 @@
 import  React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import FooterMenuBox from './FooterMenuBox';
 
 export default class FooterMenu extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            showInputForm: false
+            showInputForm: false,
+            visible: false,
+            countFigureIconClicked: 0
+            /*,
+            medias: [ '../assets/Gallery2/1.JPG',
+                '../assets/Gallery2/10.JPG',
+                '../assets/Gallery2/11.JPG',
+                '../assets/Gallery2/img_0.png',
+                '../assets/Gallery2/paris.png',
+                '../assets/Gallery2/business_woman.png',
+                '../assets/Gallery2/business_man.png']*/
         };
     }
-    onClickAction(e) {
-        e.preventDefault();
-        this.setState({ showInputForm: true });
+    componentDidMount() {
+        document.addEventListener('click', this.handleClickOutsideFigure, true);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutsideFigure, true);
+    }
+
+    handleClickOutsideFigure = event => {
+        const domNode = ReactDOM.findDOMNode(this);
+
+        if (!domNode || !domNode.contains(event.target)) {
+            let i = this.state.countFigureIconClicked;
+            this.setState({ countFigureIconClicked: i+1});
+            this.setState({ visible: false});
+        }
+        console.log('visible', this.state.visible);
+    }
+
+    handleClickFigure = () => {
+        this.checkFigureclick();
+    };
+    checkFigureclick(){
+        let i = this.state.countFigureIconClicked;
+        //console.log('iii', this.state.countFigureIconClicked);
+        if(i%2===0){
+            this.setState({ visible: true});
+        }else{
+            this.setState({ visible: false});
+        }
+        this.setState({ countFigureIconClicked: i+1});
     }
     componentDidUpdate() {
         if (this.state.showInputForm) {
@@ -24,7 +64,6 @@ export default class FooterMenu extends Component{
                 <nav className="navbar navbar-toggleable-md navbar-inverse fixed-bottom bg-inverse">
 
                     <div className="navbar navbar-toggleable-md navbar-inverse fixed-bottom bg-inverse">
-
 
                         <div className="container-fluid">
                             <div className="row " >
@@ -53,23 +92,15 @@ export default class FooterMenu extends Component{
                                 </div>
                                 {/*<canvas hidden='hidden' id='tempCanvas'/>*/}
                                 <div className="col" id="multimedia">
-                                    <div id="mG2" className="microGallery">
-                                        <img src="../assets/Gallery2/1.JPG" alt="A beautiful red flower"/>
-                                        <img src="../assets/Gallery2/10.JPG" alt="A fly"/>
-                                        <img src="../assets/Gallery2/11.JPG" alt="Jummy!"/>
-                                        <img src="../assets/Gallery2/img_0.png" alt="The moon"/>
-                                        <img src="../assets/Gallery2/paris.png" alt="The moon"/>
-                                        <img src="../assets/Gallery2/pyongyang.png" alt="The moon"/>
-                                        <img src="../assets/Gallery2/business_woman.png" alt="The moon"/>
-                                        <img src="../assets/Gallery2/business_man.png" alt="The moon"/>
-                                        <img src="../assets/Gallery2/mic_holding.png" alt="The moon"/>
-                                    </div>
+                                    <div id="mG2" className="microGallery"/>
                                     <div className="row">
                                         <div id="image-gallery" className="col-md-4 col-sm-12 col-12">
                                             <img src="../assets/image_gallery.svg" title="Choisir une image et ajouter à ce Summary"/></div>
                                         <div id="audio-gallery" className="col-md-4 col-sm-12 col-12">
                                             <img src="../assets/audio_gallery.svg" title="Choisir une piste et ajouter à ce Summary"/></div>
                                         <div id="video-gallery" className="col-md-4 col-sm-12 col-12">
+                                            <FooterMenuBox type={"medias"}
+                                                           onClick={this.handleClickOutsideFigure}/>
                                             <img src="../assets/video_gallery.svg" title="Choisir une vidéo et ajouter à ce Summary"/>
                                         </div>
                                     </div>
@@ -82,8 +113,14 @@ export default class FooterMenu extends Component{
                                             <img src="../assets/diagram.svg" title="Choisir un graphique à ajouter"/></div>*/}
                                         <div id="add-rectbg" className="col-md-3 col-sm-6 col-12">
                                             <img src="../assets/text_bg.svg" title="Make the text background more attractive"/></div>
+                                        {/*<div id="mG3" className="microGallery"/>*/}
                                         <div id="figure" className="col-md-3 col-sm-6 col-12" >
-                                            <img src="../assets/figure.svg" title="Choisir une forme ou une ligne"/></div>
+                                            <div style={ { display: this.state.visible ? 'block' : 'none' } }  >
+                                            <FooterMenuBox type={"figure"}
+                                                           onClick={this.handleClickOutsideFigure}/></div>
+                                            <img src="../assets/figure.svg"
+                                                 onClick={this.handleClickFigure}
+                                                 title="Choisir une forme ou une ligne"/></div>
                                     </div>
                                 </div>
                                 <div className="col" id="magic">
