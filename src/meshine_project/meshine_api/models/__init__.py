@@ -11,6 +11,8 @@ from .question_summary import QuestionSummary
 from .category import Category
 from .tag_category import TagCategory
 from .typeface import TypeFace
+from .file import File
+from .file_type import FileType
 
 __all__ = (
     'Animation',
@@ -25,5 +27,7 @@ __all__ = (
     'QuestionSummary',
     'Category',
     'TagCategory',
-    'TypeFace'
+    'TypeFace',
+    'File',
+    'FileType'
 )

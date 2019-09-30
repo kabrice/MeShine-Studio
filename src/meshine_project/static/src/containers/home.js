@@ -16,7 +16,6 @@ class Home extends Component{
     }
 
     componentDidMount(){
-
         this.props.notRequestingAPI();
     }
 

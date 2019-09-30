@@ -16,4 +16,6 @@ admin.site.register(models.Question)
 admin.site.register(models.QuestionSummary)
 admin.site.register(models.TagCategory)
 admin.site.register(models.TypeFace)
+admin.site.register(models.File)
+admin.site.register(models.FileType)
 

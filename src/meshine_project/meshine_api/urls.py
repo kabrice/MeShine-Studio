@@ -24,6 +24,7 @@ urlpatterns= [
     path('category/', views.CategoryViewSet.as_view()),
     path('summary/<int:pk>/', views.SummaryView.as_view()),
     path('thenounproject/<slug:icon_name>/', views.TheNounProjectIcons.as_view()),
+    path('file/<int:pk>/', views.FileViewSet.as_view()),
     path('userProfileSummary/<int:id>/', views.UserProfileSummaryViewSet.as_view()),
     path('', include(router.urls))
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

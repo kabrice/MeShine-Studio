@@ -12,14 +12,15 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.core import serializers as djangoserializers
 
 from .WebMetaDataGenerator.WebMetaDataGenerator import WebMetaDataGenerator
 from .HtmlFileGenerator.HtmlFileGenerator import HtmlFileGenerator
 from . import serializers, models, permissions
-from .models import Summary, Category, Tag, TagCategory, Question, QuestionSummary
+from .models import Summary, Category, Tag, TagCategory, Question, QuestionSummary, FileType, UserProfile
 from requests_oauthlib import OAuth1
-
+from django.core.files.base import ContentFile
+import re, base64
+from django.db import transaction
 # Summary level validations
 URL_LEVEL = 1
 TAG_LEVEL = 2
@@ -492,6 +493,7 @@ class UserProfileSummaryViewSet(generics.ListAPIView):
         This view should return a list of all the summary
         for the currently authenticated user.
         """
+        print('0000####', self.kwargs)
         id = self.kwargs['id']
         return models.UserProfileSummary.objects.filter(user_profile__id=id)
 
@@ -626,4 +628,39 @@ class TheNounProjectIcons(APIView):
         endpoint = "http://api.thenounproject.com/icons/" + icon_name + "?limit_to_public_domain=100&limit=100"
         response = requests.get(endpoint, auth=AUTH)
         return Response(response.content, status=status.HTTP_200_OK)
+
+
+class FileViewSet(APIView):
+    authentication_classes = (TokenAuthentication,)
+    file_serializer = serializers.FileSerializer
+    permission_classes = [permissions.UpdateOwnProfile]
+
+    def get(self,request, pk):
+
+        user = UserProfile.objects.get(pk=pk)
+        files = models.File.objects.filter(owner=user)
+        serializer = serializers.FileSerializer(files, many=True)
+        #print('============== ', files)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+
+        user = UserProfile.objects.get(pk=pk)
+        with transaction.atomic():
+            for req in request.data["fileList"]:
+                codec = req["file"]
+                base64_data = re.sub('^data:.+;base64,', '', codec)
+                base64_data += '=' * (-len(base64_data) % 4)
+                byte_data = base64.b64decode(base64_data)
+                data = ContentFile(byte_data, name=req["name"])
+                file_type = FileType.objects.get(name=req["fileType"].title())
+                file = models.File(content=data, owner=user, file_type=file_type)
+                file.save()
+
+        files = models.File.objects.filter(owner=user)
+        serializer = serializers.FileSerializer(files, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 

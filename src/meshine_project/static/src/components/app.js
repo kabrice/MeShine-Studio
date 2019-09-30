@@ -9,11 +9,19 @@ import FooterMenu from './FooterMenu';
 import Player from './Player';
 import {Link} from 'react-router-dom';
 import { Route , withRouter} from 'react-router-dom';
-import {fetchSummary} from "../actions/index";
+import {fetchSummary, notRequestingAPI} from "../actions/index";
+import Loader from 'react-loader-advanced';
+import { PulseLoader } from 'react-spinners';
 
 class App extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true
+        }
+    }
     componentDidMount(){
+        this.props.notRequestingAPI();
         const {id} = this.props.match.params;
         this.props.fetchSummary(id);
     }
@@ -24,9 +32,26 @@ class App extends Component {
 
         console.log("summary", summary);
 
+        const style = {
+            spinnerStyle: {
+                "display": "flex ",
+                "justifyContent": "center ",
+                "alignItems": "center ",
+                "width": "100% "
+            }
+        };
+        const spinner =   <div style={style.spinnerStyle}>
+                            <PulseLoader color={'#FFFFFF'} loading={this.state.loading}/>
+                          </div>;
+        let requesting = this.props.requestingAPI.isRequestingAPI;
+        if(requesting === undefined) {
+            requesting = false;
+        }
+        console.log("requesting App", requesting);
+
         return (
 
-            <React.Fragment>
+            <Loader show={requesting} message={spinner}>
                 <header>
                     <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse ">
                         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -54,7 +79,7 @@ class App extends Component {
                 </main>
                 <Player/>
                 <FooterMenu/>
-            </React.Fragment>)
+            </Loader>)
 
         ;
     }
@@ -62,13 +87,14 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-    return {summary: state.summary};
+    return {summary: state.summary,
+            requestingAPI: state.requestingAPI};
 }
 
 export default withRouter(reduxForm({
     form: 'NewSummaryProjectForm'
 })(
-    connect(mapStateToProps, {fetchSummary})(App)
+    connect(mapStateToProps, {fetchSummary, notRequestingAPI})(App)
 ));
 
 //export default withRouter(App);

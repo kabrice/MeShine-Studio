@@ -22,16 +22,19 @@ export const FETCH_TAG_AUTOCOMPLETE = 'FETCH_TAG_AUTOCOMPLETE';
 export const UPDATE_CATEGORIES = 'UPDATE_CATEGORIES';
 export const UPDATE_SUMMARY = 'UPDATE_SUMMARY';
 export const FETCH_THENOUNPROJECTICON = 'FETCH_THENOUNPROJECTICON';
+export const CREATE_MEDIA_URL = 'CREATE_MEDIA_URL';
+export const FETCH_USER_FILE = 'FETCH_USER_FILE';
 
 export function notRequestingAPI(){
-
+    $('html').css({"pointerEvents": "auto", "cursor": "auto"});
     return {
         type: 'IS_NOT_REQUESTING_API',
     };
 }
 
 export function requestingAPI(){
-
+    console.log('pointer events');
+    $('html').css({"pointerEvents": "none", "cursor": "wait"});
     return {
         type: 'IS_REQUESTING_API',
     };
@@ -191,6 +194,28 @@ export function fetchIconsFromTheNounProject(iconName, callback, callbackError) 
 
     return{
         type: FETCH_THENOUNPROJECTICON,
+        payload: request
+    };
+}
+
+export function createMediaURL(value, id, callback, callbackError) {
+    const request = axios.put(`${ROOT_URL}/file/${id}/`, value)
+        .then((response) => callback(response))
+        .catch((error) => callbackError(error.response));
+
+    return{
+        type: CREATE_MEDIA_URL,
+        payload: request
+    };
+
+}
+
+export function fetchUserImages(user_id) {
+
+    const request = axios.get(`${ROOT_URL}/file/${user_id}/`);
+
+    return{
+        type: FETCH_USER_FILE,
         payload: request
     };
 }

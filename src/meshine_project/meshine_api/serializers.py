@@ -114,5 +114,14 @@ class TypeFaceSerializer(serializers.ModelSerializer):
         model = models.TypeFace
         fields = ('id', 'name')
 
+class FileSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = models.File
+        fields = '__all__'
 
+class FileTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.FileType
+        fields = '__all__'

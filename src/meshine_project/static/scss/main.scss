@@ -955,10 +955,10 @@ button.prev{
 }
 .big-menu-box .thumbs div{
   float:left;
-  margin:2px;
+  margin:3px;
   cursor:pointer;
-  width:106.5px;
-  height:106.5px;
+  width:103px;
+  height:103px;
 }
 
 .big-menu-box  input {
@@ -987,4 +987,72 @@ button.prev{
   display: flex;
   align-items: center;
   justify-content:center;
+}
+
+.fmb-menu{
+  height: 30px !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: -5px !important;
+
+  .left-btn,
+  .middle-btn,
+  .right-btn{
+    margin: unset!important;
+    height: 70%!important;
+    display: flex!important;
+    justify-content: center!important;
+    flex-direction: column!important;
+    background-color: darkgrey;
+    color: white;
+    font-size: 12px;
+  }
+  .left-btn{
+    border-right: 1px solid gray;
+    border-bottom-left-radius:0.2rem!important;
+    border-top-left-radius:0.2rem!important;
+  }
+  .middle-btn{
+    border-right: 1px solid gray;
+  }
+  .right-btn{
+    border-right: 1px solid gray;
+    border-bottom-right-radius:0.2rem!important;
+    border-top-right-radius:0.2rem!important;
+  }
+}
+
+.fmb-menu .left-btn:hover,
+.fmb-menu .middle-btn:hover,
+.fmb-menu .right-btn:hover{
+  background-color: #353738;
+  color: whitesmoke;
+}
+
+.thumbs .add-media{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centering y-axis */
+  align-items :center; /* Centering x-axis */
+  border: 1px solid darkgrey;
+  margin: 2px 6px 2px 0 !important;
+  padding: 0!important;
+  border-radius: 5px;
+  fill: grey!important;
+  width: 102px!important;
+  height: 100px!important;
+}
+.thumbs .medias-container{
+  display: inline-block !important;
+  width: inherit !important;
+  margin-left: 3px !important;
+}
+.thumbs .add-media p{
+  font-size: 12px;
+  color: grey;
+  font-weight: bold;
+  padding-right: 10px;
+  margin:0;
 }
