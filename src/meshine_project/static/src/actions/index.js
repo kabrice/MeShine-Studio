@@ -210,7 +210,7 @@ export function createMediaURL(value, id, callback, callbackError) {
 
 }
 
-export function fetchUserImages(user_id) {
+export function fetchUserMedia(user_id) {
 
     const request = axios.get(`${ROOT_URL}/file/${user_id}/`);
 

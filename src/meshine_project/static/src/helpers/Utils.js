@@ -21,7 +21,7 @@ function saveCanvas(canvas, state, undo) {
 /**
  * Save the current state in the redo stack, reset to a state in the undo stack, and enable the buttons accordingly.
  * Or, do the opposite (redo vs. undo)
- * @param isDelete : an action to check if we're deleting an object or not
+ * @param isDelete : boolean action to check if we're deleting an object or not
  * @param playStack which stack to get the last state from and to then render the canvas as
  * @param saveStack which stack to push current state into
  * @param state which is current unsaved state of the canvas.
@@ -33,7 +33,10 @@ function replay(isDelete, playStack, saveStack, state, canvas) {
         saveStack.push(state);
         state = playStack.pop();
         //canvas.clear();
-        canvas.loadFromJSON(state,isDelete, function() {
+    console.log('isDelete', isDelete);
+    //console.log('statexxx', playStack);
+        canvas.loadFromJSON(state,()=>{return isDelete}, function() {
+            console.log('isDelete1', isDelete);
             console.log('state', state);
             if(!isDelete)
             canvas.renderAll();
@@ -51,9 +54,28 @@ function deleteSelectedObjectsFromCanvas(canvas){
     });
     canvas.discardActiveObject().renderAll()
 }
+
+/**
+ *
+ * @param url
+ * @returns {Element}
+ */
+function getVideoElement(url) {
+    let videoE = document.createElement('video');
+    videoE.width = 530;
+    videoE.height = 298;
+    videoE.muted = true;
+    videoE.crossOrigin = "anonymous";
+    let source = document.createElement('source');
+    source.src = url;
+    source.type = 'video/mp4';
+    videoE.appendChild(source);
+    return videoE;
+}
 // Now you have to export each function you want
 export {
     saveCanvas,
     replay,
-    deleteSelectedObjectsFromCanvas
+    deleteSelectedObjectsFromCanvas,
+    getVideoElement
 };

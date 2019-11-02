@@ -3,9 +3,10 @@ class CssFunction:
         self.drawing_top = drawing_top
         self.drawing_left = drawing_left
         self.alpha = alpha
+        print('alpha', alpha)
 
     def common(self, item):
-
+        # print('item', item)
         for_dynamic_text, for_dynamic_text_letter = '', ''
         display = "none"
 
@@ -64,8 +65,8 @@ class CssFunction:
             position: inherit;{}
             }}
         {}""".format(item["id"],
-                     (item["_boundingRect"]["top"] - self.drawing_top)*self.alpha,
-                     (item["_boundingRect"]["left"] - self.drawing_left)*self.alpha,
+                     (item["_boundingRect"]["top"] - self.drawing_top) * self.alpha,
+                     (item["_boundingRect"]["left"] - self.drawing_left) * self.alpha,
                      item["zIndex"],
                      display,
                      for_dynamic_text,

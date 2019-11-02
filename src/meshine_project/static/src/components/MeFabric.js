@@ -7,7 +7,9 @@ import {createSummaryPlayerFile} from "../actions/index";
 import {Utils} from '../helpers';
 
 //import {fileSaver} from 'file-saver';
-
+/**
+ * *****************VERY VERY IMPORTANT: Check if the object Id is well generated before generating the json file
+ */
 class MeFabric extends Component {
 
     constructor(props) {
@@ -32,7 +34,7 @@ class MeFabric extends Component {
             width: $('#card-container').width(),
             height: 1024,
             opacity: '0.6',
-            fill: '#1F1F1F',
+            fill: 'white',
             lockMovementX: true,
             lockMovementY: true,
             lockRotation: true,
@@ -42,7 +44,7 @@ class MeFabric extends Component {
             hasControls: false,
             hasRotatingPoint: false,
             selectable: false,
-            id: 'boundingRect'
+            _id: 'boundingRect'
         });
         fabric.Object.prototype.set({
             cornerStyle: 'circle',
@@ -62,7 +64,7 @@ class MeFabric extends Component {
             height: 824,
             evented: false,
             selectable: false,
-            id: 'drawingRect'
+            _id: 'drawingRect'
         });
         this.rect = rect;
         this.initAligningGuidelines(this.canvas);
@@ -70,10 +72,13 @@ class MeFabric extends Component {
         this.canvas.add(boundingRect);
         this.canvas.add(this.rect);
         this.canvas.centerObject(this.rect);
+        this.idGenerator = new this.IDGenerator();
+        //console.log('this.idGenerator ', this.idGenerator.generate());
         let test = "dd";
         let data = null;
         let state = null; // State of the canvas
-        this.readTextFile("/assets/data-text3.json", (text) => {
+        //this.canvas = null;
+        this.readTextFile("/assets/data-text4.json", (text) => {
             data = JSON.parse(text);
 
             /*if(data.version)
@@ -82,14 +87,43 @@ class MeFabric extends Component {
             if (data.version) {
                 this.canvas.loadFromJSON(data, () => {
                     state = JSON.stringify(this.canvas.toJSON(['_id', '_boundingRect', '_svg', 'evented', 'selectable', 'hoverCursor']));
+                    //console.log('this.canvas ', this.canvas.getObjects());
+                    this.canvas.getObjects().forEach(function(o){
+                        //this.canvas.remove(o);
+                    });
+                    //
+                    this.canvas.setDimensions({ width: $('#card-container').width(), height: 1024 });
+                    let ratio = $('#card-container').width()/1100;
+                    this.canvas.setZoom(ratio);
+
+                    this.canvas.renderAll();
                 });
+                console.log('canvas width', $('#card-container').width());
+               // this.canvas.width = ('#card-container').wi$dth();
+
+                this.canvas.renderAll();
+                //console.log('this.canvas ', this.canvas.getObjects());
             } else {
-                //console.log('HHHH', data );
+                console.log('HHHH');
                 this.canvas.add(this.rect);
                 this.canvas.centerObject(this.rect);
                 state = this.canvas;
             }
         });
+
+        /**
+         * Todo: creating a button for this afterward
+         * Rect drawing background
+         */
+        fabric.util.loadImage('../assets/I-lift-my-hands-Hillsong.mp4',  (img) => {
+            (this.rect).setPatternFill({
+                source: img,
+                repeat: 'repeat'
+            });
+
+            this.canvas.renderAll();
+        });
+
         /**
          * To Copy and Paste object(s)
          */
@@ -122,9 +156,11 @@ class MeFabric extends Component {
             isEditingText = false;
         });
 
-
+        // Todo: Manage object:removed later as it deletes sometimes awkwardly
         this.canvas.on('object:modified', function () {
+            console.log('state modified', state);
             ({canvas, redo, state} = Utils.saveCanvas(canvas, state, undo));
+            console.log('redo modified', redo);
         });
 
         /**
@@ -135,17 +171,18 @@ class MeFabric extends Component {
         $(document).keydown(function (e) {
             // Undo/Redo
             if (e.shiftKey && e.which === 90 && e.metaKey) { // redo
-                //console.log('redo');
+                console.log('redo');
                 state = Utils.replay(false, redo, undo, state, canvas);
+                console.log('redo', state);
             } else if (e.which === 90 && e.metaKey) { // undo
-                //console.log('undo');
+                console.log('undo');
                 state = Utils.replay(false, undo, redo, state, canvas);
             }
 
             // Select all canvas objects
-            if (e.keyCode === 65) {
+            if ((e.ctrlKey || e.metaKey) && e.keyCode === 65) {
                 canvas.discardActiveObject();
-                let objectsToSelect = _.remove(canvas.getObjects(),
+                let objectsToSelect = _.remove(canvas.getObjects().slice(2),
                     obj => (obj._id !== 'boundingRect' && obj._id !== 'drawingRect'));
                 //console.log('getObjects', objectsToSelect);
                 let sel = new fabric.ActiveSelection(objectsToSelect, {
@@ -156,9 +193,11 @@ class MeFabric extends Component {
             }
         });
 
+        // Think to another methode cause this one will discard active object
+        // whenever we would to edit this prior
         $(document).on('dblclick', function (e) {
-            console.log('dblclick');
-            canvas.discardActiveObject();
+            //console.log('dblclick');
+            //canvas.discardActiveObject();
         });
         /*************
          * TEXT EDITOR MANIPULATION
@@ -171,12 +210,13 @@ class MeFabric extends Component {
         });
         $('#font-size').change((e) => {
             let $this = $(e.currentTarget);
+            //console.log('$this', $this);
+            console.log("colorfont", this.canvas.getActiveObject());
             this.fillObject($this.data('type'), $this.val());
         });
         $('#colorFont').change((e) => {
             //$('#colorFont').trigger();
             let $this = $(e.currentTarget);
-            console.log("colorfont", $this.val());
             this.fillObject($this.data('type'), $this.val());
         });
         $('#colorBg').change((e) => {
@@ -606,25 +646,33 @@ class MeFabric extends Component {
             this.selectedColor($(e.currentTarget));
         });
 
-        $(document).on('click', '.box-img', (e) => {
+        $(document).on('click focus', '.box-img', (e) => {
             //this.addImage($(e.currentTarget).find('svg')[0].src);
-            let url = '/assets/triangle.svg';
+            //let url = '/assets/triangle.svg';
             let myString = $(e.currentTarget)[0].innerHTML;
             //myString = ''
             //myString = myString.toString(); //Todo
-            //console.log('mystring', myString);
-            fabric.loadSVGFromString(myString, (objects, options) => {
-                //console.log('loadSVGFromURL', objects, options);
-                let loadedObjects = fabric.util.groupSVGElements(objects, options);
-                objects.top = this.cardHeight + this.__addedTextSpace;
-                objects.left = this.cardWidth / 2 + this.__addedTextSpace;
-                /*objects.forEach((o) => {
-                    o.fill = 'red';
-                });*/
-                this.canvas.add(loadedObjects);
-                this.canvas.renderAll();
-
-            });
+            let mySrc = $(e.currentTarget)[0].children[0].currentSrc;
+            if(mySrc){
+                console.log('mySrc', mySrc.substr(-3));
+                if(mySrc.substr(-3) === 'mp4'){
+                    this.addVideo(this, mySrc);
+                }else{
+                    this.addImage(mySrc);
+                }
+            }else{
+                fabric.loadSVGFromString(myString, (objects, options) => {
+                    let loadedObjects = fabric.util.groupSVGElements(objects, options);
+                    objects.top = this.cardHeight + this.__addedTextSpace;
+                    objects.left = this.cardWidth / 2 + this.__addedTextSpace;
+                    this.canvas.add(loadedObjects).renderAll();
+                    let newID = this.idGenerator.generate();
+                    let n = this.canvas.getObjects().length;
+                    this.canvas.getObjects()[n-1]._id = 'svg'+newID;
+                    this.canvas.getObjects()[n-1].globalCompositeOperation = 'source-atop';
+                    //console.log('new Object', this.canvas.getObjects()[n-1]);
+                });
+            }
         });
         $(document).on("mouseup", (e) => {
             e.preventDefault();
@@ -736,6 +784,7 @@ class MeFabric extends Component {
 
         $('#me-tool').click((e) => {
             let group = [];
+
             let url = '/assets/triangle.svg';
             fabric.loadSVGFromURL(url, (objects, options) => {
 
@@ -776,13 +825,18 @@ class MeFabric extends Component {
             //let obj = this.canvas.getActiveObject();
 
             let svgVersionObjects = [];
+            //console.log('this.canvas.getObjects()', this.canvas.getObjects());
+            //let i = 0; // Temporary variable to manage the unicity of the id. Get to have an eye on it in the future
             this.canvas.getObjects().forEach((o) => {
+                //i++;
                 let svg = this.objectToSVG(o);
                 if (svg) {
                     svg = svg.substring(155);
                 }
+               // console.log('Hello', o._id);
                 if (o._id !== 'boundingRect') {
 
+                    //console.log('iiiii', i);
                     svgVersionObjects.push({
                         'id': o._id,
                         'svg': svg,
@@ -792,7 +846,7 @@ class MeFabric extends Component {
                         'jsonPath': './assets/data1.json',
                         //'animType': 1,
                         'animation': {'css': 'common', 'html': 'common', 'js': 'animejs_popup'},
-                        'data': "{'id': '\'+o.id+'\', 'loop': " + false + ", 'duration': " + 1000 + "}",
+                        'data': "{'id': '"+o._id+"', 'loop': " + false + ", 'duration': " + 1000 + "}",
                         'duration': 1,
                         'speed': 2.12, //Only for Lottie
                         'loop': false,
@@ -827,18 +881,38 @@ class MeFabric extends Component {
      * FUNCTIONS
      ****************/
 
+    /** ID Generator **/
+
+     IDGenerator() {
+        //Todo : Put all those number in an array, and check if it's already existed when generating one
+		 this.length = 8;
+		 this.timestamp = +new Date;
+
+        let _getRandomInt = function( min, max ) {
+			return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+		 }
+
+		 this.generate = function() {
+			 let ts = this.timestamp.toString();
+             let parts = ts.split( "" ).reverse();
+             let id = "";
+
+			 for( let i = 0; i < this.length; ++i ) {
+			     let index = _getRandomInt( 0, parts.length - 1 );
+				id += parts[index];
+			 }
+
+			 return id;
+		 }
+
+	 }
+
     /** Start: Create and paste objects **/
 
     onKeyDownHandler(event) {
         //event.preventDefault();
 
-        let key;
-        if (window.event) {
-            key = window.event.keyCode;
-        }
-        else {
-            key = event.keyCode;
-        }
+        let key = event.keyCode;
 
         switch (key) {
             //////////////
@@ -876,26 +950,40 @@ class MeFabric extends Component {
     copy() {
         if (this.canvas.getActiveObject()) {
             let toBeCopied = this.canvas.getActiveObject();
-            let copiedObject = {};
-            toBeCopied.clone(function (clonedObj) {
-                clonedObj.set("top", clonedObj.top + 5);
-                clonedObj.set("left", clonedObj.left + 5);
-                clonedObj.set("_id", toBeCopied._id + 'c');
-                copiedObject = clonedObj;
-            });
-            this.copiedObject = copiedObject;
-            this.copiedObjects = [];
+            toBeCopied.clone( (clonedObj) => {
+                let copiedId = '', id = '';
+                if(clonedObj.type !== 'activeSelection'){
+                    copiedId = toBeCopied._id;
+                    id = copiedId.replace(/\d+/g, '') + this.idGenerator.generate();
+                    clonedObj.set("_id", id + 'c');
+                    clonedObj.set("top", clonedObj.top + 5);
+                    clonedObj.set("left", clonedObj.left + 5);
+                }else{
+                    (clonedObj.getObjects()).forEach((o) =>{
+                        copiedId = o._id;
+                        id = copiedId.replace(/\d+/g, '') + this.idGenerator.generate();
+                        o.set("_id", id + 'c');
+                        o.set("top", o.top + 5);
+                        o.set("left", o.left + 5);
+                    });
+                }
+
+                this.copiedObject = clonedObj;
+            }, ['_id', 'type']);
         }
     }
 
     paste() {
-        if (this.copiedObjects.length > 0) {
-            for (let i in this.copiedObjects) {
-                //console.log('copiedObjects', i);
-                this.canvas.add(this.copiedObjects[i]);
-            }
-        }
-        else if (this.copiedObject) {
+        if (this.copiedObject.type === 'activeSelection') {
+            this.canvas.discardActiveObject();
+            this.copiedObject.canvas = this.canvas;
+            this.copiedObject.forEachObject( (obj) => {
+                    this.canvas.add(obj);
+                });
+            this.copiedObject.setCoords();
+            this.canvas.setActiveObject(this.copiedObject);
+
+        }else {
             this.canvas.add(this.copiedObject);
         }
         this.canvas.renderAll();
@@ -1024,8 +1112,7 @@ class MeFabric extends Component {
     }
 
     addText() {
-
-        let newID = (new Date()).getTime().toString().substr(5);
+        let newID = this.idGenerator.generate();
         let text = new fabric.IText('Text', {
             fontFamily: 'Times',
             fontSize: 18,
@@ -1064,7 +1151,7 @@ class MeFabric extends Component {
     }
 
     addRectangle() {
-        let newID = (new Date()).getTime().toString().substr(5);
+        let newID = this.idGenerator.generate();
 
         let rect = new fabric.Rect({
             fill: 'red',
@@ -1084,7 +1171,7 @@ class MeFabric extends Component {
     }
 
     addImage(src) {
-        let newID = (new Date()).getTime().toString().substr(5);
+        let newID = this.idGenerator.generate();
         console.log(this.cardWidth / 2 + this.__addedTextSpace);
         fabric.Image.fromURL(src, (img) => {
             let oImg = img.set({
@@ -1099,14 +1186,33 @@ class MeFabric extends Component {
             this.__addedTextSpace = this.__addedTextSpace + 10;
         });
     }
+    addVideo(x, src){
+        console.log('src', src);
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        let videoE = Utils.getVideoElement(proxyurl+src);
+        let myVideo = new fabric.Image(videoE, {left: 0,   top: 0}, null, {
+            crossOrigin: 'Anonymous'
+        });
+        x.canvas.add(myVideo);
+
+        myVideo.getElement().play();
+        fabric.util.requestAnimFrame(function render() {
+            x.canvas.renderAll();
+            let newID = x.idGenerator.generate();
+            let n = x.canvas.getObjects().length;
+            x.canvas.getObjects()[n-1]._id = 'video'+newID;
+            fabric.util.requestAnimFrame(render);
+        });
+
+    }
 
     fillObject(param, value) {
         let obj = this.canvas.getActiveObject();
-        let objectType = obj.get('type');
-        console.log('objectType', objectType);
+        console.log('param', param, obj);
         //if(!obj) return;
         //let f = fabric.Image.filters;
         if (obj || obj.text) {
+            let objectType = obj.get('type');
             if (!obj.selectionStart
                 && !obj.selectionEnd
                 && objectType !== 'rect'
@@ -1116,7 +1222,7 @@ class MeFabric extends Component {
                 obj.selectionEnd = (obj.text).length;
             }
             if (param === 'color') {
-                console.log('rect', objectType);
+                console.log('objectType', objectType);
                 switch (objectType) {
                     case 'i-text':
                         obj.setSelectionStyles({fill: value});
@@ -1129,17 +1235,15 @@ class MeFabric extends Component {
                         break;
                     case 'group':
                         //obj.fill = 'red';
-                        obj.set({fill: 'red'});
+                        obj.getObjects().forEach(function(o){
+                            console.log('oooo', o);
+                            o.set({fill: value, stroke: value});
+                        });
+                        //obj.set({fill: 'red'});
                         break;
                 }
 
                 obj.opacity = $('#opacity').val();
-                /*let  filter = new fabric.Image.filters.BlendColor({
-                    color: '#000',
-                    mode: 'multiply'
-                });
-                obj.filters.push(filter);
-                obj.applyFilters();*/
             } else {
                 obj.set(param, value);
             }

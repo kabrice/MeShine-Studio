@@ -856,7 +856,7 @@ button:focus,
   z-index:1;
   -webkit-box-sizing:initial;
   box-sizing:initial;
-  img{
+  video, img{
     margin-left:auto;
     margin-right:auto;
     border:none;
@@ -865,6 +865,12 @@ button:focus,
     height:auto;
     max-height:100%;
     max-width:100%;
+  }
+  .add-media #fmb-label,
+  video{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 .navg{
@@ -953,6 +959,7 @@ button.prev{
   width:222px!important;
   height:222px!important;
 }
+
 .big-menu-box .thumbs div{
   float:left;
   margin:3px;
@@ -979,7 +986,7 @@ button.prev{
 
 .box-img{
   display: flex;
-  img{
+  video, img{
     display: block;
   }
 }
@@ -1050,9 +1057,8 @@ button.prev{
   margin-left: 3px !important;
 }
 .thumbs .add-media p{
-  font-size: 12px;
+  font-size: 10px;
   color: grey;
   font-weight: bold;
-  padding-right: 10px;
   margin:0;
 }

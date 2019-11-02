@@ -2,16 +2,18 @@ import _ from 'lodash';
 import  React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {fetchIconsFromTheNounProject, createMediaURL, notRequestingAPI, requestingAPI, fetchUserImages} from '../actions/index'
+import {fetchIconsFromTheNounProject, createMediaURL, notRequestingAPI, requestingAPI, fetchUserMedia} from '../actions/index'
 import {withRouter} from "react-router-dom";
 
+const SELECT_BUTTON_CSS = {"backgroundColor": "#353738", "color": "whitesmoke"};
 class FooterMenuBox extends Component{
 
     constructor(props){
         super(props);
         //console.log('this.props.medias', this.props.medias);
         this.state = {
-            medias: []
+            medias: [],
+            files: []
         };
 
 
@@ -22,17 +24,18 @@ class FooterMenuBox extends Component{
         $(".add-media").hover(function(){
             $(this).find('svg').css({"cursor": "pointer"});
             $(this).find('svg').find('path').css({"fill": "#353738"});
+            $(this).find('svg').find('rect').css({"stroke": "#353738"});
             $(this).find('p').css({"color": "#353738", "cursor": "pointer"});
             $(this).css("border", "1px solid #353738");
         }, function () {
             $(this).find('svg').find('path').css({"fill": "darkgrey"});
+            $(this).find('svg').find('rect').css({"stroke": "darkgrey"});
             $(this).find('p').css({"color": "darkgrey", "cursor": "pointer"});
             $(this).css("border", "1px solid darkgrey");
         });
 
-        this.props.fetchUserImages(1);
-        this.setState({medias: ['ha', 'hi']});
-
+        this.props.fetchUserMedia(1);
+        $('.fmb-menu .left-btn').css({"backgroundColor": "#353738", "color": "whitesmoke"});
     }
     renderField(field){
         return(
@@ -85,14 +88,66 @@ class FooterMenuBox extends Component{
         }
         //console.log("fileList ", fileList);
     }
+
+    removeSelectedButton(){
+        $('.fmb-menu .left-btn').removeAttr("style");
+        $('.fmb-menu .middle-btn').removeAttr("style");
+        $('.fmb-menu .right-btn').removeAttr("style");
+    }
+
+    fetchImages(){
+        this.props.fetchUserMedia(1);
+        this.removeSelectedButton();
+        $('.fmb-menu .left-btn').css(SELECT_BUTTON_CSS);
+    }
+    fetchVideos(){
+        let files = _.remove(this.props.files, file => (file.file_type !== 1));
+        this.setState({files: files});
+        console.log('files', files);
+        this.removeSelectedButton();
+        $('.fmb-menu .middle-btn').css(SELECT_BUTTON_CSS);
+    }
+    fetchYoutubeVideos(){
+        let files = [{id: 'x', url: 'https://www.youtube.com/embed/VwUaqGeN4Pw', file_type: 3},
+                     {id: 'y', url: 'https://www.youtube.com/embed/ztikTbgW0rc', file_type: 3},
+                     {id: 'z', url: 'https://www.youtube.com/embed/Jss_DN201nc', file_type: 3}];
+        this.setState({files: files});
+        console.log('files', files);
+        this.removeSelectedButton();
+        $('.fmb-menu .right-btn').css(SELECT_BUTTON_CSS);
+    }
+    componentWillReceiveProps() {
+        let files = _.remove(this.props.files, file => (file.file_type !== 2));
+        this.setState({files: files});
+    }
     render(){
         const {handleSubmit} = this.props;
-        let files = _.remove(this.props.files, file => (file.file_type !== 2));
+        let mediaLabel = '';
+        let isYoutube = false;
+        /*let files = _.remove(this.props.files, file => (file.file_type !== 2));
+        this.setState({files: files});*/
         //console.log('files ', file);
-        let medias = _.map(files, (media, index) => {
-            console.log('media', media);
-            let img = `<img src="http://localhost:8080${media.content}">`;
-            return (<div key={index} className="box-img" dangerouslySetInnerHTML={{__html: img}}/>)
+        let medias = _.map(this.state.files, (media, index) => {
+            //console.log('media', media.file_type);
+            let myMedia = '';
+            if(media.file_type === 1){
+                myMedia = `<img src="http://localhost:8080${media.content}">`;
+                mediaLabel = 'Add pic';
+            }else if (media.file_type === 2){
+                myMedia = `<video controls style="border-radius: 5px" >
+                            <!--<source src="../assets/I-lift-my-hands-Hillsong.mp4" type="video/mp4">-->
+                              <source src="http://localhost:8080${media.content}" type="video/mp4" crossorigin="Anonymous">
+                              Your browser does not support the video tag.
+                            </video>`;
+                mediaLabel = 'Add video';
+            }else{
+                //var url = media.url.replace("watch?v=", "v/");
+                myMedia = `<iframe target="_parent" src="${media.url}" 
+                                   style="border-radius: 5px; border: none;   width:103px;height:103px;"/>`;
+                mediaLabel = 'Add Youtube video';
+                isYoutube = true;
+            }
+            return (<div key={index} className="box-img" dangerouslySetInnerHTML={{__html: myMedia}}/>)
         });
 
         let iconList = _.map(this.state.medias, (media, index) => {
@@ -105,12 +160,13 @@ class FooterMenuBox extends Component{
                         <div onChange={handleSubmit(this.fetchIcons.bind(this))}>
                             <Field
                                 name="iconName1"
-                                placeholder="Search whatever images"
+                                placeholder="Search your media"
                                 component={this.renderField}/>
                         </div>
                    </div>;
         let addImageIcon = <div id="add-media" className="box-img add-media">
-                            <label htmlFor="fmb-file">
+                            <label htmlFor="fmb-file" id="fmb-label">
+                                { !isYoutube ?
                                 <svg width="58px" height="40px" viewBox="0 0 88 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" >
                                     <title>noun_picture add_1585428</title>
                                     <desc>Created with Sketch.</desc>
@@ -123,15 +179,25 @@ class FooterMenuBox extends Component{
                                             </g>
                                         </g>
                                     </g>
-                                </svg>
-                                <p>Add pic</p>
+                                </svg> :
+                                <svg width="66px" height="46px" viewBox="0 0 66 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                                    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                                        <g id="noun_youtube_897678">
+                                            <g id="Artboard-17">
+                                                <rect id="Rectangle-path" stroke="gray" x="0.5" y="0.5" width="65" height="45" rx="11"/>
+                                                <path d="M45.5,23 L35.75,28.01 L26,33.01 L26,23 L26,12.99 L35.75,17.99 L45.5,23 L45.5,23 Z" id="Shape" fill="gray"/>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>}
+                                <p>{mediaLabel}</p>
                             </label>
                             <input style={{"display": "none"}} id="fmb-file" type="file" name="fmb-file" onChange={(e) => this.onChange(e)} multiple/>
                         </div>
         let fmbMenu = <div className="fmb-menu">
-                        <div className="left-btn">Images</div>
-                        <div className="middle-btn">Videos</div>
-                        <div className="right-btn">Youtube</div>
+                        <div className="left-btn" onClick={this.fetchImages.bind(this)}>Images</div>
+                        <div className="middle-btn" onClick={this.fetchVideos.bind(this)}>Videos</div>
+                        <div className="right-btn" onClick={this.fetchYoutubeVideos.bind(this)}>Youtube</div>
                     </div>
 
         if(this.props.type === 'figure'){
@@ -188,7 +254,7 @@ export default withRouter(reduxForm({
     connect(mapStateToProps, {fetchIconsFromTheNounProject,
                               requestingAPI,
                               notRequestingAPI,
-                              fetchUserImages,
+                              fetchUserMedia,
                               createMediaURL})(FooterMenuBox)
 ));
 

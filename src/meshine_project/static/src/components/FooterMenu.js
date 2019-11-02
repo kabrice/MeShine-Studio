@@ -8,8 +8,7 @@ export default class FooterMenu extends Component{
         super(props);
         this.state = {
             showInputForm: false,
-            visible: false,
-            countFigureIconClicked: 0
+            boxId: 0
             /*,
             medias: [ '../assets/Gallery2/1.JPG',
                 '../assets/Gallery2/10.JPG',
@@ -32,26 +31,19 @@ export default class FooterMenu extends Component{
         const domNode = ReactDOM.findDOMNode(this);
 
         if (!domNode || !domNode.contains(event.target)) {
-            let i = this.state.countFigureIconClicked;
-            this.setState({ countFigureIconClicked: i+1});
-            this.setState({ visible: false});
+            this.setState({ boxId: 0});
         }
-        console.log('visible', this.state.visible);
     }
 
-    handleClickFigure = () => {
-        this.checkFigureclick();
+    handleClickIcon = () => {
+        this.setState({boxId: 1});
     };
-    checkFigureclick(){
-        let i = this.state.countFigureIconClicked;
-        //console.log('iii', this.state.countFigureIconClicked);
-        if(i%2===0){
-            this.setState({ visible: true});
-        }else{
-            this.setState({ visible: false});
-        }
-        this.setState({ countFigureIconClicked: i+1});
-    }
+    handleClickMedia = () => {
+        this.setState({boxId: 2});
+    };
+    handleClickBodymovin = () => {
+        this.setState({boxId: 3});
+    };
     componentDidUpdate() {
         if (this.state.showInputForm) {
             this.input.focus();
@@ -95,13 +87,22 @@ export default class FooterMenu extends Component{
                                     <div id="mG2" className="microGallery"/>
                                     <div className="row">
                                         <div id="image-gallery" className="col-md-4 col-sm-12 col-12">
-                                            <img src="../assets/image_gallery.svg" title="Choisir une image et ajouter à ce Summary"/></div>
+                                            <div style={ { display: (this.state.boxId===3) ? 'block' : 'none' } }  >
+                                                <FooterMenuBox type={"bodymovin"}
+                                                               onClick={this.handleClickBodymovin}/>
+                                            </div>
+                                            <img src="../assets/bodymovin.svg" title="Choisir une image et ajouter à ce Summary"/>
+                                        </div>
                                         <div id="audio-gallery" className="col-md-4 col-sm-12 col-12">
                                             <img src="../assets/audio_gallery.svg" title="Choisir une piste et ajouter à ce Summary"/></div>
                                         <div id="video-gallery" className="col-md-4 col-sm-12 col-12">
-                                            <FooterMenuBox type={"medias"}
-                                                           onClick={this.handleClickOutsideFigure}/>
-                                            <img src="../assets/video_gallery.svg" title="Choisir une vidéo et ajouter à ce Summary"/>
+                                            <div style={ { display: (this.state.boxId===2) ? 'block' : 'none' } }  >
+                                                <FooterMenuBox type={"medias"}
+                                                               onClick={this.handleClickOutsideFigure}/>
+                                            </div>
+                                            <img src="../assets/video_gallery.svg"
+                                                 onClick={this.handleClickMedia}
+                                                 title="Choisir une vidéo et ajouter à ce Summary"/>
                                         </div>
                                     </div>
                                 </div>
@@ -115,12 +116,13 @@ export default class FooterMenu extends Component{
                                             <img src="../assets/text_bg.svg" title="Make the text background more attractive"/></div>
                                         {/*<div id="mG3" className="microGallery"/>*/}
                                         <div id="figure" className="col-md-3 col-sm-6 col-12" >
-                                            <div style={ { display: this.state.visible ? 'block' : 'none' } }  >
-                                            <FooterMenuBox type={"figure"}
-                                                           onClick={this.handleClickOutsideFigure}/></div>
-                                            <img src="../assets/figure.svg"
-                                                 onClick={this.handleClickFigure}
-                                                 title="Choisir une forme ou une ligne"/></div>
+                                            <div style={ { display: (this.state.boxId===1) ? 'block' : 'none' } }  >
+                                                <FooterMenuBox type={"figure"}
+                                                               onClick={this.handleClickOutsideFigure}/></div>
+                                                <img src="../assets/figure.svg"
+                                                     onClick={this.handleClickIcon}
+                                                     title="Choisir une forme ou une ligne"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col" id="magic">
