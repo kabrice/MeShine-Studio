@@ -4,6 +4,7 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {fetchIconsFromTheNounProject, createMediaURL, notRequestingAPI, requestingAPI, fetchUserMedia} from '../actions/index'
 import {withRouter} from "react-router-dom";
+import ProjectModal from "../components/ProjectModal"
 
 const SELECT_BUTTON_CSS = {"backgroundColor": "#353738", "color": "whitesmoke"};
 class FooterMenuBox extends Component{
@@ -12,11 +13,9 @@ class FooterMenuBox extends Component{
         super(props);
         //console.log('this.props.medias', this.props.medias);
         this.state = {
-            medias: [],
+           // medias: [],
             files: []
-        };
-
-
+        }
     }
 
     componentDidMount() {
@@ -71,7 +70,6 @@ class FooterMenuBox extends Component{
             reader.onload = (e) => {
                 let file = e.target.result;
                 let fileType = value.type.substring(0, value.type.indexOf('/'));
-
                 formData = {file: file, name: value.name, user: 1, fileType: fileType};
                 fileList.push(formData);
                 console.log('files size', files.length);
@@ -96,18 +94,43 @@ class FooterMenuBox extends Component{
     }
 
     fetchImages(){
-        this.props.fetchUserMedia(1);
-        this.removeSelectedButton();
-        $('.fmb-menu .left-btn').css(SELECT_BUTTON_CSS);
-    }
-    fetchVideos(){
-        let files = _.remove(this.props.files, file => (file.file_type !== 1));
+        let filesTemp =  JSON.parse(JSON.stringify(this.props.files));
+        let files = _.remove(filesTemp, file => (file.file_type === 1));
         this.setState({files: files});
-        console.log('files', files);
         this.removeSelectedButton();
         $('.fmb-menu .middle-btn').css(SELECT_BUTTON_CSS);
     }
-    fetchYoutubeVideos(){
+    fetchVideos(){
+        let filesTemp =  JSON.parse(JSON.stringify(this.props.files));
+        let files = _.remove(filesTemp, file => (file.file_type === 2));
+        this.setState({files: files});
+        this.removeSelectedButton();
+        $('.fmb-menu .right-btn').css(SELECT_BUTTON_CSS);
+    }
+    fetchMediaSuggestion(){
+        let filesTemp =  JSON.parse(JSON.stringify(this.props.files));
+        let files = _.remove(filesTemp, file => (file.file_type === 1));
+        this.setState({files: files});
+        this.removeSelectedButton();
+        $('.fmb-menu .left-btn').css(SELECT_BUTTON_CSS);
+    }
+    fetchBMSuggestion(){
+        let filesTemp =  JSON.parse(JSON.stringify(this.props.files));
+
+        let files = _.remove(filesTemp, file => (file.file_type === 3));
+        console.log('files', files);
+        this.setState({files: files});
+        this.removeSelectedButton();
+        $('.fmb-menu .left-btn').css(SELECT_BUTTON_CSS);
+    }
+    fetchBMSample(){
+        let filesTemp =  JSON.parse(JSON.stringify(this.props.files));
+        let files = _.remove(filesTemp, file => (file.file_type === 3));
+        this.setState({files: files});
+        this.removeSelectedButton();
+        $('.fmb-menu .right-btn').css(SELECT_BUTTON_CSS);
+    }
+/*    fetchYoutubeVideos(){
         let files = [{id: 'x', url: 'https://www.youtube.com/embed/VwUaqGeN4Pw', file_type: 3},
                      {id: 'y', url: 'https://www.youtube.com/embed/ztikTbgW0rc', file_type: 3},
                      {id: 'z', url: 'https://www.youtube.com/embed/Jss_DN201nc', file_type: 3}];
@@ -115,22 +138,33 @@ class FooterMenuBox extends Component{
         console.log('files', files);
         this.removeSelectedButton();
         $('.fmb-menu .right-btn').css(SELECT_BUTTON_CSS);
-    }
+    }*/
     componentWillReceiveProps() {
-        let files = _.remove(this.props.files, file => (file.file_type !== 2));
+        let n = 1;
+        if(this.props.type === 'figure'){
+            n = 2;
+        }else if (this.props.type === 'bodymovin'){
+            //console.log('HELLO');
+            n =3;
+        }
+        let filesTemp = JSON.parse(JSON.stringify(this.props.files));
+        let files = _.remove(filesTemp, file => (file.file_type === n));
         this.setState({files: files});
     }
     render(){
+
         const {handleSubmit} = this.props;
         let mediaLabel = '';
-        let isYoutube = false;
+        //let isYoutube = false;
         /*let files = _.remove(this.props.files, file => (file.file_type !== 2));
         this.setState({files: files});*/
-        //console.log('files ', file);
+        //console.log('files ', this.state.files);
         let medias = _.map(this.state.files, (media, index) => {
             //console.log('media', media.file_type);
             let myMedia = '';
+
             if(media.file_type === 1){
+                //console.log('1111111', media);
                 myMedia = `<img src="http://localhost:8080${media.content}">`;
                 mediaLabel = 'Add pic';
             }else if (media.file_type === 2){
@@ -140,13 +174,11 @@ class FooterMenuBox extends Component{
                               Your browser does not support the video tag.
                             </video>`;
                 mediaLabel = 'Add video';
-            }else{
-                //var url = media.url.replace("watch?v=", "v/");
-                myMedia = `<iframe target="_parent" src="${media.url}" 
-                                   style="border-radius: 5px; border: none;   width:103px;height:103px;"/>`;
-                mediaLabel = 'Add Youtube video';
-                isYoutube = true;
+            }else if(media.file_type === 3){
+                myMedia = `<img src="http://localhost:8080${media.content}">`;
+                mediaLabel = 'Add JSON';
             }
+
             return (<div key={index} className="box-img" dangerouslySetInnerHTML={{__html: myMedia}}/>)
         });
 
@@ -156,7 +188,7 @@ class FooterMenuBox extends Component{
         });
 
 
-        let type = <div className="navg" >
+        let searchField = <div className="navg" >
                         <div onChange={handleSubmit(this.fetchIcons.bind(this))}>
                             <Field
                                 name="iconName1"
@@ -164,9 +196,8 @@ class FooterMenuBox extends Component{
                                 component={this.renderField}/>
                         </div>
                    </div>;
-        let addImageIcon = <div id="add-media" className="box-img add-media">
+        let addImageIcon = <div id="add-media" className="add-media">
                             <label htmlFor="fmb-file" id="fmb-label">
-                                { !isYoutube ?
                                 <svg width="58px" height="40px" viewBox="0 0 88 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" >
                                     <title>noun_picture add_1585428</title>
                                     <desc>Created with Sketch.</desc>
@@ -179,32 +210,22 @@ class FooterMenuBox extends Component{
                                             </g>
                                         </g>
                                     </g>
-                                </svg> :
-                                <svg width="66px" height="46px" viewBox="0 0 66 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                                    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                                        <g id="noun_youtube_897678">
-                                            <g id="Artboard-17">
-                                                <rect id="Rectangle-path" stroke="gray" x="0.5" y="0.5" width="65" height="45" rx="11"/>
-                                                <path d="M45.5,23 L35.75,28.01 L26,33.01 L26,23 L26,12.99 L35.75,17.99 L45.5,23 L45.5,23 Z" id="Shape" fill="gray"/>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>}
+                                </svg>
                                 <p>{mediaLabel}</p>
                             </label>
                             <input style={{"display": "none"}} id="fmb-file" type="file" name="fmb-file" onChange={(e) => this.onChange(e)} multiple/>
                         </div>
         let fmbMenu = <div className="fmb-menu">
-                        <div className="left-btn" onClick={this.fetchImages.bind(this)}>Images</div>
-                        <div className="middle-btn" onClick={this.fetchVideos.bind(this)}>Videos</div>
-                        <div className="right-btn" onClick={this.fetchYoutubeVideos.bind(this)}>Youtube</div>
-                    </div>
-
+                        <div className="left-btn me-btn" onClick={this.fetchMediaSuggestion.bind(this)}>Explore</div>
+                        <div className="middle-btn me-btn" onClick={this.fetchImages.bind(this)}>Image</div>
+                        <div className="right-btn me-btn" onClick={this.fetchVideos.bind(this)}>Video</div>
+                     </div>;
+        console.log('this.props.type', this.props.type);
         if(this.props.type === 'figure'){
             addImageIcon = null;
             fmbMenu = null;
             medias = iconList;
-            type = <div className="navg" >
+            searchField = <div className="navg" >
                         <div onChange={handleSubmit(this.fetchIcons.bind(this))}>
                             <Field
                                 name="iconName"
@@ -212,10 +233,51 @@ class FooterMenuBox extends Component{
                                 component={this.renderField}/>
                         </div>
                     </div>
-        }
+        } else if(this.props.type === 'bodymovin'){
+            fmbMenu = <div className="fmb-menu">
+                        <div className="left-btn me-btn" onClick={this.fetchBMSuggestion.bind(this)}>Suggestion</div>
+                        <div className="right-btn me-btn" onClick={this.fetchBMSample.bind(this)}>Sample</div>
+                      </div>;
+            //medias = null;
+            addImageIcon = <div
+                                className="add-media">
+                                <svg
+                                    data-toggle="modal"
+                                    data-target="#project-modal"
+                                    data-animation="false"
+                                    width="44px"
+                                    height="56px"
+                                    viewBox="0 0 44 56"
+                                    version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlnsXlink="http://www.w3.org/1999/xlink">
+                                    <title>noun_JSON File_925772</title>
+                                    <desc>Created with Sketch.</desc>
+                                    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                                        <g id="noun_JSON-File_925772" fillRule="nonzero" fill="gray">
+                                            <g id="Group">
+                                                <path d="M28.8,1.5 C27.8,0.5 26.4,0 25,0 L10,0 C4.8,0 0.5,4.3 0.5,9.5 L0.5,46.5 C0.5,51.7 4.8,56 10,56 L34,56 C39.2,56 43.5,51.7 43.5,46.5 L43.5,17.7 C43.5,16.2 42.9,14.7 41.8,13.7 L28.8,1.5 Z M38.2,14.5 L30.6,14.5 C29.2,14.5 28.1,13.4 28.1,12 L28.1,5 L38.2,14.5 Z M40.5,46.5 C40.5,50.1 37.6,53 34,53 L10,53 C6.4,53 3.5,50.1 3.5,46.5 L3.5,9.5 C3.5,5.9 6.4,3 10,3 L25,3 C25,3 25.1,3 25.1,3 L25.1,12 C25.1,15 27.6,17.5 30.6,17.5 L40.5,17.5 C40.5,17.6 40.5,17.7 40.5,17.7 L40.5,46.5 Z" id="Shape"></path>
+                                                <path d="M8.9,35.1 C8.2,35.1 7.7,35.7 7.7,36.3 C7.7,37 8.3,37.5 8.9,37.5 C9.5,37.5 10.1,36.9 10.1,36.3 C10.1,35.6 9.6,35.1 8.9,35.1 Z" id="Shape"></path>
+                                                <path d="M12.9,28.2 C12.3,28.2 11.8,28.7 11.8,29.3 C11.8,29.9 12.3,30.5 12.9,30.5 C13.5,30.5 14.1,30 14.1,29.3 C14.1,28.7 13.6,28.2 12.9,28.2 Z" id="Shape"></path>
+                                                <path d="M11.9,37.3 C11.9,38 11.6,38.3 11.1,38.3 C10.7,38.3 10.5,38.2 10.3,38 L9.8,39.5 C10.3,39.8 10.6,39.9 11.5,39.9 C13.2,39.9 13.9,38.8 13.9,37.3 L13.9,31.1 L11.9,31.1 L11.9,37.3 L11.9,37.3 Z" id="Shape"></path>
+                                                <path d="M17,32.9 C17,32.7 17.3,32.5 17.8,32.5 C18.6,32.5 19.3,32.8 19.6,33.2 L20.4,31.8 C19.7,31.3 18.8,31 17.8,31 C16.1,31 15.1,32 15.1,33.1 C15.1,35.6 18.8,34.8 18.8,35.6 C18.8,35.9 18.6,36 18,36 C17.3,36 16.3,35.6 15.8,35.2 L15,36.6 C15.7,37.2 16.8,37.6 18,37.6 C19.8,37.6 20.8,36.7 20.8,35.5 C20.6,32.9 17,33.6 17,32.9 Z" id="Shape"></path>
+                                                <path d="M24.7,30.9 C22.6,30.9 21.3,32.4 21.3,34.2 C21.3,36 22.6,37.5 24.7,37.5 C26.9,37.5 28.1,36 28.1,34.2 C28.1,32.5 26.8,30.9 24.7,30.9 Z M24.7,35.8 C23.8,35.8 23.3,35.1 23.3,34.3 C23.3,33.5 23.8,32.8 24.7,32.8 C25.6,32.8 26.1,33.5 26.1,34.3 C26,35.1 25.5,35.8 24.7,35.8 Z" id="Shape"></path>
+                                                <path d="M33.3,30.9 C32.2,30.9 31.5,31.4 31.1,31.8 L31.1,31 L29.1,31 L29.1,37.3 L31.1,37.3 L31.1,33.2 C31.3,32.9 31.7,32.6 32.3,32.6 C32.9,32.6 33.3,32.9 33.3,33.6 L33.3,37.2 L35.3,37.2 L35.3,32.8 C35.4,31.8 34.8,30.9 33.3,30.9 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <p>Add JSON </p>
+                            </div>
 
+        }else{
+            //this.fetchImages();
+            //console.log('mediasx', this.props.files,'====', this.state.files);
+
+        }
+        //console.log('media.file_type', medias);
         return (<div className="menu-box big-menu-box">
-                    {type}
+                    {searchField}
                     <div className="images thumbs">
                         {fmbMenu}
                         <div className="medias-container">
@@ -223,6 +285,7 @@ class FooterMenuBox extends Component{
                             {medias}
                         </div>
                     </div>
+                    <ProjectModal  type={"forBodymovin"}/>
                 </div>)
 
     }

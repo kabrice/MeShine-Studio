@@ -72,6 +72,8 @@ function getVideoElement(url) {
     videoE.appendChild(source);
     return videoE;
 }
+
+
 // Now you have to export each function you want
 export {
     saveCanvas,

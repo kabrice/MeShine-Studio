@@ -49,6 +49,7 @@
     "redux-form": "7.4.2",
     "redux-promise": "0.6.0",
     "redux-thunk": "2.3.0",
+    "semantic-ui-react": "^0.88.2",
     "string-similarity": "^2.0.0",
     "superagent": "^5.1.0",
     "update": "^0.7.4"

@@ -17,8 +17,8 @@ body {
   overflow-y:hidden !important;
   .container {
     padding: $container-padding-main  !important;
-    min-height: $container-min-height  !important;
-    margin: $container-margin  !important;
+    min-height: $container-min-height;
+    margin: $container-margin;
     width: $container-width  !important;
 
     .row{
@@ -219,7 +219,7 @@ footer .container-fluid{
   @include hovering-icon
 }
 
-.container-fluid img{
+footer .container-fluid img{
   @include size($menu-icon-height, $menu-icon-width);
   &:hover {
     background-color: #ddd;
@@ -295,6 +295,7 @@ footer .container-fluid{
     border-radius: 0;
     color: $animation-panel-color;
     &:focus {
+
       outline: none;
     }
   }
@@ -338,8 +339,7 @@ footer .container-fluid{
   background-color: $black1 !important;
   color: $gray !important;
   font-family: $avenir-font!important;
-  input{
-
+  input, textarea{
     margin-bottom: 15px;
   }
 }
@@ -351,7 +351,7 @@ footer .container-fluid{
 }
 
 .me-modal-form{
-  input {
+  input, textarea {
     font-family: $avenir-font !important;
     @include input(100%);
   }
@@ -836,15 +836,6 @@ button:focus,
   transform-origin: 50% 0;
 }
 
-/*MENUBOX*/
-.container-fluid img{
-  height:32px;
-  width:32px;
-}
-.container-fluid img:hover{
-  background-color:#ddd;
-}
-
 /*! CSS Used from: http://localhost:8081/external/menu-boxImproved/css/style.css */
 .menu-box{
   position:absolute;
@@ -887,9 +878,6 @@ button:focus,
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
   border-radius:5px;
-}
-.big-menu-box .navg{
-  width:225px;
 }
 a.thumbview{
   opacity:0.6;
@@ -935,57 +923,104 @@ button.next{
 button.prev{
   background:transparent url(../assets/imageFooterBoxMenu/arrows.png) no-repeat 0px -20px;
 }
-.images div{
-  display:flex;
-  vertical-align:middle;
-  text-align:center;
-  position:relative;
-}
-.big-menu-box .images{
-  padding:10px;
-  background-color:$menubox-bg;
-  border:1px solid $menubox-bg;
-  position:relative;
-  -moz-box-shadow:$menubox-shadow;
-  -webkit-box-shadow:$menubox-shadow;
-  box-shadow:$menubox-shadow;
-  -moz-border-radius:5px;
-  -webkit-border-radius:5px;
-  border-radius:5px;
-}
-.big-menu-box .images{
-  position: relative;
-  overflow: auto;
-  width:222px!important;
-  height:222px!important;
+
+.big-menu-box{
+  .navg{
+    width:225px;
+  }
+  .anim-btn-type div,
+  .images div{
+    display:flex;
+    vertical-align:middle;
+    text-align:center;
+    position:relative;
+  }
+
+  .images{
+    padding:10px;
+    background-color:$menubox-bg;
+    border:1px solid $menubox-bg;
+    position:relative;
+    -moz-box-shadow:$menubox-shadow;
+    -webkit-box-shadow:$menubox-shadow;
+    box-shadow:$menubox-shadow;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    overflow: auto;
+    width:222px!important;
+    height:222px!important;
+  }
+  .anim-btn-type{
+    overflow: hidden;
+    /*margin: 0 0 0 -3px;*/
+  }
+  .thumbs {
+    .me-btn,me-btn2, div{
+      float:left;
+      cursor:pointer;
+      text-align: center;
+    }
+    .me-btn, div{
+      width:103px;
+      height:103px;
+
+    }
+    .me-btn2{
+      width:62px;
+      height:62px;
+    }
+  }
+
+  input {
+    background: none;
+    color: #636c72;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 15px;
+    display: inline-block;
+    width: 92%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #aaa;
+    margin-left: 3%;
+  }
+
+  input:focus {
+    outline: none;
+  }
 }
 
-.big-menu-box .thumbs div{
-  float:left;
-  margin:3px;
-  cursor:pointer;
-  width:103px;
-  height:103px;
+.anim-container{
+  border : 1px solid gray;
+  border-radius: 0.2rem!important;
+  input{
+    background-color: $black3;
+    color: whitesmoke;
+    border: none;
+    font-size: 12px;
+    height: 1.5em;
+    padding-left: 0.3em;
+  }
+  .anim-block{
+    width: 93%;
+    vertical-align: middle;
+    margin: auto;
+    padding-left: 2px;
+  }
+  /*div{
+    padding-left:3px;
+  }*/
 }
 
-.big-menu-box  input {
-  background: none;
-  color: #636c72;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bolder;
-  font-size: 15px;
-  display: inline-block;
-  width: 92%;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid #aaa;
-  margin-left: 3%;
-}
-.big-menu-box  input:focus {
-  outline: none; }
 
 .box-img{
   display: flex;
+  margin:3px;
+  img{
+    height: 100% !important;
+    width: auto !important;
+  }
   video, img{
     display: block;
   }
@@ -995,20 +1030,30 @@ button.prev{
   align-items: center;
   justify-content:center;
 }
-
+.big-anim-box{
+  margin-left: -5px;
+  width: 108%;
+  .line-title{
+    display: inline-block;
+  }
+  .line-input{
+    margin: 5px;
+  }
+}
 .fmb-menu{
   height: 30px !important;
   width: 100% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin-top: -5px !important;
-
+  margin-top: -3px !important;
+  margin-left: 0;
+  margin-right: 0;
   .left-btn,
   .middle-btn,
-  .right-btn{
+  .right-btn,
+  .animation-order{
     margin: unset!important;
-    height: 70%!important;
     display: flex!important;
     justify-content: center!important;
     flex-direction: column!important;
@@ -1016,19 +1061,71 @@ button.prev{
     color: white;
     font-size: 12px;
   }
+  .animation-order{
+    height: 80%!important;
+    color: $animation-panel-color;
+    img{
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .col{
+      padding: 0;
+    }
+    .col-1{
+      padding: 0;
+      text-align: center;
+      .magic-entrance{
+        height:12px
+      }
+    }
+    .eye-hs{
+      margin-top: 4px;
+      img{
+        height: 8px;
+      }
+    }
+    .text{
+      margin-top: 3px;
+    }
+    .container-fluid{
+      margin: 0;
+      .row{
+        min-height: 0;
+        padding-left: 10px;
+        padding-right: 9px;
+      }
+    }
+  }
   .left-btn{
+    height: 70%!important;
     border-right: 1px solid gray;
     border-bottom-left-radius:0.2rem!important;
     border-top-left-radius:0.2rem!important;
   }
   .middle-btn{
+    height: 70%!important;
     border-right: 1px solid gray;
   }
   .right-btn{
+    height: 70%!important;
     border-right: 1px solid gray;
     border-bottom-right-radius:0.2rem!important;
     border-top-right-radius:0.2rem!important;
   }
+  .animation-order{
+/*    border : 1px solid gray;
+    border-radius: 0.2rem!important;*/
+    background-color: #353738;
+    color: whitesmoke;
+  }
+}
+.fmb-menu .animation-order:hover{
+  background-color: darkgrey;
+  color: white;
 }
 
 .fmb-menu .left-btn:hover,
@@ -1061,4 +1158,7 @@ button.prev{
   color: grey;
   font-weight: bold;
   margin:0;
+}
+.Loader__background{
+  z-index: 100000 !important;
 }

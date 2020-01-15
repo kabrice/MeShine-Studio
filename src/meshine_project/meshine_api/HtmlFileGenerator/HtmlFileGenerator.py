@@ -1,3 +1,5 @@
+import os
+from django.conf import settings
 from .HtmlFunction import HtmlFunction
 from .CssFunction import CssFunction
 from .JsFunction import JsFunction
@@ -42,45 +44,28 @@ class HtmlFileGenerator:
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        #play-container {{
-            height: 2000px;
-            width: 1124px;
-            background: gray;
-            position: relative;
-            margin: auto;
-            overflow: hidden;
-        }}
-        .svg-arrg {{
-            overflow: auto !important;
-            margin: 0px auto !important;
-            outline: inherit !important;
-            position: absolute !important;
-            transform-origin: 0 0 !important;
-            transform: scale({}) !important;
-        }}{}
-    </style>
+    <title>BmHtmlGenerator</title>
 </head>
-<body style="background: #000; vertical-align:middle;
-        display:table-cell; padding: 0;">
-
-<div id="play-container">
-    {}
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.4.3/lottie.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+<body>
+<div id="svgContainer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.4.3/lottie.js"></script>
 <script>
-window.onload = function() {{
-    {}
-}}
+    let svgContainer =  window.bodymovin.loadAnimation({
+        container: document.getElementById('svgContainer'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: '{}'
+
+    });
+    svgContainer.play();
+    console.log(svgContainer);
 </script>
 </body>
 </html>
+                    
                     """.format(alpha, css_texts, html_texts, js_texts)
         # print('================HHIHIHIHIHI================')
         # Todo: Create user directory afterward
-        with open("userCreations/userName/htmls/filename.html", "w") as file:
+        with open(os.path.join(settings.MEDIA_ROOT + "/userCreations/userName/htmls", "filename.html"), "w") as file:
             file.write(html_str)

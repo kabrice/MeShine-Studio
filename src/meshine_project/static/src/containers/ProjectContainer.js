@@ -164,12 +164,16 @@ class ProjectsContainer extends Component{
 
                     <div className="col-lg-3 col-md-4 col-xs-6" >
                         <a href="#" className="d-block mb-4 h-100">
-                            <img className="img-fluid img-thumbnail" data-toggle="modal" data-target="#project-modal" data-animation="false" src="../assets/new-summary.svg" alt=""/>
+                            <img className="img-fluid img-thumbnail"
+                                 data-toggle="modal"
+                                 data-target="#project-modal"
+                                 data-animation="false"
+                                 src="../assets/new-summary.svg" alt=""/>
                         </a>
                     </div>
                     {this.renderSummaries()}
                 </div>
-                <ProjectModal  />
+                <ProjectModal  type={"forProjectContainer"}/>
             </main>
         );
     }

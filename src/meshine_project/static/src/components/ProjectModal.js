@@ -7,8 +7,9 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/fontawesome-free-solid'
-import {createSummaryProject, notRequestingAPI, requestingAPI, fetchTagByAutocompletion,
-        fetchTopicByAutocompletion, updateCategories, fetchQuestionByAutocompletion, updateSummary} from "../actions/index";
+import {createSummaryProject, notRequestingAPI, requestingAPI, fetchTagByAutocompletion, createMediaURL,
+        fetchTopicByAutocompletion, updateCategories, fetchQuestionByAutocompletion, updateSummary, updateFile,
+        getDataFromURL} from "../actions/index";
 import {withRouter} from "react-router-dom";
 
 
@@ -43,7 +44,7 @@ class ProjectModal extends Component{
 
     constructor(props) {
         super(props);
-
+        //console.log('props)
         this.state = {
             modalUrl: "",
             modalTag: "me-modal-tag",
@@ -125,13 +126,11 @@ class ProjectModal extends Component{
         let existedtags = this.getCurrentTags(false);
         console.log("tags", tags);
         //if(tags.length>1) {
-        let lastTag = tags[tags.length - 1];/*
-            tags.splice(tags.length - 1, 1);
-            console.log("splice tags", tags);*/
+        let lastTag = tags[tags.length - 1];
+
         if(lastTag.length>2){
             if (!_.includes(existedtags, lastTag.toLowerCase()) && existedtags.length <=20) {
                 const $tagsInputFocused = $(".react-tagsinput--focused");
-                //const catTitle = $tagsInputFocused.parent().parent().find('li').first().text();
                 const $span = $tagsInputFocused.find('span');
                 const text = '<span class="react-tagsinput-tag">' + lastTag + '<a class="react-tagsinput-remove"></a></span>';
                 if($tagsInputFocused.length>0) {
@@ -161,23 +160,33 @@ class ProjectModal extends Component{
 
 
     renderField(field){
-
+        //console.log('field', field);
         //Destructing
         const {meta: {touched, error}} = field;
         const className = `${touched && error ? 'me-input-invalid' : ''}`;
-
+        let fieldType = <input
+                            {...field.input}
+                            type="text"
+                            autoComplete="off"
+                            placeholder={"Enter a url of a blog article, website text content, etc."}
+                            required="required"
+                            className={className}/>;
+        if(field.type === 'forBodymovin'){
+            fieldType =  <textarea
+                            {...field.input}
+                            name={"jsonData"}
+                            id=""
+                            required="required"
+                            placeholder={"Drag and drop / Paste / browse a Bodymovin json content here or a url."}
+                            cols="30"
+                            rows="10"/>
+        }
         return(
             <div className="has-danger">
-            <label>{field.label}</label>
-            <input
-                {...field.input}
-                type="text"
-                autoComplete="off"
-                placeholder={field.placeholder}
-                required="required"
-                className={className}/>
+                <label>{field.label}</label>
+                {fieldType}
                 <div className="text-help">
-                {touched ? error : ''}
+                    {touched ? error : ''}
                 </div>
             </div>
         )
@@ -270,92 +279,128 @@ class ProjectModal extends Component{
 
     onSubmitUrl(value){
         //console.log('this state', this.state);
+        console.log('onSubmitUrl value', value);
         this.props.requestingAPI();
-        if(!(value.url).startsWith("https://") && !(value.url).startsWith("http://")){
-            value.url = "https://"+value.url;
-        }
+        if(value.url){
+            if(!(value.url).startsWith("https://") && !(value.url).startsWith("http://")){
+                value.url = "https://"+value.url;
+            }
 
-        function isTagExist(categoryId, tagCategories) {
-            let exist = false;
-            _.forEach(tagCategories, function(item){
-                if(item.id === categoryId){
-                    exist = true;
-                    return true;
-                }
-            });
-            return exist;
-        }
-
-        function updateTag(categoryId, tagCategories,tag) {
-            _.forEach(tagCategories, function(item){
-                if(item.id === categoryId){
-                    item.tags.push(tag);
-                }
-            });
-            return tagCategories;
-        }
-
-
-        function transformToArray(objectList){
-            let array = [];
-            _.forEach(objectList, function(item){
-                    array.push(item.title);
-            });
-            return array;
-        }
-
-
-        this.props.createSummaryProject(value, (response) =>{
-            console.log("response",response);
-            let results = response.data;
-            results.tagCategories = [];
-            let stringSimilarity = require('string-similarity');
-            let tagsFromDB = [];
-            let tagsFromAI = [];
-            let metaTags = [];
-            _.forEach(results.tags, function(tag) {
-                _.forEach(results.categories, function(category){
-                    let tempTags = transformToArray(category.tags);
-                    let sim = stringSimilarity.findBestMatch(tag, tempTags);
-                    let target = sim.bestMatch.target;
-                    if(sim.bestMatch.rating>=0.8){
-                        //let tagObject = {"id": getTagIdFromTitle(target, category.tags), "title": target};
-                        if(!isTagExist(category.id, results.tagCategories)){
-                            results.tagCategories.push({"id": category.id, "title": category.title, "tags": [target]});
-                        }else {
-                            results.tagCategories = updateTag(category.id, results.tagCategories, target);
-                        }
-                        tagsFromDB.push(target);
-                        tagsFromDB = _.uniq(tagsFromDB);
+            function isTagExist(categoryId, tagCategories) {
+                let exist = false;
+                _.forEach(tagCategories, function(item){
+                    if(item.id === categoryId){
+                        exist = true;
+                        return true;
                     }
                 });
-                tagsFromAI.push({id:tag.replace(/\s/g, ""), title:tag});
-                metaTags.push(tag);
-            });
-            results.tagCategories = _.mapKeys(results.tagCategories, 'id');
-            console.log("results", results);
+                return exist;
+            }
 
-            this.setState({ modalUrl: "me-modal-url",
-                            modalTag: "",
-                            idSummary: results.id,
-                            hideAlert: "hide-alert",
-                            errorMsg: "",
-                            tagsFromDB: tagsFromDB,
-                            tagsFromAI: tagsFromAI,
-                            metaTags: metaTags,
-                            isQuestionRound: true,
-                            loadingPercentage: 33.33,
-                            tagCategories: results.tagCategories});
-            this.props.notRequestingAPI();
-        }, (error) =>{
+            function updateTag(categoryId, tagCategories,tag) {
+                _.forEach(tagCategories, function(item){
+                    if(item.id === categoryId){
+                        item.tags.push(tag);
+                    }
+                });
+                return tagCategories;
+            }
+
+
+            function transformToArray(objectList){
+                let array = [];
+                _.forEach(objectList, function(item){
+                    array.push(item.title);
+                });
+                return array;
+            }
+
+
+            this.props.createSummaryProject(value, (response) =>{
+                console.log("response",response);
+                let results = response.data;
+                results.tagCategories = [];
+                let stringSimilarity = require('string-similarity');
+                let tagsFromDB = [];
+                let tagsFromAI = [];
+                let metaTags = [];
+                _.forEach(results.tags, function(tag) {
+                    _.forEach(results.categories, function(category){
+                        let tempTags = transformToArray(category.tags);
+                        let sim = stringSimilarity.findBestMatch(tag, tempTags);
+                        let target = sim.bestMatch.target;
+                        if(sim.bestMatch.rating>=0.8){
+                            //let tagObject = {"id": getTagIdFromTitle(target, category.tags), "title": target};
+                            if(!isTagExist(category.id, results.tagCategories)){
+                                results.tagCategories.push({"id": category.id, "title": category.title, "tags": [target]});
+                            }else {
+                                results.tagCategories = updateTag(category.id, results.tagCategories, target);
+                            }
+                            tagsFromDB.push(target);
+                            tagsFromDB = _.uniq(tagsFromDB);
+                        }
+                    });
+                    tagsFromAI.push({id:tag.replace(/\s/g, ""), title:tag});
+                    metaTags.push(tag);
+                });
+                results.tagCategories = _.mapKeys(results.tagCategories, 'id');
+                console.log("results", results);
+
+                this.setState({ modalUrl: "me-modal-url",
+                    modalTag: "",
+                    idSummary: results.id,
+                    hideAlert: "hide-alert",
+                    errorMsg: "",
+                    tagsFromDB: tagsFromDB,
+                    tagsFromAI: tagsFromAI,
+                    metaTags: metaTags,
+                    isQuestionRound: true,
+                    loadingPercentage: 33.33,
+                    tagCategories: results.tagCategories});
+                this.props.notRequestingAPI();
+            }, (error) =>{
                 if(error === undefined){
                     error = {};
                     error.data="Unexpected error! Please try again or contact us if it persists .";
                 }
                 this.setState({errorMsg: error.data === Array?error.data[0]:JSON.stringify(error.data), hideAlert: ""});
-            this.props.notRequestingAPI();
-        });
+                this.props.notRequestingAPI();
+            });
+        }else if(value.jsonData){
+            let fileList = [];
+            // Todo: Make condition later
+            this.props.requestingAPI();
+            this.props.getSVGFromURL(value.jsonData,
+                (response) => {
+                    let jsonText = JSON.stringify(response.data);
+                    let nm = response.data.nm;
+                    let jsonName = nm+'.json';
+                    let jsonB64 = Buffer.from(jsonText).toString("base64");
+                    this.props.createMediaURL({jsonB64: jsonB64,
+                                               jsonData: jsonText,
+                                                   name: jsonName,
+                                               fileType: 'Bodymovin'}, 1, (response) =>{
+                        console.log("GOOD 1", response.data);
+                        let encodedSVG = window.btoa(response.data.svg_string);
 
+                        this.props.updateFile({id: response.data.id,
+                                               jsonB64: encodedSVG,
+                                               fileType: 'Bodymovin',
+                                               name: nm+'.svg'}, 1, (response) =>{
+                            this.props.notRequestingAPI();
+                            this.props.files = null;
+                            console.log("GOOD 2", response.data);
+                        }, (error) => {
+                            console.log("error", error);
+                        });
+                    }, (error) => {
+                        console.log("error", error);
+                    });
+                }, (error) =>{
+                    this.props.notRequestingAPI();
+                    console.log("getDataFromURL error", error);
+            });
+        }
     }
 
     onSubmitTagCategories = (e) => {
@@ -776,6 +821,7 @@ class ProjectModal extends Component{
 
     render(){
 
+        //console.log('this.props.type', this.props.type);
 
 
         // Use to pass form to redux for validation before submitting
@@ -790,7 +836,7 @@ class ProjectModal extends Component{
                 <div className="modal-dialog modal-lg vertical-alignment-helper" >
                     <div className="modal-content nav-item">
                         <div className="modal-header">
-                            <h6 className="modal-title">New Summary Project</h6>
+                            <h6 className="modal-title"></h6>
                             <button type="button" className="close" data-dismiss="modal" data-animation="false">&times;</button>
                         </div>
                         <div className="modal-body">
@@ -800,19 +846,21 @@ class ProjectModal extends Component{
                                 <span>{this.state.errorMsg}</span>
                             </div>
 
-                                <form className={"me-modal-form "+this.state.modalUrl} onSubmit={handleSubmit(this.onSubmitUrl.bind(this))}>
+
+                                <form
+                                    className={"me-modal-form "+this.state.modalUrl}
+                                    onSubmit={handleSubmit(this.onSubmitUrl.bind(this))}>
                                     <div className="form-group">
                                         <Field
-                                            name="url"
-                                            label="Enter a url of a blog article, website text content, etc"
-                                            placeholder="Example: meshine.me/In-love-with-meshine"
+                                            name={this.props.type === 'forProjectContainer' ? 'url' : 'jsonData'}
+                                            type={this.props.type}
                                             component={this.renderField}/>
                                         <div id="question-wrapper">
                                             <button   id="question-update-btn"  type="submit" className="btn btn-outline-success" >Continue</button>
                                             <button  id="question-cancel-btn"  type="button" className="btn btn-link float-right"
                                                      data-dismiss="modal" data-animation="false">Cancel</button>
-                                        </div>
                                     </div>
+                                </div>
                                 </form>
                             <form className={this.state.modalTag}>
                                 <div className="form-group">
@@ -891,8 +939,9 @@ export default withRouter(reduxForm({
     validate,
     form: 'NewSummaryProjectForm'
 })(
-    connect(mapStateToProps, {createSummaryProject, requestingAPI, notRequestingAPI, fetchTagByAutocompletion,
-                                fetchTopicByAutocompletion, updateCategories, fetchQuestionByAutocompletion, updateSummary})(ProjectModal)
+    connect(mapStateToProps, {createSummaryProject, requestingAPI, notRequestingAPI, fetchTagByAutocompletion, createMediaURL,
+                              fetchTopicByAutocompletion, updateCategories, fetchQuestionByAutocompletion, updateSummary,
+                                updateFile, getSVGFromURL: getDataFromURL})(ProjectModal)
 ));
 
 

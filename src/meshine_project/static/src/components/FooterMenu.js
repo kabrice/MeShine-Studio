@@ -9,14 +9,6 @@ export default class FooterMenu extends Component{
         this.state = {
             showInputForm: false,
             boxId: 0
-            /*,
-            medias: [ '../assets/Gallery2/1.JPG',
-                '../assets/Gallery2/10.JPG',
-                '../assets/Gallery2/11.JPG',
-                '../assets/Gallery2/img_0.png',
-                '../assets/Gallery2/paris.png',
-                '../assets/Gallery2/business_woman.png',
-                '../assets/Gallery2/business_man.png']*/
         };
     }
     componentDidMount() {
@@ -29,8 +21,10 @@ export default class FooterMenu extends Component{
 
     handleClickOutsideFigure = event => {
         const domNode = ReactDOM.findDOMNode(this);
-
-        if (!domNode || !domNode.contains(event.target)) {
+        console.log('domNode', domNode.querySelector('.show'));
+        if ((!domNode || !domNode.contains(event.target)) &&
+            !domNode.querySelector('.show')) {
+            //console.log('domNode', domNode.querySelector('.modal-under-background'));
             this.setState({ boxId: 0});
         }
     }
@@ -58,7 +52,7 @@ export default class FooterMenu extends Component{
                     <div className="navbar navbar-toggleable-md navbar-inverse fixed-bottom bg-inverse">
 
                         <div className="container-fluid">
-                            <div className="row " >
+                            <div className="row" >
                                 <div className="col" >
                                     <div className="row">
                                         <div id="undo"  className="col-md-2 col-sm-6 col-12" title="Annuler la dernière modification" >
@@ -89,9 +83,11 @@ export default class FooterMenu extends Component{
                                         <div id="image-gallery" className="col-md-4 col-sm-12 col-12">
                                             <div style={ { display: (this.state.boxId===3) ? 'block' : 'none' } }  >
                                                 <FooterMenuBox type={"bodymovin"}
-                                                               onClick={this.handleClickBodymovin}/>
+                                                               onClick={this.handleClickOutsideFigure}/>
                                             </div>
-                                            <img src="../assets/bodymovin.svg" title="Choisir une image et ajouter à ce Summary"/>
+                                            <img src="../assets/bodymovin.svg"
+                                                 onClick={this.handleClickBodymovin}
+                                                 title="Ajouter une animation via un json Bodymovin"/>
                                         </div>
                                         <div id="audio-gallery" className="col-md-4 col-sm-12 col-12">
                                             <img src="../assets/audio_gallery.svg" title="Choisir une piste et ajouter à ce Summary"/></div>

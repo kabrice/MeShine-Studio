@@ -24,6 +24,8 @@ export const UPDATE_SUMMARY = 'UPDATE_SUMMARY';
 export const FETCH_THENOUNPROJECTICON = 'FETCH_THENOUNPROJECTICON';
 export const CREATE_MEDIA_URL = 'CREATE_MEDIA_URL';
 export const FETCH_USER_FILE = 'FETCH_USER_FILE';
+export const GET_SVG_FROMURL = 'GET_SVG_FROMURL';
+export const UPDATE_FILE = 'UPDATE_FILE';
 
 export function notRequestingAPI(){
     $('html').css({"pointerEvents": "auto", "cursor": "auto"});
@@ -199,10 +201,9 @@ export function fetchIconsFromTheNounProject(iconName, callback, callbackError) 
 }
 
 export function createMediaURL(value, id, callback, callbackError) {
-    const request = axios.put(`${ROOT_URL}/file/${id}/`, value)
+    const request = axios.post(`${ROOT_URL}/file/${id}/`, value)
         .then((response) => callback(response))
         .catch((error) => callbackError(error.response));
-
     return{
         type: CREATE_MEDIA_URL,
         payload: request
@@ -220,5 +221,24 @@ export function fetchUserMedia(user_id) {
     };
 }
 
+export function getDataFromURL(url, callback, callbackError) {
+    const request = axios.get(url)
+        .then((response) => callback(response))
+        .catch((error) => callbackError(error.response));
 
+    return{
+        type: GET_SVG_FROMURL,
+        payload: request
+    };
+}
 
+export function updateFile(value, id, callback, callbackError) {
+    const request = axios.put(`${ROOT_URL}/file/${id}/`, value)
+        .then((response) => callback(response))
+        .catch((error) => callbackError(error.response));
+    return{
+        type: UPDATE_FILE,
+        payload: request
+    };
+
+}

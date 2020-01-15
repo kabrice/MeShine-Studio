@@ -1,9 +1,6 @@
-import _ from 'lodash';
 import React, {Component} from 'react';
-import AnimationPanelItem from '../components/AnimationPanelItem';
+import AnimationContainer from '../components/AnimationContainer';
 import {connect } from 'react-redux';
-import {selectAnimation} from "../actions/index";
-import {bindActionCreators} from 'redux';
 import {fetchAnimation} from "../actions/index";
 import TextEditor from '../components/TextEditor'
 import Arrangement from '../components/Arrangement'
@@ -31,11 +28,7 @@ class AnimationPanel extends Component{
     }
 
     renderAnimation(){
-        return _.map(this.props.animations, (animation) => {
-            return  <tr key={animation.id}
-                        onClick={() => this.props.selectAnimation(animation)}>
-                        <AnimationPanelItem animation={animation}/></tr>
-        })
+        return <AnimationContainer/>
     }
 
     renderArrangement(){
@@ -52,18 +45,21 @@ class AnimationPanel extends Component{
 
     render(){
         return (
-            <table className="table-config">
+            <React.Fragment>
+            <table className="table-config" style={{"margin-left": "-4px"}}>
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>ANIMATIONS</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody>{/*
                 {this.renderArrangement()}
                 {this.renderTextEditor()}
-                {this.renderAdvancedStyle()}
+                {this.renderAdvancedStyle()}*/}
                 </tbody>
             </table>
+                {this.renderAnimation()}
+            </React.Fragment>
         )
     }
 }

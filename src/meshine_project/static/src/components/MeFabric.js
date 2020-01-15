@@ -10,6 +10,7 @@ import {Utils} from '../helpers';
 /**
  * *****************VERY VERY IMPORTANT: Check if the object Id is well generated before generating the json file
  */
+
 class MeFabric extends Component {
 
     constructor(props) {
@@ -86,16 +87,15 @@ class MeFabric extends Component {
             // here we set the initial state of the canvas
             if (data.version) {
                 this.canvas.loadFromJSON(data, () => {
-                    state = JSON.stringify(this.canvas.toJSON(['_id', '_boundingRect', '_svg', 'evented', 'selectable', 'hoverCursor']));
-                    //console.log('this.canvas ', this.canvas.getObjects());
-                    this.canvas.getObjects().forEach(function(o){
-                        //this.canvas.remove(o);
-                    });
-                    //
+                    state = JSON.stringify(this.canvas.toJSON(['_id',
+                                                               '_boundingRect',
+                                                               '_svg',
+                                                               'evented',
+                                                               'selectable',
+                                                               'hoverCursor']));
                     this.canvas.setDimensions({ width: $('#card-container').width(), height: 1024 });
                     let ratio = $('#card-container').width()/1100;
                     this.canvas.setZoom(ratio);
-
                     this.canvas.renderAll();
                 });
                 console.log('canvas width', $('#card-container').width());
@@ -128,7 +128,9 @@ class MeFabric extends Component {
          * To Copy and Paste object(s)
          */
         $(document).keydown((e) => {
-            this.onKeyDownHandler(e);
+            //console.log('this.canvas.getObjects()[2] keydown', this.canvas.getObjects()[2]);
+            if(this.canvas.getObjects()[2].selectable)
+                this.onKeyDownHandler(e);
         });
 
 
@@ -148,7 +150,7 @@ class MeFabric extends Component {
             isEditingText = true;
         });
         $(document).keyup(function (e) {
-            if ((e.keyCode === 46 || e.keyCode === 8 ) && !isEditingText) {
+            if ((e.keyCode === 46 || e.keyCode === 8 ) && !isEditingText && canvas.getObjects()[2].selectable===true) {
                 state = Utils.replay(true, redo, undo, state, canvas);
                 Utils.deleteSelectedObjectsFromCanvas(canvas);
                 //canvas.renderAll();
@@ -169,27 +171,30 @@ class MeFabric extends Component {
          */
         //this.canvas = canvas;
         $(document).keydown(function (e) {
-            // Undo/Redo
-            if (e.shiftKey && e.which === 90 && e.metaKey) { // redo
-                console.log('redo');
-                state = Utils.replay(false, redo, undo, state, canvas);
-                console.log('redo', state);
-            } else if (e.which === 90 && e.metaKey) { // undo
-                console.log('undo');
-                state = Utils.replay(false, undo, redo, state, canvas);
-            }
+            if(canvas.getObjects()[2].selectable===true){
+                // Undo/Redo
+                if (e.shiftKey && e.which === 90 && e.metaKey) { // redo
+                    console.log('redo');
+                    state = Utils.replay(false, redo, undo, state, canvas);
+                    console.log('redo', state);
+                } else if (e.which === 90 && e.metaKey) { // undo
+                    console.log('undo');
+                    state = Utils.replay(false, undo, redo, state, canvas);
+                }
 
-            // Select all canvas objects
-            if ((e.ctrlKey || e.metaKey) && e.keyCode === 65) {
-                canvas.discardActiveObject();
-                let objectsToSelect = _.remove(canvas.getObjects().slice(2),
-                    obj => (obj._id !== 'boundingRect' && obj._id !== 'drawingRect'));
-                //console.log('getObjects', objectsToSelect);
-                let sel = new fabric.ActiveSelection(objectsToSelect, {
-                    canvas: canvas,
-                });
-                canvas.setActiveObject(sel);
-                canvas.renderAll();
+                // Select all canvas objects
+                console.log('select all', canvas.getObjects()[2].selectable);
+                if ((e.ctrlKey || e.metaKey) && e.keyCode === 65 && canvas.getObjects()[2].selectable===true) {
+                    canvas.discardActiveObject();
+                    let objectsToSelect = _.remove(canvas.getObjects().slice(2),
+                        obj => (obj._id !== 'boundingRect' && obj._id !== 'drawingRect'));
+                    //console.log('getObjects', objectsToSelect);
+                    let sel = new fabric.ActiveSelection(objectsToSelect, {
+                        canvas: canvas,
+                    });
+                    canvas.setActiveObject(sel);
+                    canvas.renderAll();
+                }
             }
         });
 
@@ -237,7 +242,7 @@ class MeFabric extends Component {
             let objectType = obj.get('type');
             let thickness = parseFloat($('#thickness').val());
             if (!obj) return;
-            console.log('stroke', $this.val());
+            //console.log('stroke', $this.val());
             switch (objectType) {
                 case 'i-text':
                     if ((!obj.selectionStart && !obj.selectionEnd) || (obj.selectionStart === (obj.text).length)) {
@@ -622,7 +627,7 @@ class MeFabric extends Component {
          * C - IMAGES MANIPULATION
          ****************/
         this.$microgallery = null;
-        let myImages = ['../assets/Gallery2/1.JPG',
+/*        let myImages = ['../assets/Gallery2/1.JPG',
             '../assets/Gallery2/10.JPG',
             '../assets/Gallery2/11.JPG',
             '../assets/Gallery2/img_0.png',
@@ -631,9 +636,11 @@ class MeFabric extends Component {
             '../assets/Gallery2/business_man.png'];
         _.forEach(myImages, function (value) {
             $('#mG2').append(`<img src="${value}" alt="An image"/>`);
-        });
+        });*/
         $('#image-gallery').click((e) => {
-            if (this.$microgallery !== null) {
+            this.makeCanvasSelectable(false);
+
+/*            if (this.$microgallery !== null) {
                 $('#multimedia').prepend(this.$microgallery);
             } else {
                 $("#mG2").microgallery({
@@ -643,9 +650,12 @@ class MeFabric extends Component {
                     cycle: false
                 });
             }
-            this.selectedColor($(e.currentTarget));
+            this.selectedColor($(e.currentTarget));*/
         });
-
+        $('.upper-canvas').click((e) => {
+            console.log('click on canvas');
+            this.makeCanvasSelectable(true);
+        });
         $(document).on('click focus', '.box-img', (e) => {
             //this.addImage($(e.currentTarget).find('svg')[0].src);
             //let url = '/assets/triangle.svg';
@@ -881,8 +891,16 @@ class MeFabric extends Component {
      * FUNCTIONS
      ****************/
 
-    /** ID Generator **/
+    makeCanvasSelectable(isSelectable){
+        this.canvas.getObjects().forEach(function(o,i){
+            console.log('makeCanvasSelectable', isSelectable);
+            if(i>1)
+                o.selectable = isSelectable;
+        });
+    }
 
+    /**
+     * ID Generator **/
      IDGenerator() {
         //Todo : Put all those number in an array, and check if it's already existed when generating one
 		 this.length = 8;

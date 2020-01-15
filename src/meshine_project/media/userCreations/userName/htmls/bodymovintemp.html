@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BmHtmlGenerator</title>
+</head>
+<body>
+<div id="svgContainer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js"></script>
+<script>
+    let svgContainer =  window.lottie.loadAnimation({
+        container: document.getElementById('svgContainer'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'assets/jsonData.json'
+
+    });
+</script>
+</body>
+</html>
+                    

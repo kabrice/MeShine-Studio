@@ -181,7 +181,7 @@ class WebMetaDataGenerator:
         
         self.browser.close()
         self.browser.quit()
-        
+        print('soup', soup)
         text_content = self.text_from_html(soup)
 
         s = self.clean_punct(text_content)

@@ -1,5 +1,6 @@
 // *** COLORS ***
-$black3: #27292F;
+$black3: #0a0a0a;
+//$black3: #27292F;
 $black2: #1F1F1F;
 $black1: #353738;
 $gray: #636c72;
@@ -29,7 +30,7 @@ $body-display: flex;
 $body-flex-direction: column;
 
 // *** MAIN CONTAINER ***
-$container-margin: -7px auto -33px;
+$container-margin: -4px auto -33px;
 $container-min-height: calc(100vh - 150px);
 $container-width: $html-height;
 $container-padding-main: 0 15px 0;

@@ -280,7 +280,7 @@ footer .container-fluid {
 .modal-content {
   background-color: #353738 !important;
   color: rgba(0, 0, 0, 0.75) !important; }
-  .modal-content input {
+  .modal-content input, textarea {
     margin-bottom: 15px; }
 
 .modal-header {
@@ -291,7 +291,8 @@ footer .container-fluid {
   border-bottom: 1px solid #353738 !important;
   padding-bottom: 0 !important; }
 
-.me-modal-form input {
+.me-modal-form input,
+.me-modal-form textarea{
   background: none;
   color: rgba(255, 255, 255, 0.5);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -25,8 +25,10 @@ import App from './components/App';
 import reducers from './reducers';
 import Home from './containers/Home';
 
-import CardContainer from './containers/ProjectContainer';
-
+const styleLink = document.createElement("link");
+styleLink.rel = "stylesheet";
+styleLink.href = "../../external/semantic-ui.2.4.2/semantic-ui.min.css";
+document.head.appendChild(styleLink);
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxPromise));
 //const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);

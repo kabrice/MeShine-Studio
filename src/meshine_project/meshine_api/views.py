@@ -3,7 +3,7 @@ import os
 import logging
 from django.conf import settings
 from uuid import uuid4
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from rest_framework import status, filters
 from rest_framework import viewsets, generics
 from rest_framework.authentication import TokenAuthentication
@@ -15,17 +15,20 @@ from rest_framework.views import APIView
 
 from .WebMetaDataGenerator.WebMetaDataGenerator import WebMetaDataGenerator
 from .HtmlFileGenerator.HtmlFileGenerator import HtmlFileGenerator
+from .HtmlFileGenerator.BmJsonGenerator import BmJsonGenerator
 from . import serializers, models, permissions
-from .models import Summary, Category, Tag, TagCategory, Question, QuestionSummary, FileType, UserProfile
+from .models import Summary, Category, Tag, TagCategory, Question, QuestionSummary, FileType, UserProfile, File
 from requests_oauthlib import OAuth1
 from django.core.files.base import ContentFile
 import re, base64
 from django.db import transaction
+
 # Summary level validations
 URL_LEVEL = 1
 TAG_LEVEL = 2
 QUESTION_LEVEL = 3
 AUTH = OAuth1("b5288e7fe68744eaad6e4784bbc1def6", "bcc28b8d49b74990baec3abe7f198c77")
+
 
 class HelloApiView(APIView):
     """Test API View."""
@@ -146,6 +149,7 @@ class SummaryListView(APIView):
         try:
             web_meta_data_generator = WebMetaDataGenerator(request.data['url'])
         except:
+            logging.exception('Views >>> SummaryListView >>> post 146')
             return Response(
                 {"Weird error! Please retry."},
                 status=status.HTTP_503_SERVICE_UNAVAILABLE
@@ -193,6 +197,8 @@ class SummaryListView(APIView):
                     f.close()
 
                 summary = Summary.objects.get(pk=serializer.data['id'])
+                # pprint('request ***', request)
+                print('request str ***', request.__dict__)
                 user_profile_summary = models.UserProfileSummary(is_author=True, user_profile=request.user,
                                                                  summary=summary)
                 user_profile_summary.save()
@@ -212,6 +218,7 @@ class SummaryListView(APIView):
                 return Response(output, status=status.HTTP_201_CREATED)
             except:
                 Summary.objects.get(pk=serializer.data['id']).delete()
+                logging.exception('Views >>> SummaryListView >>> post 191')
                 return Response("Can't save because of an error.", status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -239,7 +246,7 @@ class SummaryView(APIView):
         summary = self.get_object(pk)
         questions = request.data.get("questions")
         svgs = request.data.get("svgs")
-        #print('svg ', svgs)
+        # print('svg ', svgs)
         svgs2 = svgs;
         if questions:
             qs = None
@@ -434,32 +441,71 @@ class FileViewSet(APIView):
     file_serializer = serializers.FileSerializer
     permission_classes = [permissions.UpdateOwnProfile]
 
-    def get(self,request, pk):
+    def get(self, request, pk):
 
         user = UserProfile.objects.get(pk=pk)
         files = models.File.objects.filter(owner=user)
         serializer = serializers.FileSerializer(files, many=True)
-        #print('============== ', files)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def put(self, request, pk):
+    def post(self, request, pk):
 
         user = UserProfile.objects.get(pk=pk)
         with transaction.atomic():
-            for req in request.data["fileList"]:
-                codec = req["file"]
-                base64_data = re.sub('^data:.+;base64,', '', codec)
-                base64_data += '=' * (-len(base64_data) % 4)
-                byte_data = base64.b64decode(base64_data)
-                data = ContentFile(byte_data, name=req["name"])
-                file_type = FileType.objects.get(name=req["fileType"].title())
-                file = models.File(content=data, owner=user, file_type=file_type)
+            if 'fileList' in request.data:
+                for req in request.data["fileList"]:
+                    codec = req["file"]
+                    base64_data = re.sub('^data:.+;base64,', '', codec)
+                    base64_data += '=' * (-len(base64_data) % 4)
+                    byte_data = base64.b64decode(base64_data)
+                    data = ContentFile(byte_data, name=req["name"])
+                    print('data file', data)
+                    file_type = FileType.objects.get(name=req["fileType"].title())
+                    file = models.File(content=data, owner=user, file_type=file_type)
+                    file.save()
+            else:
+                data = bs64_normalizer(request.data)
+                # print('data', data)
+                name = request.data["fileType"].title()
+                file_type = FileType.objects.get(name=name)
+                file = models.File(content=data, additional_content=data, owner=user, file_type=file_type)
                 file.save()
+                bm = BmJsonGenerator(request.data["jsonData"])
+                svg_string = bm.create_svg()
+                file = File.objects.latest('id')
+                print('file==========', file)
+                return JsonResponse({'svg_string': str(svg_string), 'id': file.pk, 'name': name})
 
         files = models.File.objects.filter(owner=user)
         serializer = serializers.FileSerializer(files, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def put(self, request, pk):
+        name = request.data["fileType"].title()
+        file_type = FileType.objects.get(name=name)
+        print('file_type', file_type)
+        user = UserProfile.objects.get(pk=pk)
+        print('data["jsonB64"]', request.data["name"])
+        data = bs64_normalizer(request.data)
+        print('bs64_normalizer(request.data)', data)
+        print('-------------------------===============')
+        file = File.objects.get(pk=request.data["id"])
+        file.content = data
+        file.save()
+        # File.objects.update_or_create(content=data, defaults={'pk': request.data["id"]})
+        # file.update_or_create(content=bs64_normalizer(request.data))
+        files = models.File.objects.filter(owner=user, file_type=file_type)
+        serializer = serializers.FileSerializer(files, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+def bs64_normalizer(data):
+    print('data["jsonB64"]', data["name"])
+    codec = data["jsonB64"]
+    base64_data = re.sub('^data:.+;base64,', '', codec)
+    base64_data += '=' * (-len(base64_data) % 4)
+    byte_data = base64.b64decode(base64_data)
+    data = ContentFile(byte_data, name=data["name"])
+    return data
