@@ -52,8 +52,8 @@ class AnimationPanel extends Component{
                     <th>ANIMATIONS</th>
                 </tr>
                 </thead>
-                <tbody>{/*
-                {this.renderArrangement()}
+                <tbody>
+                {/*{this.renderArrangement()}
                 {this.renderTextEditor()}
                 {this.renderAdvancedStyle()}*/}
                 </tbody>

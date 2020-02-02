@@ -57,7 +57,8 @@ header .navbar {
   height: calc(100vh - 150px);
   overflow: scroll;
   color: rgba(255, 255, 255, 0.5);
-  flex: 0 0 220px !important; }
+  flex: 0 0 220px !important;
+  position: initial !important; }
 
 .animation-emphasis {
   padding-left: 5px; }
@@ -753,7 +754,7 @@ button:focus,
   font-family: Verdana;
   font-style: normal;
   font-weight: normal;
-  z-index: 1;
+  z-index: 1031;
   -webkit-box-sizing: initial;
   box-sizing: initial; }
   .menu-box video, .menu-box img {

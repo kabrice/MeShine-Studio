@@ -8,6 +8,13 @@ import FooterMenuBox from './FooterMenuBox';
 
 class AnimationPanel extends Component{
 
+    constructor(props){
+        super(props);
+        this.state = {
+            displayAnims: false
+        };
+    }
+
     componentDidMount(){
         this.props.fetchAnimation();
     }
@@ -20,8 +27,15 @@ class AnimationPanel extends Component{
         })
     }
 
+    handleClickAnims = () => {
+        //$('.animation-panel').css({"overflow": "initial"});
+        //$('.animation-panel').css({"overflow": "initial"});
+        this.setState({displayAnims: true});
+        console.log('HELLOHEY');
+    };
+
     render(){
-        const countryOptions = [
+/*        const countryOptions = [
             { key: 'af', value: 'af', image: { avatar: true, src: 'https://react.semantic-ui.com/images/avatar/small/jenny.jpg'} , text: 'Afghanistan' },
             { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
             { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
@@ -45,7 +59,7 @@ class AnimationPanel extends Component{
             { key: 'be', value: 'be', flag: 'be', text: 'Belgium' },
             { key: 'bz', value: 'bz', flag: 'bz', text: 'Belize' },
             { key: 'bj', value: 'bj', flag: 'bj', text: 'Benin' },
-        ];
+        ];*/
         return (
             <React.Fragment>
                 <div className="big-anim-box" >
@@ -69,21 +83,25 @@ class AnimationPanel extends Component{
                                 </div>
                             </div>
                         </div>
-                        <Dropdown
+                        {/*<Dropdown
                             placeholder='Select Country'
                             fluid
                             search
                             selection
                             options={countryOptions}
-                        />
+                        />*/}
+                        <div style={ { display: (this.state.displayAnims) ? 'block' : 'none' } }>
+                        <FooterMenuBox type={"bodymovin"} />
+                        </div>
                         <div role="combobox" aria-expanded="true"
-                             className="ui active visible fluid search selection upward dropdown"><input
+                             className="ui active visible fluid search selection upward dropdown">
+                            <input
                             aria-autocomplete="list" autoComplete="off" className="search" tabIndex="0" type="text"
-                            value=""/>
+                            value=""
+                            onClick={this.handleClickAnims}/>
                             {/*<div className="default text" role="alert" aria-live="polite" aria-atomic="true">Select animation</div>*/}
                             <div className="text" role="alert" aria-live="polite" aria-atomic="true">Afghanistan</div>
-                            <FooterMenuBox type={"bodymovin"}
-                                           />
+
                             <i aria-hidden="true" className="dropdown icon"></i>
                         </div>
                         <div className={"anim-block"}>

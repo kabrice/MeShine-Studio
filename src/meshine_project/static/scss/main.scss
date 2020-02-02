@@ -87,6 +87,7 @@ header .navbar{
   overflow: scroll;
   color: $animation-panel-color;
   flex: 0 0 220px !important;
+  position: initial !important;
 }
 
 .animation-emphasis{
@@ -844,7 +845,7 @@ button:focus,
   font-family:Verdana;
   font-style:normal;
   font-weight:normal;
-  z-index:1;
+  z-index:1031;
   -webkit-box-sizing:initial;
   box-sizing:initial;
   video, img{
