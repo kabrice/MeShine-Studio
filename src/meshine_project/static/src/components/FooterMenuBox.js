@@ -267,7 +267,7 @@ class FooterMenuBox extends Component{
                                         </g>
                                     </g>
                                 </svg>
-                                <p>Add JSON </p>
+                                <p> Add JSON </p>
                             </div>
 
         }else{

@@ -1,0 +1,53 @@
+.assembly {
+  flex: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: ini 2s ease-in forwards;
+  z-index: 1;
+  display: table;
+  width: 110px;
+  height: 110px;
+}
+:hover  {
+  animation-name: fin;
+}
+
+@keyframes ini {
+  0% {
+    transform: rotatey(90deg);
+  }
+  50% {
+    transform: perspective(20em) rotatey(45deg);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: rotatey(0deg);
+  }
+}
+@keyframes fin {
+  0% {
+    transform: rotatey(0deg);
+  }
+  50% {
+    transform: perspective(20em) rotatey(45deg);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: rotatey(90deg);
+  }
+}
+.slice {
+  --s: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(110px/var(--n));
+  height: 110px;
+  --tv: calc(.5*(var(--i)/var(--n) - 1)*110px);
+  transform: translate3d(var(--tv), -50%, var(--tv)) rotatey(calc(var(--s)*-90deg));
+  background: url(https://images.unsplash.com/photo-1455970022149-a8f26b6902dd?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=1d90e9b4eb548871141fd383bd4d7d76) calc(.5*(var(--s) - var(--i))*calc(110px/var(--n))) 0/ 110px;
+}
+.slice:nth-child(2n) {
+  --s: 1;
+  background-image: url(https://images.unsplash.com/photo-1524132989408-c8ee48d8f147?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=13074b883594c081bfeba3f72edb5816);
+}

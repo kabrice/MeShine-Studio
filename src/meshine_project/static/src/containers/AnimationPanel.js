@@ -46,18 +46,19 @@ class AnimationPanel extends Component{
     render(){
         return (
             <React.Fragment>
-            <table className="table-config" style={{"margin-left": "-4px"}}>
+
+            {/*<table className="table-config" style={{"marginLeft": "-4px"}}>
                 <thead>
                 <tr>
                     <th>ANIMATIONS</th>
                 </tr>
                 </thead>
                 <tbody>
-                {/*{this.renderArrangement()}
+                {this.renderArrangement()}
                 {this.renderTextEditor()}
-                {this.renderAdvancedStyle()}*/}
+                {this.renderAdvancedStyle()}
                 </tbody>
-            </table>
+            </table>*/}
                 {this.renderAnimation()}
             </React.Fragment>
         )

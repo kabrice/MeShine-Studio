@@ -1,0 +1,47 @@
+// GENERAL STUFFS
+
+.romantic-zoom{
+
+  height:110px;
+  overflow:hidden;
+  position:relative;
+  display: table;
+  background: steelblue;
+  width:110px;
+
+  img{
+    transform-origin:50%;
+    width:100%;
+    transition:2s ease;
+  }
+
+  // HOVER ANIMATION
+
+
+    &:hover .pic1{
+      transform:scale(1.2);
+      -webkit-filter:blur(4px);
+    }
+    &:hover .pic2{
+      transform:scale(1.4);
+      -webkit-filter:blur(2px);
+    }
+    &:hover .pic3{
+      transform:scale(1.6);
+      -webkit-filter:blur(1px);
+    }
+    &:hover .pic4{
+      transform:scale(1.8);
+    }
+    &:hover .pic5{
+      transform:scale(2);
+    }
+    &:hover .mist{
+      transform:translateX(-100%);
+    }
+    &:hover .mist2{
+      transform:translateX(100%);
+    }
+
+}
+

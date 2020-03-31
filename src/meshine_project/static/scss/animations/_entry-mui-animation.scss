@@ -1,0 +1,15 @@
+#entry1{
+  @include mui-fade(in,  $duration: 1s);
+}
+#entry2{
+  @include mui-hinge(in,$from: top, $duration: 1s);
+}
+#entry3{
+  @include mui-slide(in, $direction: right, $duration: 1s);
+}
+#entry4{
+  @include mui-spin(in,$direction: cw, $duration: 1s);
+}
+#entry5{
+  @include mui-zoom(in, $duration: 1s);
+}

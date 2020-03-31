@@ -1,0 +1,14 @@
+#liquiddistorsion-container{
+  height: 110px;
+  width: 110px;
+  canvas {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .slide-wrapper {
+    display: none !important;
+  }
+}

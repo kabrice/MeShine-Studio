@@ -109,10 +109,21 @@
 }
 
 // input for text-editor block
-@mixin input-te-width($width: 43px){
+@mixin input-te-width($width: 50px){
   border-radius: .25rem;
   height: 24px;
   width: $width;
   outline: none;
   margin-right: 3px;
+}
+
+@mixin input-panel(){
+  input{
+  background: none;
+  color: $animation-panel-color;
+  border: 1px solid #4f575a;
+  font-size: 12px;
+  height: 1.5em;
+  padding-left: 0.3em;
+  }
 }

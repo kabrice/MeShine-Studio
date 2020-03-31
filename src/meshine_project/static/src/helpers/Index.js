@@ -4,10 +4,10 @@
 // Import each file using the * notation
 // This will import automatically every function exported by these files
 import * as Utils from './Utils.js';
-import * as Animation from './Animation.js';
+import * as Animations from './Animations.js';
 
 // Export again
 export {
     Utils,
-    Animation,
+    Animations,
 };

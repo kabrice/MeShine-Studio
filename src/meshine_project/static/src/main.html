@@ -3,163 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <title>Summaries Studio</title>
-    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../build/styles.css">
-    <link rel="stylesheet" href="../css/main.css">
+
+    <!--<link rel="stylesheet" href="../css/main.css">-->
     <link rel="stylesheet" href="../external/jqueryui-ruler/css/jquery.ui.ruler.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700");
+
+        html {
+            height: 100%; }
+
+        body {
+            min-height: 100%;
+            overflow: hidden;
+            color: #444;
+            font-family: "Noto Sans"; }
+
+        a {
+            color: #444;
+            text-decoration: none; }
+
+        ::-moz-selection {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5); }
+
+        ::selection {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5); }
+
+        .p-contents-summary {
+            position: absolute;
+            bottom: 4%;
+            left: 2%;
+            z-index: 100; }
+        .p-contents-summary__head {
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 2px; }
+        @media all and (min-width: 1367px) {
+            .p-contents-summary__head {
+                font-size: 54.64px; } }
+        @media all and (min-width: 569px) and (max-width: 1366px) {
+            .p-contents-summary__head {
+                font-size: 4vw; } }
+        @media all and (max-width: 568px) {
+            .p-contents-summary__head {
+                font-size: 22.72px; } }
+        .p-contents-summary__text {
+            max-width: 360px;
+            line-height: 1.75;
+            margin: 1em 0;
+            letter-spacing: 1px; }
+        @media all and (min-width: 1367px) {
+            .p-contents-summary__text {
+                font-size: 13.66px; } }
+        @media all and (min-width: 569px) and (max-width: 1366px) {
+            .p-contents-summary__text {
+                font-size: 1vw; } }
+        @media all and (max-width: 568px) {
+            .p-contents-summary__text {
+                font-size: 5.68px; } }
+        .p-contents-summary__link-source {
+            margin: 0;
+            letter-spacing: 1px; }
+        @media all and (min-width: 1367px) {
+            .p-contents-summary__link-source {
+                font-size: 13.66px; } }
+        @media all and (min-width: 569px) and (max-width: 1366px) {
+            .p-contents-summary__link-source {
+                font-size: 1vw; } }
+        @media all and (max-width: 568px) {
+            .p-contents-summary__link-source {
+                font-size: 5.68px; } }
+        .p-contents-summary__link-source a {
+            position: relative; }
+        .p-contents-summary__link-source a:after {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: #444; }
+        .p-contents-summary__link-source a {
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .p-contents-summary__link-source a:after {
+            -webkit-transform: scale(0, 1);
+            -ms-transform: scale(0, 1);
+            transform: scale(0, 1);
+            -webkit-transform-origin: left center;
+            -ms-transform-origin: left center;
+            transform-origin: left center;
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .p-contents-summary__link-source a:hover {
+            color: #fff; }
+        .p-contents-summary__link-source a:hover:after {
+            -webkit-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+            transform: scale(1, 1); }
+
+        .p-canvas-webgl {
+            position: relative;
+            z-index: 1; }
+
+        @-webkit-keyframes rotatePreloader {
+            0% {
+                -webkit-transform: rotateZ(0);
+                transform: rotateZ(0); }
+            100% {
+                -webkit-transform: rotateZ(360deg);
+                transform: rotateZ(360deg); } }
+
+        @keyframes rotatePreloader {
+            0% {
+                -webkit-transform: rotateZ(0);
+                transform: rotateZ(0); }
+            100% {
+                -webkit-transform: rotateZ(360deg);
+                transform: rotateZ(360deg); } }
+
+        .p-preloader {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+            background-color: #fff; }
+        .p-preloader__icon {
+            width: 40px;
+            height: 40px;
+            box-sizing: border-box;
+            margin: 0 auto 10px;
+            border-top: 3px solid transparent;
+            border-right: 3px solid #000;
+            border-bottom: 3px solid transparent;
+            border-left: 3px solid #000;
+            border-radius: 25px;
+            -webkit-animation-name: rotatePreloader;
+            animation-name: rotatePreloader;
+            -webkit-animation-duration: 0.6s;
+            animation-duration: 0.6s;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear; }
+        .p-preloader__label {
+            color: #000;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 2px;
+            padding-left: 2px; }
+        @media all and (min-width: 1367px) {
+            .p-preloader__label {
+                font-size: 10.928px; } }
+        @media all and (min-width: 569px) and (max-width: 1366px) {
+            .p-preloader__label {
+                font-size: 0.8vw; } }
+        @media all and (max-width: 568px) {
+            .p-preloader__label {
+                font-size: 4.544px; } }
+        .p-preloader.is-hidden {
+            opacity: 0;
+            -webkit-transform: scale(0.95);
+            -ms-transform: scale(0.95);
+            transform: scale(0.95);
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+            pointer-events: none; }
+        .p-preloader.is-stoped .p-preloader__icon {
+            -webkit-animation-name: none;
+            animation-name: none; }
+
+    </style>
 </head>
-<body >
-<div class="me-container">
-    <header>
-
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse ">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#" data-placement="right" data-animation="false" data-toggle="tooltip"
-               title="Aller à Mes Summaries">
-                <img src="../assets/summaries-studio-logo.svg" alt="Aller à Mes Summaries"></a>
-
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <div class="navbar-nav mr-auto" id="question-tag">
-
-            <span class="nav-item">
-                <span id="question">
-                    <a class="nav-link"
-                       data-placement="right"
-                       data-animation="false" data-toggle="tooltip"
-                       title="Modifier la question" href="#">
-                        <b>Si comme moi, vous avez accumulé des dizaines de mails par jour de sorte que votre boîte compte aujourd'hui plus de 4000 non lus et qu'il faudrait des ?</b>
-                        <i><i class="fa fa-pencil" aria-hidden="true"></i></i></a></span>
-                <span id="tags">
-                    <a class="nav-link"
-                       data-placement="right"
-                       data-animation="false" data-toggle="tooltip"
-                       title="Modifier les tags" href="#">
-                        <span>Climat</span>
-                        <span>Animaux des eaux</span>
-                        <span>Sri Lanka</span>
-                        <span>Cyclone</span>
-                        <span>Climat</span>
-                        <span>Animaux des eaux</span>
-                        <span>Sri Lanka</span>
-                        <span>Cyclone</span>
-                        <span>Climat</span>
-                        <span>Animaux des eaux</span>
-                        <span>Sri Lanka</span>
-                        <span>Cyclone</span>
-                        <span>Climat</span>
-                        <span>Animaux des eaux</span>
-                        <span>Sri Lanka</span>
-                        <i><i class="fa fa-pencil" aria-hidden="true"></i></i></a></span>
-            </span>
-
-                </div>
-
-            </div>
-            <div class="user-profile">
-                <span class="navbar-nav">
-                <a class="nav-link" href="#" data-placement="left" data-animation="false" data-toggle="tooltip"
-                   title="Profil et paramètres">
-                    <img src="../assets/edgar.jpeg" class="rounded-circle" height="32" width="32"
-                         alt="Profil et paramètres">
-                    <span>Edgar</span>
-                </a>
-                </span>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Begin page content -->
-    <div style="font-weight: 900; font-family:  AvenirNext-Heavy, Avenir Next; font-size: 16px; margin-top: 100px; color: white;">
-        I'm happy to be here
-    </div>
-
-    <footer >
-
-        <nav class="navbar navbar-toggleable-md navbar-inverse fixed-bottom bg-inverse">
+<body style="background: dimgrey">
 
 
-            <div class="container-fluid">
-                <div class="row " >
-                    <div class="col" >
-                        <div class="row">
-                            <div id="undo"  class="col-md-2 col-sm-6 col-12" title="Annuler la dernière modification" >
-                                <i class="fa fa-undo " aria-hidden="true"></i>
-                            </div>
-                            <div  id="redo" title="Rétablir la dernière modification" class="col-md-2 col-sm-6 col-12" >
-                                <span><i class="fa fa-repeat" aria-hidden="true"></i></span>
-                            </div>
-                            <div id="zoom" class="col-md-6 col-sm-6 col-12" title="Zoomer l'affichage du Summary">
-                                <button class="btn nav-link" >100%</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col" id="screens">
-                        <div class="row">
-                            <div id="cover-screen" class="col-md-4 col-sm-12 col-12" >
-                                <img src="../assets/cover_screen.svg" title="Customizer le slide de début"></div>
-                            <div id="screen" class="col-md-4 col-sm-12 col-12">
-                                <img src="../assets/screen.svg" title="Changer de slide"></div>
-                            <div id="ending-screen" class="col-md-4 col-sm-12 col-12">
-                                <img src="../assets/ending_screen.svg" alt="Customizer le slide de fin"></div>
-                        </div>
-                    </div>
-                    <div class="col" id="multimedia">
-                        <div class="row">
-                            <div id="image-gallery" class="col-md-4 col-sm-12 col-12">
-                                <img src="../assets/image_gallery.svg" title="Choisir une image et ajouter à ce Summary"></div>
-                            <div id="audio-gallery" class="col-md-4 col-sm-12 col-12">
-                                <img src="../assets/audio_gallery.svg" title="Choisir une piste et ajouter à ce Summary"></div>
-                            <div id="video-gallery" class="col-md-4 col-sm-12 col-12">
-                                <img src="../assets/video_gallery.svg" title="Choisir une vidéo et ajouter à ce Summary">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col" id="graphics">
-                        <div class="row">
-                            <div id="text" class="col-md-3 col-sm-6 col-12">
-                                <img src="../assets/text.svg" title="Ajouter une zone de texte"></div>
-                            <div id="diagram" class="col-md-3 col-sm-6 col-12" >
-                                <img src="../assets/diagram.svg" title="Choisir un graphique à ajouter"></div>
-                            <div id="table" class="col-md-3 col-sm-6 col-12">
-                                <img src="../assets/table.svg" title="Choisir un tableau à ajouter"></div>
-                            <div id="figure" class="col-md-3 col-sm-6 col-12" >
-                                <img src="../assets/figure.svg" title="Choisir une forme ou une ligne"></div>
-                        </div>
-                    </div>
-                    <div class="col" id="magic">
-                        <div class="row">
-                            <div id="template" class="col-md-3 col-sm-6 col-12" >
-                                <img src="../assets/template.svg" title="Découvrir et inspirer vous de modèle préfaits"></div>
-                            <div id="background" class="col-md-3 col-sm-6 col-12" >
-                                <img src="../assets/background.svg" alt="Customizer l'arrière plan"></div>
-                            <div id="animation" class="col-md-3 col-sm-6 col-12" >
-                                <img src="../assets/animation.svg" alt="Afficher ou masquer les options d'animation"></div>
-                            <div id="format" class="col-md-3 col-sm-6 col-12">
-                                <img src="../assets/format.svg" alt="Afficher ou masquer les options de format de styles"></div>
-                        </div>
-                    </div>
-                    <div class="col" id="action" >
-                        <!-- Look at inVision tooltip -->
-                        <div id="me-tool" class="col-md-2 col-sm-6 col-12"  title="Enregistrer ce Summary" >
-                            <img src="../assets/tool.svg" alt="Profil et paramètres">
-                        </div>
-
-                        <button  id="play"  type="button" class="btn btn-sm">Lire</button>
-                        <button id="publish"  type="button" class="btn btn-sm">Publier</button></div>
-                </div>
-            </div>
-        </nav>
-    </footer>
+<div class="p-contents-summary">
+    <h1 class="p-contents-summary__head">particle picture</h1>
+    <p class="p-contents-summary__text">drawing a picture with particles and move it.</p>
+    <p class="p-contents-summary__link-source"><a href="https://github.com/ykob/particle-picture">view source.</a></p>
 </div>
+<div class="p-preloader">
+    <div class="p-preloader__wrap">
+        <div class="p-preloader__icon"></div>
+        <div class="p-preloader__label">Loading</div>
+    </div>
+</div>
+<canvas class="p-canvas-webgl" id="canvas-webgl"></canvas>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<script src="file:///Users/edgarkamdem/Documents/pulsar/MeShine-Studio/src/meshine_project/static/external/three-local.js"></script>
+<!--
+<script src="file:///Users/edgarkamdem/Documents/pulsar/MeShine-Studio/src/meshine_project/static/external/TweenMax-local.js"></script>
+-->
+
+<script>
+    /**
+     * Modules in this bundle
+     * @license
+     *
+     * particle-picture:
+     *
+     * This header is generated by licensify (https://github.com/twada/licensify)
+     */
+    (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+            'use strict';
+
+            var _ParticlePicture = require('./modules/ParticlePicture.js');
+
+            var _ParticlePicture2 = _interopRequireDefault(_ParticlePicture);
+
+            function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+            var canvas = document.getElementById('canvas-webgl');
+            var renderer = new THREE.WebGLRenderer({
+                antialias: false,
+                canvas: canvas
+            });
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
+            var clock = new THREE.Clock();
+
+            var images = [
+                'https://ykob.github.io/particle-picture/img/image01.jpg',
+                'https://ykob.github.io/particle-picture/img/image02.jpg',
+                'https://ykob.github.io/particle-picture/img/image03.jpg',
+                'https://ykob.github.io/particle-picture/img/image04.jpg'
+            ];
+            var particlePicture = new _ParticlePicture2.default();
+
+            var resizeWindow = function resizeWindow() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            };
+            var setEvent = function setEvent() {
+                $(window).on('resize', function () {
+                    resizeWindow();
+                }).on('mousemove', function (event) {
+                    particlePicture.uniforms.rotate.value.set(event.clientX, event.clientY);
+                });
+            };
+            var render = function render() {
+                particlePicture.render(clock.getDelta());
+                renderer.render(scene, camera);
+            };
+            var renderLoop = function renderLoop() {
+                render();
+                requestAnimationFrame(renderLoop);
+            };
+
+            var init = function init() {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setClearColor(0xeeeeee, 1.0);
+                renderer.render(scene, camera);
+                camera.position.set(0, 0, 1024);
+                camera.lookAt(new THREE.Vector3());
+
+                particlePicture.loadTexture(images, function () {
+                    setTimeout(function () {
+                        $('.p-preloader').addClass('is-hidden').on('transitionend', function () {
+                            $(this).addClass('is-stoped');
+                        });
+                        scene.add(particlePicture.obj);
+                        setEvent();
+                        resizeWindow();
+                        renderLoop();
+                    }, 200);
+                });
+            };
+            init();
+
+        },{"./modules/ParticlePicture.js":2}],2:[function(require,module,exports){
+            'use strict';
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+
+            var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+            function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
-<script src="../build/bundle.js"></script>
 
-<script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+            var ParticlePicture = function () {
+                function ParticlePicture() {
+                    _classCallCheck(this, ParticlePicture);
 
+                    this.textures = [];
+                    this.uniforms = {};
+                    this.interval = 2;
+                    this.prevNum = 0;
+                    this.nextNum = 1;
+                    this.obj = null;
+                }
+
+                _createClass(ParticlePicture, [{
+                    key: 'loadTexture',
+                    value: function loadTexture(images, callback) {
+                        var _this = this;
+
+                        var count = 0;
+
+                        var _loop = function _loop() {
+                            var index = i;
+                            var loader = new THREE.TextureLoader();
+                            loader.load(images[index], function (texture) {
+                                _this.textures[index] = texture;
+                                count++;
+                                if (count == images.length) {
+                                    var texBrank = new THREE.DataTexture(new Uint8Array([255, 255, 255, 0]), 1, 1, THREE.RGBAFormat, THREE.UnsignedByteType);
+                                    texBrank.needsUpdate = true;
+                                    _this.obj = _this.createPoints(_this.textures[_this.prevNum], _this.textures[_this.nextNum]);
+                                    callback();
+                                }
+                            });
+                        };
+
+                        for (var i = 0; i < images.length; i++) {
+                            _loop();
+                        }
+                    }
+                }, {
+                    key: 'createPoints',
+                    value: function createPoints(texPrev, texNext) {
+                        var geometry = new THREE.BufferGeometry();
+                        var baseVertices1 = [];
+                        var baseVertices2 = [];
+                        var baseUvs = [];
+                        for (var x = 0; x < 512; x++) {
+                            for (var y = 0; y < 512; y++) {
+                                baseVertices1.push(x - 256, (y - 256) * -1, 0);
+                                var rad1 = (Math.random() * 90 + Math.random() * 90) * Math.PI / 180;
+                                var rad2 = Math.random() * 360 * Math.PI / 180;
+                                var radius = 2000 * Math.random() * Math.random() / 2 + 100;
+                                baseVertices2.push(Math.sin(rad1) * Math.cos(rad2) * radius, Math.cos(rad1) * radius, Math.sin(rad1) * Math.sin(rad2) * radius);
+                                baseUvs.push(x / 512, 1 - y / 512);
+                            }
+                        }
+                        geometry.addAttribute('position', new THREE.BufferAttribute(new Float32Array(baseVertices1), 3));
+                        geometry.addAttribute('position2', new THREE.BufferAttribute(new Float32Array(baseVertices2), 3));
+                        geometry.addAttribute('uv', new THREE.BufferAttribute(new Float32Array(baseUvs), 2));
+                        this.uniforms = {
+                            time: {
+                                type: 'f',
+                                value: 0
+                            },
+                            interval: {
+                                type: 'f',
+                                value: this.interval
+                            },
+                            resolution: {
+                                type: 'v2',
+                                value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+                            },
+                            texPrev: {
+                                type: 't',
+                                value: texPrev
+                            },
+                            texNext: {
+                                type: 't',
+                                value: texNext
+                            },
+                            rotate: {
+                                type: 'v2',
+                                value: new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2)
+                            }
+                        };
+                        return new THREE.Points(geometry, new THREE.RawShaderMaterial({
+                            uniforms: this.uniforms,
+                            vertexShader: "#define GLSLIFY 1\nattribute vec3 position;\nattribute vec3 position2;\nattribute vec2 uv;\n\nuniform float time;\nuniform mat4 projectionMatrix;\nuniform mat4 modelViewMatrix;\nuniform vec2 resolution;\nuniform vec2 rotate;\n\nvarying vec2 vUv;\nvarying float vStepPrev;\nvarying float vStepNext;\n\nmat4 rotateMatrixX(float radian) {\n  return mat4(\n    1.0, 0.0, 0.0, 0.0,\n    0.0, cos(radian), -sin(radian), 0.0,\n    0.0, sin(radian), cos(radian), 0.0,\n    0.0, 0.0, 0.0, 1.0\n  );\n}\n\nmat4 rotateMatrixY(float radian) {\n  return mat4(\n    cos(radian), 0.0, sin(radian), 0.0,\n    0.0, 1.0, 0.0, 0.0,\n    -sin(radian), 0.0, cos(radian), 0.0,\n    0.0, 0.0, 0.0, 1.0\n  );\n}\n\nmat4 rotateMatrixZ(float radian) {\n  return mat4(\n    cos(radian), -sin(radian), 0.0, 0.0,\n    sin(radian), cos(radian), 0.0, 0.0,\n    0.0, 0.0, 1.0, 0.0,\n    0.0, 0.0, 0.0, 1.0\n  );\n}\n\nmat4 rotateMatrix(float radX, float radY, float radZ) {\n  return rotateMatrixX(radX) * rotateMatrixY(radY) * rotateMatrixZ(radZ);\n}\n\n//\n// GLSL textureless classic 3D noise \"cnoise\",\n// with an RSL-style periodic variant \"pnoise\".\n// Author:  Stefan Gustavson (stefan.gustavson@liu.se)\n// Version: 2011-10-11\n//\n// Many thanks to Ian McEwan of Ashima Arts for the\n// ideas for permutation and gradient selection.\n//\n// Copyright (c) 2011 Stefan Gustavson. All rights reserved.\n// Distributed under the MIT license. See LICENSE file.\n// https://github.com/ashima/webgl-noise\n//\n\nvec3 mod289(vec3 x)\n{\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x)\n{\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x)\n{\n  return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nvec3 fade(vec3 t) {\n  return t*t*t*(t*(t*6.0-15.0)+10.0);\n}\n\n// Classic Perlin noise\nfloat cnoise(vec3 P)\n{\n  vec3 Pi0 = floor(P); // Integer part for indexing\n  vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1\n  Pi0 = mod289(Pi0);\n  Pi1 = mod289(Pi1);\n  vec3 Pf0 = fract(P); // Fractional part for interpolation\n  vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0\n  vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);\n  vec4 iy = vec4(Pi0.yy, Pi1.yy);\n  vec4 iz0 = Pi0.zzzz;\n  vec4 iz1 = Pi1.zzzz;\n\n  vec4 ixy = permute(permute(ix) + iy);\n  vec4 ixy0 = permute(ixy + iz0);\n  vec4 ixy1 = permute(ixy + iz1);\n\n  vec4 gx0 = ixy0 * (1.0 / 7.0);\n  vec4 gy0 = fract(floor(gx0) * (1.0 / 7.0)) - 0.5;\n  gx0 = fract(gx0);\n  vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);\n  vec4 sz0 = step(gz0, vec4(0.0));\n  gx0 -= sz0 * (step(0.0, gx0) - 0.5);\n  gy0 -= sz0 * (step(0.0, gy0) - 0.5);\n\n  vec4 gx1 = ixy1 * (1.0 / 7.0);\n  vec4 gy1 = fract(floor(gx1) * (1.0 / 7.0)) - 0.5;\n  gx1 = fract(gx1);\n  vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);\n  vec4 sz1 = step(gz1, vec4(0.0));\n  gx1 -= sz1 * (step(0.0, gx1) - 0.5);\n  gy1 -= sz1 * (step(0.0, gy1) - 0.5);\n\n  vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);\n  vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);\n  vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);\n  vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);\n  vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);\n  vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);\n  vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);\n  vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);\n\n  vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));\n  g000 *= norm0.x;\n  g010 *= norm0.y;\n  g100 *= norm0.z;\n  g110 *= norm0.w;\n  vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));\n  g001 *= norm1.x;\n  g011 *= norm1.y;\n  g101 *= norm1.z;\n  g111 *= norm1.w;\n\n  float n000 = dot(g000, Pf0);\n  float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));\n  float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));\n  float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));\n  float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));\n  float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));\n  float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));\n  float n111 = dot(g111, Pf1);\n\n  vec3 fade_xyz = fade(Pf0);\n  vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);\n  vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);\n  float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);\n  return 2.2 * n_xyz;\n}\n\nfloat quadraticOut(float t) {\n  return -t * (t - 2.0);\n}\n\nvoid main(void) {\n  float stepBase = quadraticOut(min(time, 1.0));\n  float width = 0.1;\n  // float diff = (1.0 - (position.y / 256.0 + 1.0) / 2.0) * (1.0 - width);\n  float diff = length(position.xy) / sqrt(pow(256.0, 2.0) * 2.0) * (1.0 - width);\n  float stepPrev = clamp((1.0 - (stepBase - diff + (1.0 - width))) / (width * 0.5), 0.0, 1.0);\n  float stepNext = clamp((stepBase - diff) / (width * 0.5), 0.0, 1.0);\n  float noise = cnoise(vec3(\n    position.x / 2.0,\n    position.y / 2.0,\n    position.z\n  ));\n  float radius = 92.0 * noise;\n  float vcos = cos(time * 128.0);\n  float vsin = sin(time * 256.0);\n  vec3 updatePosition = position + vec3(\n    vsin * vcos * radius * stepPrev * stepNext,\n    vcos * radius * stepPrev * stepNext,\n    vsin * vsin * radius * stepPrev * stepNext\n  );\n  mat4 rotateMat = rotateMatrix(\n    radians((rotate.y / resolution.y * 2.0 - 1.0) * -20.0),\n    radians((rotate.x / resolution.x * 2.0 - 1.0) * -20.0),\n    0.0\n  );\n  vUv = uv;\n  vStepPrev = stepPrev;\n  vStepNext = stepNext;\n  vec4 mvPosition = modelViewMatrix * rotateMat * vec4(updatePosition, 1.0);\n  gl_PointSize = 2.0 + stepPrev * stepNext * (2000.0 / length(mvPosition.xyz));\n  gl_Position = projectionMatrix * mvPosition;\n}\n",
+                            fragmentShader: "precision highp float;\n#define GLSLIFY 1\n\nuniform sampler2D texPrev;\nuniform sampler2D texNext;\n\nvarying vec2 vUv;\nvarying float vStepPrev;\nvarying float vStepNext;\n\nvoid main(void) {\n  vec3 n;\n  n.xy = gl_PointCoord * 2.0 - 1.0;\n  n.z = 1.0 - dot(n.xy, n.xy);\n  if (n.z < 0.0) discard;\n  vec4 colorPrev = texture2D(texPrev, vUv);\n  vec4 colorNext = texture2D(texNext, vUv);\n  gl_FragColor = vStepPrev * colorPrev + vStepNext * colorNext;\n}\n"
+                        }));
+                    }
+                }, {
+                    key: 'addToScene',
+                    value: function addToScene(scene) {
+                        scene.add(this.points.obj);
+                    }
+                }, {
+                    key: 'render',
+                    value: function render(time) {
+                        this.uniforms.time.value += time / this.interval;
+                        if (this.uniforms.time.value > 1) {
+                            this.uniforms.time.value = 0;
+                            this.prevNum = this.nextNum;
+                            this.uniforms.texPrev.value = this.textures[this.prevNum];
+                            while (this.nextNum == this.prevNum) {
+                                this.nextNum = Math.floor(Math.random() * this.textures.length);
+                            }
+                            this.uniforms.texNext.value = this.textures[this.nextNum];
+                        }
+                    }
+                }]);
+
+                return ParticlePicture;
+            }();
+
+            exports.default = ParticlePicture;
+
+        },{}]},{},[1]);
+
+</script>
 </body>
 </html>

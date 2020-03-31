@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import _ from 'lodash';
 import {fabric} from 'fabric';
 import {connect} from 'react-redux';
-import {microgallery} from '../../external/MicroGalleryImproved/jquery.microgallery'
+//import {microgallery} from '../../external/MicroGalleryImproved/jquery.microgallery'
+//import {microgallery} from '../../external/motion-ui-local'
 import {createSummaryPlayerFile} from "../actions/index";
 import {Utils} from '../helpers';
 
@@ -412,7 +413,6 @@ class MeFabric extends Component {
             } else {
                 this.fillObject('textAlign', 'left');
                 $this.removeClass("is-clicked");
-                isAlign = true;
             }
             previousAlignValue = $this.data('value');
             //this.fillObject($this.data('type'), $this.data('value'));

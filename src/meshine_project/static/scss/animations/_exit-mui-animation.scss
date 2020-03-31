@@ -1,0 +1,15 @@
+#exit1{
+  @include mui-fade(out,  $duration: 1s);
+}
+#exit2{
+  @include mui-hinge(out,$from: top, $duration: 1s);
+}
+#exit3{
+  @include mui-slide(out, $direction: right, $duration: 1s);
+}
+#exit4{
+  @include mui-spin(out,$direction: cw, $duration: 1s);
+}
+#exit5{
+  @include mui-zoom(out, $duration: 1s);
+}

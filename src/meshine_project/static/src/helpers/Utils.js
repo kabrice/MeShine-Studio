@@ -73,11 +73,42 @@ function getVideoElement(url) {
     return videoE;
 }
 
+function leftToRightResizeble(div) {
+    const element = document.querySelector(div);
+    const currentResizer = document.querySelector(div + ' .design-bar')
+
+    currentResizer.addEventListener('mousedown', function(e) {
+        e.preventDefault()
+        window.addEventListener('mousemove', resize)
+        window.addEventListener('mouseup', stopResize)
+    })
+
+    function resize(e) {
+
+        if (currentResizer.classList.contains('design-bar')) {
+            let style = window.getComputedStyle(element)
+            let oldFlexGrow = style.getPropertyValue('flex-grow')
+            let oldWidth = element.getBoundingClientRect().width
+            console.log('oldFlexGrow', oldFlexGrow);
+            let newFlexGrow = oldFlexGrow*e.pageX/oldWidth
+            if(newFlexGrow>0.5 && newFlexGrow<3){
+                element.style.flexGrow = newFlexGrow
+                element.style.height = '100%'
+            }
+        }
+    }
+
+    function stopResize() {
+        window.removeEventListener('mousemove', resize)
+    }
+
+}
 
 // Now you have to export each function you want
 export {
     saveCanvas,
     replay,
     deleteSelectedObjectsFromCanvas,
-    getVideoElement
+    getVideoElement,
+    leftToRightResizeble
 };

@@ -1,11 +1,32 @@
 @import "partials/variables";
 @import "partials/mixins";
+@import "../node_modules/motion-ui/motion-ui";
+@import "animations/entry-mui-animation";
+@import "animations/emphasis-3d-effect";
+@import "animations/exit-tiles";
+@import "animations/emphasis-multicoloring";
+@import "animations/emphasis-theotherhalf";
+@import "animations/emphasis-dead-redemption";
+@import "animations/emphasis-book-page";
+@import "animations/emphasis-amazon-night";
+@import "animations/exit-fall";
+@import "animations/emphasis-double-contour";
+@import "animations/emphasis-pulsing";
+@import "animations/emphasis-romantic-zoom";
+@import "animations/exit-split-img";
+@import "animations/exit-shattering";
+@import "animations/animation-dust";
+@import "animations/emphasis-glslglitch";
+@import "animations/emphasis-slice";
+@import "animations/emphasis-liquiddistortion";
+@import "animations/exit-mui-animation";
 
 html {
-  height: $html-height !important;
+  height: $html-height !important ;
   background: $black2 !important;
   font-size: $body-font-size !important;
   user-select: none;
+  scrollbar-color: hsla(0,0%,100%,.25) transparent
 }
 
 body {
@@ -28,7 +49,21 @@ body {
   }
 
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
+.fade-in {
+  opacity: 0;
+  animation: fadeIn ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 0.2s;
+}
 @font-face {
   font-family: 'Avenir Next Italic';
   src: url('fonts/AvenirNextLTPro-It.otf');
@@ -82,12 +117,21 @@ header .navbar{
 
 
 .animation-panel{
-  border-right: $panel-border;
-  height: $container-min-height;
+  /*border-right: $panel-border;
+  height: $container-min-height;*/
   overflow: scroll;
   color: $animation-panel-color;
-  flex: 0 0 220px !important;
+  flex: 1.5 0 220px !important;
   position: initial !important;
+  .search{
+    margin-top: 10px;
+    .form-inline{
+      width: 100%;
+      input{
+        width: 94%;
+      }
+    }
+  }
 }
 
 .animation-emphasis{
@@ -141,11 +185,12 @@ header .navbar{
   overflow-x: hidden ;
   padding: 2px;
   flex: 6 ;
+  margin-left: -4px;
 }
 
-.canvas-container{
-  margin-top: 3px;
-  margin-bottom: 3Px;
+.animation-{
+ /* margin-top: 3px;
+  margin-bottom: 3Px;*/
 }
 
 canvas{
@@ -164,11 +209,26 @@ canvas{
 }
 
 #design-panel{
-  min-height: $container-min-height ;
   border-left: $panel-border ;
-  flex: 3 ;
+  flex-shrink: 0;
+  flex-basis: 220px;
   overflow-y: scroll;
-  height:250px;
+  height:100%;
+  min-height: 100%;
+  box-sizing: border-box;/*
+  margin-right: -10px;*/
+}
+
+.design-bar{
+  right: -2px;
+  bottom: 5px;
+  cursor: ew-resize;
+  width: 5px;
+  height: 100%;
+  z-index: 2;
+  /*   background: white;
+    border: 3px solid #4286f4;*/
+  position: absolute;
 }
 
 .nav-item .nav-link span{
@@ -209,7 +269,7 @@ footer .container-fluid{
 }
 
 .fa {
-  transform: translateX(-35%) ;
+  /*transform: translateX(-35%) ;*/
 }
 
 #zoom button{
@@ -280,16 +340,14 @@ footer .container-fluid img{
   }
 }
 
-
-#search form{
+.search .form-inline{
   background: none;
   font-weight: bolder;
-  padding: 6px 10px 0 0;
+  padding: 6px 10px 6px 15px;
   display: block;
   width: 300px ;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid $animation-panel-color;
+  border-radius: 0.2rem;
+  border: 1px solid $animation-panel-color;
   input{
     background: none;
     border: none;
@@ -315,7 +373,7 @@ footer .container-fluid img{
 }
 
 .btn-link{
-  color : rgba(255, 255, 255, 0.5) !important;
+  color : $animation-panel-color !important;
 }
 
 .img-thumbnail {
@@ -993,16 +1051,11 @@ button.prev{
 }
 
 .anim-container{
-  border : 1px solid gray;
+  /*border : 1px solid gray;*/
   border-radius: 0.2rem!important;
-  input{
-    background-color: $black3;
-    color: whitesmoke;
-    border: none;
-    font-size: 12px;
-    height: 1.5em;
-    padding-left: 0.3em;
-  }
+  margin-right: 5%;
+  @include input-panel();
+
   .anim-block{
     width: 93%;
     vertical-align: middle;
@@ -1032,7 +1085,7 @@ button.prev{
   justify-content:center;
 }
 .big-anim-box{
-  margin-left: -5px;
+  /*margin-left: -5px;*/
   width: 108%;
   .line-title{
     display: inline-block;
@@ -1163,3 +1216,237 @@ button.prev{
 .Loader__background{
   z-index: 100000 !important;
 }
+
+.sidebar-menu{
+  height: auto;
+  flex-basis: 50px !important;
+  background: $black2;
+  flex-direction: column;
+  padding: 0 !important;
+  align-items: center;
+  overflow-y: auto;
+  min-width: 90px;
+  /*max-height: 400px; Todo: To assign dynamically*/
+  .option{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    color: $animation-panel-color;
+    width: 100%;
+    flex: 1;
+    border-left: $panel-border;
+    align-items: center;
+    flex-direction: column;
+    font-size: 12px;
+    padding: 15px;
+
+    &:hover{
+      img{filter: brightness(3)};
+      span{color: white};
+    }
+    /*img:hover, span:hover{filter: brightness(3)};*/
+    span, img{
+      margin: 0;
+    }
+  }
+  .option-is-clicked{
+  border-left: 1px solid $black4;
+  border-bottom: 1px solid $black1;
+  border-top: 1px solid $black1;
+  background: $black4;
+    img{
+      filter: brightness(3);
+    }
+    span{
+      color: white;
+    }
+  }
+ /* .option::before { content: ' '; padding: 225px; }
+  .option::after { content: ' '; padding: 15px; }*/
+  .remaining-block{
+    border-left: $panel-border;
+    height: 100%;
+    width: 100%;
+  }
+
+}
+
+.hide-side-menu{
+  margin-left: -35px;
+  position: absolute;
+  margin-top: -8px;
+  background: #292b2c;
+  border: none;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 9px;
+  padding-left: 7px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+header{
+  .editor-menu{
+    width: 100%;
+    height: 45px;
+    margin: 0;
+    flex-direction: row;
+    padding: 0 ;
+    align-items: center;
+    overflow-y: auto;
+    /*min-width: 90px;*/
+    .editor-item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      max-width: 160px;
+      margin: 10px;
+      button{
+        &:first-child{
+          border-top-left-radius: 0.2rem;
+          border-bottom-left-radius: 0.2rem;
+          border: none;
+        }
+        &:last-child{
+          border-top-right-radius: 0.2rem;
+          border-bottom-right-radius: 0.2rem;
+          border-left:  1px solid #353738;
+
+        }
+        &:hover{
+          img, i{filter: brightness(3)};
+        }
+        height: 25px;
+        width: 50px;
+        background: #1F1F1F;
+        color: $animation-panel-color;
+        cursor: pointer;
+        border: none;
+      }
+    }
+  }
+
+}
+
+.anim-menu{
+  display: flex;
+  /*margin-bottom: 10px;*/
+  margin-top: 5px;
+  .sub-edit-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    width: 60%;
+    p{
+      height: 2px;
+    }
+  }
+  .sub-edit{
+    &:first-child{
+      width: 40%;
+      img{
+        object-fit: contain;
+        width: 100%;
+      }
+    }
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .sub-menu{
+    display: flex;
+    border-bottom: 1px solid;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    &:hover{
+      color: white;
+    }
+  }
+  .sub-menu-is-clicked{
+    color: white;
+    border-bottom: 3px solid white;
+  }
+  .close-anim-box{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+    &:hover{
+      color:white;
+    }
+  }
+}
+.anim-input{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px 0 0;
+  font-size: 10px;
+  @include input-panel();
+  div{
+    display: flex;
+    align-content: center;
+    align-items: center;
+  }
+  input[type=checkbox]{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /*background-color: red;*/
+    width: 17px;
+    height: 17px;
+    &:checked{
+      background: url("../assets/check.svg") 2px 2px no-repeat;
+    }
+  }
+  select{
+    height: 19px;
+    background:none;
+    color: $animation-panel-color;
+    border: 1px solid #4f575a;
+  }
+  .input-search{
+    width: 100%;
+  }
+}
+.anim-box-container{
+  overflow-y: auto;
+  height: 580px;
+  .anim-box{
+    margin-top: 5%;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    .item{
+      height: 110px;
+      width: auto;
+      display: flex;
+      flex: 0 0 33%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 35px;
+      span{
+        display: block;
+      }
+      svg,
+      /*svg img,*/
+      img{
+        height: 110px;
+        width: 110px;
+        object-fit: fill;
+      }
+    }
+  }
+}
+
+
+
+
+

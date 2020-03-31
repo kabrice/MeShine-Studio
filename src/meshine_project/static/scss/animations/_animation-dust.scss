@@ -1,0 +1,29 @@
+#three-entrance,
+#three-exit,
+#three-emphasis{
+  display: table;
+  canvas {
+    width: 110px !important;
+    height: 110px !important;
+    display: table;
+  }
+
+}
+
+#dust-entrance,
+#dust-exit,
+#dust-emphasis{
+  display: none;
+}
+.dust-image{
+  width: 110px !important;
+}
+/*
+.dust-image{
+  display: table;
+  img{
+    width: 70% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+}*/

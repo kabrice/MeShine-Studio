@@ -1,0 +1,71 @@
+.split-img {
+  width: 110px;
+  height: 110px;
+  /*background: url(https://picsum.photos/360/360?image=0);*/
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  display: table;
+}
+.split-img:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  /*   background-color: rgba(0, 0, 0, 0.92);
+ */}
+.split-img .img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+.split-img .img span {
+  width: 25%;
+  height: 100%;
+  background: url(https://picsum.photos/360/360?image=0);
+  background-size: cover;
+  transition: 0.5s;
+  display: inline-block !important;
+}
+.split-img .img span:nth-child(1) {
+  background-position: 0;
+  transition-delay: 0;
+}
+.split-img .img span:nth-child(2) {
+  background-position: 33.33333%;
+  transition-delay: 0.1s;
+}
+.split-img .img span:nth-child(3) {
+  background-position: 66.66666%;
+  transition-delay: 0.2s;
+}
+.split-img .img span:nth-child(4) {
+  background-position: 100%;
+  transition-delay: 0.3s;
+}
+
+.split-img:hover .img > span {
+  transform: translateY(-100%);
+}
+.split-img:hover .content {
+  transform: translateY(0%);
+  transition: 1s;
+  transition-delay: 0.1s;
+}
+
+.content {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  padding: 20px 20px;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+}

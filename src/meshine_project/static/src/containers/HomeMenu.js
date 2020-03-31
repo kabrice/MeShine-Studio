@@ -21,11 +21,11 @@ export default class HomeMenu extends Component{
                             <a className="nav-link" href="#"><img src="../assets/tutorials.svg" height="28"
                                                                   width="18" alt="Aller à Mes Summaries"/>Tutorials</a>
                         </li>
-                        <li id="search">
-                            <form className="form-inline">
+                        <li className="search">
+                            <div className="form-inline">
                                 <img src="../assets/search.svg" height="28" width="18"/>
                                 <input type="text" placeholder="Search Projects ?"/>
-                            </form>
+                            </div>
                             <span/>
                         </li>
                     </ul>

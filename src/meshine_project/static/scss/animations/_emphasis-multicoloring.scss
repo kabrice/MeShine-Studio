@@ -1,0 +1,123 @@
+
+.multicoloring {
+  width:110px;
+  height:100%;
+  position:relative;
+  overflow:hidden;
+  display: none;
+
+  .p {
+    background:center/cover no-repeat url(https://images.unsplash.com/photo-1547157284-6d35248ba7e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+    width:110px;
+    height:110px;
+    position:absolute;
+  }
+
+  .a {
+    background-size:100% 100%;
+    filter:hue-rotate(72deg);
+  }
+
+  .b {
+    background-size:105% 105%;
+    filter:hue-rotate(144deg);
+  }
+
+  .c {
+    background-size:110% 110%;
+    filter:hue-rotate(216deg);
+  }
+
+  .d {
+    background-size:115% 115%;
+    filter:hue-rotate(288deg);
+  }
+
+
+  @keyframes a {
+    from {
+      clip-path:inset(0 80% 80% 0);
+    }
+    25% {
+      clip-path:inset(0 20% 80% 0);
+    }
+    50% {
+      clip-path:inset(0 20% 20% 0);
+    }
+    75% {
+      clip-path:inset(0 80% 20% 0);
+    }
+    to {
+      filter:hue-rotate(144deg)contrast(1.5);
+      clip-path:inset(0 80% 80% 0);
+    }
+  }
+
+  @keyframes b {
+    from {
+      clip-path:inset(0 0 80% 20%);
+    }
+    25% {
+      clip-path:inset(0 0 80% 80%);
+    }
+    50% {
+      clip-path:inset(0 0 20% 80%);
+    }
+    75% {
+      clip-path:inset(0 0 20% 20%);
+    }
+    to {
+      filter:hue-rotate(216deg)contrast(1.5);
+      clip-path:inset(0 0 80% 20%);
+    }
+  }
+
+  @keyframes c {
+    from {
+      clip-path:inset(20% 80% 0 0);
+    }
+    25% {
+      clip-path:inset(20% 20% 0 0);
+    }
+    50% {
+      clip-path:inset(80% 20% 0 0);
+    }
+    75% {
+      clip-path:inset(80% 80% 0 0);
+    }
+    to {
+      clip-path:inset(20% 80% 0 0);
+      filter:hue-rotate(288deg)contrast(1.5);
+    }
+  }
+
+  @keyframes d {
+    from {
+      clip-path:inset(20% 0 0 20%);
+    }
+    25% {
+      clip-path:inset(20% 0 0 80%);
+    }
+    50% {
+      clip-path:inset(80% 0 0 80%);
+    }
+    75% {
+      clip-path:inset(80% 0 0 20%);
+    }
+    to {
+      clip-path:inset(20% 0 0 20%);
+      filter:hue-rotate(72deg)contrast(1.5);
+    }
+  }
+
+  .a {animation:a 3s infinite;}
+  .b {animation:b 3s infinite;}
+  .c {animation:c 3s infinite;}
+  .d {animation:d 3s infinite;}
+
+}
+.multico-src-img{
+  height: 100%;
+  width: 110px;
+  object-fit: initial !important;
+}

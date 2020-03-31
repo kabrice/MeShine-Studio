@@ -160,7 +160,7 @@ class ProjectModal extends Component{
 
 
     renderField(field){
-        //console.log('field', field);
+        console.log('field', field);
         //Destructing
         const {meta: {touched, error}} = field;
         const className = `${touched && error ? 'me-input-invalid' : ''}`;

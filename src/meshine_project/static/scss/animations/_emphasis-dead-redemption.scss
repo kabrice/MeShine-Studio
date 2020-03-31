@@ -1,0 +1,58 @@
+#death-redemption{
+  animation: blur 5s infinite alternate;
+  height: 110px;
+  position: relative;
+  width: 110px;
+  display: table;
+  div{
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+
+  #normal{
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/141041/lee-morgan.jpg);
+    background-size: cover;
+  }
+
+  #invert{
+    animation: mask 5s steps(69) infinite alternate;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/141041/lee-morgan.jpg);
+    background-size: cover;
+    filter: invert(1.0) grayscale(1.0);
+    -webkit-mask: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/141041/sheet.png');
+    -webkit-mask-size: 7000% 100%;
+    mask: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/141041/sheet.png');
+    mask-size: 7000% 100%;
+  }
+
+  @keyframes blur{
+    from{
+      filter: blur(3px);
+      opacity: 0;
+    }
+    to{
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes mask{
+    from{
+      -webkit-mask-position: 0% 0;
+      mask-position: 0% 0;
+    }
+    to{
+      -webkit-mask-position: 100% 0;
+      mask-position: 100% 0;
+    }
+  }
+
+  a{
+    color: white;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    top: 2em;
+  }
+}

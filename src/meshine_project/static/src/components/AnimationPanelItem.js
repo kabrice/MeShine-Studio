@@ -1,4 +1,3 @@
-import React from 'react';
 
 const AnimationPanelItem = ({animation}) => {
     //const animation = props.animation; (Same as {animation}
