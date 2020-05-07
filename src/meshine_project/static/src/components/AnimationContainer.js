@@ -7,7 +7,7 @@ import MotionUI from "../../external/motion-ui-local";
 import LazyLoad from 'react-lazyload'
 
 import {Animations} from '../helpers';
-
+const ENTRY = 1, EMPHASIS =2,  EXIT = 3;
 class AnimationPanel extends Component {
 
     constructor(props) {
@@ -58,7 +58,10 @@ class AnimationPanel extends Component {
             dustentranceStatic: true,
             dustexitStatic: true,
             dustemphasisStatic: true,
-            isAnimationHasBeenClick: false
+            isAnimationHasBeenClick: false,
+            isEntry: true,
+            isEmphasis: false,
+            isExit: false
         };
     }
 
@@ -109,6 +112,7 @@ class AnimationPanel extends Component {
                     <div className={"item"}
                          key={item.type}
                          onClick={() => {this.getCurrentAnimation(item.type)}}
+                         style={{display: (this.state.isEntry) ? 'flex' : 'none'}}
                          onMouseEnter={() => {
                              this.muiAnimation(i + 1, true)
                          }}
@@ -131,6 +135,7 @@ class AnimationPanel extends Component {
                     placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
                     <div className={"item"}
                          key={item.type}
+                         style={{display: (this.state.isExit) ? 'flex' : 'none'}}
                          onMouseEnter={() => {
                              this.muiAnimation(i + 1, false, false)
                          }}
@@ -144,11 +149,6 @@ class AnimationPanel extends Component {
 
         });
     }
-    hightLigthSubMenu = (subMenuNum) => {
-        this.setState({
-            subMenuNum: subMenuNum
-        })
-    }
 
     rendersubMenu() {
         return _.map(this.state.subMenuList, (button, i) => {
@@ -156,7 +156,7 @@ class AnimationPanel extends Component {
                 <div className={`sub-menu ${this.state.subMenuNum === i ? 'sub-menu-is-clicked' : ''}`}
                      key={button.title}
                      onClick={() => {
-                         this.hightLigthSubMenu(i)
+                         this.displayAnimationGroup(i)
                      }}>{button.title}</div>)
 
         });
@@ -189,7 +189,30 @@ class AnimationPanel extends Component {
     }
 
     getCurrentAnimation(id) {
-
+        this.setState({'isAnimationHasBeenClick': true})
+    }
+    closeCurrentAnimationBox(){
+        this.setState({'isAnimationHasBeenClick': false})
+    }
+    displayAnimationGroup(subMenuNum){
+        this.setState({
+            subMenuNum: subMenuNum
+        })
+        let group = subMenuNum+1
+        console.log('group', group)
+        switch (group) {
+            case ENTRY:
+                this.setState({'isEntry': true, 'isEmphasis': false, 'isExit': false})
+                break;
+            case EMPHASIS:
+                this.setState({'isEntry': false, 'isEmphasis': true, 'isExit': false})
+                break;
+            case EXIT:
+                this.setState({'isEntry': false, 'isEmphasis': false, 'isExit': true})
+                break;
+            default:
+                console.log('Something wrong')
+        }
     }
     render() {
 
@@ -203,12 +226,8 @@ class AnimationPanel extends Component {
                 <div className={"anim-menu"}>
                     {this.rendersubMenu()}
                 </div>
-                <div className={"anim-menu"} onMouseEnter={() => {
-                    this.exitTilesAnim()
-                }}
-                     onMouseLeave={() => {
-                         this.exitTilesAnim()
-                     }}>
+                <div className={"anim-menu"}
+                     style={{display: (this.state.isAnimationHasBeenClick) ? 'flex' : 'none'}}>
                     <div className={"anim-input"}>
                         <div>
                             <select className="line-input">
@@ -232,11 +251,11 @@ class AnimationPanel extends Component {
                         </div>
                         <span>Loop</span>
                     </div>
-                    <span className={"close-anim-box"}>
+                    <span className={"close-anim-box"} onClick={() => this.closeCurrentAnimationBox()}>
                         x
                     </span>
                 </div>
-                <div className={"anim-menu"}>
+                <div className={"anim-menu"} style={{display: (this.state.isAnimationHasBeenClick) ? 'flex' : 'none'}}>
                     <div className={"sub-edit"}>
                         <img src="../assets/kangoroo_astronaut.png"/>
                         {/*<span>Appear</span>*/}
@@ -315,6 +334,7 @@ class AnimationPanel extends Component {
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
                         <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}
                              onMouseEnter={() => {
                                  this.d3Effect(2000)
                              }}
@@ -331,7 +351,8 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isExit) ? 'flex' : 'none'}}>
 
                             <div className="split active"
                                  onMouseEnter={() => {
@@ -348,6 +369,7 @@ class AnimationPanel extends Component {
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
                         <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}
                              onMouseEnter={() => {
                                  this.startMulticoloring(true)
                              }}
@@ -372,6 +394,7 @@ class AnimationPanel extends Component {
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
                         <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}
                              onMouseEnter={() => {
                                  this.startTheotherhalf(true)
                              }}
@@ -391,7 +414,8 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <div id="death-redemption">
                                 <div id="normal"></div>
                                 <div id="invert"></div>
@@ -401,7 +425,8 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <figure className="snip0023">
                                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample26.jpg"
                                      alt="sample26"/>
@@ -415,7 +440,8 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <figure className="snip1190">
                                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample64.jpg"
                                      alt="sample64"/>
@@ -425,7 +451,8 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isExit) ? 'flex' : 'none'}}>
                             <figure className="snip1256">
                                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample42.jpg"
                                      alt="sample42"/>
@@ -435,7 +462,8 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <figure className="snip1295"><img
                                 src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample67.jpg" alt="sample67"/>
                                 <div className="border one">
@@ -451,7 +479,8 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <div className="img-pulsing">
                                 <div><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/451895/009.jpg"/></div>
                             </div>
@@ -460,7 +489,8 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <div className="romantic-zoom">
                                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41114/5.png" alt="sky"
                                      className="pic5"/>
@@ -470,18 +500,21 @@ class AnimationPanel extends Component {
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isExit) ? 'flex' : 'none'}}>
                             <div className="split-img">
                                 <div className="img"><span></span><span></span><span></span><span></span></div>
                             </div>
                             <span>Split image</span>
                         </div></LazyLoad>
 
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isExit) ? 'flex' : 'none'}}>
                             <div id="shattering"/>
                             <span>Shattering</span>
                         </div>
                         <div className="item"
+                             style={{display: (this.state.isEntry) ? 'flex' : 'none'}}
                              onMouseEnter={() => {
                                  this.startDustAnimation(true, 'entrance')
                              }}
@@ -498,6 +531,7 @@ class AnimationPanel extends Component {
                             <span>Dust entrance</span>
                         </div>
                         <div className="item"
+                             style={{display: (this.state.isExit) ? 'flex' : 'none'}}
                              onMouseEnter={() => {
                                  this.startDustAnimation(true, 'exit')
                              }}
@@ -514,6 +548,7 @@ class AnimationPanel extends Component {
                             <span>Dust Exit</span>
                         </div>
                         <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}
                              onMouseEnter={() => {
                                  this.startDustAnimation(true, 'emphasis')
                              }}
@@ -529,14 +564,16 @@ class AnimationPanel extends Component {
                             <div id={"dust-emphasis"}/>
                             <span>Dust Emphasis</span>
                         </div>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <canvas className="p-canvas-webgl" id="canvas-webgl"/>
                             <span>GLSL Glitch</span>
                         </div>
                         <LazyLoad
                             once={true}
                             placeholder={<img src={"../../assets/LiquidDistortion/img/3.jpg"}/>}>
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <div className="assembly" style={{"--n": "8"}}>
                                 <div className="slice" style={{"--i": "0"}}/>
                                 <div className="slice" style={{"--i": "1"}}/>
@@ -559,7 +596,8 @@ class AnimationPanel extends Component {
                         </div>
                         </LazyLoad>
 
-                        <div className="item">
+                        <div className="item"
+                             style={{display: (this.state.isEmphasis) ? 'flex' : 'none'}}>
                             <div id="liquiddistorsion-container">
                                 <div className="slide-wrapper">
                                     <div className="slide-item">

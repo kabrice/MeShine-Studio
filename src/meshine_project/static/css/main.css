@@ -4344,7 +4344,7 @@ header .editor-menu .editor-item button:hover img, header .editor-menu .editor-i
 
 .anim-box-container {
   overflow-y: auto;
-  height: 580px;
+  height: 380px;
 }
 .anim-box-container .anim-box {
   margin-top: 5%;

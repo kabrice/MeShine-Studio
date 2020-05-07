@@ -37,6 +37,7 @@ Vagrant.configure("2") do |config|
 
     # Setup Java & ElasticSearch
     # Install it manually from https://www.rosehosting.com/blog/install-and-configure-the-elk-stack-on-ubuntu-16-04/
+    # (if pb with installing java8 : https://askubuntu.com/questions/1140742/package-oracle-java8-installer-has-no-installation-candidate)
 
     # Install npm (https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04)
     sudo apt-get install nodejs
