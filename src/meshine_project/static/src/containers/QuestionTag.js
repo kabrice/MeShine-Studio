@@ -54,7 +54,7 @@ class QuestionTag extends Component{
         <React.Fragment>
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
 
-            <div className="navbar-nav mr-auto" id="question-tag">
+            {/*<div className="navbar-nav mr-auto" id="question-tag">
                 <div className="nav-item">
                     <div  id="question" className="">
                         <form >
@@ -81,7 +81,8 @@ class QuestionTag extends Component{
                             <span>Cyclone</span>
                             <i><i className="fa fa-pencil" aria-hidden="true"/></i></a></div>
                 </div>
-            </div>
+            </div>*/}
+            summary test
         </div>
             <div className="user-profile">
                 <span className="navbar-nav">

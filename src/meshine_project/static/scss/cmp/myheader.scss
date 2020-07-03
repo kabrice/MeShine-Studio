@@ -1,0 +1,472 @@
+.myheader {
+  /*! CSS Used from: https://snappublisher.snapchat.com/5b89d38d156a510db747.css */
+  div.global-nav-control-label {
+    font-size: 12px;
+    line-height: 16px;
+    color: #8f8f8f;
+  }
+
+  span.account-picker-control-account-name {
+    color: #16191c;
+  }
+
+  span.account-picker-control-account-metadata {
+    color: #656b73;
+  }
+
+  div.global-nav-control-label svg.icon.dropdown-arrow {
+    margin-left: 4px;
+  }
+
+  div.account-picker-control svg.icon.dropdown-arrow {
+    margin-left: 8px !important;
+  }
+
+  nav.navbar li .account-picker-control, nav.navbar li .global-nav-control {
+    /*padding: 10px 12px;*/
+  }
+
+  nav.navbar.navbar-default .containerh {
+    padding-left: 4px;
+    padding-right: 20px;
+  }
+
+  nav {
+    display: block;
+  }
+
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  div, li, nav, ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  ::-moz-selection {
+    background: #108ee9;
+  }
+
+  ::selection {
+    background: #108ee9;
+  }
+
+  nav {
+    display: block;
+  }
+
+  svg:not(:root) {
+    overflow: visible;
+  }
+
+  ::-webkit-input-placeholder {
+    color: inherit;
+    opacity: .54;
+  }
+
+  *, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .containerh {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 32px;
+    padding-right: 32px;
+    min-width: 992px;
+  }
+
+  .containerh:after, .containerh:before {
+    content: " ";
+    display: table;
+  }
+
+  .containerh:after {
+    clear: both;
+  }
+
+  .account-picker-control {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: fit-content;
+  }
+
+  .account-picker-control-account {
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+  }
+
+  .account-picker-control-account > span {
+    display: block;
+    max-width: calc(100vw - 200px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .account-picker-control-account-name {
+    color: #25282c;
+    font-family: SDS-Font !important;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 23px;
+    text-shadow: none;
+  }
+
+  .account-picker-control-account-metadata {
+    color: rgba(0, 0, 0, .5);
+    font-family: SDS-Font !important;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    line-height: 16px;
+    text-shadow: none;
+    text-transform: uppercase;
+  }
+
+  .account-picker-control svg.icon.dropdown-arrow {
+    margin-left: 12px !important;
+  }
+
+  .account-picker-control svg.icon.dropdown-arrow path {
+    fill: #8f8f8f !important;
+  }
+
+  .global-nav-control {
+    align-items: center;
+    display: inline-flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .global-nav-control:active .icon-button, .global-nav-control:focus .icon-button {
+    background: hsla(0, 0%, 100%, .5);
+  }
+
+  .global-nav-control-label {
+    align-items: center;
+    color: #25282c;
+    display: inline-flex;
+    font-size: 16px;
+    /*padding: 8px 8px 8px 16px;*/
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .global-nav-control-label svg.icon.dropdown-arrow {
+    margin-left: 4px;
+  }
+
+  .global-nav-control-label svg.icon.dropdown-arrow path {
+    fill: #8f8f8f !important;
+  }
+
+  .global-nav-control .global-nav-control-label {
+    cursor: pointer;
+  }
+
+  .global-nav-control .icon-button img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .nav {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .nav:after, .nav:before {
+    content: " ";
+    display: table;
+  }
+
+  .nav:after {
+    clear: both;
+  }
+
+  .nav > li {
+    position: relative;
+    display: block;
+  }
+
+  .navbar {
+    background-image: none;
+    top: 0;
+  }
+
+  .navbar {
+    z-index: 2;
+   /* min-height: 60px;*/
+    margin-bottom: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .navbar:after, .navbar:before {
+    content: " ";
+    display: table;
+  }
+
+  .navbar:after {
+    clear: both;
+  }
+
+  .navbar svg {
+    -webkit-filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .1));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .1));
+  }
+
+  .navbar:before {
+    position: fixed;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: linear-gradient(-180deg, rgba(44, 48, 55, .66), rgba(44, 48, 55, .33) 37%, rgba(44, 48, 55, 0));
+    -webkit-transition: opacity .5s cubic-bezier(.28, .11, .32, 1);
+    -o-transition: opacity .5s cubic-bezier(.28, .11, .32, 1);
+    transition: opacity .5s cubic-bezier(.28, .11, .32, 1);
+    opacity: 0;
+  }
+
+  .navbar-opaque:before {
+    background: linear-gradient(0deg, hsla(0, 0%, 100%, 0), #fff 30%, #fff);
+  }
+
+  .navbar .containerh {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .navbar .containerh:after, .navbar .containerh:before {
+    content: " ";
+    display: table;
+  }
+
+  .navbar .containerh:after {
+    clear: both;
+  }
+
+  .navbar li .global-nav-control {
+    padding: 12px;
+  }
+
+  .navbar li .account-picker-control {
+    padding: 8px 0;
+  }
+
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+
+  .navbar-nav > li {
+    float: left;
+  }
+
+  .navbar-left {
+    float: left !important;
+  }
+
+  .navbar-right {
+    float: right !important;
+    li{
+      margin-top: 8px;
+    }
+  }
+
+  .icon-button {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+    display: inline-flex;
+    height: 40px;
+    justify-content: center;
+    text-align: center;
+    width: 40px;
+  }
+
+  .icon-button:not(.disabled) {
+    cursor: pointer;
+  }
+
+  .icon-button img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon.dropdown-arrow {
+    height: 6px;
+    margin-left: 4px;
+  }
+
+  svg.icon {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+
+  /*svg.icon-color:not(.svg-no-adaptive-fill), svg.icon-color g:not(.svg-no-adaptive-fill), svg.icon-color path:not(.svg-no-adaptive-fill) {
+    fill: currentColor !important;
+  }*/
+
+  .navbar-default .containerh {
+    padding-left: 4px;
+    padding-right: 20px;
+  }
+
+  .navbar {
+    /*min-height: 56px;*/
+  }
+
+  .navbar .containerh {
+    min-width: 640px;
+  }
+
+  .global-nav-control {
+    padding: 10px 12px;
+  }
+
+  .global-nav-control .icon-button {
+    display: none;
+  }
+
+  .global-nav-control-label {
+    font-size: 14px !important;
+    font-weight: 800;
+    line-height: 16px;
+    margin-bottom: 2px;
+    /*padding-left: 8px;*/
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .percent{
+    font-weight: normal !important;
+  }
+  .global-nav-control-label svg.icon.dropdown-arrow {
+    margin-left: 4px;
+  }
+
+  .navbar li .global-nav-control {
+    padding: 8px 0 0 12px;
+  }
+
+  .navbar li .account-picker-control {
+    padding: 8px 0;
+  }
+
+  .navbar li .account-picker-control .account-picker-control-account-name {
+    font-size: 14px !important;
+    font-weight: 800;
+    line-height: 16px;
+    margin-bottom: 2px;
+  }
+
+  .navbar li .account-picker-control .account-picker-control-account-metadata {
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 16px;
+    text-transform: unset;
+  }
+
+  .navbar li .account-picker-control svg.icon.dropdown-arrow {
+    margin-left: 8px !important;
+  }
+
+  .navbar {
+    background-color: #292b2c;
+    border-bottom: 1px solid #353738;
+    /*border-top: 2px solid #e3e3e3;*/
+    box-sizing: border-box;
+    height: 35px;
+  }
+
+  .navbar .page-title {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #8f8f8f;
+    transform: translateX(calc(-50% + 8px)) translateY(-50%);
+    user-select: none;
+  }
+
+  .navbar .page-title img {
+    width: 24px;
+  }
+
+  .ad-user .navbar {
+    border-top: 2px solid #ffd838;
+  }
+
+  *, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  nav {
+    display: block;
+  }
+
+  ul {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  img {
+    vertical-align: middle;
+    border-style: none;
+  }
+
+  svg:not(:root) {
+    overflow: hidden;
+  }
+
+  ::-moz-selection {
+    color: #fff;
+    background: #1890ff;
+  }
+
+  ::selection {
+    color: #fff;
+    background: #1890ff;
+  }
+
+  /*! CSS Used from: https://ads-interfaces.sc-cdn.net/snapnet-cdn/fonts/snapchat-icons/snapchaticons.font.css ; media=all */
+  @media all {
+    [class^="icon-"], [class*=" icon-"] {
+      font-family: 'Snapchat-Icons' !important;
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+}

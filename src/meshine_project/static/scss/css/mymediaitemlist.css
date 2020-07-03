@@ -1,0 +1,142 @@
+.mymediaitemlist * {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.mymediaitemlist div {
+  margin: 0;
+  padding: 0;
+}
+.mymediaitemlist ::-moz-selection {
+  background: #108ee9;
+}
+.mymediaitemlist ::selection {
+  background: #108ee9;
+}
+.mymediaitemlist svg:not(:root) {
+  overflow: visible;
+}
+.mymediaitemlist ::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+}
+.mymediaitemlist *, .mymediaitemlist :after, .mymediaitemlist :before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.mymediaitemlist .media-gallery .faded-white {
+  background-color: #fcfcfd;
+}
+.mymediaitemlist .media-gallery .media-items-list {
+  flex: 0 0 110px;
+  height: 110px;
+  display: flex;
+  position: relative;
+}
+.mymediaitemlist .thumbnail-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.mymediaitemlist .thumbnail-wrapper .image-clip {
+  display: flex;
+}
+.mymediaitemlist .media-element {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+.mymediaitemlist .media-element .media-element-thumb {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  background-color: #e3e3e3;
+  color: #858d94;
+  letter-spacing: 0;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mymediaitemlist .media-element .media-element-thumb img {
+  -webkit-user-drag: none;
+}
+.mymediaitemlist .media-element.selected .media-element-thumb {
+  width: 72px;
+  height: 72px;
+  line-height: 72px;
+  border-width: 2px;
+  border-color: #61c9ff;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.4);
+}
+.mymediaitemlist .media-element .media-element-indicator {
+  position: absolute;
+  right: 36px;
+  bottom: -17px;
+}
+.mymediaitemlist .media-element .media-element-indicator:after, .mymediaitemlist .media-element .media-element-indicator:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.mymediaitemlist .media-element .media-element-indicator:after {
+  border-color: transparent transparent #fff;
+  border-width: 11px;
+  margin-left: -11px;
+}
+.mymediaitemlist .media-element .media-element-indicator:before {
+  border-color: transparent transparent #d6d6d6;
+  border-width: 12px;
+  margin-left: -12px;
+}
+.mymediaitemlist .element-list {
+  margin-top: 10px;
+  padding-left: 47px;
+  padding-right: 47px;
+  padding-top: 7px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.mymediaitemlist .element-list-line {
+  height: 1px;
+  background-color: #d6d6d6;
+  width: 100%;
+  position: absolute;
+  top: 105px;
+}
+.mymediaitemlist *, .mymediaitemlist :after, .mymediaitemlist :before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.mymediaitemlist img {
+  vertical-align: middle;
+  border-style: none;
+}
+.mymediaitemlist svg:not(:root) {
+  overflow: hidden;
+}
+.mymediaitemlist ::-moz-selection {
+  color: #fff;
+  background: #1890ff;
+}
+.mymediaitemlist ::selection {
+  color: #fff;
+  background: #1890ff;
+}
+
+/*# sourceMappingURL=mymediaitemlist.css.map */

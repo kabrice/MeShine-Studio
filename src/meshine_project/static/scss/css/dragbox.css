@@ -1,0 +1,188 @@
+.dragbox {
+  /*! CSS Used from: https://static.canva.com/web/817cff6706c6d06e7a98.css */
+}
+.dragbox [tabindex] {
+  -webkit-tap-highlight-color: transparent;
+}
+.dragbox .LlhZCQ {
+  cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cdefs%3E%3Cfilter id='a' width='150%25' height='150%25' x='-25%25' y='-17.9%25' filterUnits='objectBoundingBox'%3E%3CfeOffset dy='1' in='SourceAlpha' result='shadowOffsetOuter1'/%3E%3CfeGaussianBlur in='shadowOffsetOuter1' result='shadowBlurOuter1' stdDeviation='1'/%3E%3CfeColorMatrix in='shadowBlurOuter1' result='shadowMatrixOuter1' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0'/%3E%3CfeMerge%3E%3CfeMergeNode in='shadowMatrixOuter1'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Cg filter='url(%23a)' transform='matrix(-1 0 0 1 19 5)'%3E%3Cpath fill='%23FFF' d='M4.257 7.087l4.072 4.068L5.5 13.983l8.473-.013.013-8.47-2.841 2.842L7.07 4.274 5.656 2.859 8.5.017H.014v8.484l2.829-2.827z'/%3E%3Cpath fill='%23000' d='M5.317 6.733l4.427 4.424-1.828 1.828 5.056-.016.014-5.054-1.842 1.841-4.428-4.422-2.474-2.475 1.844-1.843H1.013v5.071l1.83-1.828z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 12 12, auto;
+  cursor: -webkit-image-set(url(https://static.canva.com/web/images/d78cdce65d153748ffd0fb1a5573ac75.png) 1x, url(https://static.canva.com/web/images/ce13b386dbba73815423332724d3030a.png) 2x) 12 12, auto;
+}
+.dragbox ._2O_Ung {
+  cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cdefs%3E%3Cfilter id='a' width='150%25' height='150%25' x='-25%25' y='-17.9%25' filterUnits='objectBoundingBox'%3E%3CfeOffset dy='1' in='SourceAlpha' result='shadowOffsetOuter1'/%3E%3CfeGaussianBlur in='shadowOffsetOuter1' result='shadowBlurOuter1' stdDeviation='1'/%3E%3CfeColorMatrix in='shadowBlurOuter1' result='shadowMatrixOuter1' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0'/%3E%3CfeMerge%3E%3CfeMergeNode in='shadowMatrixOuter1'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Cg filter='url(%23a)' transform='translate(5 5)'%3E%3Cpath fill='%23FFF' d='M4.257 7.087l4.072 4.068L5.5 13.983l8.473-.013.013-8.47-2.841 2.842L7.07 4.274 5.656 2.859 8.5.017H.014v8.484l2.829-2.827z'/%3E%3Cpath fill='%23000' d='M5.317 6.733l4.427 4.424-1.828 1.828 5.056-.016.014-5.054-1.842 1.841-4.428-4.422-2.474-2.475 1.844-1.843H1.013v5.071l1.83-1.828z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 12 12, auto;
+  cursor: -webkit-image-set(url(https://static.canva.com/web/images/7ea01757f820a9fb828312dcf38cb746.png) 1x, url(https://static.canva.com/web/images/2c4ec45151de402865dffaaa087ded3c.png) 2x) 12 12, auto;
+}
+.dragbox .Y_rXHg {
+  cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24'%3E%3Cdefs%3E%3Cfilter id='a' width='266.7%25' height='156.2%25' x='-75%25' y='-21.9%25' filterUnits='objectBoundingBox'%3E%3CfeOffset dy='1' in='SourceAlpha' result='shadowOffsetOuter1'/%3E%3CfeGaussianBlur in='shadowOffsetOuter1' result='shadowBlurOuter1' stdDeviation='1'/%3E%3CfeColorMatrix in='shadowBlurOuter1' result='shadowMatrixOuter1' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0'/%3E%3CfeMerge%3E%3CfeMergeNode in='shadowMatrixOuter1'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3Cpath id='b' d='M1.67 12.67a7.7 7.7 0 0 0 0-9.34L0 5V0h5L3.24 1.76a9.9 9.9 0 0 1 0 12.48L5 16H0v-5l1.67 1.67z'/%3E%3C/defs%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 24V0h24v24z'/%3E%3Cg fill-rule='nonzero' filter='url(%23a)' transform='rotate(90 5.25 14.75)'%3E%3Cuse fill='%23000' fill-rule='evenodd' xlink:href='%23b'/%3E%3Cpath stroke='%23FFF' d='M1.6 11.9a7.21 7.21 0 0 0 0-7.8L-.5 6.2V-.5h6.7L3.9 1.8a10.4 10.4 0 0 1 0 12.4l2.3 2.3H-.5V9.8l2.1 2.1z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 12 12, auto;
+  cursor: -webkit-image-set(url(https://static.canva.com/web/images/4d0e991d3ba4f5fc763640a966b6171a.png) 1x, url(https://static.canva.com/web/images/c0013ec5969d2610c26794064d159d8c.png) 2x) 12 12, auto;
+}
+.dragbox .iwbuOQ {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  transition: opacity 0.3s ease;
+  background-image: linear-gradient(90deg, #00d9e1 0, #00d9e1), linear-gradient(180deg, #00d9e1 0, #00d9e1), linear-gradient(90deg, #00d9e1 0, #00d9e1), linear-gradient(180deg, #00d9e1 0, #00d9e1);
+  background-position: top, 100%, bottom, 0;
+  background-size: 12px 2px, 2px 12px, 12px 2px, 2px 12px;
+  background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+}
+.dragbox ._7WSEvA {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.dragbox ._7WSEvA:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.dragbox ._7WSEvA:before {
+  background-color: #00c4cc;
+}
+.dragbox ._7WSEvA:before {
+  left: 0;
+  right: 0;
+}
+.dragbox ._7WSEvA.xk1pAg:before {
+  transition: opacity 0.2s ease-in;
+}
+.dragbox .D_pcYQ {
+  outline: none;
+  transition: opacity 0.3s ease;
+}
+.dragbox .D_pcYQ, .dragbox .jLnzEQ {
+  width: 100%;
+  height: 100%;
+}
+.dragbox .jLnzEQ {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dragbox .tWLO5Q {
+  pointer-events: auto;
+}
+.dragbox .tWLO5Q {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+}
+.dragbox .d17Zhg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dragbox .d17Zhg:after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 5px 1px rgba(14, 19, 24, 0.15), 0 0 0 1px rgba(14, 19, 24, 0.2);
+  position: relative;
+}
+.dragbox ._4f_o1A {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+.dragbox .qs9lNw {
+  display: flex;
+  position: absolute;
+  padding: 20px;
+}
+.dragbox .qs9lNw.HuUi1g {
+  top: 100%;
+}
+.dragbox ._9aYTig {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: move;
+  margin: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dragbox ._9aYTig:after {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: #fff 2px no-repeat;
+  background-size: 16px;
+  box-shadow: 0 0 5px 1px rgba(14, 19, 24, 0.15), 0 0 0 1px rgba(14, 19, 24, 0.15);
+  z-index: -1;
+  -webkit-transform: rotate(var(--rotation));
+  transform: rotate(var(--rotation));
+}
+.dragbox ._9aYTig:after {
+  position: absolute;
+  border-radius: 50%;
+}
+.dragbox ._6uIMng ._4f_o1A {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.dragbox ._6uIMng:after {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='currentColor' d='M15.25 18.48V15a.75.75 0 1 0-1.5 0v4c0 .97.78 1.75 1.75 1.75h4a.75.75 0 1 0 0-1.5h-2.6a8.75 8.75 0 0 0-2.07-15.53.75.75 0 1 0-.49 1.42 7.25 7.25 0 0 1 .91 13.34zM8.75 5.52V9a.75.75 0 0 0 1.5 0V5c0-.97-.78-1.75-1.75-1.75h-4a.75.75 0 0 0 0 1.5h2.6a8.75 8.75 0 0 0 2.18 15.57.75.75 0 0 0 .47-1.43 7.25 7.25 0 0 1-1-13.37z'/%3E%3C/svg%3E");
+}
+.dragbox .Ieb5Pg {
+  left: -16px;
+}
+.dragbox .Ieb5Pg, .dragbox .j1p_dQ {
+  top: -16px;
+}
+.dragbox .j1p_dQ, .dragbox .JifkyA {
+  right: -16px;
+}
+.dragbox .JifkyA, .dragbox .zMcsWg {
+  bottom: -16px;
+}
+.dragbox .zMcsWg {
+  left: -16px;
+}
+.dragbox .Ieb5Pg {
+  -webkit-transform: translate(calc(-1 * var(--outward-x)), calc(-1 * var(--outward-y)));
+  transform: translate(calc(-1 * var(--outward-x)), calc(-1 * var(--outward-y)));
+}
+.dragbox .Ieb5Pg .d17Zhg:after {
+  -webkit-transform: translate(var(--outward-x), var(--outward-y));
+  transform: translate(var(--outward-x), var(--outward-y));
+}
+.dragbox .j1p_dQ {
+  -webkit-transform: translate(var(--outward-x), calc(-1 * var(--outward-y)));
+  transform: translate(var(--outward-x), calc(-1 * var(--outward-y)));
+}
+.dragbox .j1p_dQ .d17Zhg:after {
+  -webkit-transform: translate(calc(-1 * var(--outward-x)), var(--outward-y));
+  transform: translate(calc(-1 * var(--outward-x)), var(--outward-y));
+}
+.dragbox .JifkyA {
+  -webkit-transform: translate(var(--outward-x), var(--outward-y));
+  transform: translate(var(--outward-x), var(--outward-y));
+}
+.dragbox .JifkyA .d17Zhg:after {
+  -webkit-transform: translate(calc(-1 * var(--outward-x)), calc(-1 * var(--outward-y)));
+  transform: translate(calc(-1 * var(--outward-x)), calc(-1 * var(--outward-y)));
+}
+.dragbox .zMcsWg {
+  -webkit-transform: translate(calc(-1 * var(--outward-x)), var(--outward-y));
+  transform: translate(calc(-1 * var(--outward-x)), var(--outward-y));
+}
+.dragbox .zMcsWg .d17Zhg:after {
+  -webkit-transform: translate(var(--outward-x), calc(-1 * var(--outward-y)));
+  transform: translate(var(--outward-x), calc(-1 * var(--outward-y)));
+}
+
+/*# sourceMappingURL=dragbox.css.map */

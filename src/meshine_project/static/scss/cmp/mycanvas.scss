@@ -1,0 +1,20 @@
+#mycanvas{
+    width: 1024px;
+    height: 2000px;
+    background: gray;
+    box-shadow: 0 2px 20px 0 dimgrey;
+    border-radius: 4px;
+    transform: scale(0.4);
+    position: absolute;
+    overflow:hidden;
+    .svg-arrg {
+      overflow: auto ;
+      margin: 0px auto ;
+      outline: inherit ;
+      position: absolute !important;
+      z-index: 1;
+      img{
+        pointer-events: none;
+      }
+    }
+  }

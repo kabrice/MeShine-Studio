@@ -11,7 +11,7 @@ import {createSummaryProject, notRequestingAPI, requestingAPI, fetchTagByAutocom
         fetchTopicByAutocompletion, updateCategories, fetchQuestionByAutocompletion, updateSummary, updateFile,
         getDataFromURL} from "../actions/index";
 import {withRouter} from "react-router-dom";
-
+import MoveableAPI from "./MoveableAPI";
 
 function escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

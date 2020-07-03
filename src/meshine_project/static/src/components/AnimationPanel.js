@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import AnimationPanelItem from '../components/AnimationPanelItem';
 import {connect} from 'react-redux';
 import {fetchAnimation} from "../actions/index";
-import MotionUI from "../../external/motion-ui-local";
+//import MotionUI from "../../external/motion-ui-local";
+//import MotionUI from "../../external/motion-ui-local";
 import LazyLoad from 'react-lazyload'
 
 import {Animations} from '../helpers';
@@ -14,9 +15,9 @@ class AnimationPanel extends Component {
         super(props);
         this.state = {
             displayAnims: false,
-            subMenuList: [{'title': 'Entry'},
-                {'title': 'Emphasis'},
-                {'title': 'Exit'}],
+            subMenuList: [{'title': 'Images'},
+                {'title': 'Videos'},
+                {'title': 'Audios'}],
             subMenuNum: 0,
             muiEntryAnimationList: ['slide-in-down',
                 'slide-in-left',
@@ -67,10 +68,10 @@ class AnimationPanel extends Component {
 
     componentDidMount() {
         this.props.fetchAnimation();
-        Animations.shattering();
+       /* Animations.shattering();
         Animations.dustAnimation()
         Animations.glslGlitch()
-        Animations.liquidDistorsion()
+        Animations.liquidDistorsion()*/
     }
 
     muiAnimation = (n, isEntry, isMouseLease) => {
@@ -91,12 +92,12 @@ class AnimationPanel extends Component {
         }
 
     }
-    d3Effect = (millisecond) => {
+    /*d3Effect = (millisecond) => {
         Animations.d3effect(millisecond);
     }
     exitTilesAnim = () => {
         $(".split").find('img').css('opacity', 0, 'important');
-        //$(".split").removeClass('active');*/
+        //$(".split").removeClass('active');*!/
         Animations.splitForTilesAnimations();
        // Animations.statckAnimation()
         $(".split").addClass('active');
@@ -148,7 +149,7 @@ class AnimationPanel extends Component {
                 </LazyLoad>)
 
         });
-    }
+    }*/
 
     rendersubMenu() {
         return _.map(this.state.subMenuList, (button, i) => {
@@ -217,16 +218,48 @@ class AnimationPanel extends Component {
     render() {
 
         return (
-            <React.Fragment>
+            <div className={"myupload"}>
                 {/*<div className="big-anim-box" >
                     <div className="anim-container">
                         {this.renderAnimation()}
                     </div>
                 </div>*/}
+                <div >
+                    <div className="t9ss6Q">
+                    <div className="mkaSyg">
+                        <input
+                            type="file"
+                            className="rxrSEA"
+                            tabIndex={-1}
+                            multiple
+                            accept="image/heic,image/heif,image/jpeg,image/png,image/svg+xml,video/mp4,video/quicktime,image/gif"
+                        />
+                        <button
+                            className="_1QoxDw Qkd66A n9zSJA ZTpOuQ o4TrkA zKTE_w Qkd66A n9zSJA ZTpOuQ GnpDIA zQlusQ uRvRjQ qBeSew"
+                            aria-label="Upload an image or video"
+                            type="button"
+                        >
+                            <span className="_38oWvQ">Upload an image or video</span>
+                        </button>
+                    </div>
+                </div>
+                </div>
                 <div className={"anim-menu"}>
                     {this.rendersubMenu()}
                 </div>
-                <div className={"anim-menu"}
+                <div className={"anim-box-container"}>
+                    <div className="lnI1Aw">
+                        <div />
+                        <div className="JGpwNQ">
+                            <p className="J5vKGg bSncsg n9zSJA ZTpOuQ u9XXAg HnhAQA _9sTtfw">
+                                  <span className="_-DCkkw _5JgSIQ">
+                                    ...or just drag one here from your desktop
+                                  </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {/*<div className={"anim-menu"}
                      style={{display: (this.state.isAnimationHasBeenClick) ? 'flex' : 'none'}}>
                     <div className={"anim-input"}>
                         <div>
@@ -237,7 +270,7 @@ class AnimationPanel extends Component {
                                 <option value="audi">3</option>
                             </select>
                         </div>
-                        <span>Order</span>{/*Z-index*/}
+                        <span>Order</span>Z-index
                     </div>
                     <div className={"anim-input"}>
                         <div>
@@ -258,7 +291,7 @@ class AnimationPanel extends Component {
                 <div className={"anim-menu"} style={{display: (this.state.isAnimationHasBeenClick) ? 'flex' : 'none'}}>
                     <div className={"sub-edit"}>
                         <img src="../assets/kangoroo_astronaut.png"/>
-                        {/*<span>Appear</span>*/}
+                        <span>Appear</span>
                     </div>
                     <div className={"sub-edit-container"}>
                         <p>Slide</p>
@@ -610,7 +643,7 @@ class AnimationPanel extends Component {
                             <span>Liquid distortion</span>
                         </div>
                     </div>
-                </div>
+                </div>*/}
                 {/*<div className="big-anim-box">
                     <div className="anim-container">
                         <div className={"anim-block"}>
@@ -636,7 +669,7 @@ class AnimationPanel extends Component {
                         </div>
                     </div>
                 </div>*/}
-            </React.Fragment>
+            </div>
         )
     }
 

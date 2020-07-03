@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AnimationContainer from '../components/AnimationContainer';
+import AnimationContainer from '../components/AnimationPanel';
 import {connect } from 'react-redux';
 import {fetchAnimation} from "../actions/index";
 import TextEditor from '../components/TextEditor'

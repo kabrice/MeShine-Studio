@@ -1,0 +1,116 @@
+.tile .action-buttons {
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  background-color: rgba(52, 58, 64, 0.7);
+  border-radius: 4px;
+  color: #fff;
+  display: flex;
+  opacity: 0;
+  padding: 0 8px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.tile-label {
+  background: rgba(52, 58, 64, 0.5);
+  border-radius: 4px;
+  bottom: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  left: 8px;
+  line-height: 12px;
+  opacity: 1;
+  padding: 4px 8px;
+}
+
+.tile-label {
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+}
+
+.tile:hover .tile-label {
+  background-color: rgba(52, 58, 64, 0.7);
+}
+
+.tile:hover .action-buttons {
+  opacity: 1;
+}
+
+.tile {
+  background: #e3e3e3;
+  border-radius: 8px;
+  border: 1px solid #e3e3e3;
+  margin: 4px 8px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.15s ease-in-out;
+}
+
+.tile.hover-play {
+  cursor: pointer;
+}
+
+.tile .image-thumbnail {
+  position: absolute;
+}
+
+.tile .click-catcher {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.tile-title {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 16px;
+  padding: 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image-thumbnail {
+  background-size: cover;
+  background-position: 50%;
+  filter: grayscale(100%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.image-thumbnail.loaded {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(141px, 1fr));
+  grid-gap: 24px;
+  justify-content: center;
+}
+
+.tile-grid .tile {
+  border-radius: 10px;
+  margin: 0;
+  padding-bottom: 177.77778%;
+  width: 100%;
+}
+
+.tile-grid .tile-title {
+  margin-bottom: 0;
+  padding: 5px 0 0;
+}
+
+.tile-grid .image-thumbnail {
+  height: 100%;
+  width: 100%;
+}
+
+/*# sourceMappingURL=mytemplate.css.map */

@@ -1,0 +1,372 @@
+.myvideo {
+  /*! CSS Used from: https://static.canva.com/web/67ad0f761c950f23ceb6.css */
+  /*! CSS Used from: https://static.canva.com/web/d0f9817b0c0fdf1950cc.css */
+  /*! CSS Used fontfaces */
+}
+.myvideo .xR4dgg {
+  display: inline-block;
+  vertical-align: text-bottom;
+  box-sizing: border-box;
+}
+.myvideo .xR4dgg > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.myvideo .ZQsKtg {
+  width: 16px;
+  height: 16px;
+}
+.myvideo .ZTpOuQ {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}
+.myvideo .uQ-fxg {
+  font-family: Open Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.myvideo button {
+  -webkit-tap-highlight-color: transparent;
+}
+.myvideo .USE2Rg {
+  display: inline-block;
+  color: #fff;
+  height: 16px;
+  letter-spacing: 0.6px;
+  line-height: 16px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.myvideo [dir] .USE2Rg {
+  border-radius: 8px;
+  padding: 0 6px;
+}
+.myvideo [dir=ltr] .USE2Rg {
+  padding-right: 5.7px;
+}
+.myvideo [dir] ._3zBBXg {
+  background-color: rgba(14, 19, 24, 0.7);
+}
+.myvideo .vpQagg {
+  vertical-align: top;
+}
+.myvideo .ZQcUXA {
+  outline: none;
+  transition: background-color 0.15s ease-in-out;
+}
+.myvideo [dir] .ZQcUXA {
+  cursor: pointer;
+  border: 0;
+  margin: 0;
+}
+@media (-moz-touch-enabled: 1), (pointer: coarse) {
+  .myvideo .ZQcUXA:after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+  }
+  .myvideo [dir] .ZQcUXA:after {
+    border-radius: 50%;
+  }
+  .myvideo [dir=ltr] .ZQcUXA:after {
+    left: calc(50% - 20px);
+  }
+}
+.myvideo [dir] .PC_P7Q {
+  background-color: rgba(14, 19, 24, 0.7);
+}
+.myvideo [dir] .PC_P7Q:hover {
+  background-color: #00c4cc;
+}
+@media (-moz-touch-enabled: 1), (pointer: coarse) {
+  .myvideo [dir] .PC_P7Q:not(.ssb6Dw):hover {
+    background-color: rgba(14, 19, 24, 0.7);
+  }
+}
+.myvideo .mh2TGQ {
+  position: relative;
+}
+.myvideo .mh2TGQ, .myvideo .T5OikA {
+  display: inline-flex;
+}
+.myvideo .T5OikA {
+  line-height: 16px;
+}
+.myvideo .mh2TGQ .yAhYLw {
+  position: absolute;
+}
+.myvideo .mh2TGQ .yAhYLw.epg7uw {
+  top: 8px;
+}
+.myvideo .mh2TGQ .yAhYLw._9QQlWw {
+  bottom: 8px;
+}
+.myvideo [dir=ltr] .mh2TGQ .yAhYLw.VThHDA {
+  left: 7px;
+}
+.myvideo [dir=ltr] .mh2TGQ .yAhYLw._45rcUQ {
+  right: 7px;
+}
+.myvideo .mh2TGQ.wZ_zoQ .yAhYLw.epg7uw {
+  top: 4px;
+}
+.myvideo .mh2TGQ.wZ_zoQ .yAhYLw._9QQlWw {
+  bottom: 4px;
+}
+.myvideo [dir=ltr] .mh2TGQ.wZ_zoQ .yAhYLw.VThHDA {
+  left: 4px;
+}
+.myvideo [dir=ltr] .mh2TGQ.wZ_zoQ .yAhYLw._45rcUQ {
+  right: 4px;
+}
+.myvideo .JA7pfA:not(.ZakHgA):not(.zW7EkQ) {
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+.myvideo .mh2TGQ:hover .JA7pfA:not(.ZakHgA):not(.zW7EkQ) {
+  opacity: 1;
+}
+.myvideo .ZElZRA {
+  height: 100%;
+  width: 100%;
+}
+.myvideo .cCMQBA {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.myvideo .ZwFx6w {
+  display: inline-flex;
+  position: relative;
+}
+.myvideo [dir] .ZwFx6w {
+  cursor: pointer;
+}
+.myvideo [dir] .IcLdeA {
+  background-color: rgba(14, 19, 24, 0.45);
+}
+.myvideo .kVXP9Q {
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+.myvideo .ADVZ4g {
+  width: 100%;
+  height: 100%;
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFWJ0bbck.woff2) format("woff2");
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFUZ0bbck.woff2) format("woff2");
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFWZ0bbck.woff2) format("woff2");
+    unicode-range: U+1F00-1FFF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVp0bbck.woff2) format("woff2");
+    unicode-range: U+0370-03FF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFWp0bbck.woff2) format("woff2");
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFW50bbck.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Open Sans Regular"), local("OpenSans-Regular"), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOX-hpOqc.woff2) format("woff2");
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOVuhpOqc.woff2) format("woff2");
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOXuhpOqc.woff2) format("woff2");
+    unicode-range: U+1F00-1FFF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOUehpOqc.woff2) format("woff2");
+    unicode-range: U+0370-03FF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOXehpOqc.woff2) format("woff2");
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOXOhpOqc.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirkOUuhp.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOX-hpOqc.woff2) format("woff2");
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOVuhpOqc.woff2) format("woff2");
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOXuhpOqc.woff2) format("woff2");
+    unicode-range: U+1F00-1FFF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOUehpOqc.woff2) format("woff2");
+    unicode-range: U+0370-03FF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOXehpOqc.woff2) format("woff2");
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOXOhpOqc.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+}
+@font-face {
+  .myvideo {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOUuhp.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+}
+
+/*# sourceMappingURL=myvideo.css.map */

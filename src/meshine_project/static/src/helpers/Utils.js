@@ -91,9 +91,12 @@ function leftToRightResizeble(div) {
             let oldWidth = element.getBoundingClientRect().width
             console.log('oldFlexGrow', oldFlexGrow);
             let newFlexGrow = oldFlexGrow*e.pageX/oldWidth
-            if(newFlexGrow>0.5 && newFlexGrow<3){
+            //newFlexGrow = parseFloat(newFlexGrow)
+            console.log('newFlexGrow', newFlexGrow);
+            if(newFlexGrow>0.1 && newFlexGrow<3){
+                console.log('in if Flex');
                 element.style.flexGrow = newFlexGrow
-                element.style.height = '100%'
+                /*element.style.height = '100%'*/
             }
         }
     }
@@ -104,11 +107,37 @@ function leftToRightResizeble(div) {
 
 }
 
+/**
+ * ID Generator **/
+function  IDGenerator() {
+    //Todo : Put all those number in an array, and check if it's already existed when generating one
+    this.length = 8;
+    this.timestamp = +new Date;
+
+    let _getRandomInt = function( min, max ) {
+        return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+    }
+
+    this.generate = function() {
+        let ts = this.timestamp.toString();
+        let parts = ts.split( "" ).reverse();
+        let id = "";
+
+        for( let i = 0; i < this.length; ++i ) {
+            let index = _getRandomInt( 0, parts.length - 1 );
+            id += parts[index];
+        }
+
+        return id;
+    }
+
+}
 // Now you have to export each function you want
 export {
     saveCanvas,
     replay,
     deleteSelectedObjectsFromCanvas,
     getVideoElement,
-    leftToRightResizeble
+    leftToRightResizeble,
+    IDGenerator
 };

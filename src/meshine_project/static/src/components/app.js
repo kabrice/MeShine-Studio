@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import AnimationPanel from '../containers/AnimationPanel';
+//import AnimationPanel from '../containers/AnimationPanel';
 import AnimationDetail from '../containers/AnimationDetail';
-import MeFabric from './MeFabric';
+//import MeFabric from './MeFabric';
 import QuestionTag from '../containers/QuestionTag';
 import FooterMenu from './FooterMenu';
 import Player from './Player';
@@ -16,6 +16,21 @@ import { PulseLoader } from 'react-spinners';
 import {Utils} from '../helpers';
 import FooterMenuBox from "./FooterMenuBox";
 import {Animations} from '../helpers';
+import MyCanvas from './MyCanvas';
+import MyTemplate from "./MyTemplate";
+import MyImage from "./MyImage";
+import MyElement from "./MyElement";
+import MyVideo from "./MyVideo";
+import MyText from "./MyText";
+import MyBackground from "./MyBackground";
+import MyMusic from "./MyMusic";
+import AnimationPanel from "./AnimationPanel";
+import MyTimeline from "./MyTimeline"
+import MyHeader from "./MyHeader";
+import MyMenu from "./MyMenu";
+import MyMediaItemList from "./MyMediaItemList";
+import DragBox from "./DragBox";
+
 
 class App extends Component {
     constructor(props) {
@@ -24,16 +39,19 @@ class App extends Component {
             loading: true,
             hideSideMenu: false,
             sideButtons: [  {'title': 'Templates', 'value': 'option_template'},
-                            {'title': 'Animations', 'value': 'option_animation'},
                             {'title': 'Images', 'value': 'option_image'},
                             {'title': 'Videos', 'value': 'option_video'},
                             {'title': 'Music', 'value': 'option_music'},
                             {'title': 'Elements', 'value': 'option_element'},
                             {'title': 'Text', 'value': 'option_text'},
-                            {'title': 'Background', 'value': 'option_background'}],
+                            {'title': 'Background', 'value': 'option_background'},
+                            {'title': 'Uploads', 'value': 'option_upload'}],
             sideButtonsNum: 0,
-            counter:0
+            counter:0,
+            gap: 10,
+            objIncrement:1
         }
+        this._mycanvas = React.createRef();
     }
 
     hideSideMenu = () => {
@@ -70,21 +88,24 @@ class App extends Component {
 
         });
     }
-    initAnimation = () =>{
 
-        // console.log('initAnimation', this.state.counter)
-        // if(this.state.counter<=2){
-            Animations.splitForTilesAnimations();
-            // sessionStorage.dustAnimationStatic = true
-            /*$(`#dust-entrance`).trigger('click');
-            $(`#dust-exit`).trigger('click');
-            $(`#dust-emphasis`).trigger('click');*/
-            /*let i = this.state.counter + 1;*/
-            //console.log('iiiii', i)
-           // this.setState({counter: i})
-        // }
-        //Animations.dustAnimation()
+    handleClickImage = (value) => {
+        console.log('handleClickImage', value)
+        let objInc = this.state.objIncrement
+        objInc++
+        let gap = this.state.gap
+
+        let transformX = 170 + gap
+        let transformY = 445+ gap
+
+        gap = gap+10
+        this.setState({objIncrement: objInc, gap:gap })
+        this._mycanvas.current.addDrawingObject(
+            {id: objInc, type: 'img', src:value,
+                 style:`display: block; transform: translate(${transformX}px, ${transformY}px)`, width:720}
+        )
     }
+
     render() {
 
         let summary = this.props.summary;
@@ -112,44 +133,12 @@ class App extends Component {
 
             <Loader show={requesting} message={spinner}>
                 <header>
-                    <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse ">
-                        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                                data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <Link className="navbar-brand" href="#" data-placement="right" data-animation="false" to="/"
-                           data-toggle="tooltip" title="Aller à Mes Summaries">
-                            <img src="../assets/summaries-studio-logo.svg" alt="Aller à Mes Summaries"/></Link>
-                            <QuestionTag/>
-                    </nav>
-                    <nav className={"editor-menu navbar navbar-toggleable-md navbar-inverse bg-inverse "}>
-                        <div className="editor-item">
-                            <button></button>
-                        </div>
-                        <div className="editor-item">
-                            <button><i className="fa fa-undo " aria-hidden="true"></i></button>
-                            <button><i className="fa fa-repeat" aria-hidden="true"></i></button>
-                        </div>
-                        <div className="editor-item"></div>
-                        <div className="editor-item">
-                            <button>
-                                <img src="../assets/anim_menu_btn.svg"
-                                     height={"20px"}
-                                     width={"20px"}
-                                     title={"Animate"}/>
-                            </button>
-                            <button>
-                                <img src="../assets/anim_order_btn.svg"
-                                     height={"20px"}
-                                     width={"20px"}
-                                     title={"Animation list"}/>
-                            </button>
-                        </div>
-                    </nav>
+                    <MyHeader/>
+                    <MyMenu/>
+                    <MyMediaItemList/>
                 </header>
                 <main role="main" className="container page-header"
-                      onMouseEnter={()=>{this.initAnimation()}}
+                      //onMouseEnter={()=>{this.initAnimation()}}
                       /*onScroll={()=>{this.initAnimation()}}*/>
                     <div className="row ">
                         <div className="col  bg-inverse" id="design-panel" >
@@ -157,9 +146,12 @@ class App extends Component {
                             <div className="design-bar"/>
                         </div>
                         <div className="col" id="card-container" >
-                            <MeFabric/>
+                            {/*<MeFabric/>*/}
+                            <MyCanvas ref = {this._mycanvas}/>
+                            {/*<DragBox/>*/}
                         </div>
                         <div className="col  pt-2 bg-inverse animation-panel fade-in"
+                             id={"animation-panel"}
                              style={ { display: (!this.state.hideSideMenu) ? 'block' : 'none' } }>
                             <button className={'hide-side-menu'} onClick={this.hideSideMenu}>
                                 <img src="../assets/arrow_to_hide.svg"
@@ -167,7 +159,32 @@ class App extends Component {
                                      width={"10px"}
                                      title="Hide"/>
                             </button>
-                            <AnimationPanel/>
+                            <div style={{display: (this.state.sideButtonsNum === 0) ? 'block' : 'none'}}>
+                                <MyTemplate />
+                            </div>
+                            <div style={{display: (this.state.sideButtonsNum === 1) ? 'block' : 'none'}}>
+                                <MyImage onSelectImage={this.handleClickImage}/>
+                            </div>
+                            <div style={{display: (this.state.sideButtonsNum === 2) ? 'block' : 'none'}}>
+                                <MyVideo/>
+                            </div>
+                            <div style={{display: (this.state.sideButtonsNum === 3) ? 'block' : 'none'}}>
+                                <MyMusic/>
+                            </div>
+                            <div style={{display: (this.state.sideButtonsNum === 4) ? 'block' : 'none'}}>
+                                <MyElement/>
+                            </div>
+                            <div style={{display: (this.state.sideButtonsNum === 5) ? 'block' : 'none'}}>
+                                <MyText/>
+                            </div>
+                            <div style={{display: (this.state.sideButtonsNum === 6) ? 'block' : 'none'}}>
+                                <MyBackground/>
+                            </div>
+                            <div style={{display: (this.state.sideButtonsNum === 7) ? 'block' : 'none'}}>
+                                <AnimationPanel/>
+                            </div>
+                            {/*<AnimationPanel/>*/}
+
                         </div>
                         <div className={"sidebar-menu col-1"}>
                             {this.renderSideButtons()}
@@ -176,7 +193,8 @@ class App extends Component {
                     </div>
                 </main>
                 <Player/>
-                <FooterMenu/>
+                {/*<FooterMenu/>*/}
+                <MyTimeline/>
             </Loader>)
 
         ;

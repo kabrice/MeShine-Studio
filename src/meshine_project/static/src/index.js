@@ -27,7 +27,7 @@ import Home from './containers/Home';
 
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
-styleLink.href = "../../external/semantic-ui.2.4.2/semantic-ui.min.css";
+//styleLink.href = "../../external/semantic-ui.2.4.2/semantic-ui.min.css";
 document.head.appendChild(styleLink);
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxPromise));
