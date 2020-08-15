@@ -18,7 +18,6 @@ class MyImage extends Component {
     }
     handleClickImage = (e) => {
         this.props.onSelectImage(e.target.src)
-        //console.log('handleClickImage', e.target)
     }
     
     render() {
@@ -1554,7 +1553,7 @@ class MyImage extends Component {
                                                                                                                                                 <img onClick={this.handleClickImage}
                                                                                                                                                     className="vxiL9Q _1pMoDA JaNaZQ _1vGB4g"
                                                                                                                                                     crossOrigin="anonymous"
-                                                                                                                                                    src="https://media-public.canva.com/Yhi-s/MAD6WcYhi-s/1/tl.jpg"
+                                                                                                                                                    src="../assets/project-snap/assets/snap_frog/african-frog.jpg"
                                                                                                                                                     draggable="false"
                                                                                                                                                 />
                                                                                                                                             </div>

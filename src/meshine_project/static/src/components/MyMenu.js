@@ -5,7 +5,12 @@ class MyMenu extends Component {
     constructor(props) {
         super(props);
     }
-
+    handleClickSquare = () => {
+        this.props.addSquare()
+    }
+    handleClickCircle = () => {
+        this.props.addCircle()
+    }
     render() {
         return (
             <nav className={"editor-menu navbar navbar-toggleable-md navbar-inverse bg-inverse "}>
@@ -50,8 +55,8 @@ class MyMenu extends Component {
                     <button><i className="fa fa-repeat" aria-hidden="true"></i></button>
                 </div>
                 <div className="editor-item">
-                    <button><i className="fa fa-square " aria-hidden="true"></i></button>
-                    <button><i className="fa fa-circle" aria-hidden="true"></i></button>
+                    <button onClick={this.handleClickSquare}><i className="fa fa-square " aria-hidden="true"></i></button>
+                    <button onClick={this.handleClickCircle}><i className="fa fa-circle" aria-hidden="true"></i></button>
                     <button>
                         <svg width="22" height="12" viewBox="0 0 22 24"
                              className="icon icon-svg icon-color icon-size-16" role="presentation">

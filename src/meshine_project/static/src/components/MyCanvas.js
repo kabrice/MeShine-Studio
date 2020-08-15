@@ -25,9 +25,10 @@ class MyCanvas extends Component {
             currentObjectId: null,
             isClick: false,
             drawingObjects: [{id: 0, type: 'img', src:'https://media-public.canva.com/MADFFJdIo_0/1/thumbnail_large.jpg',
-                                style:'display: block; transform: translate(170px, 445px)', width:720},
-                {id:1, type: 'rect',
-                    style: 'z-index: 3; width: 525px; background: #CD1721; display: block; height: 400px; transform: translate(215px, 680px)'}],
+                                style:'display: block; transform: translate(170px, 445px)', width:720}
+                //{id:1, type: 'rect',
+                //    style: 'z-index: 3; width: 525px; background: #CD1721; display: block; height: 400px; transform: translate(215px, 680px)'}
+                ],
         }
         this._moveable = React.createRef();
     }

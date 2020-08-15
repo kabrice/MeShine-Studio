@@ -106,6 +106,36 @@ class App extends Component {
         )
     }
 
+    handleClickSquare = () => {
+        let objInc = this.state.objIncrement
+        objInc++
+        let gap = this.state.gap
+
+        let transformX = 215 + gap
+        let transformY = 680+ gap
+
+        gap = gap+10
+        this.setState({objIncrement: objInc, gap:gap })
+        this._mycanvas.current.addDrawingObject(
+            {id: objInc, type: 'rect',
+                style:`width: 525px; height: 400px; background: #1890ff; display: block; transform: translate(${transformX}px, ${transformY}px)`, width:720}
+        )
+    }
+    handleClickCircle = () => {
+        let objInc = this.state.objIncrement
+        objInc++
+        let gap = this.state.gap
+
+        let transformX = 215 + gap
+        let transformY = 680+ gap
+
+        gap = gap+10
+        this.setState({objIncrement: objInc, gap:gap })
+        this._mycanvas.current.addDrawingObject(
+            {id: objInc, type: 'rect',
+                style:`border-radius: 100%; width: 525px; height: 525px; background: #1890ff; display: block; transform: translate(${transformX}px, ${transformY}px)`, width:720}
+        )
+    }
     render() {
 
         let summary = this.props.summary;
@@ -134,7 +164,8 @@ class App extends Component {
             <Loader show={requesting} message={spinner}>
                 <header>
                     <MyHeader/>
-                    <MyMenu/>
+                    <MyMenu addSquare={this.handleClickSquare}
+                            addCircle={this.handleClickCircle}/>
                     <MyMediaItemList/>
                 </header>
                 <main role="main" className="container page-header"
@@ -188,7 +219,7 @@ class App extends Component {
                         </div>
                         <div className={"sidebar-menu col-1"}>
                             {this.renderSideButtons()}
-                            <div className={"remaining-block"}></div>
+                            <div className={"remaining-block"}/>
                         </div>
                     </div>
                 </main>
