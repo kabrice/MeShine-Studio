@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Lottie from 'react-lottie';
 import lottie from 'lottie-web'
-import * as animationData from '../../assets/data-text.json'
-import * as animationData1 from '../../assets/data.json'
+import * as animationData from '../../assets/media/data-text.json'
+import * as animationData1 from '../../assets/media/data.json'
 
 class Player extends Component{
 

@@ -23,7 +23,7 @@ export default class HomeMenu extends Component{
                         </li>
                         <li className="search">
                             <div className="form-inline">
-                                <img src="../assets/search.svg" height="28" width="18"/>
+                                <img src="../assets/media/search.svg" height="28" width="18"/>
                                 <input type="text" placeholder="Search Projects ?"/>
                             </div>
                             <span/>

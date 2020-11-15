@@ -1,9 +1,71 @@
 import React, {Component} from 'react'
+const EventListenerMode = {capture: true};
 
 class MyTimeline extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            showTimeline:false,
+            showPlayBtn:true,
+            timePosition: 0,
+            currentVideoTime: 0
+        }
+    }
+
+    componentDidMount() {
+        let vid = $('#mycanvas').find('video').get(0)
+        vid.ontimeupdate = () =>{
+            let val = vid.currentTime/vid.duration
+            this.setState({timePosition: val*100+'%'})
+        };
+    }
+
+    toggleTimeline(){
+        //console.log('HEYEY')
+        if(this.state.showTimeline){
+            this.setState({showTimeline:false})
+        }else{
+            this.setState({showTimeline:true})
+        }
+    }
+    togglePlayBtn(){
+        let vid = $('#mycanvas').find('video').get(0)
+        if(this.state.showPlayBtn){
+            vid.play();
+            this.setState({showPlayBtn:false})
+        }else{
+            vid.pause();
+            this.setState({showPlayBtn:true})
+        }
+    }
+
+    dragXTimePosition(e){
+        //  e.preventDefault()
+       //this.setState({timePosition: 0.5*100+'%'})
+        document.onmouseup = () => {
+            //console.log('closeDragElement')
+            document.onmouseup = null
+            document.onmousemove = null
+        }
+        document.onmousemove = (e) => {
+            let width = $('.tick-wrapper').width()
+            let val = (e.clientX-128)/width //Todo: 128 = $('.time-position').offset().left, to clone later on
+            //console.log('Im down', width, msX, va)
+            if(val>=0 && val<=1){
+                let vid = $('#mycanvas').find('video').get(0)
+                this.setState({timePosition: val*100+'%', currentVideoTime:val*vid.duration})
+                vid.currentTime = val*vid.duration
+                console.log('vid.currentTime', vid.currentTime)
+            }
+
+        }
+    }
+    elementDrag (e)  {
+        console.log('elementDrag')
+    }
+    closeDragElement = () => {
+        console.log('closeDragElement')
     }
 
     render() {
@@ -19,7 +81,8 @@ class MyTimeline extends Component {
                                 height="7px"
                                 viewBox="0 0 11 7"
                                 version="1.1"
-                            >
+                                style={{transform: this.state.showTimeline  ? 'rotate(0deg)' : 'rotate(180deg)'}}
+                                onClick={() => this.toggleTimeline()}>
                                 <title>Rectangle 3078</title>
                                 <desc>Created with Sketch.</desc>
                                 <defs/>
@@ -46,28 +109,39 @@ class MyTimeline extends Component {
                             </svg>
                         </div>
                     </div>
-                    <div className="lower-container">
+                    <div className="lower-container" >
                         <div className="time-control">
                             <div className="play-toggle">
-                                <div className="play-toggle-btn" aria-describedby="tooltip-41">
+                                <div className="play-toggle-btn" aria-describedby="tooltip-41" onClick={() => this.togglePlayBtn()}>
                                     <svg
                                         width={19}
                                         height={24}
                                         viewBox="0 0 19 24"
                                         className="icon icon-svg icon-color icon-size-24 square"
-                                        role="presentation"
-                                    >
+                                        style={{display: this.state.showPlayBtn  ? 'inline-block' : 'none'}}
+                                        role="presentation">
                                         <path
                                             d="M17.1 9.6L4.7.6c-.9-.6-2.1-.7-3-.2C.7.9.1 1.9.1 3v18.2c0 1.1.6 2.1 1.6 2.6.4.1.8.2 1.3.2.6 0 1.2-.2 1.7-.6l12.4-9.1c.7-.6 1.2-1.4 1.2-2.4 0-.8-.4-1.7-1.2-2.3z"
                                             fill="#231F20"
                                             fillRule="nonzero"
                                         />
                                     </svg>
+                                    <svg
+                                        width={28}
+                                        height={35}
+                                        viewBox="0 0 28 35"
+                                        className="icon icon-svg icon-color icon-size-24 square"
+                                        style={{display: !this.state.showPlayBtn  ? 'inline-block' : 'none'}}
+                                        role="presentation">
+                                        <g fill="#000" fillRule="evenodd">
+                                            <path d="M.289 0h9.976v35H.289zM18.024 0H28v35h-9.976z" />
+                                        </g>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
                         <div id="lower-elements">
-                            <div className="bottom-shadow" id="panels">
+                            <div className="bottom-shadow" id="panels" style={{display: this.state.showTimeline  ? 'inline-block' : 'none'}}>
                                 <div className="timeline-elements">
                                     <div className="timelines-with-grouping">
                                         <div className="exit-target top"/>
@@ -2599,8 +2673,10 @@ class MyTimeline extends Component {
                                                 style={{height: 6, left: "100%"}}
                                             />
                                         </div>
-                                        <div className="time-position-full" style={{left: "0%"}}/>
-                                        <div className="time-position" style={{left: "0%"}}>
+                                        <div className="time-position-full" style={{left: this.state.timePosition}} />
+                                        <div className="time-position" style={{left: this.state.timePosition}}
+
+                                             onMouseDown={() => this.dragXTimePosition()}>
                                             <div className="time-position-filler"/>
                                         </div>
                                     </div>

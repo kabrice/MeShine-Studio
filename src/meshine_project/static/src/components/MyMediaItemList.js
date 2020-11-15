@@ -16,7 +16,7 @@ class MyMediaItemList extends Component {
             slidesToScroll: 1
         };
 
-        return (<nav className={"editor-menu navbar navbar-toggleable-md navbar-inverse bg-inverse mymediaitemlist"}>
+        return (<nav className={"editor-menu navbar navbar-toggleable-md navbar-inverse bg-inverse mymediaitemlist"} style={{'display': 'none'}}>
                     <div className="element-list">
                         {/*<Slider {...settings}>*/}
                             <div className="media-element">

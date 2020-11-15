@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="55px" viewBox="0 0 42 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Screens</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-20.6%" y="-10.6%" width="141.2%" height="129.8%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#EEEEEE" offset="0%"></stop>
+            <stop stop-color="#D8D8D8" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Creation-Page" transform="translate(-1022.000000, -749.000000)">
+            <g id="Screen-Section" transform="translate(180.000000, 751.000000)">
+                <g id="Screen" transform="translate(65.000000, 0.000000)">
+                    <g id="Screens" filter="url(#filter-1)" transform="translate(781.000000, 0.000000)">
+                        <rect id="Rectangle-3" fill="url(#linearGradient-2)" x="0" y="0" width="33.1820488" height="46.42739"></rect>
+                        <text id="T" font-family="MonotypeCorsiva, Monotype Corsiva" font-size="32" font-weight="normal" fill="#D0021B">
+                            <tspan x="4.07995605" y="33.8499756">T</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

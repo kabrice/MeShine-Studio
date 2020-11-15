@@ -72,7 +72,7 @@ class MyTemplate extends Component {
                 </div>
             )
         }
-        return (<div  id={"mytemplate"}>
+        return (<div  className={"mytemplate"}>
                     <SearchInput target={'templates'}/>
                     <div className={"item"}>
                         <Slider {...settings}>

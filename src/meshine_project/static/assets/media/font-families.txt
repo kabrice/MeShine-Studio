@@ -1,0 +1,112 @@
+Avenir Next
+Baghdad
+Helvetica
+Lucida Grande
+Monotype
+Times New Roman
+
+Abadi MT Condensed Extra Bold
+Abadi MT Condensed Light
+Abril Fatface
+Academy Engraved LET
+
+American Typewriter
+Andale Mono
+Arial
+Arial Black
+Arial Hebrew
+Arial Hebrew Scholar
+Arial Narrow
+Arial Rounded MT Bold
+Arial Unicode MS
+Athelas
+Avenir
+Avenir Next
+Avenir Next Condensed
+Avuthava
+Baghdad
+Baloo
+Bangla MN
+Bangla Sangam MN
+BANK GOTHIC
+Baskerville
+Baskerville Old Face
+Batang
+Bauhaus 93
+BEBAS NEUE
+Beirut
+Bell MT
+Bernard MT Condensed
+Big Caslon
+Blackmoor LET
+BLAIRMDICTC TT
+Bodoni 72
+Bodoni 72 Oldstyle
+BODONI 72 SMALLCAPS
+Book Antiqua
+Bookman Old Style
+Bookshelf Symbol 7
+Bordeau Roman Bold LET
+Bradley Hand
+Braggadocio
+Britannic Bold
+Brush Script MT
+BUNGEE INLINE
+Calibri
+Calisto MT
+Cambria
+Cambria Math
+Candara
+CAPITALS
+Casual
+Caveat
+Century
+Century Gothic
+Century Schoolbook
+Chalkboard
+chalkboard SE
+Chalkduster
+Charter
+CINZEL
+Cochim
+Colonna MT
+Comic Sans MS
+Consolas
+Constantia
+Cooper Black
+COPPERLATE
+COPPERLATE GOTHIC BOLD
+COPPERLATE GOTHIC LIGHT
+Corbel
+Corsiva Hebrew
+Courier
+Courier New
+Cracked
+Curlz MT
+Damascus
+Decotype Naskh
+Desdemona
+Devanagari MT
+Devanagary Sangam MN
+Didot
+DIN Alternate
+DIN Condensed
+Diwan Kufi
+Diwan Thuluth
+Edwardin Script ITO
+ENGRAVERS MT
+Euphemia UCAS
+Eurostile
+Exo
+Farah
+Farisi
+Footlight MT Light
+Franklin Gothic Book
+Franklin Gothic Medium
+Futura
+Gabriola
+Garamond
+GB18030 Bitman
+Geeza
+
+

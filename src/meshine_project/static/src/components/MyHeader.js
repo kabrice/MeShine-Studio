@@ -14,17 +14,26 @@ class MyHeader extends Component {
                     <ul className="nav navbar-nav navbar-left">
                         <li role="presentation" className>
                             <div className="global-nav-control">
-                                <div className="global-nav-control-label">
-                                    <img height={20} src="../assets/summarylogo.png" alt="Aller à Mes Summaries"/>
+                                <div className="global-nav-control">
+                                   <a href="https://fr.wix.com" className="_1QuYK" title="Go to Wix.com" tabIndex={1} data-hook="header-wix-logo" style={{ display: "flex", alignItems: "center" }} >
+                                   <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="62px" height="96px" viewBox="0 0 62 96" version="1.1" style={{ height: "30px" }} >
+                                       <title>Shape</title>
+                                       <desc>Created with Sketch.</desc>
+                                       <defs />
+                                       <g id="Page-1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd" >
+                                          <path d="M22.5812874,0.5717389 C31.8699608,33.9571149 1.8990517,38.4189069 0.5050392,65.592796 C-1.55933,105.834251 60.6297989,104.687767 61.890419,66.2653424 C62.4612045,48.868675 34.2930908,12.1489484 22.5812874,0.5717389 Z M55.0584869,51.1251447 C63.1163711,67.2098005 56.2837448,79.1302717 49.7299499,84.860008 C57.9301605,74.6050031 57.8228912,58.3440168 55.0584869,51.1251447 Z" id="Shape" stroke="white" strokeWidth="0.1" fill="white" fillRule="nonzero" />
+                                       </g>
+                                   </svg>
+                                   <span style={{ marginLeft: "-15px", fontFamily: '"SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif', letterSpacing: "-.015em", color: "#f5f5f7", fontWeight: "bold", fontSize: 16 }} > {" "} SourceYOU{" "} </span> <span style={{ color: "darkgrey" }}>Studio</span> </a>
                                 </div>
                             </div>
                         </li>
                     </ul>
                     <div className="page-title">
-                        test project
+                        japprend.fr/sciences/la-grenouille-goliath-tour-d-horizon-20190910
                     </div>
                     <ul className="nav navbar-nav navbar-right">
-                        <li role="presentation" className>
+                        <li role="presentation" >
                             <div className="global-nav-control-label">
                                     Edgar
                                     <svg

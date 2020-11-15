@@ -29,6 +29,7 @@ class MyCanvas extends Component {
                 //{id:1, type: 'rect',
                 //    style: 'z-index: 3; width: 525px; background: #CD1721; display: block; height: 400px; transform: translate(215px, 680px)'}
                 ],
+            isDemoBoxHover: false
         }
         this._moveable = React.createRef();
     }
@@ -38,6 +39,7 @@ class MyCanvas extends Component {
         document.addEventListener('click', this.handleClickOutsideFigure, true);
         document.addEventListener('mouseenter', this.handleMouseEnter, true);
         document.addEventListener('mouseleave', this.handleMouseLeave, true);
+
     }
 
     componentWillUnmount() {
@@ -141,6 +143,8 @@ class MyCanvas extends Component {
         //console.log('obj', obj)
 
     }
+
+
     renderDrawingObject = () => {
         return _.map(this.state.drawingObjects, obj => {
             let result = (obj.style).split(';').reduce(function (ruleMap, ruleString) {
@@ -171,31 +175,75 @@ class MyCanvas extends Component {
 
         })
     }
+
+    demoMouseOver = ()  =>{
+        //e.preventDefault()
+        console.log('demoMouseOver')
+        this.setState({isDemoBoxHover: true, showDemoImg: true})
+    }
+    demoMouseLeave = ()  =>{
+        this.setState({isDemoBoxHover: false})
+    }
+    demoMouseOver2 = ()  =>{
+        //e.preventDefault()
+        console.log('demoMouseOver')
+        this.setState({isDemoBoxHover2: true, showDemoImg2: true})
+    }
+    demoMouseLeave2 = ()  =>{
+        this.setState({isDemoBoxHover2: false})
+    }
+    handleClickDemoText = () => {
+        this.props.displayTextEdit()
+        this.setState({isDemoTextCliked: true})
+    }
+    demoMouseOver3 = ()  =>{
+        this.setState({showDemoText: true})
+    }
+    demoMouseLeave3 = ()  =>{
+        this.setState({ isDemoTextCliked: false})
+        this.setState({showDemoText: false})
+    }
+    /*handleDoubleClickDemoText = () => {
+        this.setState({isDemoTextDBCliked: true, showDemoText:false})
+    }*/
     render() {
         this.scale = [1, 1];
         this.rotate = 0;
 
         return <React.Fragment>
-            <div id='mycanvas'>
-                {/*<div className="svg-arrg" id="o0_img" >
-                    <img
-                        width={720}
-                        className="vxiL9Q _1pMoDA JaNaZQ _1vGB4g"
-                        crossOrigin="anonymous"
-                        src="https://media-public.canva.com/MADFFJdIo_0/1/thumbnail_large.jpg"
-                        draggable="false"/>
-                </div>*/}
+            <div id='mycanvas' className={"mydemo"} >
+               {/* {this.renderDrawingObject()} Todo: Uncommented later, just for demo*/ }
+                <video src="../../assets/demo/snap1/SnapFrog1a_a.mp4" width={'100%'}></video> {/* Todo: Comment later, just for demo */}
+                <div className="demoHoveringitem2"
+                     style={{border : this.state.isDemoBoxHover2 ?'5px solid #00d9e1' : 'none', background: this.state.showDemoImg2 ? 'url("../assets/demo/snap1/demoImgIlusion.jpg")' : ''}}
+                     />
+                <div className="demoHoveringitem3"
+                     onDragOver={() => this.demoMouseOver2()}
+                     onDragLeave={() => this.demoMouseLeave2()}/>
+                <div className="demoHoveringitem"
+                     style={{border : this.state.isDemoBoxHover ?'5px solid #00d9e1' : 'none', background: this.state.showDemoImg ? 'url("../assets/demo/snap1/african-frog2.jpg")' : '', backgroundSize: this.state.showDemoImg ? 'cover' : ''}}
+                     onDragOver={() => this.demoMouseOver()}
+                     onDragLeave={() => this.demoMouseLeave()}/>
+                <div
+                     /*onDoubleClick={() => this.handleDoubleClickDemoText()}*/
+                     /*style={{pointerEvents: `${this.state.isDemoTextDBCliked ? 'none' : ''}`}}*/
+                     className={`${this.state.isDemoTextCliked ? 'demo-click-text' : ''} ${this.state.showDemoText ? 'demo-hover-text' : ''}`}/>
 
-                {this.renderDrawingObject()}
-                {/*<div className="svg-arrg" id={`o${this.props.imgSrc.id}_img`}
-                     style={{display: (this.props.imgSrc.id) ? 'block' : 'none',
-                            transform: "translate(170px, 445px)"}}>
-                    <img
-                        width={720}
-                        className="vxiL9Q _1pMoDA JaNaZQ _1vGB4g"
-                        crossOrigin="anonymous"
-                        src={this.props.imgSrc.value}/>
-                </div>*/}
+                <div id="o12_text-demo"
+                     contentEditable={true}
+                     onClick={this.handleClickDemoText}
+                     onMouseLeave={() => this.demoMouseLeave3()}
+                     onMouseOver={() => this.demoMouseOver3()}
+                     className={`svg-arrg-demo`}>
+                  <span className="letters">
+                    <span>Ils peuvent mesurer jusqu'à 32cm de long et peser 3,25kg.
+                    Célèbre pour son incroyable capacité de saut: elle peut bondir jusqu'à 3 mètres de haut. Cependant, </span>
+                      <span id={'spanDemo'}>elle est épuisée en général après deux ou trois<br/> sauts de ce type</span>
+                  </span>
+                </div>
+                <div className="svg-arrg-demo" id="o13_box-demo"/>
+                <div className="svg-arrg-demo" id="o14_box-demo"/>
+                <div className="redbox-demo"/>
             </div>
             <span className={"dragbox"} style={{display: (this.state.showDragbox) ? '' : 'none'}}>
                 <div className="awStMQ" style={{width: "410px", height: 800, margin: 0}}>
@@ -313,12 +361,12 @@ class MyCanvas extends Component {
 
                 <div className="_5Azx_w"
                      id={"hover-box"}
-                   style={{
-                       width: this.state.hoverBoxW,
-                       height: this.state.hoverBoxH,
-                       transform: this.state.hoverTransform,
-                       display: (this.state.showHoverBox) ? '' : 'none'
-                   }}>
+                     style={{
+                           width: this.state.hoverBoxW,
+                           height: this.state.hoverBoxH,
+                           transform: this.state.hoverTransform,
+                           display: (this.state.showHoverBox) ? '' : 'none'
+                       }}>
                   <div className="MW9lNg"/>
                 </div>
 

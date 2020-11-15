@@ -22,7 +22,7 @@ class MyImage extends Component {
     
     render() {
 
-        return (<div  id={"mytemplate"} >
+        return (<div  className={"mytemplate"} >
             <SearchInput target={'images'}/>
             <div className="myimage">
                 <aside className="r_V5mQ _4jDhvw"
@@ -46,7 +46,7 @@ class MyImage extends Component {
                                                                 <div className="YtKT1w">
                                                                     <div className="LzVstg">
                                                                         <div className="n1Fp1g">
-                                                                            <div className="_0fYpqw">
+                                                                            <div className="">
                                                                                 <div className="_-U6mfw Uj6COw">
                                                                                     <div>
                                                                                         <div>
@@ -1607,7 +1607,7 @@ class MyImage extends Component {
                                                                                                                                                 <img onClick={this.handleClickImage}
                                                                                                                                                     className="vxiL9Q _1pMoDA JaNaZQ _1vGB4g"
                                                                                                                                                     crossOrigin="anonymous"
-                                                                                                                                                    src="https://media-public.canva.com/gcgbs/MAD2WPgcgbs/1/tl.jpg"
+                                                                                                                                                    src="../assets/demo/snap1/frog_bg.jpg"
                                                                                                                                                     draggable="false"
                                                                                                                                                 />
                                                                                                                                             </div>

@@ -4,6 +4,10 @@ class MyMenu extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            selectOrderBtn:false,
+            i:2
+        }
     }
     handleClickSquare = () => {
         this.props.addSquare()
@@ -11,6 +15,31 @@ class MyMenu extends Component {
     handleClickCircle = () => {
         this.props.addCircle()
     }
+
+    componentDidMount() {
+        $('#anim-order-btn').click( () => {
+            //console.log('this.state.i%2===2', this.state.i%2===0)
+            if(this.state.i%2===0){
+                this.setState({selectOrderBtn:true, i:3})
+                $('.mymediaitemlist').show()
+            }else{
+                this.setState({selectOrderBtn:false, i:2})
+                $('.mymediaitemlist').hide()
+            }
+        })
+
+        $('.fa-square').click(function () { /*Just for demo*/
+            $('.element-font-select').hide()
+            $('.element-font-container').hide()
+            $('.element-alignment-block').hide()
+            $('.element-text-overflow-block').hide()
+            $('.spacing-input-block').hide()
+            $('.text-effect-wrapper').hide()
+            $('#o13_box-demo').show()
+            $('#o14_box-demo').show()
+        })
+    }
+
     render() {
         return (
             <nav className={"editor-menu navbar navbar-toggleable-md navbar-inverse bg-inverse "}>
@@ -66,11 +95,12 @@ class MyMenu extends Component {
                         </svg>
                     </button>
                 </div>
-                <div className="editor-item">
-                    <button>
-                        <img src="../assets/anim_order_btn.svg"
+                <div className="editor-item ">
+                    <button id={'anim-order-btn'}> {/*Todo : this is ID is just for demo*/}
+                        <img src="../assets/media/anim_order_btn.svg"
                              height={"20px"}
                              width={"20px"}
+                             className={this.state.selectOrderBtn ? 'selected-item' : ''}
                              title={"Animation list"}/>
                     </button>
                 </div>
