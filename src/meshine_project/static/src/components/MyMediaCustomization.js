@@ -14,7 +14,8 @@ class MyMediaCustomization extends Component {
     }
 
     playVideo(i, doPlay){
-        const vid = $('#textvid'+i).get(0)
+        let vid = $('.textvid'+i).get(0)
+        //console.log('playVideo', doPlay)
         if(doPlay){
             vid.play()
             this.setState({doPlay:true, currentVid: i})
@@ -28,6 +29,9 @@ class MyMediaCustomization extends Component {
         {/*Just for demo*/}
         $('.colorSwatch-color').click(function () {
             $('.mycolorpicker').show()
+        })
+        $('#card-container').click(function () {
+            $('.mycolorpicker').hide()
         })
     }
 
@@ -75,8 +79,7 @@ class MyMediaCustomization extends Component {
                                                     <div className="Wcv3XA">
                                                         <video loop=""
                                                                poster={`../../assets/demo/${titlesFolder}/${titles[i]}.png`}
-                                                               className="video-thumbnail"
-                                                               id={`textvid${i}`}
+                                                               className={`video-thumbnail textvid${i}`}
                                                                src={`../../assets/demo/${titlesFolder}/${titles[i]}.mp4`}/>
                                                     </div>
                                                 </div>
@@ -111,8 +114,7 @@ class MyMediaCustomization extends Component {
                                                     <div className="Wcv3XA">
                                                         <video
                                                             poster={`../../assets/demo/${titlesFolder}/${titles[i+1]}.png`}
-                                                            className="video-thumbnail"
-                                                            id={`textvid${i+1}`}
+                                                            className={`video-thumbnail textvid${i+1}`}
                                                             src={`../../assets/demo/${titlesFolder}/${titles[i+1]}.mp4`}/>
                                                     </div>
                                                 </div>

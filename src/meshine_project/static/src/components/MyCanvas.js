@@ -225,12 +225,10 @@ class MyCanvas extends Component {
                      onDragOver={() => this.demoMouseOver()}
                      onDragLeave={() => this.demoMouseLeave()}/>
                 <div
-                     /*onDoubleClick={() => this.handleDoubleClickDemoText()}*/
-                     /*style={{pointerEvents: `${this.state.isDemoTextDBCliked ? 'none' : ''}`}}*/
                      className={`${this.state.isDemoTextCliked ? 'demo-click-text' : ''} ${this.state.showDemoText ? 'demo-hover-text' : ''}`}/>
 
                 <div id="o12_text-demo"
-                     contentEditable={true}
+                     /*contentEditable={true}*/
                      onClick={this.handleClickDemoText}
                      onMouseLeave={() => this.demoMouseLeave3()}
                      onMouseOver={() => this.demoMouseOver3()}

@@ -56,7 +56,7 @@ class MyTimeline extends Component {
                 let vid = $('#mycanvas').find('video').get(0)
                 this.setState({timePosition: val*100+'%', currentVideoTime:val*vid.duration})
                 vid.currentTime = val*vid.duration
-                console.log('vid.currentTime', vid.currentTime)
+                //console.log('vid.currentTime', vid.currentTime)
             }
 
         }
