@@ -24,11 +24,9 @@ class MyCanvas extends Component {
             showMoveableApi: false,
             currentObjectId: null,
             isClick: false,
-            drawingObjects: [{id: 0, type: 'img', src:'https://media-public.canva.com/MADFFJdIo_0/1/thumbnail_large.jpg',
-                                style:'display: block; transform: translate(170px, 445px)', width:720}
-                //{id:1, type: 'rect',
-                //    style: 'z-index: 3; width: 525px; background: #CD1721; display: block; height: 400px; transform: translate(215px, 680px)'}
-                ],
+            drawingObjects: [],
+            /*drawingObjects: [{id: 0, type: 'img', src:'https://media-public.canva.com/MADFFJdIo_0/1/thumbnail_large.jpg',
+                style:'display: block; transform: translate(170px, 445px)', width:720}],*/
             isDemoBoxHover: false
         }
         this._moveable = React.createRef();
@@ -177,12 +175,29 @@ class MyCanvas extends Component {
     }
 
     demoMouseOver = ()  =>{
-        //e.preventDefault()
-        console.log('demoMouseOver')
-        this.setState({isDemoBoxHover: true, showDemoImg: true})
+        let vid = $('#mycanvas').find('video').get(0)
+        vid.currentTime = 2.7
+        this.setState({isDemoBoxHover: true})
+        $("#demo-escargot1").attr("src","../../assets/demo/snap1/GoliathFrog.png");
     }
     demoMouseLeave = ()  =>{
-        this.setState({isDemoBoxHover: false})
+        console.log('demoMouseOver')
+        //this.setState({isDemoBoxHover: false})
+    }
+    demoMouseOver1 = ()  =>{
+        $('#mycanvas').find('video').attr("src","../../assets/demo/snap1/SnapFrog2d.mp4")
+        let vid = $('#mycanvas').find('video').get(0)
+        vid.currentTime = 2.7
+        this.setState({isDemoBoxHover: true})
+        $('.media-element').removeClass('selected')
+        $('.demo-escargota').addClass('selected')
+        $("#demo-escargot").attr("src","../../assets/demo/snap1/GoliathFrog1.jpg");
+        $('#demo-escargot-tl').attr("src","../../assets/demo/snap1/GoliathFrog1.jpg");
+        $('.demovid2').find('video').attr("src","../../assets/demo/snap1/SnapFrog2d.mp4")
+    }
+    demoMouseLeave1 = ()  =>{
+        console.log('demoMouseOver')
+        //this.setState({isDemoBoxHover: false})
     }
     demoMouseOver2 = ()  =>{
         //e.preventDefault()
@@ -211,12 +226,28 @@ class MyCanvas extends Component {
         this.rotate = 0;
 
         return <React.Fragment>
+            <div className="demo-hover-text"
+                 onDragOver={() => this.demoMouseOver()}
+                 onDragLeave={() => this.demoMouseLeave()}
+                 style={{display: 'none'}}/>
+            <div className="demo-hover-text1"
+                 onDragOver={() => this.demoMouseOver1()}
+                 onDragLeave={() => this.demoMouseLeave1()}/>
+            <div className={'demo-hover-text2'}/>
+            <div className={'demo-hover-text3'}/>
+            <div className={'demo-hover-text4'}/>
+            <div className={'demo-hover-text5'}/>
+            <div className="mydemo">
+                <div className="demoHoveringitem"
+                style={{border : '5px solid #00d9e1', display: 'none' }}/>
+            </div>
             <div id='mycanvas' className={"mydemo"} >
-               {/* {this.renderDrawingObject()} Todo: Uncommented later, just for demo*/ }
-                <video src="../../assets/demo/snap1/SnapFrog1a_a.mp4" width={'100%'}></video> {/* Todo: Comment later, just for demo */}
+               {this.renderDrawingObject()} {/*  Todo: Uncommented later, just for demo*/ }
+                <video width={'100%'} src={`../../assets/demo/snap1/SnapFrog2${this.state.isDemoBoxHover ? 'e' : 'e'}.mp4` } />{/* Todo: Comment later, just for demo */}
                 <div className="demoHoveringitem2"
-                     style={{border : this.state.isDemoBoxHover2 ?'5px solid #00d9e1' : 'none', background: this.state.showDemoImg2 ? 'url("../assets/demo/snap1/demoImgIlusion.jpg")' : ''}}
-                     />
+                     style={{border : '5px solid #00d9e1', display: 'none' }}/>
+
+                     {/*
                 <div className="demoHoveringitem3"
                      onDragOver={() => this.demoMouseOver2()}
                      onDragLeave={() => this.demoMouseLeave2()}/>
@@ -228,7 +259,6 @@ class MyCanvas extends Component {
                      className={`${this.state.isDemoTextCliked ? 'demo-click-text' : ''} ${this.state.showDemoText ? 'demo-hover-text' : ''}`}/>
 
                 <div id="o12_text-demo"
-                     /*contentEditable={true}*/
                      onClick={this.handleClickDemoText}
                      onMouseLeave={() => this.demoMouseLeave3()}
                      onMouseOver={() => this.demoMouseOver3()}
@@ -241,10 +271,10 @@ class MyCanvas extends Component {
                 </div>
                 <div className="svg-arrg-demo" id="o13_box-demo"/>
                 <div className="svg-arrg-demo" id="o14_box-demo"/>
-                <div className="redbox-demo"/>
+                <div className="redbox-demo"/>*/}
             </div>
             <span className={"dragbox"} style={{display: (this.state.showDragbox) ? '' : 'none'}}>
-                <div className="awStMQ" style={{width: "410px", height: 800, margin: 0}}>
+                <div className="awStMQ" style={{width: "410px", height: 720, margin: 0}}>
 
                   <div className="_7WSEvA xk1pAg"
                        id={"click-box"}
@@ -288,7 +318,8 @@ class MyCanvas extends Component {
                         <Moveable
                             target={document.querySelector('._7WSEvA')}
                             ref = {this._moveable}
-                            keepRatio={document.getElementById(this.state.currentObjectId).getElementsByTagName('img')[0]}
+                            /*keepRatio={document.getElementById(this.state.currentObjectId).getElementsByTagName('img')[0]}*/
+                            keepRatio={true}
                             draggable={true}
                             throttleDrag={0}
                             onDragStart={({ set }) => {
@@ -313,7 +344,7 @@ class MyCanvas extends Component {
                             resizable={true}
                             throttleResize={0}
                             onResize={({ target, width, height, dist , delta}) => {
-                                console.log(width, height, dist);
+                                //console.log(width, height, dist);
                                 target.style.width = width + "px";
                                 target.style.height = height + "px";
                                 //console.log('onResize', delta)

@@ -104,6 +104,28 @@ class MyMenu extends Component {
                              title={"Animation list"}/>
                     </button>
                 </div>
+                <div className={'mymediacustomization'} style={{position: 'absolute', marginRight: '-95.5%'}}>
+                    <div className={"myupload"}>
+                        <div className="media-gallery-open">
+                            <div className="media-gallery-input-container">
+                                <div className=" alignment-selection">
+                                    <button type="button" className="element-menu-canvas-alignment-selection mask-options ant-dropdown-trigger sds-dropdown btn btn-outline btn-outline-secondary">
+                                        <div className="align-menu-title">
+                                            <svg className="icon icon-svg icon-color icon-size-13 mask-selected"
+                                                 style={{transform: 'scale(1.5)'}}
+                                                 xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" style={{transform: 'scale(1.5)', enableBackground: 'new 0 0 100 100'}} xmlSpace="preserve">
+                                                <g>
+                                                    <path d="M68.5,34h-8.2v8.5h8.2c3.6,0,6.3,2.7,6.3,6.3v33.8c0,3.6-2.7,6.3-6.3,6.3H30.5c-3.6,0-6.3-2.7-6.3-6.3V48.8   c0-3.6,2.7-6.3,6.3-6.3h8.2V34h-8.2c-8.2,0-14.8,6.6-14.8,14.8v33.8c0,8.2,6.6,14.8,14.8,14.8h38.1c8.2,0,14.8-6.6,14.8-14.8V48.8   C83.3,40.6,76.8,34,68.5,34z" />
+                                                    <polygon points="45.3,20.3 45.3,65.7 53.7,65.7 53.7,20.3 60.9,27.4 66.8,21.5 49.5,4 32.2,21.5 38.1,27.4  " />
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
         );
     }

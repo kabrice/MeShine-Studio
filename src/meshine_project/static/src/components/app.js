@@ -187,6 +187,7 @@ class App extends Component {
                     <MyMenu addSquare={this.handleClickSquare}
                             addCircle={this.handleClickCircle}/>
                     <MyMediaItemList/>
+                    <FooterMenuBox type={"demo"}/>
                 </header>
                 <main role="main" className="container page-header"
                       //onMouseEnter={()=>{this.initAnimation()}}

@@ -444,18 +444,7 @@ class AnimationPanel extends Component {
 																																								<label className="CPiV9g Y5LciQ EoSiNg _7JQe7g gMLrMA Xn1JdA XvGYmg"/>
 																																							</span>
                                                                                                                                                                     </div>
-                                                                                                                                                                    <div className="bIH4Ew">
-																																							<span className="kuTG_A gEpUvw G-b09Q F_6KCw _6dy2eg">
-																																								<button className="c9VYxw _7JQe7g gMLrMA Xn1JdA XvGYmg x3JSCg _64pTrA">
-																																									<span aria-hidden="true" className="qBgNiA Dl-MAQ uEuSRg" >
-																																										<svg
-                                                                                                                                                                            xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" >
-																																											<path fill="currentColor" d="M3.25 9.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm4.75 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm4.75 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z" fillRule="evenodd" />
-																																										</svg>
-																																									</span>
-																																								</button>
-																																							</span>
-                                                                                                                                                                    </div>
+
                                                                                                                                                                 </div>
                                                                                                                                                             </div>
                                                                                                                                                         </div>

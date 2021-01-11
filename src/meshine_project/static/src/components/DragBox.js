@@ -80,7 +80,7 @@ class DragBox extends Component {
     }
     render() {
         return <span className={"dragbox"}>
-                    <div className="awStMQ" style={{width: "410px", height: 800, margin: 0}}>
+                    <div className="awStMQ" style={{width: "410px", height: 720, margin: 0}}>
 
                       <div className="_7WSEvA xk1pAg" style={{
                           width: "310.95px",
