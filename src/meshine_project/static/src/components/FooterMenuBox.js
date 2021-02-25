@@ -359,7 +359,8 @@ class FooterMenuBox extends Component{
 
         }
         //console.log('media.file_type', medias);
-        return (<div className="menu-box big-menu-box" style={{left: this.state.displaySuccessGeneration ? '39%' : 'none', top: this.state.displaySuccessGeneration ? '17%' : 'none'}}>
+        return (/*DEMO FOR SUCCESS PROCESS<div className="menu-box big-menu-box" style={{left: this.state.displaySuccessGeneration ? '39%' : 'none',
+                        top: this.state.displaySuccessGeneration ? '17%' : 'none'}}>
                     {searchField}
                     <div className="images thumbs" style={{width: this.state.displaySuccessGeneration ? 400 : null,
                                                           height: this.state.displaySuccessGeneration ? 320 : null ,
@@ -377,7 +378,97 @@ class FooterMenuBox extends Component{
                         </div>
                     </div>
                     <ProjectModal  type={"forBodymovin"}/>
-                </div>)
+                </div>*/
+            <div className="menu-box big-menu-box" style={{left: '30%', top: '17%'}}>
+                <div className="images thumbs mydemo" style={{width: 700, height: 400}}>
+                    <div className="runtime_sales_pathassistantPathAssistant" data-aura-rendered-by="352:0" data-aura-class="runtime_sales_pathassistantPathAssistant">
+                        <article className data-aura-rendered-by="353:0">
+                            <div className="slds-card__body slds-card__body_inner" data-aura-rendered-by="354:0">
+                                <h2 className="slds-assistive-text" data-aura-rendered-by="483:0">Path</h2>{/*render facet: 422:0*/}
+                                <div className="slds-path" data-aura-rendered-by="423:0">
+                                    <div data-aura-rendered-by="474:0" className="runtime_sales_pathassistantCollapsibleDrawer" data-aura-class="runtime_sales_pathassistantCollapsibleDrawer" id="424:0">
+                                        <div className="slds-grid slds-path__track" data-aura-rendered-by="475:0">{/*render facet: 476:0*/}{/*render facet: 477:0*/}
+                                            <div className="slds-grid slds-path__scroller-container runtime_sales_pathassistantPathAssistantTabSet" data-aura-rendered-by="432:0" data-aura-class="runtime_sales_pathassistantPathAssistantTabSet">{/*render facet: 442:0*/}
+                                                <div className="slds-path__scroller uiScroller scroller-wrapper scroll-horizontal" tabIndex={-1} style={{}} data-aura-rendered-by="444:0" data-aura-class="uiScroller">
+                                                    <div className="slds-path__scroller_inner scroller" data-aura-rendered-by="445:0">{/*render facet: 436:0*/}
+                                                        <div role="listbox" aria-label="Path Header" data-aura-rendered-by="437:0">
+                                                            <ul className="slds-path__nav" aria-orientation="horizontal" role="tablist" aria-label="Path" data-aura-rendered-by="438:0">
+                                                                <li className="slds-is-current slds-is-active slds-path__item runtime_sales_pathassistantPathAssistantTab" role="tab" data-aura-rendered-by="682:0" data-aura-class="runtime_sales_pathassistantPathAssistantTab" data-original-width={235} data-name="OpenNotContacted" data-walkthrough-target-hint="self">
+                                                                    <a className="tabHeader slds-path__link" aria-selected="true" data-tab-name="OpenNotContacted" tabIndex={0} role="option" data-aura-rendered-by="683:0" href="javascript:void(0);" data-refid="tab-name" title="Open - not contacted">
+                                                                        <span className="current slds-path__stage" data-aura-rendered-by="684:0">{/*render facet: 685:0*/}</span>
+                                                                        <span className="title slds-path__title" data-aura-rendered-by="686:0">Sources &amp; References</span>{/*render facet: 688:0*/}
+                                                                    </a>
+                                                                </li>
+                                                                <li className="slds-is-incomplete slds-path__item runtime_sales_pathassistantPathAssistantTab" role="tab" data-aura-rendered-by="732:0" data-aura-class="runtime_sales_pathassistantPathAssistantTab" data-original-width={230} data-name="Refused - not converted" data-walkthrough-target-hint="self">
+                                                                    <a className="tabHeader slds-path__link" aria-selected="false" data-tab-name="Refused - not converted" tabIndex={-1} role="option" title="Refused - not converted" data-aura-rendered-by="733:0" href="javascript:void(0);" data-refid="tab-name">
+                                                                        <span className="ahead slds-path__stage" data-aura-rendered-by="734:0">{/*render facet: 735:0*/}</span>
+                                                                        <span className="title slds-path__title" data-aura-rendered-by="736:0">Authors of the content</span>{/*render facet: 738:0*/}
+                                                                    </a>
+                                                                </li>
+                                                                <li className="slds-is-incomplete slds-path__item runtime_sales_pathassistantPathAssistantTab" role="tab" data-aura-rendered-by="742:0" data-aura-class="runtime_sales_pathassistantPathAssistantTab" data-original-width={234} data-name="converted" data-walkthrough-target-hint="self">
+                                                                    <a className="tabHeader slds-path__link" aria-selected="false" data-tab-name="converted" tabIndex={-1} role="option" title="Converted" data-aura-rendered-by="743:0" href="javascript:void(0);" data-refid="tab-name">
+                                                                        <span className="ahead slds-path__stage" data-aura-rendered-by="744:0">{/*render facet: 745:0*/}</span>
+                                                                        <span className="title slds-path__title" data-aura-rendered-by="746:0">About the Website</span>{/*render facet: 748:0*/}
+                                                                    </a>
+                                                                </li>{/*render facet: 440:0*/}
+                                                            </ul>
+                                                        </div>{/*render facet: 447:0*/}
+                                                    </div>
+                                                </div>
+                                                <div className="slds-path__scroll-controls" data-aura-rendered-by="448:0">{/*render facet: 449:0*/}{/*render facet: 450:0*/}</div>
+                                                <div className="tooltip tooltip-hidden" role="tooltip" id="pa-tooltip" data-aura-rendered-by="451:0" aria-hidden="true" style={{left: '361.5px'}}>
+                                                    <div className="wrapper" data-aura-rendered-by="428:0">
+                                                        <span className="defaultTabHoverString" data-aura-rendered-by="429:0">Open - contacted</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="slds-path__content slds-is-expanded" data-aura-rendered-by="480:0">
+                                            <div data-aura-rendered-by="472:0">
+                                                <span className="slds-path__coach slds-grid runtime_sales_pathassistantPathAssistantBody" data-aura-rendered-by="650:0" data-aura-class="runtime_sales_pathassistantPathAssistantBody">{/*render facet: 651:0*/}{/*render facet: 652:0*/}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>{/*render facet: 488:0*/}{/*render facet: 491:0*/}
+                            </div>
+                        </article>
+                    </div>
+                    <p className="q-flex qu-bg--gray_ultralight qu-px--medium qu-py--small qu-alignItems--center" style={{boxSizing: 'border-box', display: 'flex'}} >
+                    <div className="q-text qu-color--gray_dark qu-fontSize--regular qu-py--small qu-px--medium qu-bg--white qu-borderRadius--large qu-ml--small TextInputWrapper___StyledText-abzlxg-0 bOaUnz _2bloUA9j5uUJEE0M8fMbS6" style={{boxSizing: 'border-box', flex: '1 1 0%', minWidth: 0, boxShadow: 'rgb(222, 224, 225) 0px 0px 0px 1px inset'}}>
+                        <div className="q-box editor_wrapper u-layout-direction--ltr qu-whiteSpace--pre-wrap" style={{boxSizing: 'border-box', outline: 'none', tabSize: 4}}>
+                            <div className="q-box editor_inner editor_padding_reset" style={{boxSizing: 'border-box'}}>
+                                <div className="q-relative" style={{boxSizing: 'border-box', position: 'relative'}}>
+                                    <div className="q-box" style={{boxSizing: 'border-box'}}>
+                                        <div className="doc empty" data-placeholder="Add a comment..." contentEditable="true" data-kind="doc">
+                                            <div className="section" data-type="plain" data-dir="LTR" data-dir-confirmed="false" data-indent={0} data-kind="section">
+                                                <div className="span active" data-kind="span">
+                                                    <div className="content1">Fill a good source here</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp|images/*" multiple style={{display: 'none'}} />
+                                    <div className="q-absolute qu-full drop_zone qu-alignItems--center qu-justifyContent--center qu-borderWidth--retinaOverride qu-display--none qu-zIndex--inline_overlay" style={{boxSizing: 'border-box', position: 'absolute', borderColor: 'transparent', borderWidth: 4, borderStyle: 'dashed'}} /></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="q-box qu-ml--tiny" style={{boxSizing: 'border-box'}}>
+                        <div className="q-flex qu-alignItems--center qu-justifyContent--flex-end" style={{boxSizing: 'border-box', display: 'flex'}}>
+                            <button className="q-click-wrapper qu-active--textDecoration--none qu-focus--textDecoration--none qu-disabled base___StyledClickWrapper-lx6eke-1 kNZJaj   qu-borderRadius--pill qu-alignItems--center qu-justifyContent--center qu-whiteSpace--nowrap qu-userSelect--none qu-display--inline-flex qu-bg--blue qu-tapHighlight--white qu-textAlign--center qu-cursor--pointer qu-hover--textDecoration--none" disabled aria-disabled="true" type="button" tabIndex={0} role="button" style={{boxSizing: 'border-box', font: 'inherit', outline: 'none', padding: '0px 15px', height: 30, minWidth: 30, position: 'relative', borderWidth: 0, color: 'inherit'}}>
+                                <div className="q-flex qu-alignItems--center qu-justifyContent--center" style={{boxSizing: 'border-box', display: 'flex', maxWidth: '100%'}}>
+                                    <div className="q-text qu-display--inline-flex qu-alignItems--center qu-overflow--hidden puppeteer_test_button_text qu-medium qu-color--white" style={{boxSizing: 'border-box', fontSize: 13}}>
+                                        <div className="q-text qu-ellipsis qu-whiteSpace--nowrap" style={{boxSizing: 'border-box'}}>Add</div>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    </p>
+
+                </div>
+
+            </div>
+        )
 
     }
 }
