@@ -3913,15 +3913,15 @@ button.prev {
 .big-menu-box .navg {
   width: 225px;
 }
-.big-menu-box .anim-btn-type div,
-.big-menu-box .images div {
+.big-menu-box .anim-btn-type > div,
+.big-menu-box .images > div {
   display: flex;
   vertical-align: middle;
   text-align: center;
   position: relative;
 }
 .big-menu-box .images {
-  padding: 10px;
+  padding: 11px;
   background-color: #ffffff;
   border: 1px solid #ffffff;
   position: relative;
@@ -4336,7 +4336,7 @@ header .editor-menu .editor-item button:hover img, header .editor-menu .editor-i
   height: 17px;
 }
 .anim-input input[type=checkbox]:checked {
-  background: url("../assets/check.svg") 2px 2px no-repeat;
+  background: url("../assets/media/check.svg") 2px 2px no-repeat;
 }
 .anim-input select {
   height: 19px;

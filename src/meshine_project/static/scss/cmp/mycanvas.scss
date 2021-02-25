@@ -1,6 +1,6 @@
 #mycanvas{
     width: 1024px;
-    height: 2000px;
+    height: 1800px;
     background: gray;
     box-shadow: 0 2px 20px 0 dimgrey;
     border-radius: 4px;
@@ -17,4 +17,103 @@
         pointer-events: none;
       }
     }
+
+
+    .demo-click-text{
+      cursor: text;
+      border: 5px dashed #00d9e1;
+      padding: 10px;
+      height: 310px;
+      width: 1010px;
+      top: 1450px;
+      left: 10px;
+      z-index: 10;
+      position: absolute;
+
+    }
   }
+.demo-hover-text{
+  border: 5px solid #00d9e1;
+  padding: 10px;
+  cursor: default;
+  height: 930px;
+  width: 1050px;
+  top: -175px;
+  z-index: 100000;
+  position: absolute;
+  transform: scale(0.4);
+
+}
+
+.demo-hover-text1 {
+  border: 5px solid #00d9e1 ;
+  padding: 10px;
+  cursor: default;
+  height: 1030px;
+  width: 1150px;
+  top: -230px;
+  z-index: 100000;
+  position: absolute;
+  transform: scale(0.4);
+  display: none;
+}
+
+.demo-hover-text2 {
+  border: 5px solid #00d9e1;
+  padding: 10px;
+  cursor: default;
+  height: 120px;
+  width: 900px;
+  top: 440px;
+  z-index: 1;
+  position: absolute;
+  transform: scale(0.4);
+  left: -85px;
+  display: none;
+  margin-left: 235px;
+}
+
+.demo-hover-text3 {
+  border: 5px solid #00d9e1;
+  padding: 10px;
+  cursor: default;
+  height: 182px;
+  width: 900px;
+  top: 474px;
+  z-index: 1;
+  position: absolute;
+  transform: scale(0.4);
+  left: -85px;
+  display: none;
+  margin-left: 235px;
+}
+
+.demo-hover-text4 {
+  border: 5px solid #00d9e1;
+  padding: 10px;
+  cursor: default;
+  height: 118px;
+  width: 900px;
+  top: 568px;
+  z-index: 1;
+  position: absolute;
+  transform: scale(0.4);
+  left: -85px;
+  display: none;
+  margin-left: 235px;
+}
+
+.demo-hover-text5 {
+  border: 5px solid #00d9e1;
+  padding: 10px;
+  cursor: default;
+  height: 130px;
+  width: 900px;
+  top: 612px;
+  z-index: 1;
+  position: absolute;
+  transform: scale(0.4);
+  left: -85px;
+  display: none;
+  margin-left: 235px;
+}

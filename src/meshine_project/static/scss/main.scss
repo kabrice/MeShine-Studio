@@ -34,9 +34,12 @@
 @import "cmp/myheader";
 @import "cmp/mymediaitemlist";
 @import "cmp/dragbox";
+@import "cmp/mydemo";
+@import "cmp/mymediacustomization";
+@import "cmp/mycolorpicker";
 
 html {
-  height: $html-height !important ;
+  height: $html-height !important;
   background: $black2 !important;
   font-size: $body-font-size !important;
   user-select: none;
@@ -80,7 +83,7 @@ body {
 }
 @font-face {
   font-family: 'Avenir Next Italic';
-  src: url('fonts/AvenirNextLTPro-It.otf');
+  src: url('fonts/AvenirNextLTPro-It.otf') ;
 }
 
 @font-face {
@@ -139,7 +142,7 @@ header .navbar{
   overflow: scroll;
   color: $animation-panel-color;
   flex: 1.5 0 220px !important;
-  position: initial !important;
+  /*position: initial !important; */
   max-width: 30% !important;
   .search{
     margin-top: 10px;
@@ -922,15 +925,15 @@ button:focus,
 
 /*! CSS Used from: http://localhost:8081/external/menu-boxImproved/css/style.css */
 .menu-box{
-  position:absolute;
-  margin:-250px 10px 10px -110px;
-  float:left;
-  font-family:Verdana;
-  font-style:normal;
-  font-weight:normal;
-  z-index:1031;
-  -webkit-box-sizing:initial;
-  box-sizing:initial;
+  position: absolute;
+  float: right;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.2rem;
+  z-index: 1031;
+  box-sizing: initial;
+  left: 83%;
   video, img{
     margin-left:auto;
     margin-right:auto;
@@ -997,7 +1000,7 @@ button.prev:hover,button.next:hover{
 }
 .navg button.disabled:hover{
   opacity:0.2;
-}
+}big-menu-box
 a.grid{
   background:transparent url(../assets/imageFooterBoxMenu/thumbs.png) no-repeat top left;
 }
@@ -1012,18 +1015,21 @@ button.prev{
   .navg{
     width:225px;
   }
-  .anim-btn-type div,
-  .images div{
+  .anim-btn-type >div,
+  .images > div{
     display:flex;
     vertical-align:middle;
     text-align:center;
     position:relative;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
   .images{
     padding:10px;
-    background-color:$menubox-bg;
-    border:1px solid $menubox-bg;
+    background-color:$black2;
+    border:1px solid $black1;
+    color: white;
     position:relative;
     -moz-box-shadow:$menubox-shadow;
     -webkit-box-shadow:$menubox-shadow;
@@ -1032,15 +1038,15 @@ button.prev{
     -webkit-border-radius:5px;
     border-radius:5px;
     overflow: auto;
-    width:222px!important;
-    height:222px!important;
+    width: 302px;
+    height: 302px;
   }
   .anim-btn-type{
     overflow: hidden;
     /*margin: 0 0 0 -3px;*/
   }
   .thumbs {
-    .me-btn,me-btn2, div{
+ /*   .me-btn,me-btn2, div{
       float:left;
       cursor:pointer;
       text-align: center;
@@ -1049,7 +1055,7 @@ button.prev{
       width:103px;
       height:103px;
 
-    }
+    }*/
     .me-btn2{
       width:62px;
       height:62px;
@@ -1128,6 +1134,7 @@ button.prev{
   margin-top: -3px !important;
   margin-left: 0;
   margin-right: 0;
+  top: 20px;
   .left-btn,
   .middle-btn,
   .right-btn,
@@ -1228,7 +1235,7 @@ button.prev{
   height: 100px!important;
 }
 .thumbs .medias-container{
-  display: inline-block !important;
+  /*display: inline-block ;*/
   width: inherit !important;
   margin-left: 3px !important;
 }
@@ -1298,7 +1305,7 @@ button.prev{
 
 .hide-side-menu{
   margin-left: -35px;
-  position: absolute;
+  position: fixed;
   margin-top: -8px;
   background: #292b2c;
   border: none;
@@ -1350,6 +1357,10 @@ header{
         cursor: pointer;
         border: none;
       }
+    }
+    .selected-item{
+      filter: brightness(3);
+      color: white;
     }
   }
 
@@ -1424,7 +1435,7 @@ header{
     width: 17px;
     height: 17px;
     &:checked{
-      background: url("../assets/check.svg") 2px 2px no-repeat;
+      background: url("../assets/media/check.svg") 2px 2px no-repeat;
     }
   }
   select{

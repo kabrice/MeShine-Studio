@@ -51,6 +51,7 @@
     justify-content: center;
     height: 100%;
     width: 100%;
+
   }
 
   .thumbnail-wrapper .image-clip {
@@ -94,6 +95,7 @@
     border-width: 2px;
     border-color: #61c9ff;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .4);
+    transform: scale(1.2);
   }
 
   .media-element .media-element-indicator {
@@ -170,4 +172,5 @@
     color: #fff;
     background: #1890ff;
   }
+
 }

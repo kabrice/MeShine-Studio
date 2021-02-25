@@ -793,7 +793,7 @@
   }
 
   .element-scrubber-container .element-timeline .frames .keyframe .filler {
-    background-color: #f7f7f7;
+    background-color: #d6d6d6;
     border: 1px solid;
     box-sizing: border-box;
     height: 8px;
@@ -858,6 +858,32 @@
     pointer-events: all;
   }
 
+  .element.selected .element-detail .element-thumb-wrapper .element-thumb {
+    border: 2px solid #61c9ff;
+    transform: scale(1.2);
+  }
+
+  .element.selected .element-scrubber-container .element-timeline {
+    border: 2px solid transparent;
+  }
+
+  .element.selected .element-scrubber-container .element-timeline .frames .keyframe {
+    top: 6px;
+  }
+
+  .element.selected .element-scrubber-container .element-timeline .frames .keyframe .filler {
+    border-radius: 5px;
+    border-width: 2px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+    height: 12px;
+    margin-left: -5px;
+    margin-top: -4px;
+    width: 12px;
+  }
+
+  .element.selected .element-scrubber-container .element-timeline .frames .keyframe .filler.highlight {
+    border-width: 3px;
+  }
 
   /*! CSS Used from: https://ads-interfaces.sc-cdn.net/snapnet-cdn/fonts/snapchat-icons/snapchaticons.font.css ; media=all */
 
