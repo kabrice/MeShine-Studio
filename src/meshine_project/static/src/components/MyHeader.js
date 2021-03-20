@@ -30,7 +30,7 @@ class MyHeader extends Component {
                         </li>
                     </ul>
                     <div className="page-title">
-                        japprend.fr/sciences/la-grenouille-goliath-tour-d-horizon-20190910
+                        japprendsanimal.fr/sciences/la-grenouille-goliath-tour-d-horizon-20190910
                     </div>
                     <ul className="nav navbar-nav navbar-right">
                         <li role="presentation" >
