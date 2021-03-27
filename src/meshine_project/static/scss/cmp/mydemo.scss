@@ -805,7 +805,7 @@
   }
 
   .slds-path__nav .slds-is-active:hover {
-    background: var(--lwc-colorBackgroundPathActiveHover, rgb(0, 57, 107));
+    //background: var(--lwc-colorBackgroundPathActiveHover, rgb(0, 57, 107));
   }
 
   .slds-path__item {
@@ -1293,7 +1293,10 @@ button {
 /*Demo- ADD REFERENCE INPUT BOX (From Quora)*/
 /*! CSS Used from: https://qsbr.fs.quoracdn.net/-4-ans_frontend-relay-main.css-28-6f236d355ac09814.webpack */
 .qu-px--medium{padding-left:16px;padding-right:16px;}
-.qu-py--small{padding-top:8px;padding-bottom:8px;}
+.qu-py--small{padding-top:8px;padding-bottom:8px;
+  /*position: absolute;
+  bottom: -20px;
+  background: #1F1F1F;*/}
 .qu-ml--tiny{margin-left:4px;}
 .qu-ml--small{margin-left: 4px;}
 .qu-bg--white__ignore_dark_mode{background-color:#fff;}
@@ -1317,7 +1320,6 @@ button {
 .qu-flex--none{flex:none;}
 .qu-textAlign--center{text-align:center;}
 .qu-tapHighlight--white{-webkit-tap-highlight-color:rgba(255,255,255,0.6);}
-.qu-disabled{opacity:.5;pointer-events:none;}
 .qu-borderRadius--large{border-radius:25px;}
 .qu-borderRadius--pill{border-radius:1000px;}
 .qu-borderRadius--circle{border-radius:100%;}
@@ -1356,7 +1358,6 @@ button {
 .qu-flex--none{flex:none;}
 .qu-textAlign--center{text-align:center;}
 .qu-tapHighlight--white{-webkit-tap-highlight-color:rgba(255,255,255,0.6);}
-.qu-disabled{opacity:.5;pointer-events:none;}
 .qu-borderRadius--large{border-radius:25px;}
 .qu-borderRadius--pill{border-radius:1000px;}
 .qu-borderRadius--circle{border-radius:100%;}
@@ -1404,4 +1405,28 @@ a{text-decoration:none;color:rgb(25, 95, 170);-webkit-tap-highlight-color:rgba(2
 input{color:rgb(40, 40, 41);background-color:transparent;}
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5){
   .bOaUnz{box-shadow:rgb(222, 224, 225) 0px 0px 0px 0.5px inset!important;}
+}
+
+/*Demo- ADD Authors of content (From Quora)*/
+
+.qu-ml--medium{margin-left:16px;}
+.qu-mr--n_small{margin-right:-8px;}
+.qu-mt--small{margin-top:8px;}
+/*! CSS Used from: Embedded */
+
+/*! CSS Used from: https://help.salesforce.com/resource/1611627554000/HelpStaticResource/styles/app.css */
+body div a{color:#0070d2;}
+body div a:focus,body div a:hover{color:#005fb2;}
+body div a:active{color:#00396b;}
+body div a:disabled{color:#16325c;}
+a:focus,a:hover{color:#23527c;text-decoration:none;}
+.social-sharing-icons-container .social-sharing-icon-bg{background-color: white;border-radius:50%;width:35px;height:35px;display:flex;justify-content:center;align-items:center;color:#fff;margin-right:10px;}
+.social-sharing-icons-container .social-sharing-icon-bg:hover{cursor:pointer;}
+.social-sharing-icons-container .social-sharing-icons{background-image:url(https://help.salesforce.com/resource/1611627554000/HelpStaticResource/assets/images/sprite-icons.png);background-repeat:no-repeat;text-indent:-9999px;height:35px;width:35px;display:inline-block;}
+.social-sharing-icons-container .social-sharing-icons.facebook{background-position:-80px -19px;width:11px;height:20px;-moz-transform-origin:0 0;}
+.social-sharing-icons-container .social-sharing-icons.twitter{background-position:-100px -18px;width:20px;height:20px;-moz-transform-origin:0 0;}
+.social-sharing-icons-container .social-sharing-icons.linkedin{background-position:-100px -221px;width:20px;height:20px;-moz-transform-origin:0 0;}
+.social-sharing-icons-container.share-buttons{display: inline-flex;}
+@media (max-width:991px){
+  .social-sharing-icons-container.share-buttons{margin-top:16px;display: inline-flex;}
 }

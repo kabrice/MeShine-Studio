@@ -124,10 +124,10 @@ button.prev{
     background:transparent url(../images/arrows.png) no-repeat 0px -20px;
 }
 .images div{
-    display:table-cell;
+    /*display:table-cell;
     vertical-align:middle;
     text-align:center;
-    position:relative;
+    position:relative;*/
 }
 .smallGallery .images,
 .mediumGallery .images,

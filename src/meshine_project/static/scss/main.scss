@@ -37,6 +37,7 @@
 @import "cmp/mydemo";
 @import "cmp/mymediacustomization";
 @import "cmp/mycolorpicker";
+@import "cmp/myReactDraftWysiwyg";
 
 html {
   height: $html-height !important;
@@ -934,7 +935,7 @@ button:focus,
   z-index: 1031;
   box-sizing: initial;
   left: 83%;
-  video, img{
+  /*video, img{
     margin-left:auto;
     margin-right:auto;
     border:none;
@@ -943,7 +944,7 @@ button:focus,
     height:auto;
     max-height:100%;
     max-width:100%;
-  }
+  }*/
   .add-media #fmb-label,
   video{
     position: relative;
@@ -1015,8 +1016,8 @@ button.prev{
   .navg{
     width:225px;
   }
-  .anim-btn-type >div,
-  .images > div{
+  .anim-btn-type >div:first-child,
+  .images > div:first-child{
     display:flex;
     vertical-align:middle;
     text-align:center;
