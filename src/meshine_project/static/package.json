@@ -43,7 +43,7 @@
     "react-lazyload": "^2.6.6",
     "react-loader-advanced": "^1.7.1",
     "react-lottie": "^1.2.3",
-    "react-native": "^0.61.5",
+    "react-native": "^0.62.3",
     "react-progress": "0.0.12",
     "react-redux": "5.0.7",
     "react-router": "4.3.1",
